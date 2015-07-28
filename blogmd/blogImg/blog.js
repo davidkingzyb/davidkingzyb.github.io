@@ -401,16 +401,15 @@ function getBlogJson(){
 			if(!resp){
 				resp=xhr.responseText;
 				searchJson=JSON.parse(resp);
-				responseHandle(resp);
+				//responseHandle(resp);
 			}
 		}else{
 			console.log('fail'+xhr.status);
 		}
 	};
-	xhr.open('get','blogJson.json',true);
+	xhr.open('get','../../blogJson.json',true);
 	xhr.send(null);
 }
-
 function responseHandle(resp){
 	var respJson=JSON.parse(resp);
 	var innerbodyPane='<div id="bodyTitle"><h1>DKZ&apos;s blog</h1><hr></div>';
@@ -426,11 +425,13 @@ function responseHandle(resp){
 		innerbodyPane=innerbodyPane+'</article></a>';
 	}
 	document.getElementById('bodyPane').innerHTML=innerbodyPane;
+	
+	
 }
 
 window.onload=function(){
 	getBlogJson();
-	console.log(searchJson)
+	
 	var canvas=document.getElementById("dkzlogo");
 	var context=canvas.getContext('2d');
 	var DKZlogo=new DKZLogoClass(context,15);
@@ -439,7 +440,6 @@ window.onload=function(){
 	canvas.onclick=function(){
 		DKZlogo.fillrandomDKZ();
 	};
-
 	var searchbtn=document.getElementById("search");
 
 	searchbtn.onclick=function(){
@@ -457,6 +457,5 @@ window.onload=function(){
 		responseHandle(reqStr);
 	};
 };
-
 
 

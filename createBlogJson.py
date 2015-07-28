@@ -12,23 +12,63 @@ def MDtoJson(file):
 		key=lines[4][:-1]
 		img=lines[6]
 		img=img[img.find('(')+1:-2]
-
-
 	return {"index":index,"title":title,"info":info,"key":key,"img":img}
 
 def createJson(files):
 	blog=[]
 	for f in files:
 		if(f!='blogImg'):
-			type=f.split('.')[1]
-			index=int(f.split('.')[0])
-			if type=='md':
+			t=f.split('.')[1]
+			if t=='md':
 				j=MDtoJson(f)
 				blog.append(j)	
 	blogJson={"blog":blog}
 	with open('blogJson.json','w') as bjf:
 		bjf.write(json.dumps(blogJson))
 
+def doBlogs(files):
+	for f in files:
+		if(f!='blogImg'):
+			t=f.split('.')[1]
+			if t=='html':
+				packHtml(f)
+
+def readHtml(file):
+	with open('./blogmd/'+file,'r') as f:
+		html=f.read()
+		start=html.find('<article')
+		end=html.find('</article>')
+		body=html[start:end+10]
+		return body
+
+def read(file):
+	with open(file,'r') as f:
+		return f.read()
+
+def doImg(body):
+	result=''
+	start=body.find('///')
+	result=body[:start]
+	end=body.find('blogImg',start)
+	while start!=-1:
+		start=body.find('///',end)
+		result=result+body[end:start]
+		end=body.find('blogImg',start)
+	result=result+body[end:]
+	return result
+
+
+head=read('head.html')
+foot=read('foot.html')
+def packHtml(file):
+	body=readHtml(file)
+	if body.find('///')!=-1:
+		body=doImg(body)
+	with open('./blogmd/'+file,'w') as f:
+		f.write(head+body+foot)
+
 createJson(files)
+doBlogs(files)
 print('ok')
-#print(MDtoJson('0.md'))
+
+
