@@ -407,7 +407,7 @@ function getBlogJson(){
 			console.log('fail'+xhr.status);
 		}
 	};
-	xhr.open('get','../../blogJson.json',true);
+	xhr.open('get','/blogJson.json',true);
 	xhr.send(null);
 }
 function responseHandle(resp){
@@ -415,12 +415,12 @@ function responseHandle(resp){
 	var innerbodyPane='<div id="bodyTitle"><h1>DKZ&apos;s blog</h1><hr></div>';
 	while(respJson.blog.length!==0){
 		var article=respJson.blog.pop();
-		innerbodyPane=innerbodyPane+'<a href="blogmd/'+article.index+'.html">';
+		innerbodyPane=innerbodyPane+'<a href="/blogmd/'+article.index+'.html">';
 		innerbodyPane=innerbodyPane+'<article class="markdown-body"><h1>'+article.title+'</h1>';
 		innerbodyPane=innerbodyPane+'<p><strong>'+article.info+'</strong></p>';
 		innerbodyPane=innerbodyPane+'<p>'+article.key+'</p>';
 		if(article.img!==''){
-			innerbodyPane=innerbodyPane+'<p><img src="blogmd/'+article.img+'" style="max-width:100%;"></p>';
+			innerbodyPane=innerbodyPane+'<p><img src="'+article.img+'" style="max-width:100%;"></p>';
 		}
 		innerbodyPane=innerbodyPane+'</article></a>';
 	}
@@ -446,7 +446,7 @@ window.onload=function(){
 		var key=prompt('Search:').toLowerCase();
 		var req={"blog":[]};
 		for(var i=0;i<searchJson.blog.length;i++){
-			if(searchJson.blog[i].toLowerCase().info.indexOf(key)!==-1||searchJson.blog[i].title.toLowerCase().indexOf(key)!==-1||searchJson.blog[i].key.toLowerCase().indexOf(key)!==-1){
+			if(searchJson.blog[i].info.toLowerCase().indexOf(key)!==-1||searchJson.blog[i].title.toLowerCase().indexOf(key)!==-1||searchJson.blog[i].key.toLowerCase().indexOf(key)!==-1){
 				req.blog.push(searchJson.blog[i]);
 			}
 		}

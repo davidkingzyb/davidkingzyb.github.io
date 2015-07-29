@@ -446,7 +446,7 @@ window.onload=function(){
 		var key=prompt('Search:').toLowerCase();
 		var req={"blog":[]};
 		for(var i=0;i<searchJson.blog.length;i++){
-			if(searchJson.blog[i].toLowerCase().info.indexOf(key)!==-1||searchJson.blog[i].title.toLowerCase().indexOf(key)!==-1||searchJson.blog[i].key.toLowerCase().indexOf(key)!==-1){
+			if(searchJson.blog[i].info.toLowerCase().indexOf(key)!==-1||searchJson.blog[i].title.toLowerCase().indexOf(key)!==-1||searchJson.blog[i].key.toLowerCase().indexOf(key)!==-1){
 				req.blog.push(searchJson.blog[i]);
 			}
 		}

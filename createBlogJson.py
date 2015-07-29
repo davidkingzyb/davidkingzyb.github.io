@@ -5,7 +5,7 @@ files=os.listdir('./blogmd');
 
 def MDtoJson(file):
 	index=int(file.split('.')[0])
-	with open('./blogmd/'+file,'r') as f:
+	with open('./blogmd/'+file,'r', encoding='UTF-8') as f:
 		lines=f.readlines()
 		title=lines[0][1:-1]
 		info=lines[2][2:-3]
@@ -23,7 +23,7 @@ def createJson(files):
 				j=MDtoJson(f)
 				blog.append(j)	
 	blogJson={"blog":blog}
-	with open('blogJson.json','w') as bjf:
+	with open('blogJson.json','w', encoding='UTF-8') as bjf:
 		bjf.write(json.dumps(blogJson))
 
 def doBlogs(files):
@@ -34,7 +34,7 @@ def doBlogs(files):
 				packHtml(f)
 
 def readHtml(file):
-	with open('./blogmd/'+file,'r') as f:
+	with open('./blogmd/'+file,'r', encoding='UTF-8') as f:
 		html=f.read()
 		start=html.find('<article')
 		end=html.find('</article>')
@@ -42,7 +42,7 @@ def readHtml(file):
 		return body
 
 def read(file):
-	with open(file,'r') as f:
+	with open(file,'r', encoding='UTF-8') as f:
 		return f.read()
 
 def doImg(body):
@@ -64,7 +64,7 @@ def packHtml(file):
 	body=readHtml(file)
 	if body.find('///')!=-1:
 		body=doImg(body)
-	with open('./blogmd/'+file,'w') as f:
+	with open('./blogmd/'+file,'w', encoding='UTF-8') as f:
 		f.write(head+body+foot)
 
 createJson(files)
