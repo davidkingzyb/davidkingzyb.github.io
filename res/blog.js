@@ -430,7 +430,6 @@ function responseHandle(resp){
 
 window.onload=function(){
 	getBlogJson();
-	console.log(searchJson)
 	var canvas=document.getElementById("dkzlogo");
 	var context=canvas.getContext('2d');
 	var DKZlogo=new DKZLogoClass(context,15);
@@ -457,6 +456,5 @@ window.onload=function(){
 		responseHandle(reqStr);
 	};
 };
-
 
 

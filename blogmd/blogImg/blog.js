@@ -457,5 +457,3 @@ window.onload=function(){
 		responseHandle(reqStr);
 	};
 };
-
-
