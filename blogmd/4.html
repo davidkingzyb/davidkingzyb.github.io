@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DKZ's Blog</title>
+	<meta charset="utf-8">
+	<meta name="viewport"
+          content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+	<link rel="stylesheet" type="text/css" href="../res/md.css">
+	<link rel="stylesheet" type="text/css" href="../res/style.css">
+	<script type="text/javascript" src="blogImg/blogmd.js"></script>
+</head>
+<body>
+	<div id="container">
+		<a href="#top">
+			<div id="headPane">
+			<div id="headmain">
+				<canvas id="dkzlogo" width="340" height="250">
+					<img src="/res/img/dkzlogo.png">
+				</canvas>
+			</div>
+
+		</div>
+		</a>
+		<div id="bodyPane"><article class="markdown-body"><h1>
+<a id="user-content-egretinit" class="anchor" href="#egretinit" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretInit</h1>
+
+<p><strong>Build egret project quickly.</strong></p>
+
+<p>2015/8/4 by DKZ</p>
+
+<h2>
+<a id="user-content-egretinit-1" class="anchor" href="#egretinit-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretInit</h2>
+
+<p>An example of egret project base on egret 2.0.0</p>
+
+<h2>
+<a id="user-content-egrettools" class="anchor" href="#egrettools" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretTools</h2>
+
+<p>some useful tools for egret </p>
+
+<h3>
+<a id="user-content-renderts" class="anchor" href="#renderts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Render.ts</h3>
+
+<p>Time-based Animation</p>
+
+<p>solve fps drop problems when using Frame-based Animation</p>
+
+<pre><code>var render=new Render();
+
+render.register(this.loop,this);
+render.start();
+render.pause();
+render.stop();
+render.resume();
+
+render.unregister();
+
+render.framerate=30;
+
+public loop(){
+    //enterFrame
+}
+</code></pre>
+
+<h3>
+<a id="user-content-resourcepy" class="anchor" href="#resourcepy" aria-hidden="true"><span class="octicon octicon-link"></span></a>resource.py</h3>
+
+<p>create resource.json automatically</p>
+
+<p>standard naming rule use file name as texture name</p>
+
+<p>sprite sheet must be named like /^\w*SS.json$/</p>
+
+<h3>
+<a id="user-content-runserverpy" class="anchor" href="#runserverpy" aria-hidden="true"><span class="octicon octicon-link"></span></a>runServer.py</h3>
+
+<p>a python server</p>
+
+<h3>
+<a id="user-content-egret_loaderjs" class="anchor" href="#egret_loaderjs" aria-hidden="true"><span class="octicon octicon-link"></span></a>egret_loader.js</h3>
+
+<p>a solution for iphone and android diffrent screen size</p>
+
+<p>android need scale stage to .5 and the tap event stageX and stageY need times 2</p>
+
+<p>use tool.ts setWH and getXY function set stage to .5 and get tap event stageX and Y</p>
+
+<h3>
+<a id="user-content-toolts" class="anchor" href="#toolts" aria-hidden="true"><span class="octicon octicon-link"></span></a>tool.ts</h3>
+
+<p>egret tools for Initialize standard egret Object</p>
+
+<p>please use resourse.py to keep texture name and sourse name correct</p>
+
+<h4>
+<a id="user-content-setwhthat" class="anchor" href="#setwhthat" aria-hidden="true"><span class="octicon octicon-link"></span></a>setWH(that)</h4>
+
+<p>scale android stage and set global screen width and screen height (use egret_loader.js)</p>
+
+<pre><code>tool.setWH(gameContainer)
+stageWidth=tool.stageW;
+stageHeight=tool.stageH;
+</code></pre>
+
+<h4>
+<a id="user-content-initbitmaptexturexyaxay" class="anchor" href="#initbitmaptexturexyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initBitmap(texture,x?,y?,ax?,ay?)</h4>
+
+<p>Initialize a Bitmap Object</p>
+
+<pre><code>this.bm=tool.initBitmap('bm');
+this.bm2=tool.initBitmap('bm',100,100,.5,.5);
+</code></pre>
+
+<h4>
+<a id="user-content-initmoviecliptexturexyaxay" class="anchor" href="#initmoviecliptexturexyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initMovieClip(texture,x?,y?,ax?,ay?)</h4>
+
+<p>Initialize a MovieClip Object</p>
+
+<pre><code>this.mc=tool.initMovieClip('mc');
+this.mc.play(1);
+this.mc2=tool.initMovieClip('mc2',200,100,.5,.5);
+this.mc2.play(-1);
+</code></pre>
+
+<h4>
+<a id="user-content-changemovieclipdatatargettexture" class="anchor" href="#changemovieclipdatatargettexture" aria-hidden="true"><span class="octicon octicon-link"></span></a>changeMovieClipData(target,texture)</h4>
+
+<p>Change MovieClip texture</p>
+
+<pre><code>tool.changeMovieClipData(this.mc2,'mc');
+this.mc.play(-1);
+</code></pre>
+
+<h4>
+<a id="user-content-inittextfieldtextxytextcolorsizefontfamily" class="anchor" href="#inittextfieldtextxytextcolorsizefontfamily" aria-hidden="true"><span class="octicon octicon-link"></span></a>initTextField(text,x?,y?,textColor?,size?,fontFamily?)</h4>
+
+<p>Initialize a TextField Object</p>
+
+<pre><code>this.tf=tool.initTextField('Hello World');
+this.tf2=tool.initTextField('msg',100,200,0x000001,80,'SimHei');
+</code></pre>
+
+<h4>
+<a id="user-content-initbitmaptextfonttextxyaxay" class="anchor" href="#initbitmaptextfonttextxyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initBitmapText(font,text,x?,y?,ax?,ay?)</h4>
+
+<p>Initialize a BitMapText Object</p>
+
+<pre><code>this.bmt=tool.initBitmapText('font','0');
+this.bmt2=tool.initBitmapText('font','0',200,200,.5,.5);
+</code></pre>
+
+<h4>
+<a id="user-content-getxyevent" class="anchor" href="#getxyevent" aria-hidden="true"><span class="octicon octicon-link"></span></a>getXY(event)</h4>
+
+<p>get Touch Coordinate</p>
+
+<pre><code>this.bm.addEventListener(egret.TouchEvent.TOUCH_BEGIN,touchBegin,this);
+function touchBegin(e){
+    var x=tool.getXY(e).x;
+    var y=tool.getXY(e).y;
+    console.log('touchXY:',x, y);
+}
+
+</code></pre>
+
+<h4>
+<a id="user-content-initparticletexturexyaxay" class="anchor" href="#initparticletexturexyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initParticle(texture,x?,y?,ax?,ay?)</h4>
+
+<p>Initialize a Particle object (need the third party library particle support <a href="https://github.com/egret-labs/egret-game-library">https://github.com/egret-labs/egret-game-library</a>)</p>
+
+<pre><code>this.system = tool.initParticle('evilParticle', 300,300, .5, .5);
+</code></pre>
+
+<h4>
+<a id="user-content-addchildrenarrcontext" class="anchor" href="#addchildrenarrcontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>addChildren(arr,context)</h4>
+
+<p>add a group to stage</p>
+
+<pre><code>tool.addChildren([this.bm,this.mc],this);
+</code></pre>
+
+<h4>
+<a id="user-content-removechildrenarrcontext" class="anchor" href="#removechildrenarrcontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>removeChildren(arr,context)</h4>
+
+<p>remove a group from stage</p>
+
+<pre><code>tool.removeChildren([this.bm,this.mc],this);
+</code></pre>
+
+<h4>
+<a id="user-content-initscale9gridbitmaptexturerswrshrwrhwidthheightxyaxay" class="anchor" href="#initscale9gridbitmaptexturerswrshrwrhwidthheightxyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initScale9GridBitmap(texture,Rsw,Rsh,Rw,Rh,width?,height?,x?,y?,ax?,ay?)</h4>
+
+<p>Initialize a Scale 9 Grid Bitmap object</p>
+
+<pre><code>this.s9g=tool.initScale9GridBitmap("scale9grid",50,50,100,100);
+</code></pre>
+
+<h4>
+<a id="user-content-test2recthitobj1obj2" class="anchor" href="#test2recthitobj1obj2" aria-hidden="true"><span class="octicon octicon-link"></span></a>test2RectHit(obj1,obj2)</h4>
+
+<p>2 displayObject collision detection(anchor must be 0)</p>
+
+<pre><code>tool.test2RectHit(this.bm, this.bm2);
+</code></pre>
+
+<h3>
+<a id="user-content-debugts" class="anchor" href="#debugts" aria-hidden="true"><span class="octicon octicon-link"></span></a>debug.ts</h3>
+
+<p>debug egret project</p>
+
+<h4>
+<a id="user-content-showpositiontargetcontext" class="anchor" href="#showpositiontargetcontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>showPosition(target,context)</h4>
+
+<p>show DisplayObject position and console log it infomation</p>
+
+<p>press ctrl and drag the object to change it's position</p>
+
+<p>press shift and drag the object to change it's size</p>
+
+<p>press alt and click the object to console log it's infomation</p>
+
+<pre><code>debug.showPosition(target,this);
+</code></pre>
+
+<h4>
+<a id="user-content-showallpositioncontext" class="anchor" href="#showallpositioncontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>showAllPosition(context)</h4>
+
+<p>show DisplayObjectContainer's all children position and console log them infomation</p>
+
+<pre><code>debug.showAllPosition(gameContainer);
+</code></pre>
+
+<h4>
+<a id="user-content-showgrouppositiongroupcontext" class="anchor" href="#showgrouppositiongroupcontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>showGroupPosition(group,context)</h4>
+
+<p>show a group position</p>
+
+<pre><code>debug.showGroupPosition([this.bm,this.mc],this);
+</code></pre>
+
+<h4>
+<a id="user-content-pause-resume" class="anchor" href="#pause-resume" aria-hidden="true"><span class="octicon octicon-link"></span></a>pause() resume()</h4>
+
+<p>pause game and resume game</p>
+
+<pre><code>debug.pause();
+debug.resume();
+</code></pre>
+</article></div>
+	</div>
+<div id="footer">
+	<div id="footerPane">
+		<img id="cubehead" src="../res/img/cubehead.png">
+		<div id="footerL">
+			<a href="../index.html">Home</a><a href="../index.html#contact">Contact</a>
+		</div>
+		<div id="footerR">
+			<a id="search">Search</a><a href="../blog.html">Contents</a><a href="#top">Top</a>
+		</div>
+
+	</div>
+</div>
+</body>
+</html>

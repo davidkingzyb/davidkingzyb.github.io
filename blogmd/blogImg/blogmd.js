@@ -392,45 +392,26 @@ var DKZLogoClass=(function(){
 	return DKZLogoClass;
 
 })();
-var resp;
-var searchJson;
-function getBlogJson(){
-	var xhr=new XMLHttpRequest();
-	xhr.onreadystatechange=function(){
-		if((xhr.status>=200&&xhr.status<300)||xhr.status==304){
-			if(!resp){
-				resp=xhr.responseText;
-				searchJson=JSON.parse(resp);
-				//responseHandle(resp);
-			}
-		}else{
-			console.log('fail'+xhr.status);
-		}
-	};
-	xhr.open('get','/blogJson.json',true);
-	xhr.send(null);
-}
-function responseHandle(resp){
-	var respJson=JSON.parse(resp);
-	var innerbodyPane='<div id="bodyTitle"><h1>DKZ&apos;s blog</h1><hr></div>';
-	while(respJson.blog.length!==0){
-		var article=respJson.blog.pop();
-		innerbodyPane=innerbodyPane+'<a href="/blogmd/'+article.index+'.html">';
-		innerbodyPane=innerbodyPane+'<article class="markdown-body"><h1>'+article.title+'</h1>';
-		innerbodyPane=innerbodyPane+'<p><strong>'+article.info+'</strong></p>';
-		innerbodyPane=innerbodyPane+'<p>'+article.key+'</p>';
-		if(article.img!==''){
-			innerbodyPane=innerbodyPane+'<p><img src="'+article.img+'" style="max-width:100%;"></p>';
-		}
-		innerbodyPane=innerbodyPane+'</article></a>';
+
+var searchArr=[];
+
+function getSearchArr(){
+	var anchor=document.querySelectorAll(".anchor");
+	for(var i=0;i<anchor.length;i++){
+		searchArr.push(anchor[i].href.split('#')[1]);
 	}
-	document.getElementById('bodyPane').innerHTML=innerbodyPane;
-	
-	
+}
+
+function searchAnchor(key){
+	for(var i=0;i<searchArr.length;i++){
+		if(searchArr[i].indexOf(key)!==-1){
+			return i;
+		}
+	}
+	return -1;
 }
 
 window.onload=function(){
-	getBlogJson();
 	
 	var canvas=document.getElementById("dkzlogo");
 	var context=canvas.getContext('2d');
@@ -440,20 +421,43 @@ window.onload=function(){
 	canvas.onclick=function(){
 		DKZlogo.fillrandomDKZ();
 	};
+
+	getSearchArr();
+
 	var searchbtn=document.getElementById("search");
 
 	searchbtn.onclick=function(){
-		var key=prompt('Search:').toLowerCase();
-		var req={"blog":[]};
-		for(var i=0;i<searchJson.blog.length;i++){
-			if(searchJson.blog[i].info.toLowerCase().indexOf(key)!==-1||searchJson.blog[i].title.toLowerCase().indexOf(key)!==-1||searchJson.blog[i].key.toLowerCase().indexOf(key)!==-1){
-				req.blog.push(searchJson.blog[i]);
+		var key=encodeURI(prompt('Search:'));
+		var index=searchAnchor(key);
+		window.scrollTo(0,document.getElementsByClassName('anchor')[index].getBoundingClientRect().top+document.body.scrollTop);
+	};
+
+	var footer=document.getElementById('footer');
+	function showFooter(h){
+		footer.style.height=h;
+	}
+	function hideFooter(h){
+		footer.style.height=h;
+	}
+	if(window.innerWidth>=750){
+		footer.onmouseover=function(){
+			showFooter('100px');
+		};
+		footer.onmouseout=function(){
+			hideFooter('20px');
+		};
+	}
+
+	window.onscroll=function(){
+		if(document.body.clientHeight-document.body.scrollTop-window.innerHeight<20){
+			if(window.innerWidth>=750){
+				footer.style.height='100px';
+			}
+		}else{
+			if(window.innerWidth>=750){
+				footer.style.height='20px';
 			}
 		}
-		if(req.blog.length===0){
-			req.blog.push(searchJson.blog[1]);
-		}
-		var reqStr=JSON.stringify(req);
-		responseHandle(reqStr);
 	};
+
 };

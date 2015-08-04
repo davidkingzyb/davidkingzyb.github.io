@@ -429,7 +429,7 @@ function responseHandle(resp){
 }
 
 window.onload=function(){
-	getBlogJson();
+	
 	var canvas=document.getElementById("dkzlogo");
 	var context=canvas.getContext('2d');
 	var DKZlogo=new DKZLogoClass(context,15);
@@ -439,6 +439,8 @@ window.onload=function(){
 		DKZlogo.fillrandomDKZ();
 	};
 
+	getBlogJson();
+	
 	var searchbtn=document.getElementById("search");
 
 	searchbtn.onclick=function(){
@@ -455,6 +457,35 @@ window.onload=function(){
 		var reqStr=JSON.stringify(req);
 		responseHandle(reqStr);
 	};
+
+	var footer=document.getElementById('footer');
+	function showFooter(h){
+		footer.style.height=h;
+	}
+	function hideFooter(h){
+		footer.style.height=h;
+	}
+	if(window.innerWidth>=750){
+		footer.onmouseover=function(){
+			showFooter('100px');
+		};
+		footer.onmouseout=function(){
+			hideFooter('20px');
+		};
+	}
+
+	window.onscroll=function(){
+		if(document.body.clientHeight-document.body.scrollTop-window.innerHeight<20){
+			if(window.innerWidth>=750){
+				footer.style.height='100px';
+			}
+		}else{
+			if(window.innerWidth>=750){
+				footer.style.height='20px';
+			}
+		}
+	};
+
 };
 
 
