@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DKZ's Blog</title>
+	<meta charset="utf-8">
+	<meta name="viewport"
+          content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+	<link rel="stylesheet" type="text/css" href="../res/md.css">
+	<link rel="stylesheet" type="text/css" href="../res/style.css">
+	<script type="text/javascript" src="blogImg/blogmd.js"></script>
+</head>
+<body>
+	<div id="container">
+		<a href="#top">
+			<div id="headPane">
+			<div id="headmain">
+				<canvas id="dkzlogo" width="340" height="250">
+					<img src="/res/img/dkzlogo.png">
+				</canvas>
+			</div>
+
+		</div>
+		</a>
+		<div id="bodyPane"><article class="markdown-body"><h1>
+<a id="user-content-canvastrigger" class="anchor" href="#canvastrigger" aria-hidden="true"><span class="octicon octicon-link"></span></a>canvasTrigger</h1>
+
+<p><strong>define objects in canvas and dispatch canvas event to those objects.</strong></p>
+
+<p>2015/8/3 by DKZ</p>
+
+<pre><code>var ctcanvas=new ctCanvas('canvas');
+ctcanvas.addTrigger('click');
+
+var a=new ctFillRect(100,100,200,200,'#f00');
+ctcanvas.addObj(a);
+
+a.on('click',function(){
+    console.log('a click');
+});
+</code></pre>
+
+<h2>
+<a id="user-content-canvastrigger-api" class="anchor" href="#canvastrigger-api" aria-hidden="true"><span class="octicon octicon-link"></span></a>canvasTrigger API</h2>
+
+<h3>
+<a id="user-content-ctcanvasid" class="anchor" href="#ctcanvasid" aria-hidden="true"><span class="octicon octicon-link"></span></a>ctCanvas(id)</h3>
+
+<hr>
+
+<p>create a ctCanvas object.</p>
+
+<p>id:string id</p>
+
+<pre><code>var ctcanvas=new ctCanvas('canvas');
+</code></pre>
+
+<h4>
+<a id="user-content-canvasany" class="anchor" href="#canvasany" aria-hidden="true"><span class="octicon octicon-link"></span></a>canvas:any</h4>
+
+<p>canvas object get by id.</p>
+
+<h4>
+<a id="user-content-contextany" class="anchor" href="#contextany" aria-hidden="true"><span class="octicon octicon-link"></span></a>context:any</h4>
+
+<p>canvas context .</p>
+
+<h4>
+<a id="user-content-objsarray" class="anchor" href="#objsarray" aria-hidden="true"><span class="octicon octicon-link"></span></a>objs:array</h4>
+
+<p>ctObj objects array store ctObjs which add in this ctcanvas.</p>
+
+<h4>
+<a id="user-content-triggersarray" class="anchor" href="#triggersarray" aria-hidden="true"><span class="octicon octicon-link"></span></a>triggers:array</h4>
+
+<p>event type array store ctEvent string.</p>
+
+<h4>
+<a id="user-content-addtriggerctevent" class="anchor" href="#addtriggerctevent" aria-hidden="true"><span class="octicon octicon-link"></span></a>addTrigger(ctEvent)</h4>
+
+<p>add event type to ctCanvas.</p>
+
+<p>ctEvent:string event type.</p>
+
+<pre><code>ctcanvas.addTrigger('click');
+</code></pre>
+
+<h4>
+<a id="user-content-addobjobj" class="anchor" href="#addobjobj" aria-hidden="true"><span class="octicon octicon-link"></span></a>addObj(obj)</h4>
+
+<p>add ctObj to ctCanvas and draw it.</p>
+
+<p>obj:ctObj</p>
+
+<pre><code>ctcanvas.addObj(a);
+</code></pre>
+
+<h4>
+<a id="user-content-removeobjobj" class="anchor" href="#removeobjobj" aria-hidden="true"><span class="octicon octicon-link"></span></a>removeObj(obj)</h4>
+
+<p>remove ctObj from ctCanvas remove all event of this ctObj and draw canvas again.</p>
+
+<pre><code>ctcanvas.removeObj(a);
+</code></pre>
+
+<h4>
+<a id="user-content-offobjobj" class="anchor" href="#offobjobj" aria-hidden="true"><span class="octicon octicon-link"></span></a>offObj(obj)</h4>
+
+<p>remove all event of this ctObj.</p>
+
+<pre><code>ctcanvas.offObj(obj);
+</code></pre>
+
+<h4>
+<a id="user-content-drawcanvas" class="anchor" href="#drawcanvas" aria-hidden="true"><span class="octicon octicon-link"></span></a>drawCanvas()</h4>
+
+<p>draw all ctObj objects in canvas.</p>
+
+<pre><code>ctcanvas.drawCanvas();
+</code></pre>
+
+<h4>
+<a id="user-content-notifyectevent" class="anchor" href="#notifyectevent" aria-hidden="true"><span class="octicon octicon-link"></span></a>Notify(e,ctEvent)</h4>
+
+<p>call observer's function</p>
+
+<p>e:event </p>
+
+<p>ctEvent:string event type.</p>
+
+<h4>
+<a id="user-content-registerobservercteventfuncobj" class="anchor" href="#registerobservercteventfuncobj" aria-hidden="true"><span class="octicon octicon-link"></span></a>registerObserver(ctEvent,func,obj)</h4>
+
+<p>register a observer </p>
+
+<p>ctEvent:string event type.</p>
+
+<p>func:any this function will be execute after the event</p>
+
+<p>obj:ctObj </p>
+
+<h4>
+<a id="user-content-removeobservercteventobj" class="anchor" href="#removeobservercteventobj" aria-hidden="true"><span class="octicon octicon-link"></span></a>removeObserver(ctEvent,obj)</h4>
+
+<p>remove observer from ctobj.</p>
+
+<h3>
+<a id="user-content-ctobjxywh" class="anchor" href="#ctobjxywh" aria-hidden="true"><span class="octicon octicon-link"></span></a>ctObj(x?,y?,w?,h?)</h3>
+
+<hr>
+
+<p>super class of all object</p>
+
+<h4>
+<a id="user-content-contextany-1" class="anchor" href="#contextany-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>context:any</h4>
+
+<p>canvas context</p>
+
+<h4>
+<a id="user-content-ctcanvasctcanvas" class="anchor" href="#ctcanvasctcanvas" aria-hidden="true"><span class="octicon octicon-link"></span></a>ctcanvas:ctCanvas</h4>
+
+<p>ctCanvas which contain this </p>
+
+<h4>
+<a id="user-content-xnumber" class="anchor" href="#xnumber" aria-hidden="true"><span class="octicon octicon-link"></span></a>x:number</h4>
+
+<p>x coordinate of this  default=0</p>
+
+<h4>
+<a id="user-content-ynumber" class="anchor" href="#ynumber" aria-hidden="true"><span class="octicon octicon-link"></span></a>y:number</h4>
+
+<p>y coordinate of this  default=0</p>
+
+<h4>
+<a id="user-content-wnumber" class="anchor" href="#wnumber" aria-hidden="true"><span class="octicon octicon-link"></span></a>w:number</h4>
+
+<p>width of this  default=100</p>
+
+<h4>
+<a id="user-content-hnumber" class="anchor" href="#hnumber" aria-hidden="true"><span class="octicon octicon-link"></span></a>h:number</h4>
+
+<p>height of this  default=100</p>
+
+<h4>
+<a id="user-content-alphanumber" class="anchor" href="#alphanumber" aria-hidden="true"><span class="octicon octicon-link"></span></a>alpha:number</h4>
+
+<p>alpha of this default=1</p>
+
+<h4>
+<a id="user-content-oncteventfunc" class="anchor" href="#oncteventfunc" aria-hidden="true"><span class="octicon octicon-link"></span></a>on(ctevent,func)</h4>
+
+<p>add a event listener of this</p>
+
+<p>ctevent:string </p>
+
+<p>func:function </p>
+
+<pre><code>a.on('click',function(){
+    console.log('a click');
+});
+</code></pre>
+
+<h4>
+<a id="user-content-offctevent" class="anchor" href="#offctevent" aria-hidden="true"><span class="octicon octicon-link"></span></a>off(ctevent)</h4>
+
+<p>remove the event listener of this</p>
+
+<p>ctevent:string</p>
+
+<pre><code>a.off('click');
+</code></pre>
+
+<h4>
+<a id="user-content-superdraw" class="anchor" href="#superdraw" aria-hidden="true"><span class="octicon octicon-link"></span></a>superdraw()</h4>
+
+<p>set globalAlpha</p>
+
+<h4>
+<a id="user-content-toargstimecallback" class="anchor" href="#toargstimecallback" aria-hidden="true"><span class="octicon octicon-link"></span></a>to(args,time,callback)</h4>
+
+<p>a linear tween animation</p>
+
+<p>args:object ctObj's attribute</p>
+
+<p>time:number time during animation </p>
+
+<p>callback:function the callback function</p>
+
+<pre><code>obj.to({x:100,y:100,W:100,h:100,alpha:100},1000,function(){
+    console.log('end');
+});
+</code></pre>
+
+<h3>
+<a id="user-content-animationupdatecontextdtfps" class="anchor" href="#animationupdatecontextdtfps" aria-hidden="true"><span class="octicon octicon-link"></span></a>animation(update,context,dt?fps?)</h3>
+
+<hr>
+
+<p>time base animation function</p>
+
+<p>update:function animation function</p>
+
+<p>dt:number step time</p>
+
+<p>fps:number</p>
+
+<pre><code>var animate=animation(function(){
+    obj.x++;
+    if(obj.x&gt;400){clearInterval(animate)};
+},ctcanvas,20,50);
+</code></pre>
+
+<h3>
+<a id="user-content-showpositiontargetctcanvas" class="anchor" href="#showpositiontargetctcanvas" aria-hidden="true"><span class="octicon octicon-link"></span></a>showPosition(target,ctcanvas)</h3>
+
+<hr>
+
+<p>show ctObj position and make it dragable</p>
+
+<p>target:ctObj </p>
+
+<p>target object</p>
+
+<p>ctcanvas:ctCanvas </p>
+
+<pre><code>showPosition(a,ctcanvas);
+</code></pre>
+
+<h3>
+<a id="user-content-ctfillrectfillstylexywhalpha" class="anchor" href="#ctfillrectfillstylexywhalpha" aria-hidden="true"><span class="octicon octicon-link"></span></a>ctFillRect(fillStyle?,x?,y?,w?,h?,alpha?)</h3>
+
+<hr>
+
+<p>extends ctObj </p>
+
+<p>a fill rectangle object</p>
+
+<pre><code>var obj=new ctFillRext();
+ctcanvas.addObj(obj);
+</code></pre>
+
+<h4>
+<a id="user-content-fillstylestring" class="anchor" href="#fillstylestring" aria-hidden="true"><span class="octicon octicon-link"></span></a>fillStyle:string</h4>
+
+<p>context fillStyle default='#000'</p>
+
+<h4>
+<a id="user-content-draw" class="anchor" href="#draw" aria-hidden="true"><span class="octicon octicon-link"></span></a>draw()</h4>
+
+<p>draw this object</p>
+
+<h3>
+<a id="user-content-ctstrokerectstrokestylelinewidthxywhalpha" class="anchor" href="#ctstrokerectstrokestylelinewidthxywhalpha" aria-hidden="true"><span class="octicon octicon-link"></span></a>ctStrokeRect(strokeStyle?,lineWidth?,x?,y?,w?,h?,alpha?)</h3>
+
+<hr>
+
+<p>stroke rectangle object</p>
+
+<pre><code>var strokerect =new ctStrokeRect('#f00',1,50,50,50,50,1);
+</code></pre>
+
+<h4>
+<a id="user-content-strokestylestring" class="anchor" href="#strokestylestring" aria-hidden="true"><span class="octicon octicon-link"></span></a>strokeStyle:string</h4>
+
+<p>context strokeStyle default='#f00'</p>
+
+<h4>
+<a id="user-content-linewidthnumber" class="anchor" href="#linewidthnumber" aria-hidden="true"><span class="octicon octicon-link"></span></a>lineWidth:number</h4>
+
+<p>context lineWidth default=1</p>
+
+<h4>
+<a id="user-content-draw-1" class="anchor" href="#draw-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>draw()</h4>
+
+<p>draw this object</p>
+
+<h3>
+<a id="user-content-ctfilltexttextfontfillstylexywhalpha" class="anchor" href="#ctfilltexttextfontfillstylexywhalpha" aria-hidden="true"><span class="octicon octicon-link"></span></a>ctFillText(text,font?,fillStyle?,x?,y?,w?,h?,alpha?)</h3>
+
+<hr>
+
+<p>extends ctObj</p>
+
+<p>a fill text object</p>
+
+<pre><code>var txt=new ctFillText('hello world');
+ctcanvas.addObj(txt);
+</code></pre>
+
+<h4>
+<a id="user-content-textstring" class="anchor" href="#textstring" aria-hidden="true"><span class="octicon octicon-link"></span></a>text:string</h4>
+
+<p>text default=''</p>
+
+<h4>
+<a id="user-content-fontstring" class="anchor" href="#fontstring" aria-hidden="true"><span class="octicon octicon-link"></span></a>font:string</h4>
+
+<p>text style default='40px Arial'</p>
+
+<h4>
+<a id="user-content-fillstylestring-1" class="anchor" href="#fillstylestring-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>fillStyle:string</h4>
+
+<p>fill color default='#000'</p>
+
+<h4>
+<a id="user-content-draw-2" class="anchor" href="#draw-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>draw()</h4>
+
+<p>draw this obj</p>
+
+<h3>
+<a id="user-content-ctfillcirclefillstyleoxoyralpha" class="anchor" href="#ctfillcirclefillstyleoxoyralpha" aria-hidden="true"><span class="octicon octicon-link"></span></a>ctFillCircle(fillStyle?,ox?,oy?,r?,alpha?)</h3>
+
+<hr>
+
+<p>extends ctObj</p>
+
+<p>circle object</p>
+
+<pre><code>var circle=new ctFillCircle();
+</code></pre>
+
+<h4>
+<a id="user-content-fillstylestring-2" class="anchor" href="#fillstylestring-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>fillStyle:string</h4>
+
+<p>fill color default='#000'</p>
+
+<h4>
+<a id="user-content-oxnumber" class="anchor" href="#oxnumber" aria-hidden="true"><span class="octicon octicon-link"></span></a>ox:number</h4>
+
+<p>center of the circle coordinate x default=50</p>
+
+<h4>
+<a id="user-content-oynumber" class="anchor" href="#oynumber" aria-hidden="true"><span class="octicon octicon-link"></span></a>oy:number</h4>
+
+<p>center of the circle coordinate y default=50</p>
+
+<h4>
+<a id="user-content-rnumber" class="anchor" href="#rnumber" aria-hidden="true"><span class="octicon octicon-link"></span></a>r:number</h4>
+
+<p>radius of the circle default=50</p>
+
+<h4>
+<a id="user-content-alphanumber-1" class="anchor" href="#alphanumber-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>alpha:number</h4>
+
+<p>default=1</p>
+
+<h4>
+<a id="user-content-draw-3" class="anchor" href="#draw-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>draw()</h4>
+
+<p>draw circle</p>
+
+<h3>
+<a id="user-content-ctfillarcfillstyleoxoyrsangleeanglealphaclockwise" class="anchor" href="#ctfillarcfillstyleoxoyrsangleeanglealphaclockwise" aria-hidden="true"><span class="octicon octicon-link"></span></a>ctFillArc(fillStyle?,ox?,oy?,r?,sangle?,eangle?,alpha?,clockwise?)</h3>
+
+<hr>
+
+<p>extends ctObj</p>
+
+<pre><code>var fillarc=new ctFillArc('#000',50,50,50,30,180,1,true);
+</code></pre>
+
+<h4>
+<a id="user-content-fillstylestring-3" class="anchor" href="#fillstylestring-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>fillStyle:string</h4>
+
+<p>fill color default='#000'</p>
+
+<h4>
+<a id="user-content-oxnumber-1" class="anchor" href="#oxnumber-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>ox:number</h4>
+
+<p>center of the circle coordinate x default=50</p>
+
+<h4>
+<a id="user-content-oynumber-1" class="anchor" href="#oynumber-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>oy:number</h4>
+
+<p>center of the circle coordinate y default=50</p>
+
+<h4>
+<a id="user-content-rnumber-1" class="anchor" href="#rnumber-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>r:number</h4>
+
+<p>radius of the circle default=50</p>
+
+<h4>
+<a id="user-content-alphanumber-2" class="anchor" href="#alphanumber-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>alpha:number</h4>
+
+<p>default=1</p>
+
+<h4>
+<a id="user-content-sanglenumber" class="anchor" href="#sanglenumber" aria-hidden="true"><span class="octicon octicon-link"></span></a>sangle:number</h4>
+
+<p>start angle default=0</p>
+
+<h4>
+<a id="user-content-eanglenumber" class="anchor" href="#eanglenumber" aria-hidden="true"><span class="octicon octicon-link"></span></a>eangle:number</h4>
+
+<p>end angle default=Math.PI*2</p>
+
+<h4>
+<a id="user-content-clockwiseboolean" class="anchor" href="#clockwiseboolean" aria-hidden="true"><span class="octicon octicon-link"></span></a>clockwise:boolean</h4>
+
+<p>default=true</p>
+
+<h4>
+<a id="user-content-draw-4" class="anchor" href="#draw-4" aria-hidden="true"><span class="octicon octicon-link"></span></a>draw()</h4>
+
+<p>draw this object</p>
+</article></div>
+	</div>
+<div id="footer">
+	<div id="footerPane">
+		<img id="cubehead" src="../res/img/cubehead.png">
+		<div id="footerL">
+			<a href="../index.html">Home</a><a href="../index.html#contact">Contact</a>
+		</div>
+		<div id="footerR">
+			<a id="search">Search</a><a href="../blog.html">Contents</a><a href="#top">Top</a>
+		</div>
+
+	</div>
+</div>
+</body>
+</html>
