@@ -860,578 +860,194 @@ body .markdown-body
   float: left;
   margin: 0.3em 0 0.25em -1.6em;
   vertical-align: middle;
-}</style><title>4</title></head><body><article class="markdown-body"><h1>
-<a id="user-content-egretinit" class="anchor" href="#egretinit" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretInit</h1>
+}</style><title>8</title></head><body><article class="markdown-body"><h1>
+<a id="user-content-isometric-projection" class="anchor" href="#isometric-projection" aria-hidden="true"><span class="octicon octicon-link"></span></a>isometric projection</h1>
 
-<p><strong>Build egret project quickly.</strong></p>
+<p><strong>等角投影制作egret伪3D游戏</strong></p>
 
-<p>2015/8/4 by DKZ update 2015/9/2</p>
+<p>2015/9/3 by DKZ thx. May</p>
 
-<p><a href="https://github.com/davidkingzyb/egretInit">github</a></p>
+<p>最近在制作一款类似cubejump的游戏伪3D游戏，接下来cubex3的手机版也要想要使用等角投影制作。</p>
+
+<p>感谢剑龙写的egret版本的等角投影库，我简单研究了下原理，可能下面的笔记会有错误，具体请参考《Flash ActionScript 3.0 动画高级教程》</p>
+
+<p>简单的说等角变换是将三维世界的点变化成为二维平面上的坐标来确定对象的位置，在游戏中实现伪3D效果</p>
 
 <h2>
-<a id="user-content-egretinit-1" class="anchor" href="#egretinit-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretInit</h2>
+<a id="user-content-原理" class="anchor" href="#%E5%8E%9F%E7%90%86" aria-hidden="true"><span class="octicon octicon-link"></span></a>原理</h2>
 
-<p>An example of egret project base on egret 2.0.0</p>
+<p>三维空间点p(px,py,pz)沿y轴旋转angleY沿x轴旋转angleX得到二维平面上点(x,y)和深度z</p>
+
+<p>x=px<em>cos(angleY)-pz</em>sin(angleY)</p>
+
+<p>tempz=pz<em>cos(angleY)+px</em>sin(angleY)</p>
+
+<p>y=py<em>cos(angleX)-tempz</em>sin(angleX)</p>
+
+<p>z=tempz<em>cos(angleX)+py</em>sin(angleX)</p>
+
+<p>等角变换angleY=45°，angleX=-30°带入消去tempz再乘2的平方根（变为2等角，w=h*2）</p>
+
+<p>最终化简为：</p>
+
+<p>x=px-pz</p>
+
+<p>y=py<em>1.2247+(px+pz)</em>0.5</p>
+
+<p>z=(px+pz)<em>0.886-y</em>0.707</p>
+
+<p>二维变三维将py设为0可计算px，pz</p>
+
+<p>px=y+x*0.5</p>
+
+<p>py=0</p>
+
+<p>pz=y-x*0.5</p>
 
 <h2>
-<a id="user-content-egrettools" class="anchor" href="#egrettools" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretTools</h2>
+<a id="user-content-使用" class="anchor" href="#%E4%BD%BF%E7%94%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用</h2>
 
-<p>some useful tools for egret </p>
+<p>可以前往<a href="https://github.com/davidkingzyb/egretInit">egretInit</a>获得这个库</p>
 
-<h3>
-<a id="user-content-debugts" class="anchor" href="#debugts" aria-hidden="true"><span class="octicon octicon-link"></span></a>debug.ts</h3>
-
-<p>debug egret project</p>
-
-<h5>
-<a id="user-content-showpositiontargetcontext" class="anchor" href="#showpositiontargetcontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>showPosition(target,context)</h5>
-
-<p>show DisplayObject position and console log it infomation</p>
-
-<p>press ctrl and drag the object to change it's position</p>
-
-<p>press shift and drag the object to change it's size</p>
-
-<p>press alt and click the object to console log it's infomation</p>
-
-<ul>
-<li><p>target:egret.DisplayObject</p></li>
-<li><p>context:egret.DisplayObjectContainer</p></li>
-<li><p>void</p></li>
-</ul>
-
-<pre><code>debug.showPosition(target,this);
-</code></pre>
-
-<h5>
-<a id="user-content-showallpositioncontext" class="anchor" href="#showallpositioncontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>showAllPosition(context)</h5>
-
-<p>show DisplayObjectContainer's all children position and console log them infomation</p>
-
-<ul>
-<li><p>context:egret.DisplayObjectContainer</p></li>
-<li><p>void</p></li>
-</ul>
-
-<pre><code>debug.showAllPosition(gameContainer);
-</code></pre>
-
-<h5>
-<a id="user-content-showgrouppositiongroupcontext" class="anchor" href="#showgrouppositiongroupcontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>showGroupPosition(group,context)</h5>
-
-<p>show a group position</p>
-
-<ul>
-<li><p>group:egret.DisplayObject[]</p></li>
-<li><p>context:egret.DisplayObjectContainer</p></li>
-<li><p>void</p></li>
-</ul>
-
-<pre><code>debug.showGroupPosition([this.bm,this.mc],this);
-</code></pre>
-
-<h5>
-<a id="user-content-pause-resume" class="anchor" href="#pause-resume" aria-hidden="true"><span class="octicon octicon-link"></span></a>pause() resume()</h5>
-
-<p>pause game and resume game</p>
-
-<ul>
-<li>void</li>
-</ul>
-
-<pre><code>debug.pause();
-debug.resume();
-</code></pre>
+<p>其中主要包括</p>
 
 <h3>
-<a id="user-content-toolts" class="anchor" href="#toolts" aria-hidden="true"><span class="octicon octicon-link"></span></a>tool.ts</h3>
+<a id="user-content-point3dts" class="anchor" href="#point3dts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Point3D.ts</h3>
 
-<p>egret tools for Initialize standard egret Object</p>
-
-<p>please use resourse.py to keep texture name and sourse name correct</p>
-
-<h5>
-<a id="user-content-stagew" class="anchor" href="#stagew" aria-hidden="true"><span class="octicon octicon-link"></span></a>stageW</h5>
-
-<ul>
-<li>:number</li>
-</ul>
-
-<p>stage width</p>
-
-<pre><code>this.stageWidth=tool.stageW;
-</code></pre>
-
-<h5>
-<a id="user-content-stageh" class="anchor" href="#stageh" aria-hidden="true"><span class="octicon octicon-link"></span></a>stageH</h5>
-
-<ul>
-<li>:number</li>
-</ul>
-
-<p>stage height</p>
-
-<pre><code>stageHeight=tool.stageH;
-</code></pre>
-
-<h5>
-<a id="user-content-setwhthat" class="anchor" href="#setwhthat" aria-hidden="true"><span class="octicon octicon-link"></span></a>setWH(that)</h5>
-
-<p>scale android stage and set global screen width and screen height</p>
-
-<ul>
-<li><p>that:egret.DisplayObjectContainer GameContainer</p></li>
-<li><p>void</p></li>
-</ul>
-
-<pre><code>tool.setWH(gameContainer)
-</code></pre>
-
-<h5>
-<a id="user-content-initbitmaptexturexyaxay" class="anchor" href="#initbitmaptexturexyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initBitmap(texture,x?,y?,ax?,ay?)</h5>
-
-<p>Initialize a Bitmap Object</p>
-
-<ul>
-<li><p>texture:string </p></li>
-<li><p>x:number default=0</p></li>
-<li><p>y:number default=0</p></li>
-<li><p>ax:number anchorX default=0</p></li>
-<li><p>ay:number anchorY default=0</p></li>
-<li><p>return:egret.Bitmap</p></li>
-</ul>
-
-<pre><code>this.bm=tool.initBitmap('bm');
-this.bm2=tool.initBitmap('bm',100,100,.5,.5);
-</code></pre>
-
-<h5>
-<a id="user-content-initmoviecliptexturexyaxay" class="anchor" href="#initmoviecliptexturexyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initMovieClip(texture,x?,y?,ax?,ay?)</h5>
-
-<p>Initialize a MovieClip Object</p>
-
-<ul>
-<li><p>texture:string </p></li>
-<li><p>x:number default=0</p></li>
-<li><p>y:number default=0</p></li>
-<li><p>ax:number anchorX default=0</p></li>
-<li><p>ay:number anchorY default=0</p></li>
-<li><p>return:egret.MovieClip</p></li>
-</ul>
-
-<pre><code>this.mc=tool.initMovieClip('mc');
-this.mc.play(1);
-this.mc2=tool.initMovieClip('mc2',200,100,.5,.5);
-this.mc2.play(-1);
-</code></pre>
-
-<h5>
-<a id="user-content-changemovieclipdatatargettexture" class="anchor" href="#changemovieclipdatatargettexture" aria-hidden="true"><span class="octicon octicon-link"></span></a>changeMovieClipData(target,texture)</h5>
-
-<p>Change MovieClip texture</p>
-
-<ul>
-<li><p>target:egret.MovieClip</p></li>
-<li><p>texture:string</p></li>
-<li><p>void</p></li>
-</ul>
-
-<pre><code>tool.changeMovieClipData(this.mc2,'mc');
-this.mc.play(-1);
-</code></pre>
-
-<h5>
-<a id="user-content-inittextfieldtextxytextcolorsizefontfamilyalignaxaylinespacing" class="anchor" href="#inittextfieldtextxytextcolorsizefontfamilyalignaxaylinespacing" aria-hidden="true"><span class="octicon octicon-link"></span></a>initTextField(text,x?,y?,textColor?,size?,fontFamily?,align?,ax?,ay?,lineSpacing?)</h5>
-
-<p>Initialize a TextField Object</p>
-
-<ul>
-<li><p>text:string text</p></li>
-<li><p>x:number default=0</p></li>
-<li><p>y:number default=0</p></li>
-<li><p>textColor:number font color default=0xffffff</p></li>
-<li><p>size:number font size default=30</p></li>
-<li><p>fontFamily:string font family default='SimHei'</p></li>
-<li><p>align:egret.HorizontalAlign text align default=egret.HorizontalAlign.LEFT</p></li>
-<li><p>ax:number anchorX default=0</p></li>
-<li><p>ay:number anchorY default=0</p></li>
-<li><p>lineSpacing:number line spacing default=0</p></li>
-<li><p>return:egret.TextField</p></li>
-</ul>
-
-<pre><code>this.tf=tool.initTextField('Hello World');
-this.tf2=tool.initTextField('msg',100,200,0x000001,80,'SimHei');
-</code></pre>
-
-<h5>
-<a id="user-content-initbitmaptextfonttextxyaxay" class="anchor" href="#initbitmaptextfonttextxyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initBitmapText(font,text,x?,y?,ax?,ay?)</h5>
-
-<p>Initialize a BitMapText Object</p>
-
-<ul>
-<li><p>font:string font texture</p></li>
-<li><p>text:string text</p></li>
-<li><p>x:number default=0</p></li>
-<li><p>y:number default=0</p></li>
-<li><p>ax:number anchorX default=0</p></li>
-<li><p>ay:number anchorY default=0</p></li>
-<li><p>return:egret.BitmapText</p></li>
-</ul>
-
-<pre><code>this.bmt=tool.initBitmapText('font','0');
-this.bmt2=tool.initBitmapText('font','0',200,200,.5,.5);
-</code></pre>
-
-<h5>
-<a id="user-content-getxyevent" class="anchor" href="#getxyevent" aria-hidden="true"><span class="octicon octicon-link"></span></a>getXY(event)</h5>
-
-<p>get Touch Coordinate </p>
-
-<ul>
-<li><p>event:egret.Event</p></li>
-<li><p>return:object {"x":X,"y":Y}</p></li>
-</ul>
-
-<pre><code>this.bm.addEventListener(egret.TouchEvent.TOUCH_BEGIN,touchBegin,this);
-function touchBegin(e){
-    var x=tool.getXY(e).x;
-    var y=tool.getXY(e).y;
-    console.log('touchXY:',x, y);
-}
-
-</code></pre>
-
-<h5>
-<a id="user-content-initparticletexturexyaxay" class="anchor" href="#initparticletexturexyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initParticle(texture,x?,y?,ax?,ay?)</h5>
-
-<p>Initialize a Particle object (need the third party library particle support <a href="https://github.com/egret-labs/egret-game-library">https://github.com/egret-labs/egret-game-library</a>)</p>
-
-<ul>
-<li><p>texture:string particle texture</p></li>
-<li><p>x:number default=0</p></li>
-<li><p>y:number default=0</p></li>
-<li><p>ax:number anchorX default=0</p></li>
-<li><p>ay:number anchorY default=0 </p></li>
-<li><p>return:particle.GravityParticleSystem</p></li>
-</ul>
-
-<pre><code>this.system = tool.initParticle('evilParticle', 300,300, .5, .5);
-</code></pre>
-
-<h5>
-<a id="user-content-addchildrenarrcontext" class="anchor" href="#addchildrenarrcontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>addChildren(arr,context)</h5>
-
-<p>add a group to stage</p>
-
-<ul>
-<li><p>arr:egret.DisplayObject[]</p></li>
-<li><p>context:egret.DisplayObjectContainer</p></li>
-<li><p>void</p></li>
-</ul>
-
-<pre><code>tool.addChildren([this.bm,this.mc],this);
-</code></pre>
-
-<h5>
-<a id="user-content-removechildrenarrcontext" class="anchor" href="#removechildrenarrcontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>removeChildren(arr,context)</h5>
-
-<p>remove a group from stage</p>
-
-<ul>
-<li><p>arr:egret.DisplayObject[]</p></li>
-<li><p>context:egret.DisplayObjectContainer</p></li>
-<li><p>void</p></li>
-</ul>
-
-<pre><code>tool.removeChildren([this.bm,this.mc],this);
-</code></pre>
-
-<h5>
-<a id="user-content-initscale9gridbitmaptexturerswrshrwrhwidthheightxyaxay" class="anchor" href="#initscale9gridbitmaptexturerswrshrwrhwidthheightxyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initScale9GridBitmap(texture,Rsw,Rsh,Rw,Rh,width?,height?,x?,y?,ax?,ay?)</h5>
-
-<p>Initialize a Scale 9 Grid Bitmap object</p>
-
-<ul>
-<li><p>texture:string </p></li>
-<li><p>Rsw Rsh Rw Rh:number</p></li>
-<li><p>width height x y ax ay:number default=0</p></li>
-<li><p>return:egret.Bitmap</p></li>
-</ul>
-
-<pre><code>//(x,y)_______________
-// |_Rsw_|Rsh_____|___|
-// |     |        |Rh |height
-// |_____|__Rw____|___|
-// |_____|________|___|
-//        width
-
-this.s9g=tool.initScale9GridBitmap("scale9grid",50,50,100,100);
-</code></pre>
-
-<h5>
-<a id="user-content-test2recthitobj1obj2" class="anchor" href="#test2recthitobj1obj2" aria-hidden="true"><span class="octicon octicon-link"></span></a>test2RectHit(obj1,obj2)</h5>
-
-<p>2 displayObject collision detection(anchor must be 0)</p>
-
-<ul>
-<li><p>obj1:egret.DisplayObject</p></li>
-<li><p>obj2:egret.DisplayObject</p></li>
-<li><p>return:boolean ishit?</p></li>
-</ul>
-
-<pre><code>tool.test2RectHit(this.bm, this.bm2);
-</code></pre>
-
-<h5>
-<a id="user-content-getdataurlreqdatacallback" class="anchor" href="#getdataurlreqdatacallback" aria-hidden="true"><span class="octicon octicon-link"></span></a>getData(url,reqdata?,callback?)</h5>
-
-<p>egret Ajax connect with server </p>
-
-<ul>
-<li><p>url:string URL</p></li>
-<li><p>reqdata:string POST data if ===null use GET</p></li>
-<li><p>callback:function callback function</p></li>
-<li><p>void</p></li>
-</ul>
-
-<pre><code>tool.getData('http://127.0.0.1:8888/cgi-bin/response.py','data=dkz',function(data){
-    console.log(data);
-});
-</code></pre>
-
-<h5>
-<a id="user-content-randomintn" class="anchor" href="#randomintn" aria-hidden="true"><span class="octicon octicon-link"></span></a>randomInt(n)</h5>
-
-<p>return a random int between 0 to n-1</p>
-
-<ul>
-<li><p>n:number max </p></li>
-<li><p>return:int random int</p></li>
-</ul>
-
-<pre><code>var r=tool.randomInt(10);
-</code></pre>
+<p>三维空间点类</p>
 
 <h3>
-<a id="user-content-renderts" class="anchor" href="#renderts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Render.ts</h3>
+<a id="user-content-isoutilsts" class="anchor" href="#isoutilsts" aria-hidden="true"><span class="octicon octicon-link"></span></a>IsoUtils.ts</h3>
 
-<p>Time-based Animation</p>
-
-<p>solve fps drop problems when using Frame-based Animation</p>
-
-<p><strong>example</strong></p>
-
-<pre><code>var render=new Render();
-
-render.register(this.loop,this);
-render.start();
-
-render.pause();
-render.stop();
-render.resume();
-
-render.unregister();
-
-render.framerate=30;
-
-loop(){
-    //enterFrame
-}
-</code></pre>
-
-<p><strong>Animation Observer</strong></p>
-
-<pre><code>render;
-animateArr=[];
-run(){
-    this.render=new Render();
-    this.render.register(this.loop,this);
-    this.render.start();
-}
-loop(){
-    for(var i=0;i&lt;this.animateArr.length;i++){
-        this.animateArr[i].call(this);
-    }
-}
-animateRegister(func){
-    if(this.animateArr.indexOf(func)===-1){
-        this.animateArr.push(func);
-    }
-}
-animateUnregister(func){
-    var index=this.animateArr.indexOf(func);
-    if(index!==-1){
-        this.animateArr.splice(index,1);
-    }
-}
-</code></pre>
+<p>换算坐标类</p>
 
 <h5>
-<a id="user-content-fps" class="anchor" href="#fps" aria-hidden="true"><span class="octicon octicon-link"></span></a>FPS</h5>
+<a id="user-content-isotoscreenp3dpoint3degretpoint" class="anchor" href="#isotoscreenp3dpoint3degretpoint" aria-hidden="true"><span class="octicon octicon-link"></span></a>isoToScreen(p3d:Point3D):egret.Point</h5>
 
-<ul>
-<li>:number</li>
-</ul>
-
-<p>fps default=60</p>
+<p>三维到二维</p>
 
 <h5>
-<a id="user-content-acc" class="anchor" href="#acc" aria-hidden="true"><span class="octicon octicon-link"></span></a>acc</h5>
+<a id="user-content-xyztoxyxyz" class="anchor" href="#xyztoxyxyz" aria-hidden="true"><span class="octicon octicon-link"></span></a>XYZToXY(x,y,z)</h5>
 
-<ul>
-<li>:number</li>
-</ul>
-
-<p>accumulative time default=0</p>
+<p>三维到二维</p>
 
 <h5>
-<a id="user-content-dt" class="anchor" href="#dt" aria-hidden="true"><span class="octicon octicon-link"></span></a>dt</h5>
+<a id="user-content-screentoisop2degretpointpoint3d" class="anchor" href="#screentoisop2degretpointpoint3d" aria-hidden="true"><span class="octicon octicon-link"></span></a>screenToIso(p2d:egret.Point):Point3D</h5>
 
-<ul>
-<li>:number</li>
-</ul>
-
-<p>interval time between two frame</p>
-
-<p>default=Number((1000 / Render.FPS).toFixed(1))</p>
-
-<h5>
-<a id="user-content-callback" class="anchor" href="#callback" aria-hidden="true"><span class="octicon octicon-link"></span></a>callback</h5>
-
-<ul>
-<li>:function</li>
-</ul>
-
-<p>loop function</p>
-
-<h4>
-<a id="user-content-context" class="anchor" href="#context" aria-hidden="true"><span class="octicon octicon-link"></span></a>context</h4>
-
-<ul>
-<li>:egret.DisplayObjectContainer</li>
-</ul>
-
-<p>context this</p>
-
-<h5>
-<a id="user-content-registercallback-context" class="anchor" href="#registercallback-context" aria-hidden="true"><span class="octicon octicon-link"></span></a>register(callback, context)</h5>
-
-<p>register render</p>
-
-<ul>
-<li><p>callback:function</p></li>
-<li><p>context:egret.DisplayObjectContainer</p></li>
-<li><p>void</p></li>
-</ul>
-
-<h5>
-<a id="user-content-unregister" class="anchor" href="#unregister" aria-hidden="true"><span class="octicon octicon-link"></span></a>unregister()</h5>
-
-<p>unregister render</p>
-
-<ul>
-<li>void</li>
-</ul>
-
-<h5>
-<a id="user-content-handled" class="anchor" href="#handled" aria-hidden="true"><span class="octicon octicon-link"></span></a>handle(d)</h5>
-
-<p>notify call loop function</p>
-
-<ul>
-<li>d:number real interval time</li>
-</ul>
-
-<h5>
-<a id="user-content-start" class="anchor" href="#start" aria-hidden="true"><span class="octicon octicon-link"></span></a>start()</h5>
-
-<p>start render</p>
-
-<ul>
-<li>void</li>
-</ul>
-
-<h5>
-<a id="user-content-stop" class="anchor" href="#stop" aria-hidden="true"><span class="octicon octicon-link"></span></a>stop()</h5>
-
-<p>stop render</p>
-
-<ul>
-<li>void</li>
-</ul>
-
-<h5>
-<a id="user-content-pause" class="anchor" href="#pause" aria-hidden="true"><span class="octicon octicon-link"></span></a>pause()</h5>
-
-<p>pause render</p>
-
-<ul>
-<li>void</li>
-</ul>
-
-<h5>
-<a id="user-content-resume" class="anchor" href="#resume" aria-hidden="true"><span class="octicon octicon-link"></span></a>resume()</h5>
-
-<p>resume render</p>
-
-<ul>
-<li>void</li>
-</ul>
-
-<h5>
-<a id="user-content-set-frameratefps" class="anchor" href="#set-frameratefps" aria-hidden="true"><span class="octicon octicon-link"></span></a>set framerate(fps)</h5>
-
-<p>set fps and dt</p>
-
-<ul>
-<li>void</li>
-</ul>
+<p>二维到三维</p>
 
 <h3>
-<a id="user-content-resourcepy" class="anchor" href="#resourcepy" aria-hidden="true"><span class="octicon octicon-link"></span></a>resource.py</h3>
+<a id="user-content-isoobjectts" class="anchor" href="#isoobjectts" aria-hidden="true"><span class="octicon octicon-link"></span></a>IsoObject.ts</h3>
 
-<p>create resource.json automatically</p>
+<p>等角投影对象类，所有显示对象都要扩展这个类</p>
 
-<p>standard naming rule use file name as texture name</p>
+<h5>
+<a id="user-content-_pxnumber" class="anchor" href="#_pxnumber" aria-hidden="true"><span class="octicon octicon-link"></span></a>_px:number</h5>
 
-<p>sprite sheet must be named like /^\w*SS.json$/</p>
+<h5>
+<a id="user-content-_pynumber" class="anchor" href="#_pynumber" aria-hidden="true"><span class="octicon octicon-link"></span></a>_py:number</h5>
+
+<h5>
+<a id="user-content-_pznumber" class="anchor" href="#_pznumber" aria-hidden="true"><span class="octicon octicon-link"></span></a>_pz:number</h5>
+
+<h5>
+<a id="user-content-_positionpoint3d" class="anchor" href="#_positionpoint3d" aria-hidden="true"><span class="octicon octicon-link"></span></a>_position:Point3D</h5>
+
+<p>三维坐标和三维点</p>
+
+<h5>
+<a id="user-content-_widthnumber" class="anchor" href="#_widthnumber" aria-hidden="true"><span class="octicon octicon-link"></span></a>_width:number</h5>
+
+<h5>
+<a id="user-content-_heightnumber" class="anchor" href="#_heightnumber" aria-hidden="true"><span class="octicon octicon-link"></span></a>_height:number</h5>
+
+<p>显示对象宽和高用于碰撞检测或显示对象排布</p>
+
+<h5>
+<a id="user-content-_walkableboolean--false" class="anchor" href="#_walkableboolean--false" aria-hidden="true"><span class="octicon octicon-link"></span></a>_walkable:boolean = false</h5>
+
+<h5>
+<a id="user-content-_vxnumber--0" class="anchor" href="#_vxnumber--0" aria-hidden="true"><span class="octicon octicon-link"></span></a>_vx:number = 0</h5>
+
+<h5>
+<a id="user-content-_vynumber--0" class="anchor" href="#_vynumber--0" aria-hidden="true"><span class="octicon octicon-link"></span></a>_vy:number = 0</h5>
+
+<h5>
+<a id="user-content-_vznumber--0" class="anchor" href="#_vznumber--0" aria-hidden="true"><span class="octicon octicon-link"></span></a>_vz:number = 0</h5>
+
+<p>三维空间中三个方向的运动速度</p>
+
+<h5>
+<a id="user-content-updatescreenpositionvoid" class="anchor" href="#updatescreenpositionvoid" aria-hidden="true"><span class="octicon octicon-link"></span></a>updateScreenPosition():void</h5>
+
+<p>调用IsoUtils计算并更新二维平面中的位置</p>
+
+<h5>
+<a id="user-content-setpositionxyzvoid" class="anchor" href="#setpositionxyzvoid" aria-hidden="true"><span class="octicon octicon-link"></span></a>setPosition(x,y,z):void</h5>
+
+<p>设置三维空间中位置</p>
+
+<h5>
+<a id="user-content-get-depth" class="anchor" href="#get-depth" aria-hidden="true"><span class="octicon octicon-link"></span></a>get depth()</h5>
+
+<p>获得深度</p>
+
+<h5>
+<a id="user-content-updatepnumber--1void" class="anchor" href="#updatepnumber--1void" aria-hidden="true"><span class="octicon octicon-link"></span></a>update(p:number = 1):void</h5>
+
+<p>更新位置（用在frame loop中）</p>
 
 <h3>
-<a id="user-content-runserverpy" class="anchor" href="#runserverpy" aria-hidden="true"><span class="octicon octicon-link"></span></a>runServer.py</h3>
+<a id="user-content-isoworldts" class="anchor" href="#isoworldts" aria-hidden="true"><span class="octicon octicon-link"></span></a>IsoWorld.ts</h3>
 
-<p>a python server</p>
+<p>等角投影世界</p>
+
+<h5>
+<a id="user-content-_flooregretdisplayobjectcontainer" class="anchor" href="#_flooregretdisplayobjectcontainer" aria-hidden="true"><span class="octicon octicon-link"></span></a>_floor:egret.DisplayObjectContainer</h5>
+
+<p>地面容器（不参与深度排序）</p>
+
+<h5>
+<a id="user-content-_worldegretdisplayobjectcontainer" class="anchor" href="#_worldegretdisplayobjectcontainer" aria-hidden="true"><span class="octicon octicon-link"></span></a>_world:egret.DisplayObjectContainer</h5>
+
+<p>世界容器（参与深度排序）</p>
+
+<h5>
+<a id="user-content-_objectsisoobject--" class="anchor" href="#_objectsisoobject--" aria-hidden="true"><span class="octicon octicon-link"></span></a>_objects:IsoObject[] = []</h5>
+
+<p>等角变换对象数组</p>
+
+<h5>
+<a id="user-content-addchildtoworldchildisoobjectvoid" class="anchor" href="#addchildtoworldchildisoobjectvoid" aria-hidden="true"><span class="octicon octicon-link"></span></a>addChildToWorld(child:IsoObject):void</h5>
+
+<p>添加一个等角变换对象到世界中</p>
+
+<h5>
+<a id="user-content-removechildfromworldchildisoobjectvoid" class="anchor" href="#removechildfromworldchildisoobjectvoid" aria-hidden="true"><span class="octicon octicon-link"></span></a>removeChildFromWorld(child:IsoObject):void</h5>
+
+<p>从世界删除一个等角变换对象</p>
+
+<h5>
+<a id="user-content-addchildtofloorchildisoobjectvoid" class="anchor" href="#addchildtofloorchildisoobjectvoid" aria-hidden="true"><span class="octicon octicon-link"></span></a>addChildToFloor(child:IsoObject):void</h5>
+
+<p>添加一个等角变换对象到地板中</p>
+
+<h5>
+<a id="user-content-removechildfromfloorchildisoobjectvoid" class="anchor" href="#removechildfromfloorchildisoobjectvoid" aria-hidden="true"><span class="octicon octicon-link"></span></a>removeChildFromFloor(child:IsoObject):void</h5>
+
+<p>从地板删除一个等角变换对象</p>
+
+<h5>
+<a id="user-content-sortvoid" class="anchor" href="#sortvoid" aria-hidden="true"><span class="octicon octicon-link"></span></a>sort():void</h5>
+
+<p>对等角变换世界排序</p>
 
 <h3>
-<a id="user-content-simpleserverpy" class="anchor" href="#simpleserverpy" aria-hidden="true"><span class="octicon octicon-link"></span></a>simpleserver.py</h3>
+<a id="user-content-bitmaptilets" class="anchor" href="#bitmaptilets" aria-hidden="true"><span class="octicon octicon-link"></span></a>BitmapTile.ts</h3>
 
-<p>a python server (base on python 2.7)</p>
+<p>等角投影位图 extends IsoObject</p>
 
-<h3>
-<a id="user-content-cgi-binresponsepy" class="anchor" href="#cgi-binresponsepy" aria-hidden="true"><span class="octicon octicon-link"></span></a>cgi-bin/response.py</h3>
+<p>设计师注意位图使用二等角长宽比1:2（或根据需要定制此类）</p>
 
-<p>a cgi server</p>
-
-<h3>
-<a id="user-content-egret_loaderjs" class="anchor" href="#egret_loaderjs" aria-hidden="true"><span class="octicon octicon-link"></span></a>egret_loader.js</h3>
-
-<p>a solution for iphone and android diffrent screen size</p>
-
-<p>android need scale stage to .5 and the tap event stageX and stageY need times 2</p>
-
-<p>use tool.ts setWH and getXY function set stage to .5 and get tap event stageX and Y</p>
-
-<h3>
-<a id="user-content-iso" class="anchor" href="#iso" aria-hidden="true"><span class="octicon octicon-link"></span></a>Iso</h3>
-
-<p>egret isometric projection library.</p>
-
-<p>create by may</p>
-
-<p><a href="http://davidkingzyb.github.io/blogmd/8.html">how to use?</a></p>
-
-<h2>
-<a id="user-content-meiriqinit" class="anchor" href="#meiriqinit" aria-hidden="true"><span class="octicon octicon-link"></span></a>meiriqInit</h2>
-
-<p>contain meiriq Game common </p>
+<p>其他还有几个扩展IsoObject的类可以用作参考</p>
 </article></body></html>
