@@ -427,7 +427,7 @@ window.onload=function(){
 	var searchbtn=document.getElementById("search");
 
 	searchbtn.onclick=function(){
-		var key=encodeURI(prompt('Search:'));
+		var key=encodeURI(prompt('Search:')).toLowerCase();
 		var index=searchAnchor(key);
 		window.scrollTo(0,document.getElementsByClassName('anchor')[index].getBoundingClientRect().top+document.body.scrollTop);
 	};
