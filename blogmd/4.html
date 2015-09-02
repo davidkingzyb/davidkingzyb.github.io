@@ -1,34 +1,871 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>DKZ's Blog</title>
-	<meta charset="utf-8">
-	<meta name="viewport"
-          content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
-	<link rel="stylesheet" type="text/css" href="../res/md.css">
-	<link rel="stylesheet" type="text/css" href="../res/style.css">
-	<script type="text/javascript" src="blogImg/blogmd.js"></script>
-</head>
-<body>
-	<div id="container">
-		<a href="#top">
-			<div id="headPane">
-			<div id="headmain">
-				<canvas id="dkzlogo" width="340" height="250">
-					<img src="/res/img/dkzlogo.png">
-				</canvas>
-			</div>
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>body {
+  width: 45em;
+  border: 1px solid #ddd;
+  outline: 1300px solid #fff;
+  margin: 16px auto;
+}
 
-		</div>
-		</a>
-		<div id="bodyPane"><article class="markdown-body"><h1>
+body .markdown-body
+{
+  padding: 30px;
+}
+
+@font-face {
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAYcAA0AAAAACjQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAABMAAAABwAAAAca8vGTk9TLzIAAAFMAAAARAAAAFZG1VHVY21hcAAAAZAAAAA+AAABQgAP9AdjdnQgAAAB0AAAAAQAAAAEACICiGdhc3AAAAHUAAAACAAAAAj//wADZ2x5ZgAAAdwAAADRAAABEKyikaNoZWFkAAACsAAAAC0AAAA2AtXoA2hoZWEAAALgAAAAHAAAACQHngNFaG10eAAAAvwAAAAQAAAAEAwAACJsb2NhAAADDAAAAAoAAAAKALIAVG1heHAAAAMYAAAAHwAAACABEAB2bmFtZQAAAzgAAALBAAAFu3I9x/Nwb3N0AAAF/AAAAB0AAAAvaoFvbwAAAAEAAAAAzBdyYwAAAADP2IQvAAAAAM/bz7t4nGNgZGFgnMDAysDB1Ml0hoGBoR9CM75mMGLkYGBgYmBlZsAKAtJcUxgcPsR8iGF2+O/AEMPsznAYKMwIkgMA5REMOXicY2BgYGaAYBkGRgYQsAHyGMF8FgYFIM0ChED+h5j//yEk/3KoSgZGNgYYk4GRCUgwMaACRoZhDwCs7QgGAAAAIgKIAAAAAf//AAJ4nHWMMQrCQBBF/0zWrCCIKUQsTDCL2EXMohYGSSmorScInsRGL2DOYJe0Ntp7BK+gJ1BxF1stZvjz/v8DRghQzEc4kIgKwiAppcA9LtzKLSkdNhKFY3HF4lK69ExKslx7Xa+vPRVS43G98vG1DnkDMIBUgFN0MDXflU8tbaZOUkXUH0+U27RoRpOIyCKjbMCVejwypzJJG4jIwb43rfl6wbwanocrJm9XFYfskuVC5K/TPyczNU7b84CXcbxks1Un6H6tLH9vf2LRnn8Ax7A5WQAAAHicY2BkYGAA4teL1+yI57f5ysDNwgAC529f0kOmWRiYVgEpDgYmEA8AUzEKsQAAAHicY2BkYGB2+O/AEMPCAAJAkpEBFbAAADgKAe0EAAAiAAAAAAQAAAAEAAAAAAAAKgAqACoAiAAAeJxjYGRgYGBhsGFgYgABEMkFhAwM/xn0QAIAD6YBhwB4nI1Ty07cMBS9QwKlQapQW3VXySvEqDCZGbGaHULiIQ1FKgjWMxknMfLEke2A+IJu+wntrt/QbVf9gG75jK577Lg8K1qQPCfnnnt8fX1NRC/pmjrk/zprC+8D7tBy9DHgBXoWfQ44Av8t4Bj4Z8CLtBL9CniJluPXASf0Lm4CXqFX8Q84dOLnMB17N4c7tBo1AS/Qi+hTwBH4rwHHwN8DXqQ30XXAS7QaLwSc0Gn8NuAVWou/gFmnjLrEaEh9GmDdDGgL3B4JsrRPDU2hTOiMSuJUIdKQQayiAth69r6akSSFqIJuA19TrzCIaY8sIoxyrNIrL//pw7A2iMygkX5vDj+G+kuoLdX4GlGK/8Lnlz6/h9MpmoO9rafrz7ILXEHHaAx95s9lsI7AHNMBWEZHULnfAXwG9/ZqdzLI08iuwRloXE8kfhXYAvE23+23DU3t626rbs8/8adv+9DWknsHp3E17oCf+Z48rvEQNZ78paYM38qfk3v/u3l3u3GXN2Dmvmvpf1Srwk3pB/VSsp512bA/GG5i2WJ7wu430yQ5K3nFGiOqgtmSB5pJVSizwaacmUZzZhXLlZTq8qGGFY2YcSkqbth6aW1tRmlaCFs2016m5qn36SbJrqosG4uMV4aP2PHBmB3tjtmgN2izkGQyLWprekbIntJFing32a5rKWCN/SdSoga45EJykyQ7asZvHQ8PTm6cslIpwyeyjbVltNikc2HTR7YKh9LBl9DADC0U/jLcBZDKrMhUBfQBvXRzLtFtjU9eNHKin0x5InTqb8lNpfKv1s1xHzTXRqgKzek/mb7nB8RZTCDhGEX3kK/8Q75AmUM/eLkfA+0Hi908Kx4eNsMgudg5GLdRD7a84npi+YxNr5i5KIbW5izXas7cHXIMAau1OueZhfj+cOcP3P8MNIWLyYOBuxL6DRylJ4cAAAB4nGNgYoAALjDJyIAOWMCiTIxMLDmZedkABtIBygAAAA==) format('woff');
+}
+
+.markdown-body {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background: transparent;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:focus,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before {
+  display: table;
+  content: "";
+}
+
+.markdown-body hr:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code {
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.markdown-body .octicon {
+  font: normal normal 16px octicons-anchor;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.markdown-body .octicon-link:before {
+  content: '\f05c';
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body .anchor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding-right: 6px;
+  padding-left: 30px;
+  margin-left: -30px;
+}
+
+.markdown-body .anchor:focus {
+  outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+  display: none;
+  color: #000;
+  vertical-align: middle;
+}
+
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+  padding-left: 8px;
+  margin-left: -30px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+  display: inline-block;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body code {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .highlight {
+  margin-bottom: 16px;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+.markdown-body .highlight {
+  background: #fff;
+}
+
+.markdown-body .highlight .h {
+  color: #333;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.markdown-body .highlight .mf,
+.markdown-body .highlight .mh,
+.markdown-body .highlight .mi,
+.markdown-body .highlight .mo,
+.markdown-body .highlight .il,
+.markdown-body .highlight .m {
+  color: #945277;
+}
+
+.markdown-body .highlight .s,
+.markdown-body .highlight .sb,
+.markdown-body .highlight .sc,
+.markdown-body .highlight .sd,
+.markdown-body .highlight .s2,
+.markdown-body .highlight .se,
+.markdown-body .highlight .sh,
+.markdown-body .highlight .si,
+.markdown-body .highlight .sx,
+.markdown-body .highlight .s1 {
+  color: #df5000;
+}
+
+.markdown-body .highlight .kc,
+.markdown-body .highlight .kd,
+.markdown-body .highlight .kn,
+.markdown-body .highlight .kp,
+.markdown-body .highlight .kr,
+.markdown-body .highlight .kt,
+.markdown-body .highlight .k,
+.markdown-body .highlight .o {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .kt {
+  color: #458;
+}
+
+.markdown-body .highlight .c,
+.markdown-body .highlight .cm,
+.markdown-body .highlight .c1 {
+  color: #998;
+  font-style: italic;
+}
+
+.markdown-body .highlight .cp,
+.markdown-body .highlight .cs,
+.markdown-body .highlight .cp .h {
+  color: #999;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .cs {
+  font-style: italic;
+}
+
+.markdown-body .highlight .n {
+  color: #333;
+}
+
+.markdown-body .highlight .na,
+.markdown-body .highlight .nv,
+.markdown-body .highlight .vc,
+.markdown-body .highlight .vg,
+.markdown-body .highlight .vi {
+  color: #008080;
+}
+
+.markdown-body .highlight .nb {
+  color: #0086B3;
+}
+
+.markdown-body .highlight .nc {
+  color: #458;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .no {
+  color: #094e99;
+}
+
+.markdown-body .highlight .ni {
+  color: #800080;
+}
+
+.markdown-body .highlight .ne {
+  color: #990000;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .nf {
+  color: #945277;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .nn {
+  color: #555;
+}
+
+.markdown-body .highlight .nt {
+  color: #000080;
+}
+
+.markdown-body .highlight .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+
+.markdown-body .highlight .gd {
+  color: #000;
+  background-color: #fdd;
+}
+
+.markdown-body .highlight .gd .x {
+  color: #000;
+  background-color: #faa;
+}
+
+.markdown-body .highlight .ge {
+  font-style: italic;
+}
+
+.markdown-body .highlight .gr {
+  color: #aa0000;
+}
+
+.markdown-body .highlight .gh {
+  color: #999;
+}
+
+.markdown-body .highlight .gi {
+  color: #000;
+  background-color: #dfd;
+}
+
+.markdown-body .highlight .gi .x {
+  color: #000;
+  background-color: #afa;
+}
+
+.markdown-body .highlight .go {
+  color: #888;
+}
+
+.markdown-body .highlight .gp {
+  color: #555;
+}
+
+.markdown-body .highlight .gs {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .gu {
+  color: #800080;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .gt {
+  color: #aa0000;
+}
+
+.markdown-body .highlight .ow {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .w {
+  color: #bbb;
+}
+
+.markdown-body .highlight .sr {
+  color: #017936;
+}
+
+.markdown-body .highlight .ss {
+  color: #8b467f;
+}
+
+.markdown-body .highlight .bp {
+  color: #999;
+}
+
+.markdown-body .highlight .gc {
+  color: #999;
+  background-color: #EAF2F5;
+}
+
+.markdown-body kbd {
+  background-color: #e7e7e7;
+  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+  background-image: linear-gradient(#fefefe, #e7e7e7);
+  background-repeat: repeat-x;
+  display: inline-block;
+  padding: 3px 5px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  line-height: 10px;
+  color: #000;
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+}
+
+.markdown-body .highlight .pl-coc,
+.markdown-body .highlight .pl-entm,
+.markdown-body .highlight .pl-eoa,
+.markdown-body .highlight .pl-mai .pl-sf,
+.markdown-body .highlight .pl-pdv,
+.markdown-body .highlight .pl-sc,
+.markdown-body .highlight .pl-sr,
+.markdown-body .highlight .pl-v,
+.markdown-body .highlight .pl-vpf {
+  color: #0086b3;
+}
+
+.markdown-body .highlight .pl-eoac,
+.markdown-body .highlight .pl-mdht,
+.markdown-body .highlight .pl-mi1,
+.markdown-body .highlight .pl-mri,
+.markdown-body .highlight .pl-va,
+.markdown-body .highlight .pl-vpu {
+  color: #008080;
+}
+
+.markdown-body .highlight .pl-c,
+.markdown-body .highlight .pl-pdc {
+  color: #b4b7b4;
+  font-style: italic;
+}
+
+.markdown-body .highlight .pl-k,
+.markdown-body .highlight .pl-ko,
+.markdown-body .highlight .pl-kolp,
+.markdown-body .highlight .pl-mc,
+.markdown-body .highlight .pl-mr,
+.markdown-body .highlight .pl-ms,
+.markdown-body .highlight .pl-s,
+.markdown-body .highlight .pl-sok,
+.markdown-body .highlight .pl-st {
+  color: #6e5494;
+}
+
+.markdown-body .highlight .pl-ef,
+.markdown-body .highlight .pl-enf,
+.markdown-body .highlight .pl-enm,
+.markdown-body .highlight .pl-entc,
+.markdown-body .highlight .pl-eoi,
+.markdown-body .highlight .pl-sf,
+.markdown-body .highlight .pl-smc {
+  color: #d12089;
+}
+
+.markdown-body .highlight .pl-ens,
+.markdown-body .highlight .pl-eoai,
+.markdown-body .highlight .pl-kos,
+.markdown-body .highlight .pl-mh .pl-pdh,
+.markdown-body .highlight .pl-mp,
+.markdown-body .highlight .pl-pde,
+.markdown-body .highlight .pl-stp {
+  color: #458;
+}
+
+.markdown-body .highlight .pl-enti {
+  color: #d12089;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .pl-cce,
+.markdown-body .highlight .pl-enc,
+.markdown-body .highlight .pl-kou,
+.markdown-body .highlight .pl-mq {
+  color: #f93;
+}
+
+.markdown-body .highlight .pl-mp1 .pl-sf {
+  color: #458;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .pl-cos,
+.markdown-body .highlight .pl-ent,
+.markdown-body .highlight .pl-md,
+.markdown-body .highlight .pl-mdhf,
+.markdown-body .highlight .pl-ml,
+.markdown-body .highlight .pl-pdc1,
+.markdown-body .highlight .pl-pds,
+.markdown-body .highlight .pl-s1,
+.markdown-body .highlight .pl-scp,
+.markdown-body .highlight .pl-sol {
+  color: #df5000;
+}
+
+.markdown-body .highlight .pl-c1,
+.markdown-body .highlight .pl-cn,
+.markdown-body .highlight .pl-pse,
+.markdown-body .highlight .pl-pse .pl-s2,
+.markdown-body .highlight .pl-vi {
+  color: #a31515;
+}
+
+.markdown-body .highlight .pl-mb,
+.markdown-body .highlight .pl-pdb {
+  color: #df5000;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .pl-mi,
+.markdown-body .highlight .pl-pdi {
+  color: #6e5494;
+  font-style: italic;
+}
+
+.markdown-body .highlight .pl-ms1 {
+  background-color: #f5f5f5;
+}
+
+.markdown-body .highlight .pl-mdh,
+.markdown-body .highlight .pl-mdi {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .pl-mdr {
+  color: #0086b3;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .pl-s2 {
+  color: #333;
+}
+
+.markdown-body .highlight .pl-ii {
+  background-color: #df5000;
+  color: #fff;
+}
+
+.markdown-body .highlight .pl-ib {
+  background-color: #f93;
+}
+
+.markdown-body .highlight .pl-id {
+  background-color: #a31515;
+  color: #fff;
+}
+
+.markdown-body .highlight .pl-iu {
+  background-color: #b4b7b4;
+}
+
+.markdown-body .highlight .pl-mo {
+  color: #969896;
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  float: left;
+  margin: 0.3em 0 0.25em -1.6em;
+  vertical-align: middle;
+}</style><title>4</title></head><body><article class="markdown-body"><h1>
 <a id="user-content-egretinit" class="anchor" href="#egretinit" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretInit</h1>
 
 <p><strong>Build egret project quickly.</strong></p>
 
-<p>2015/8/4 by DKZ update 2015/8/18</p>
-
-<p><a href="https://github.com/davidkingzyb/egretInit">https://github.com/davidkingzyb/egretInit</a></p>
+<p>2015/8/4 by DKZ update 2015/9/2</p>
 
 <h2>
 <a id="user-content-egretinit-1" class="anchor" href="#egretinit-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretInit</h2>
@@ -41,16 +878,353 @@
 <p>some useful tools for egret </p>
 
 <h3>
+<a id="user-content-debugts" class="anchor" href="#debugts" aria-hidden="true"><span class="octicon octicon-link"></span></a>debug.ts</h3>
+
+<p>debug egret project</p>
+
+<h5>
+<a id="user-content-showpositiontargetcontext" class="anchor" href="#showpositiontargetcontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>showPosition(target,context)</h5>
+
+<p>show DisplayObject position and console log it infomation</p>
+
+<p>press ctrl and drag the object to change it's position</p>
+
+<p>press shift and drag the object to change it's size</p>
+
+<p>press alt and click the object to console log it's infomation</p>
+
+<ul>
+<li><p>target:egret.DisplayObject</p></li>
+<li><p>context:egret.DisplayObjectContainer</p></li>
+<li><p>void</p></li>
+</ul>
+
+<pre><code>debug.showPosition(target,this);
+</code></pre>
+
+<h5>
+<a id="user-content-showallpositioncontext" class="anchor" href="#showallpositioncontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>showAllPosition(context)</h5>
+
+<p>show DisplayObjectContainer's all children position and console log them infomation</p>
+
+<ul>
+<li><p>context:egret.DisplayObjectContainer</p></li>
+<li><p>void</p></li>
+</ul>
+
+<pre><code>debug.showAllPosition(gameContainer);
+</code></pre>
+
+<h5>
+<a id="user-content-showgrouppositiongroupcontext" class="anchor" href="#showgrouppositiongroupcontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>showGroupPosition(group,context)</h5>
+
+<p>show a group position</p>
+
+<ul>
+<li><p>group:egret.DisplayObject[]</p></li>
+<li><p>context:egret.DisplayObjectContainer</p></li>
+<li><p>void</p></li>
+</ul>
+
+<pre><code>debug.showGroupPosition([this.bm,this.mc],this);
+</code></pre>
+
+<h5>
+<a id="user-content-pause-resume" class="anchor" href="#pause-resume" aria-hidden="true"><span class="octicon octicon-link"></span></a>pause() resume()</h5>
+
+<p>pause game and resume game</p>
+
+<ul>
+<li>void</li>
+</ul>
+
+<pre><code>debug.pause();
+debug.resume();
+</code></pre>
+
+<h3>
+<a id="user-content-toolts" class="anchor" href="#toolts" aria-hidden="true"><span class="octicon octicon-link"></span></a>tool.ts</h3>
+
+<p>egret tools for Initialize standard egret Object</p>
+
+<p>please use resourse.py to keep texture name and sourse name correct</p>
+
+<h5>
+<a id="user-content-stagew" class="anchor" href="#stagew" aria-hidden="true"><span class="octicon octicon-link"></span></a>stageW</h5>
+
+<ul>
+<li>:number</li>
+</ul>
+
+<p>stage width</p>
+
+<pre><code>this.stageWidth=tool.stageW;
+</code></pre>
+
+<h5>
+<a id="user-content-stageh" class="anchor" href="#stageh" aria-hidden="true"><span class="octicon octicon-link"></span></a>stageH</h5>
+
+<ul>
+<li>:number</li>
+</ul>
+
+<p>stage height</p>
+
+<pre><code>stageHeight=tool.stageH;
+</code></pre>
+
+<h5>
+<a id="user-content-setwhthat" class="anchor" href="#setwhthat" aria-hidden="true"><span class="octicon octicon-link"></span></a>setWH(that)</h5>
+
+<p>scale android stage and set global screen width and screen height</p>
+
+<ul>
+<li><p>that:egret.DisplayObjectContainer GameContainer</p></li>
+<li><p>void</p></li>
+</ul>
+
+<pre><code>tool.setWH(gameContainer)
+</code></pre>
+
+<h5>
+<a id="user-content-initbitmaptexturexyaxay" class="anchor" href="#initbitmaptexturexyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initBitmap(texture,x?,y?,ax?,ay?)</h5>
+
+<p>Initialize a Bitmap Object</p>
+
+<ul>
+<li><p>texture:string </p></li>
+<li><p>x:number default=0</p></li>
+<li><p>y:number default=0</p></li>
+<li><p>ax:number anchorX default=0</p></li>
+<li><p>ay:number anchorY default=0</p></li>
+<li><p>return:egret.Bitmap</p></li>
+</ul>
+
+<pre><code>this.bm=tool.initBitmap('bm');
+this.bm2=tool.initBitmap('bm',100,100,.5,.5);
+</code></pre>
+
+<h5>
+<a id="user-content-initmoviecliptexturexyaxay" class="anchor" href="#initmoviecliptexturexyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initMovieClip(texture,x?,y?,ax?,ay?)</h5>
+
+<p>Initialize a MovieClip Object</p>
+
+<ul>
+<li><p>texture:string </p></li>
+<li><p>x:number default=0</p></li>
+<li><p>y:number default=0</p></li>
+<li><p>ax:number anchorX default=0</p></li>
+<li><p>ay:number anchorY default=0</p></li>
+<li><p>return:egret.MovieClip</p></li>
+</ul>
+
+<pre><code>this.mc=tool.initMovieClip('mc');
+this.mc.play(1);
+this.mc2=tool.initMovieClip('mc2',200,100,.5,.5);
+this.mc2.play(-1);
+</code></pre>
+
+<h5>
+<a id="user-content-changemovieclipdatatargettexture" class="anchor" href="#changemovieclipdatatargettexture" aria-hidden="true"><span class="octicon octicon-link"></span></a>changeMovieClipData(target,texture)</h5>
+
+<p>Change MovieClip texture</p>
+
+<ul>
+<li><p>target:egret.MovieClip</p></li>
+<li><p>texture:string</p></li>
+<li><p>void</p></li>
+</ul>
+
+<pre><code>tool.changeMovieClipData(this.mc2,'mc');
+this.mc.play(-1);
+</code></pre>
+
+<h5>
+<a id="user-content-inittextfieldtextxytextcolorsizefontfamilyalignaxaylinespacing" class="anchor" href="#inittextfieldtextxytextcolorsizefontfamilyalignaxaylinespacing" aria-hidden="true"><span class="octicon octicon-link"></span></a>initTextField(text,x?,y?,textColor?,size?,fontFamily?,align?,ax?,ay?,lineSpacing?)</h5>
+
+<p>Initialize a TextField Object</p>
+
+<ul>
+<li><p>text:string text</p></li>
+<li><p>x:number default=0</p></li>
+<li><p>y:number default=0</p></li>
+<li><p>textColor:number font color default=0xffffff</p></li>
+<li><p>size:number font size default=30</p></li>
+<li><p>fontFamily:string font family default='SimHei'</p></li>
+<li><p>align:egret.HorizontalAlign text align default=egret.HorizontalAlign.LEFT</p></li>
+<li><p>ax:number anchorX default=0</p></li>
+<li><p>ay:number anchorY default=0</p></li>
+<li><p>lineSpacing:number line spacing default=0</p></li>
+<li><p>return:egret.TextField</p></li>
+</ul>
+
+<pre><code>this.tf=tool.initTextField('Hello World');
+this.tf2=tool.initTextField('msg',100,200,0x000001,80,'SimHei');
+</code></pre>
+
+<h5>
+<a id="user-content-initbitmaptextfonttextxyaxay" class="anchor" href="#initbitmaptextfonttextxyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initBitmapText(font,text,x?,y?,ax?,ay?)</h5>
+
+<p>Initialize a BitMapText Object</p>
+
+<ul>
+<li><p>font:string font texture</p></li>
+<li><p>text:string text</p></li>
+<li><p>x:number default=0</p></li>
+<li><p>y:number default=0</p></li>
+<li><p>ax:number anchorX default=0</p></li>
+<li><p>ay:number anchorY default=0</p></li>
+<li><p>return:egret.BitmapText</p></li>
+</ul>
+
+<pre><code>this.bmt=tool.initBitmapText('font','0');
+this.bmt2=tool.initBitmapText('font','0',200,200,.5,.5);
+</code></pre>
+
+<h5>
+<a id="user-content-getxyevent" class="anchor" href="#getxyevent" aria-hidden="true"><span class="octicon octicon-link"></span></a>getXY(event)</h5>
+
+<p>get Touch Coordinate </p>
+
+<ul>
+<li><p>event:egret.Event</p></li>
+<li><p>return:object {"x":X,"y":Y}</p></li>
+</ul>
+
+<pre><code>this.bm.addEventListener(egret.TouchEvent.TOUCH_BEGIN,touchBegin,this);
+function touchBegin(e){
+    var x=tool.getXY(e).x;
+    var y=tool.getXY(e).y;
+    console.log('touchXY:',x, y);
+}
+
+</code></pre>
+
+<h5>
+<a id="user-content-initparticletexturexyaxay" class="anchor" href="#initparticletexturexyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initParticle(texture,x?,y?,ax?,ay?)</h5>
+
+<p>Initialize a Particle object (need the third party library particle support <a href="https://github.com/egret-labs/egret-game-library">https://github.com/egret-labs/egret-game-library</a>)</p>
+
+<ul>
+<li><p>texture:string particle texture</p></li>
+<li><p>x:number default=0</p></li>
+<li><p>y:number default=0</p></li>
+<li><p>ax:number anchorX default=0</p></li>
+<li><p>ay:number anchorY default=0 </p></li>
+<li><p>return:particle.GravityParticleSystem</p></li>
+</ul>
+
+<pre><code>this.system = tool.initParticle('evilParticle', 300,300, .5, .5);
+</code></pre>
+
+<h5>
+<a id="user-content-addchildrenarrcontext" class="anchor" href="#addchildrenarrcontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>addChildren(arr,context)</h5>
+
+<p>add a group to stage</p>
+
+<ul>
+<li><p>arr:egret.DisplayObject[]</p></li>
+<li><p>context:egret.DisplayObjectContainer</p></li>
+<li><p>void</p></li>
+</ul>
+
+<pre><code>tool.addChildren([this.bm,this.mc],this);
+</code></pre>
+
+<h5>
+<a id="user-content-removechildrenarrcontext" class="anchor" href="#removechildrenarrcontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>removeChildren(arr,context)</h5>
+
+<p>remove a group from stage</p>
+
+<ul>
+<li><p>arr:egret.DisplayObject[]</p></li>
+<li><p>context:egret.DisplayObjectContainer</p></li>
+<li><p>void</p></li>
+</ul>
+
+<pre><code>tool.removeChildren([this.bm,this.mc],this);
+</code></pre>
+
+<h5>
+<a id="user-content-initscale9gridbitmaptexturerswrshrwrhwidthheightxyaxay" class="anchor" href="#initscale9gridbitmaptexturerswrshrwrhwidthheightxyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initScale9GridBitmap(texture,Rsw,Rsh,Rw,Rh,width?,height?,x?,y?,ax?,ay?)</h5>
+
+<p>Initialize a Scale 9 Grid Bitmap object</p>
+
+<ul>
+<li><p>texture:string </p></li>
+<li><p>Rsw Rsh Rw Rh:number</p></li>
+<li><p>width height x y ax ay:number default=0</p></li>
+<li><p>return:egret.Bitmap</p></li>
+</ul>
+
+<pre><code>//(x,y)_______________
+// |_Rsw_|Rsh_____|___|
+// |     |        |Rh |height
+// |_____|__Rw____|___|
+// |_____|________|___|
+//        width
+
+this.s9g=tool.initScale9GridBitmap("scale9grid",50,50,100,100);
+</code></pre>
+
+<h5>
+<a id="user-content-test2recthitobj1obj2" class="anchor" href="#test2recthitobj1obj2" aria-hidden="true"><span class="octicon octicon-link"></span></a>test2RectHit(obj1,obj2)</h5>
+
+<p>2 displayObject collision detection(anchor must be 0)</p>
+
+<ul>
+<li><p>obj1:egret.DisplayObject</p></li>
+<li><p>obj2:egret.DisplayObject</p></li>
+<li><p>return:boolean ishit?</p></li>
+</ul>
+
+<pre><code>tool.test2RectHit(this.bm, this.bm2);
+</code></pre>
+
+<h5>
+<a id="user-content-getdataurlreqdatacallback" class="anchor" href="#getdataurlreqdatacallback" aria-hidden="true"><span class="octicon octicon-link"></span></a>getData(url,reqdata?,callback?)</h5>
+
+<p>egret Ajax connect with server </p>
+
+<ul>
+<li><p>url:string URL</p></li>
+<li><p>reqdata:string POST data if ===null use GET</p></li>
+<li><p>callback:function callback function</p></li>
+<li><p>void</p></li>
+</ul>
+
+<pre><code>tool.getData('http://127.0.0.1:8888/cgi-bin/response.py','data=dkz',function(data){
+    console.log(data);
+});
+</code></pre>
+
+<h5>
+<a id="user-content-randomintn" class="anchor" href="#randomintn" aria-hidden="true"><span class="octicon octicon-link"></span></a>randomInt(n)</h5>
+
+<p>return a random int between 0 to n-1</p>
+
+<ul>
+<li><p>n:number max </p></li>
+<li><p>return:int random int</p></li>
+</ul>
+
+<pre><code>var r=tool.randomInt(10);
+</code></pre>
+
+<h3>
 <a id="user-content-renderts" class="anchor" href="#renderts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Render.ts</h3>
 
 <p>Time-based Animation</p>
 
 <p>solve fps drop problems when using Frame-based Animation</p>
 
+<p><strong>example</strong></p>
+
 <pre><code>var render=new Render();
 
 render.register(this.loop,this);
 render.start();
+
 render.pause();
 render.stop();
 render.resume();
@@ -59,10 +1233,158 @@ render.unregister();
 
 render.framerate=30;
 
-public loop(){
+loop(){
     //enterFrame
 }
 </code></pre>
+
+<p><strong>Animation Observer</strong></p>
+
+<pre><code>render;
+animateArr=[];
+run(){
+    this.render=new Render();
+    this.render.register(this.loop,this);
+    this.render.start();
+}
+loop(){
+    for(var i=0;i&lt;this.animateArr.length;i++){
+        this.animateArr[i].call(this);
+    }
+}
+animateRegister(func){
+    if(this.animateArr.indexOf(func)===-1){
+        this.animateArr.push(func);
+    }
+}
+animateUnregister(func){
+    var index=this.animateArr.indexOf(func);
+    if(index!==-1){
+        this.animateArr.splice(index,1);
+    }
+}
+</code></pre>
+
+<h5>
+<a id="user-content-fps" class="anchor" href="#fps" aria-hidden="true"><span class="octicon octicon-link"></span></a>FPS</h5>
+
+<ul>
+<li>:number</li>
+</ul>
+
+<p>fps default=60</p>
+
+<h5>
+<a id="user-content-acc" class="anchor" href="#acc" aria-hidden="true"><span class="octicon octicon-link"></span></a>acc</h5>
+
+<ul>
+<li>:number</li>
+</ul>
+
+<p>accumulative time default=0</p>
+
+<h5>
+<a id="user-content-dt" class="anchor" href="#dt" aria-hidden="true"><span class="octicon octicon-link"></span></a>dt</h5>
+
+<ul>
+<li>:number</li>
+</ul>
+
+<p>interval time between two frame</p>
+
+<p>default=Number((1000 / Render.FPS).toFixed(1))</p>
+
+<h5>
+<a id="user-content-callback" class="anchor" href="#callback" aria-hidden="true"><span class="octicon octicon-link"></span></a>callback</h5>
+
+<ul>
+<li>:function</li>
+</ul>
+
+<p>loop function</p>
+
+<h4>
+<a id="user-content-context" class="anchor" href="#context" aria-hidden="true"><span class="octicon octicon-link"></span></a>context</h4>
+
+<ul>
+<li>:egret.DisplayObjectContainer</li>
+</ul>
+
+<p>context this</p>
+
+<h5>
+<a id="user-content-registercallback-context" class="anchor" href="#registercallback-context" aria-hidden="true"><span class="octicon octicon-link"></span></a>register(callback, context)</h5>
+
+<p>register render</p>
+
+<ul>
+<li><p>callback:function</p></li>
+<li><p>context:egret.DisplayObjectContainer</p></li>
+<li><p>void</p></li>
+</ul>
+
+<h5>
+<a id="user-content-unregister" class="anchor" href="#unregister" aria-hidden="true"><span class="octicon octicon-link"></span></a>unregister()</h5>
+
+<p>unregister render</p>
+
+<ul>
+<li>void</li>
+</ul>
+
+<h5>
+<a id="user-content-handled" class="anchor" href="#handled" aria-hidden="true"><span class="octicon octicon-link"></span></a>handle(d)</h5>
+
+<p>notify call loop function</p>
+
+<ul>
+<li>d:number real interval time</li>
+</ul>
+
+<h5>
+<a id="user-content-start" class="anchor" href="#start" aria-hidden="true"><span class="octicon octicon-link"></span></a>start()</h5>
+
+<p>start render</p>
+
+<ul>
+<li>void</li>
+</ul>
+
+<h5>
+<a id="user-content-stop" class="anchor" href="#stop" aria-hidden="true"><span class="octicon octicon-link"></span></a>stop()</h5>
+
+<p>stop render</p>
+
+<ul>
+<li>void</li>
+</ul>
+
+<h5>
+<a id="user-content-pause" class="anchor" href="#pause" aria-hidden="true"><span class="octicon octicon-link"></span></a>pause()</h5>
+
+<p>pause render</p>
+
+<ul>
+<li>void</li>
+</ul>
+
+<h5>
+<a id="user-content-resume" class="anchor" href="#resume" aria-hidden="true"><span class="octicon octicon-link"></span></a>resume()</h5>
+
+<p>resume render</p>
+
+<ul>
+<li>void</li>
+</ul>
+
+<h5>
+<a id="user-content-set-frameratefps" class="anchor" href="#set-frameratefps" aria-hidden="true"><span class="octicon octicon-link"></span></a>set framerate(fps)</h5>
+
+<p>set fps and dt</p>
+
+<ul>
+<li>void</li>
+</ul>
 
 <h3>
 <a id="user-content-resourcepy" class="anchor" href="#resourcepy" aria-hidden="true"><span class="octicon octicon-link"></span></a>resource.py</h3>
@@ -79,6 +1401,16 @@ public loop(){
 <p>a python server</p>
 
 <h3>
+<a id="user-content-simpleserverpy" class="anchor" href="#simpleserverpy" aria-hidden="true"><span class="octicon octicon-link"></span></a>simpleserver.py</h3>
+
+<p>a python server (base on python 2.7)</p>
+
+<h3>
+<a id="user-content-cgi-binresponsepy" class="anchor" href="#cgi-binresponsepy" aria-hidden="true"><span class="octicon octicon-link"></span></a>cgi-bin/response.py</h3>
+
+<p>a cgi server</p>
+
+<h3>
 <a id="user-content-egret_loaderjs" class="anchor" href="#egret_loaderjs" aria-hidden="true"><span class="octicon octicon-link"></span></a>egret_loader.js</h3>
 
 <p>a solution for iphone and android diffrent screen size</p>
@@ -88,179 +1420,14 @@ public loop(){
 <p>use tool.ts setWH and getXY function set stage to .5 and get tap event stageX and Y</p>
 
 <h3>
-<a id="user-content-toolts" class="anchor" href="#toolts" aria-hidden="true"><span class="octicon octicon-link"></span></a>tool.ts</h3>
+<a id="user-content-iso" class="anchor" href="#iso" aria-hidden="true"><span class="octicon octicon-link"></span></a>Iso</h3>
 
-<p>egret tools for Initialize standard egret Object</p>
+<p>egret isometric projection library.</p>
 
-<p>please use resourse.py to keep texture name and sourse name correct</p>
+<p>create by may</p>
 
-<h4>
-<a id="user-content-setwhthat" class="anchor" href="#setwhthat" aria-hidden="true"><span class="octicon octicon-link"></span></a>setWH(that)</h4>
+<h2>
+<a id="user-content-meiriqinit" class="anchor" href="#meiriqinit" aria-hidden="true"><span class="octicon octicon-link"></span></a>meiriqInit</h2>
 
-<p>scale android stage and set global screen width and screen height (use egret_loader.js)</p>
-
-<pre><code>tool.setWH(gameContainer)
-stageWidth=tool.stageW;
-stageHeight=tool.stageH;
-</code></pre>
-
-<h4>
-<a id="user-content-initbitmaptexturexyaxay" class="anchor" href="#initbitmaptexturexyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initBitmap(texture,x?,y?,ax?,ay?)</h4>
-
-<p>Initialize a Bitmap Object</p>
-
-<pre><code>this.bm=tool.initBitmap('bm');
-this.bm2=tool.initBitmap('bm',100,100,.5,.5);
-</code></pre>
-
-<h4>
-<a id="user-content-initmoviecliptexturexyaxay" class="anchor" href="#initmoviecliptexturexyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initMovieClip(texture,x?,y?,ax?,ay?)</h4>
-
-<p>Initialize a MovieClip Object</p>
-
-<pre><code>this.mc=tool.initMovieClip('mc');
-this.mc.play(1);
-this.mc2=tool.initMovieClip('mc2',200,100,.5,.5);
-this.mc2.play(-1);
-</code></pre>
-
-<h4>
-<a id="user-content-changemovieclipdatatargettexture" class="anchor" href="#changemovieclipdatatargettexture" aria-hidden="true"><span class="octicon octicon-link"></span></a>changeMovieClipData(target,texture)</h4>
-
-<p>Change MovieClip texture</p>
-
-<pre><code>tool.changeMovieClipData(this.mc2,'mc');
-this.mc.play(-1);
-</code></pre>
-
-<h4>
-<a id="user-content-inittextfieldtextxytextcolorsizefontfamily" class="anchor" href="#inittextfieldtextxytextcolorsizefontfamily" aria-hidden="true"><span class="octicon octicon-link"></span></a>initTextField(text,x?,y?,textColor?,size?,fontFamily?)</h4>
-
-<p>Initialize a TextField Object</p>
-
-<pre><code>this.tf=tool.initTextField('Hello World');
-this.tf2=tool.initTextField('msg',100,200,0x000001,80,'SimHei');
-</code></pre>
-
-<h4>
-<a id="user-content-initbitmaptextfonttextxyaxay" class="anchor" href="#initbitmaptextfonttextxyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initBitmapText(font,text,x?,y?,ax?,ay?)</h4>
-
-<p>Initialize a BitMapText Object</p>
-
-<pre><code>this.bmt=tool.initBitmapText('font','0');
-this.bmt2=tool.initBitmapText('font','0',200,200,.5,.5);
-</code></pre>
-
-<h4>
-<a id="user-content-getxyevent" class="anchor" href="#getxyevent" aria-hidden="true"><span class="octicon octicon-link"></span></a>getXY(event)</h4>
-
-<p>get Touch Coordinate</p>
-
-<pre><code>this.bm.addEventListener(egret.TouchEvent.TOUCH_BEGIN,touchBegin,this);
-function touchBegin(e){
-    var x=tool.getXY(e).x;
-    var y=tool.getXY(e).y;
-    console.log('touchXY:',x, y);
-}
-
-</code></pre>
-
-<h4>
-<a id="user-content-initparticletexturexyaxay" class="anchor" href="#initparticletexturexyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initParticle(texture,x?,y?,ax?,ay?)</h4>
-
-<p>Initialize a Particle object (need the third party library particle support <a href="https://github.com/egret-labs/egret-game-library">https://github.com/egret-labs/egret-game-library</a>)</p>
-
-<pre><code>this.system = tool.initParticle('evilParticle', 300,300, .5, .5);
-</code></pre>
-
-<h4>
-<a id="user-content-addchildrenarrcontext" class="anchor" href="#addchildrenarrcontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>addChildren(arr,context)</h4>
-
-<p>add a group to stage</p>
-
-<pre><code>tool.addChildren([this.bm,this.mc],this);
-</code></pre>
-
-<h4>
-<a id="user-content-removechildrenarrcontext" class="anchor" href="#removechildrenarrcontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>removeChildren(arr,context)</h4>
-
-<p>remove a group from stage</p>
-
-<pre><code>tool.removeChildren([this.bm,this.mc],this);
-</code></pre>
-
-<h4>
-<a id="user-content-initscale9gridbitmaptexturerswrshrwrhwidthheightxyaxay" class="anchor" href="#initscale9gridbitmaptexturerswrshrwrhwidthheightxyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initScale9GridBitmap(texture,Rsw,Rsh,Rw,Rh,width?,height?,x?,y?,ax?,ay?)</h4>
-
-<p>Initialize a Scale 9 Grid Bitmap object</p>
-
-<pre><code>this.s9g=tool.initScale9GridBitmap("scale9grid",50,50,100,100);
-</code></pre>
-
-<h4>
-<a id="user-content-test2recthitobj1obj2" class="anchor" href="#test2recthitobj1obj2" aria-hidden="true"><span class="octicon octicon-link"></span></a>test2RectHit(obj1,obj2)</h4>
-
-<p>2 displayObject collision detection(anchor must be 0)</p>
-
-<pre><code>tool.test2RectHit(this.bm, this.bm2);
-</code></pre>
-
-<h3>
-<a id="user-content-debugts" class="anchor" href="#debugts" aria-hidden="true"><span class="octicon octicon-link"></span></a>debug.ts</h3>
-
-<p>debug egret project</p>
-
-<h4>
-<a id="user-content-showpositiontargetcontext" class="anchor" href="#showpositiontargetcontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>showPosition(target,context)</h4>
-
-<p>show DisplayObject position and console log it infomation</p>
-
-<p>press ctrl and drag the object to change it's position</p>
-
-<p>press shift and drag the object to change it's size</p>
-
-<p>press alt and click the object to console log it's infomation</p>
-
-<pre><code>debug.showPosition(target,this);
-</code></pre>
-
-<h4>
-<a id="user-content-showallpositioncontext" class="anchor" href="#showallpositioncontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>showAllPosition(context)</h4>
-
-<p>show DisplayObjectContainer's all children position and console log them infomation</p>
-
-<pre><code>debug.showAllPosition(gameContainer);
-</code></pre>
-
-<h4>
-<a id="user-content-showgrouppositiongroupcontext" class="anchor" href="#showgrouppositiongroupcontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>showGroupPosition(group,context)</h4>
-
-<p>show a group position</p>
-
-<pre><code>debug.showGroupPosition([this.bm,this.mc],this);
-</code></pre>
-
-<h4>
-<a id="user-content-pause-resume" class="anchor" href="#pause-resume" aria-hidden="true"><span class="octicon octicon-link"></span></a>pause() resume()</h4>
-
-<p>pause game and resume game</p>
-
-<pre><code>debug.pause();
-debug.resume();
-</code></pre>
-</article></div>
-	</div>
-<div id="footer">
-	<div id="footerPane">
-		<img id="cubehead" src="../res/img/cubehead.png">
-		<div id="footerL">
-			<a href="../index.html">Home</a><a href="../index.html#contact">Contact</a>
-		</div>
-		<div id="footerR">
-			<a id="search">Search</a><a href="../blog.html">Contents</a><a href="#top">Top</a>
-		</div>
-
-	</div>
-</div>
-</body>
-</html>
+<p>contain meiriq Game common </p>
+</article></body></html>
