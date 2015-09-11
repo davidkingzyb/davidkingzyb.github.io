@@ -26,9 +26,23 @@
 
 <p><strong>Build egret project quickly.</strong></p>
 
-<p>2015/8/4 by DKZ update 2015/9/2</p>
+<p>2015/8/4 by DKZ update 2015/9/9</p>
 
 <p><a href="https://github.com/davidkingzyb/egretInit">github</a></p>
+
+<ul>
+<li><p><strong>egretInit</strong> An example of egret project base on egret</p></li>
+<li><p><strong>debug.ts</strong> debug egret project</p></li>
+<li><p><strong>tool.ts</strong> egret tools for Initialize standard egret Object</p></li>
+<li><p><strong>component.ts</strong> some useful components like air button</p></li>
+<li><p><strong>Render.ts</strong> Time-based Animation</p></li>
+<li><p><strong>resource.py</strong> create resource.json automatically</p></li>
+<li><p><strong>runServer.py</strong> a python server</p></li>
+<li><p><strong>simpleserver.py</strong> a python server</p></li>
+<li><p><strong>cgi-bin/response.py</strong> a cgi server</p></li>
+<li><p><strong>egret_loader.js</strong> a solution for iphone and android diffrent screen size</p></li>
+<li><p><strong>Iso</strong> egret isometric projection library.</p></li>
+</ul>
 
 <h2>
 <a id="user-content-egretinit-1" class="anchor" href="#egretinit-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretInit</h2>
@@ -374,6 +388,88 @@ this.s9g=tool.initScale9GridBitmap("scale9grid",50,50,100,100);
 <pre><code>var r=tool.randomInt(10);
 </code></pre>
 
+<h5>
+<a id="user-content-btnpressbtnpresstexturetextureendfuncthatstartfunc" class="anchor" href="#btnpressbtnpresstexturetextureendfuncthatstartfunc" aria-hidden="true"><span class="octicon octicon-link"></span></a>btnPress(btn,presstexture,texture,endfunc,that,startfunc?)</h5>
+
+<p>button press effect</p>
+
+<ul>
+<li><p>btn:egret.DisplayObject the button</p></li>
+<li><p>presstexture:string texture when button press</p></li>
+<li><p>texture:string normal texture</p></li>
+<li><p>endfunc:function touch end function</p></li>
+<li><p>that:egret.DisplayObjectContainer this context</p></li>
+<li><p>startfunc:function touch start function</p></li>
+<li><p>void</p></li>
+</ul>
+
+<pre><code>tool.btnPress(this.leftBtn,'left_btn_press','left_btn',this.doright,this);
+</code></pre>
+
+<h5>
+<a id="user-content-setbestscorescore" class="anchor" href="#setbestscorescore" aria-hidden="true"><span class="octicon octicon-link"></span></a>setBestScore(score)</h5>
+
+<p>set localstorage bestscore and return bestscore</p>
+
+<p>*score:number </p>
+
+<p>*return bestScore:number</p>
+
+<pre><code>var bestScore=tool.setBestScore(this.score);
+</code></pre>
+
+<h3>
+<a id="user-content-componentts" class="anchor" href="#componentts" aria-hidden="true"><span class="octicon octicon-link"></span></a>component.ts</h3>
+
+<p>some useful components like air button</p>
+
+<h5>
+<a id="user-content-airbtntextwhxyaxaycolorfontsizelinewidthfontfamily" class="anchor" href="#airbtntextwhxyaxaycolorfontsizelinewidthfontfamily" aria-hidden="true"><span class="octicon octicon-link"></span></a>airBtn(text,w?,h?,x?,y?,ax?,ay?,color?,fontsize?,linewidth?,fontFamily?)</h5>
+
+<p>Air Button</p>
+
+<ul>
+<li><p>text:string text value of this Button</p></li>
+<li><p>w:number width default=150</p></li>
+<li><p>h:number height default=60</p></li>
+<li><p>x:number x coordinate default=1</p></li>
+<li><p>y:number y coordinate default=1</p></li>
+<li><p>ax:number anchorX default=.5</p></li>
+<li><p>ay:number anchorY default=.5;</p></li>
+<li><p>color:colornumber color of this button border background and text default=0xffffff;</p></li>
+<li><p>fontsize:number font size default=40</p></li>
+<li><p>linewidth:number border width default=3</p></li>
+<li><p>fontFamily:string font family default='helvetica'</p></li>
+<li><p>return {"btn":sp,"bg":bg,"border":border,"text":value} </p></li>
+<li><p>btn:egret.Sprite this air button</p></li>
+<li><p>bg:egret.Shape air button background</p></li>
+<li><p>border:egret.Shape air button border</p></li>
+<li><p>text:egret.TextField air button value</p></li>
+</ul>
+
+<pre><code>this.airbtn=component.airBtn('stop',null,null,tool.stageW/2,tool.stageH/2+300);
+this.addChild(this.airbtn.btn);
+</code></pre>
+
+<h5>
+<a id="user-content-airbtnpressairbtncallbackthatstartfunc" class="anchor" href="#airbtnpressairbtncallbackthatstartfunc" aria-hidden="true"><span class="octicon octicon-link"></span></a>airBtnPress(airbtn,callback,that,startfunc?)</h5>
+
+<p>air button press effect</p>
+
+<ul>
+<li><p>airbtn:component.airBtn air button</p></li>
+<li><p>callback:function callback function execute when touch end</p></li>
+<li><p>that:egret.DisplayObjectContainer this context</p></li>
+<li><p>startfunc:function touch start function</p></li>
+<li><p>void</p></li>
+</ul>
+
+<pre><code>component.airBtnPress(this.airbtn,stop,this);
+function stop(){
+    this.render.stop();
+}
+</code></pre>
+
 <h3>
 <a id="user-content-renderts" class="anchor" href="#renderts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Render.ts</h3>
 
@@ -590,11 +686,6 @@ animateUnregister(func){
 <p>create by may</p>
 
 <p><a href="http://davidkingzyb.github.io/blogmd/8.html">how to use?</a></p>
-
-<h2>
-<a id="user-content-meiriqinit" class="anchor" href="#meiriqinit" aria-hidden="true"><span class="octicon octicon-link"></span></a>meiriqInit</h2>
-
-<p>contain meiriq Game common </p>
 </article></div>
 	</div>
 <div id="footer">

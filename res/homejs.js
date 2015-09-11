@@ -562,7 +562,7 @@ var DKZLogoClass=(function(){
 //=================skill tree================
 
 function skillO(ctcanvas){
-	var core=new ctFillCircle('#333',300,300,75);
+	var core=new ctFillCircle('#333',300,300,75,0.1);
 	var core1=new ctFillCircle('#444',300,300,160,0.1);
 	var core2=new ctFillCircle('#444',300,300,250,0.1);
 	var arcA=new skillArc('#f0db4f',-55,35,75);
@@ -572,6 +572,21 @@ function skillO(ctcanvas){
 	var arcE=new skillArc('#2e2a69',195,225,75);
 	var arcF=new skillArc('#046aae',225,255,75);
 	var arcG=new skillArc('#3ad591',255,305,75);
+	// arcA.sangle=-54*Math.PI/180;
+	// arcA.eangle=34*Math.PI/180;
+	// arcB.sangle=36*Math.PI/180;
+	// arcB.eangle=44*Math.PI/180;
+	// arcC.sangle=46*Math.PI/180;
+	// arcC.eangle=74*Math.PI/180;
+	// arcD.sangle=76*Math.PI/180;
+	// arcD.eangle=194*Math.PI/180;
+	// arcE.sangle=196*Math.PI/180;
+	// arcE.eangle=224*Math.PI/180;
+	// arcF.sangle=226*Math.PI/180;
+	// arcF.eangle=254*Math.PI/180;
+	// arcG.sangle=256*Math.PI/180;
+	// arcG.eangle=304*Math.PI/180;
+
 	var skillhead=window['skillhead'];
 	var skillOgroup=[core,core1,core2,arcA,arcB,arcC,arcD,arcE,arcF,arcG,skillhead];
 	ctcanvas.reset();
@@ -585,7 +600,7 @@ function skilltree(){
 	var ctcanvas=new ctCanvas('skilltree');
 	ctcanvas.addTrigger('click');
 	ctcanvas.addTrigger('mousemove');
-	var core=new ctFillCircle('#333',300,300,5);
+	var core=new ctFillCircle('#333',300,300,5,0.3);
 	var core1=new ctFillCircle('#444',300,300,5,0.1);
 	var core2=new ctFillCircle('#444',300,300,5,0.1);
 	var groupCore=[core2,core1,core];
@@ -681,22 +696,22 @@ function skilltree(){
 	var skillhead;
 	function circleToO(){
 		
-		arcA.sangle=-54*Math.PI/180;
-		arcA.eangle=34*Math.PI/180;
-		arcB.sangle=36*Math.PI/180;
-		arcB.eangle=44*Math.PI/180;
-		arcC.sangle=46*Math.PI/180;
-		arcC.eangle=74*Math.PI/180;
-		arcD.sangle=76*Math.PI/180;
-		arcD.eangle=194*Math.PI/180;
-		arcE.sangle=196*Math.PI/180;
-		arcE.eangle=224*Math.PI/180;
-		arcF.sangle=226*Math.PI/180;
-		arcF.eangle=254*Math.PI/180;
-		arcG.sangle=256*Math.PI/180;
-		arcG.eangle=304*Math.PI/180;
+		// arcA.sangle=-54*Math.PI/180;
+		// arcA.eangle=34*Math.PI/180;
+		// arcB.sangle=36*Math.PI/180;
+		// arcB.eangle=44*Math.PI/180;
+		// arcC.sangle=46*Math.PI/180;
+		// arcC.eangle=74*Math.PI/180;
+		// arcD.sangle=76*Math.PI/180;
+		// arcD.eangle=194*Math.PI/180;
+		// arcE.sangle=196*Math.PI/180;
+		// arcE.eangle=224*Math.PI/180;
+		// arcF.sangle=226*Math.PI/180;
+		// arcF.eangle=254*Math.PI/180;
+		// arcG.sangle=256*Math.PI/180;
+		// arcG.eangle=304*Math.PI/180;
 
-		ctcanvas.drawCanvas();
+		// ctcanvas.drawCanvas();
 		
 		var skillheadimg=new Image();
 		skillheadimg.src='res/img/skillhead.png';
