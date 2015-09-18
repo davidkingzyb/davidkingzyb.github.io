@@ -460,4 +460,9 @@ window.onload=function(){
 		}
 	};
 
+	var pathname=window.location.pathname.substring(1);
+	var threadkey=pathname.split('.')[0];
+	var url=window.location.href;
+	var dsstr='<div class="ds-thread" data-thread-key="'+threadkey+'" data-title="'+pathname+'" data-url="'+url+'"></div>';
+	document.getElementById('discusspane').innerHTML=dsstr;
 };

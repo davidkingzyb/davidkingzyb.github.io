@@ -401,7 +401,9 @@ function getBlogJson(){
 			if(!resp){
 				resp=xhr.responseText;
 				searchJson=JSON.parse(resp);
+				
 				responseHandle(resp);
+				
 			}
 		}else{
 			console.log('fail'+xhr.status);
@@ -439,8 +441,10 @@ window.onload=function(){
 		DKZlogo.fillrandomDKZ();
 	};
 
+	
 	getBlogJson();
 	
+
 	var searchbtn=document.getElementById("search");
 
 	searchbtn.onclick=function(){
