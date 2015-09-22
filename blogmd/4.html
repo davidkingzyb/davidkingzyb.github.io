@@ -21,485 +21,522 @@
 
 		</div>
 		</a>
-		<div id="bodyPane"><article class="markdown-body"><h1>
-<a id="user-content-egretinit" class="anchor" href="#egretinit" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretInit</h1>
-
+		<div id="bodyPane"><article class="markdown-body"><h1><a id="user-content-egretinit" class="anchor" href="#egretinit" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretInit</h1>
 <p><strong>Build egret project quickly.</strong></p>
-
 <p>2015/8/4 by DKZ update 2015/9/9</p>
-
 <p><a href="https://github.com/davidkingzyb/egretInit">github</a></p>
-
 <ul>
-<li><p><strong>egretInit</strong> An example of egret project base on egret</p></li>
-<li><p><strong>debug.ts</strong> debug egret project</p></li>
-<li><p><strong>tool.ts</strong> egret tools for Initialize standard egret Object</p></li>
-<li><p><strong>component.ts</strong> some useful components like air button</p></li>
-<li><p><strong>Render.ts</strong> Time-based Animation</p></li>
-<li><p><strong>resource.py</strong> create resource.json automatically</p></li>
-<li><p><strong>runServer.py</strong> a python server</p></li>
-<li><p><strong>simpleserver.py</strong> a python server</p></li>
-<li><p><strong>cgi-bin/response.py</strong> a cgi server</p></li>
-<li><p><strong>egret_loader.js</strong> a solution for iphone and android diffrent screen size</p></li>
-<li><p><strong>Iso</strong> egret isometric projection library.</p></li>
+<li>
+<p><strong>egretInit</strong> An example of egret project base on egret</p>
+</li>
+<li>
+<p><strong>debug.ts</strong> debug egret project</p>
+</li>
+<li>
+<p><strong>tool.ts</strong> egret tools for Initialize standard egret Object</p>
+</li>
+<li>
+<p><strong>component.ts</strong> some useful components like air button</p>
+</li>
+<li>
+<p><strong>Render.ts</strong> Time-based Animation</p>
+</li>
+<li>
+<p><strong>resource.py</strong> create resource.json automatically</p>
+</li>
+<li>
+<p><strong>runServer.py</strong> a python server</p>
+</li>
+<li>
+<p><strong>simpleserver.py</strong> a python server</p>
+</li>
+<li>
+<p><strong>cgi-bin/response.py</strong> a cgi server</p>
+</li>
+<li>
+<p><strong>egret_loader.js</strong> a solution for iphone and android diffrent screen size</p>
+</li>
+<li>
+<p><strong>Iso</strong> egret isometric projection library.</p>
+</li>
 </ul>
-
-<h2>
-<a id="user-content-egretinit-1" class="anchor" href="#egretinit-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretInit</h2>
-
+<h2><a id="user-content-egretinit" class="anchor" href="#egretinit" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretInit</h2>
 <p>An example of egret project base on egret 2.0.0</p>
-
-<h2>
-<a id="user-content-egrettools" class="anchor" href="#egrettools" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretTools</h2>
-
+<h2><a id="user-content-egrettools" class="anchor" href="#egrettools" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretTools</h2>
 <p>some useful tools for egret </p>
-
-<h3>
-<a id="user-content-debugts" class="anchor" href="#debugts" aria-hidden="true"><span class="octicon octicon-link"></span></a>debug.ts</h3>
-
+<h3><a id="user-content-debug.ts" class="anchor" href="#debug.ts" aria-hidden="true"><span class="octicon octicon-link"></span></a>debug.ts</h3>
 <p>debug egret project</p>
-
-<h5>
-<a id="user-content-showpositiontargetcontext" class="anchor" href="#showpositiontargetcontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>showPosition(target,context)</h5>
-
+<h5><a id="user-content-showposition(target,context)" class="anchor" href="#showposition%28target%2Ccontext%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>showPosition(target,context)</h5>
 <p>show DisplayObject position and console log it infomation</p>
-
 <p>press ctrl and drag the object to change it's position</p>
-
 <p>press shift and drag the object to change it's size</p>
-
 <p>press alt and click the object to console log it's infomation</p>
-
 <ul>
-<li><p>target:egret.DisplayObject</p></li>
-<li><p>context:egret.DisplayObjectContainer</p></li>
-<li><p>void</p></li>
+<li>
+<p>target:egret.DisplayObject</p>
+</li>
+<li>
+<p>context:egret.DisplayObjectContainer</p>
+</li>
+<li>
+<p>void</p>
+</li>
 </ul>
-
-<pre><code>debug.showPosition(target,this);
-</code></pre>
-
-<h5>
-<a id="user-content-showallpositioncontext" class="anchor" href="#showallpositioncontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>showAllPosition(context)</h5>
-
+<p><code>debug.showPosition(target,this);</code></p>
+<h5><a id="user-content-showallposition(context)" class="anchor" href="#showallposition%28context%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>showAllPosition(context)</h5>
 <p>show DisplayObjectContainer's all children position and console log them infomation</p>
-
 <ul>
-<li><p>context:egret.DisplayObjectContainer</p></li>
-<li><p>void</p></li>
+<li>
+<p>context:egret.DisplayObjectContainer</p>
+</li>
+<li>
+<p>void</p>
+</li>
 </ul>
-
-<pre><code>debug.showAllPosition(gameContainer);
-</code></pre>
-
-<h5>
-<a id="user-content-showgrouppositiongroupcontext" class="anchor" href="#showgrouppositiongroupcontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>showGroupPosition(group,context)</h5>
-
+<p><code>debug.showAllPosition(gameContainer);</code></p>
+<h5><a id="user-content-showgroupposition(group,context)" class="anchor" href="#showgroupposition%28group%2Ccontext%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>showGroupPosition(group,context)</h5>
 <p>show a group position</p>
-
 <ul>
-<li><p>group:egret.DisplayObject[]</p></li>
-<li><p>context:egret.DisplayObjectContainer</p></li>
-<li><p>void</p></li>
+<li>
+<p>group:egret.DisplayObject[]</p>
+</li>
+<li>
+<p>context:egret.DisplayObjectContainer</p>
+</li>
+<li>
+<p>void</p>
+</li>
 </ul>
-
-<pre><code>debug.showGroupPosition([this.bm,this.mc],this);
-</code></pre>
-
-<h5>
-<a id="user-content-pause-resume" class="anchor" href="#pause-resume" aria-hidden="true"><span class="octicon octicon-link"></span></a>pause() resume()</h5>
-
+<p><code>debug.showGroupPosition([this.bm,this.mc],this);</code></p>
+<h5><a id="user-content-pause()-resume()" class="anchor" href="#pause%28%29-resume%28%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>pause() resume()</h5>
 <p>pause game and resume game</p>
-
 <ul>
 <li>void</li>
 </ul>
-
-<pre><code>debug.pause();
-debug.resume();
-</code></pre>
-
-<h3>
-<a id="user-content-toolts" class="anchor" href="#toolts" aria-hidden="true"><span class="octicon octicon-link"></span></a>tool.ts</h3>
-
+<p><code>debug.pause();
+debug.resume();</code></p>
+<h3><a id="user-content-tool.ts" class="anchor" href="#tool.ts" aria-hidden="true"><span class="octicon octicon-link"></span></a>tool.ts</h3>
 <p>egret tools for Initialize standard egret Object</p>
-
 <p>please use resourse.py to keep texture name and sourse name correct</p>
-
-<h5>
-<a id="user-content-stagew" class="anchor" href="#stagew" aria-hidden="true"><span class="octicon octicon-link"></span></a>stageW</h5>
-
+<h5><a id="user-content-stagew" class="anchor" href="#stagew" aria-hidden="true"><span class="octicon octicon-link"></span></a>stageW</h5>
 <ul>
 <li>:number</li>
 </ul>
-
 <p>stage width</p>
-
-<pre><code>this.stageWidth=tool.stageW;
-</code></pre>
-
-<h5>
-<a id="user-content-stageh" class="anchor" href="#stageh" aria-hidden="true"><span class="octicon octicon-link"></span></a>stageH</h5>
-
+<p><code>this.stageWidth=tool.stageW;</code></p>
+<h5><a id="user-content-stageh" class="anchor" href="#stageh" aria-hidden="true"><span class="octicon octicon-link"></span></a>stageH</h5>
 <ul>
 <li>:number</li>
 </ul>
-
 <p>stage height</p>
-
-<pre><code>stageHeight=tool.stageH;
-</code></pre>
-
-<h5>
-<a id="user-content-setwhthat" class="anchor" href="#setwhthat" aria-hidden="true"><span class="octicon octicon-link"></span></a>setWH(that)</h5>
-
+<p><code>stageHeight=tool.stageH;</code></p>
+<h5><a id="user-content-setwh(that)" class="anchor" href="#setwh%28that%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>setWH(that)</h5>
 <p>scale android stage and set global screen width and screen height</p>
-
 <ul>
-<li><p>that:egret.DisplayObjectContainer GameContainer</p></li>
-<li><p>void</p></li>
+<li>
+<p>that:egret.DisplayObjectContainer GameContainer</p>
+</li>
+<li>
+<p>void</p>
+</li>
 </ul>
-
-<pre><code>tool.setWH(gameContainer)
-</code></pre>
-
-<h5>
-<a id="user-content-initbitmaptexturexyaxay" class="anchor" href="#initbitmaptexturexyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initBitmap(texture,x?,y?,ax?,ay?)</h5>
-
+<p><code>tool.setWH(gameContainer)</code></p>
+<h5><a id="user-content-initbitmap(texture,x?,y?,ax?,ay?)" class="anchor" href="#initbitmap%28texture%2Cx%3F%2Cy%3F%2Cax%3F%2Cay%3F%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>initBitmap(texture,x?,y?,ax?,ay?)</h5>
 <p>Initialize a Bitmap Object</p>
-
 <ul>
-<li><p>texture:string </p></li>
-<li><p>x:number default=0</p></li>
-<li><p>y:number default=0</p></li>
-<li><p>ax:number anchorX default=0</p></li>
-<li><p>ay:number anchorY default=0</p></li>
-<li><p>return:egret.Bitmap</p></li>
+<li>
+<p>texture:string </p>
+</li>
+<li>
+<p>x:number default=0</p>
+</li>
+<li>
+<p>y:number default=0</p>
+</li>
+<li>
+<p>ax:number anchorX default=0</p>
+</li>
+<li>
+<p>ay:number anchorY default=0</p>
+</li>
+<li>
+<p>return:egret.Bitmap</p>
+</li>
 </ul>
-
-<pre><code>this.bm=tool.initBitmap('bm');
-this.bm2=tool.initBitmap('bm',100,100,.5,.5);
-</code></pre>
-
-<h5>
-<a id="user-content-initmoviecliptexturexyaxay" class="anchor" href="#initmoviecliptexturexyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initMovieClip(texture,x?,y?,ax?,ay?)</h5>
-
+<p><code>this.bm=tool.initBitmap('bm');
+this.bm2=tool.initBitmap('bm',100,100,.5,.5);</code></p>
+<h5><a id="user-content-initmovieclip(texture,x?,y?,ax?,ay?)" class="anchor" href="#initmovieclip%28texture%2Cx%3F%2Cy%3F%2Cax%3F%2Cay%3F%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>initMovieClip(texture,x?,y?,ax?,ay?)</h5>
 <p>Initialize a MovieClip Object</p>
-
 <ul>
-<li><p>texture:string </p></li>
-<li><p>x:number default=0</p></li>
-<li><p>y:number default=0</p></li>
-<li><p>ax:number anchorX default=0</p></li>
-<li><p>ay:number anchorY default=0</p></li>
-<li><p>return:egret.MovieClip</p></li>
+<li>
+<p>texture:string </p>
+</li>
+<li>
+<p>x:number default=0</p>
+</li>
+<li>
+<p>y:number default=0</p>
+</li>
+<li>
+<p>ax:number anchorX default=0</p>
+</li>
+<li>
+<p>ay:number anchorY default=0</p>
+</li>
+<li>
+<p>return:egret.MovieClip</p>
+</li>
 </ul>
-
-<pre><code>this.mc=tool.initMovieClip('mc');
+<p><code>this.mc=tool.initMovieClip('mc');
 this.mc.play(1);
 this.mc2=tool.initMovieClip('mc2',200,100,.5,.5);
-this.mc2.play(-1);
-</code></pre>
-
-<h5>
-<a id="user-content-changemovieclipdatatargettexture" class="anchor" href="#changemovieclipdatatargettexture" aria-hidden="true"><span class="octicon octicon-link"></span></a>changeMovieClipData(target,texture)</h5>
-
+this.mc2.play(-1);</code></p>
+<h5><a id="user-content-changemovieclipdata(target,texture)" class="anchor" href="#changemovieclipdata%28target%2Ctexture%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>changeMovieClipData(target,texture)</h5>
 <p>Change MovieClip texture</p>
-
 <ul>
-<li><p>target:egret.MovieClip</p></li>
-<li><p>texture:string</p></li>
-<li><p>void</p></li>
+<li>
+<p>target:egret.MovieClip</p>
+</li>
+<li>
+<p>texture:string</p>
+</li>
+<li>
+<p>void</p>
+</li>
 </ul>
-
-<pre><code>tool.changeMovieClipData(this.mc2,'mc');
-this.mc.play(-1);
-</code></pre>
-
-<h5>
-<a id="user-content-inittextfieldtextxytextcolorsizefontfamilyalignaxaylinespacing" class="anchor" href="#inittextfieldtextxytextcolorsizefontfamilyalignaxaylinespacing" aria-hidden="true"><span class="octicon octicon-link"></span></a>initTextField(text,x?,y?,textColor?,size?,fontFamily?,align?,ax?,ay?,lineSpacing?)</h5>
-
+<p><code>tool.changeMovieClipData(this.mc2,'mc');
+this.mc.play(-1);</code></p>
+<h5><a id="user-content-inittextfield(text,x?,y?,textcolor?,size?,fontfamily?,align?,ax?,ay?,linespacing?)" class="anchor" href="#inittextfield%28text%2Cx%3F%2Cy%3F%2Ctextcolor%3F%2Csize%3F%2Cfontfamily%3F%2Calign%3F%2Cax%3F%2Cay%3F%2Clinespacing%3F%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>initTextField(text,x?,y?,textColor?,size?,fontFamily?,align?,ax?,ay?,lineSpacing?)</h5>
 <p>Initialize a TextField Object</p>
-
 <ul>
-<li><p>text:string text</p></li>
-<li><p>x:number default=0</p></li>
-<li><p>y:number default=0</p></li>
-<li><p>textColor:number font color default=0xffffff</p></li>
-<li><p>size:number font size default=30</p></li>
-<li><p>fontFamily:string font family default='SimHei'</p></li>
-<li><p>align:egret.HorizontalAlign text align default=egret.HorizontalAlign.LEFT</p></li>
-<li><p>ax:number anchorX default=0</p></li>
-<li><p>ay:number anchorY default=0</p></li>
-<li><p>lineSpacing:number line spacing default=0</p></li>
-<li><p>return:egret.TextField</p></li>
+<li>
+<p>text:string text</p>
+</li>
+<li>
+<p>x:number default=0</p>
+</li>
+<li>
+<p>y:number default=0</p>
+</li>
+<li>
+<p>textColor:number font color default=0xffffff</p>
+</li>
+<li>
+<p>size:number font size default=30</p>
+</li>
+<li>
+<p>fontFamily:string font family default='SimHei'</p>
+</li>
+<li>
+<p>align:egret.HorizontalAlign text align default=egret.HorizontalAlign.LEFT</p>
+</li>
+<li>
+<p>ax:number anchorX default=0</p>
+</li>
+<li>
+<p>ay:number anchorY default=0</p>
+</li>
+<li>
+<p>lineSpacing:number line spacing default=0</p>
+</li>
+<li>
+<p>return:egret.TextField</p>
+</li>
 </ul>
-
-<pre><code>this.tf=tool.initTextField('Hello World');
-this.tf2=tool.initTextField('msg',100,200,0x000001,80,'SimHei');
-</code></pre>
-
-<h5>
-<a id="user-content-initbitmaptextfonttextxyaxay" class="anchor" href="#initbitmaptextfonttextxyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initBitmapText(font,text,x?,y?,ax?,ay?)</h5>
-
+<p><code>this.tf=tool.initTextField('Hello World');
+this.tf2=tool.initTextField('msg',100,200,0x000001,80,'SimHei');</code></p>
+<h5><a id="user-content-initbitmaptext(font,text,x?,y?,ax?,ay?)" class="anchor" href="#initbitmaptext%28font%2Ctext%2Cx%3F%2Cy%3F%2Cax%3F%2Cay%3F%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>initBitmapText(font,text,x?,y?,ax?,ay?)</h5>
 <p>Initialize a BitMapText Object</p>
-
 <ul>
-<li><p>font:string font texture</p></li>
-<li><p>text:string text</p></li>
-<li><p>x:number default=0</p></li>
-<li><p>y:number default=0</p></li>
-<li><p>ax:number anchorX default=0</p></li>
-<li><p>ay:number anchorY default=0</p></li>
-<li><p>return:egret.BitmapText</p></li>
+<li>
+<p>font:string font texture</p>
+</li>
+<li>
+<p>text:string text</p>
+</li>
+<li>
+<p>x:number default=0</p>
+</li>
+<li>
+<p>y:number default=0</p>
+</li>
+<li>
+<p>ax:number anchorX default=0</p>
+</li>
+<li>
+<p>ay:number anchorY default=0</p>
+</li>
+<li>
+<p>return:egret.BitmapText</p>
+</li>
 </ul>
-
-<pre><code>this.bmt=tool.initBitmapText('font','0');
-this.bmt2=tool.initBitmapText('font','0',200,200,.5,.5);
-</code></pre>
-
-<h5>
-<a id="user-content-getxyevent" class="anchor" href="#getxyevent" aria-hidden="true"><span class="octicon octicon-link"></span></a>getXY(event)</h5>
-
+<p><code>this.bmt=tool.initBitmapText('font','0');
+this.bmt2=tool.initBitmapText('font','0',200,200,.5,.5);</code></p>
+<h5><a id="user-content-getxy(event)" class="anchor" href="#getxy%28event%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>getXY(event)</h5>
 <p>get Touch Coordinate </p>
-
 <ul>
-<li><p>event:egret.Event</p></li>
-<li><p>return:object {"x":X,"y":Y}</p></li>
+<li>
+<p>event:egret.Event</p>
+</li>
+<li>
+<p>return:object {"x":X,"y":Y}</p>
+</li>
 </ul>
-
-<pre><code>this.bm.addEventListener(egret.TouchEvent.TOUCH_BEGIN,touchBegin,this);
+<p>```
+this.bm.addEventListener(egret.TouchEvent.TOUCH_BEGIN,touchBegin,this);
 function touchBegin(e){
     var x=tool.getXY(e).x;
     var y=tool.getXY(e).y;
     console.log('touchXY:',x, y);
-}
-
-</code></pre>
-
-<h5>
-<a id="user-content-initparticletexturexyaxay" class="anchor" href="#initparticletexturexyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initParticle(texture,x?,y?,ax?,ay?)</h5>
-
+}</p>
+<p>```</p>
+<h5><a id="user-content-initparticle(texture,x?,y?,ax?,ay?)" class="anchor" href="#initparticle%28texture%2Cx%3F%2Cy%3F%2Cax%3F%2Cay%3F%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>initParticle(texture,x?,y?,ax?,ay?)</h5>
 <p>Initialize a Particle object (need the third party library particle support <a href="https://github.com/egret-labs/egret-game-library">https://github.com/egret-labs/egret-game-library</a>)</p>
-
 <ul>
-<li><p>texture:string particle texture</p></li>
-<li><p>x:number default=0</p></li>
-<li><p>y:number default=0</p></li>
-<li><p>ax:number anchorX default=0</p></li>
-<li><p>ay:number anchorY default=0 </p></li>
-<li><p>return:particle.GravityParticleSystem</p></li>
+<li>
+<p>texture:string particle texture</p>
+</li>
+<li>
+<p>x:number default=0</p>
+</li>
+<li>
+<p>y:number default=0</p>
+</li>
+<li>
+<p>ax:number anchorX default=0</p>
+</li>
+<li>
+<p>ay:number anchorY default=0 </p>
+</li>
+<li>
+<p>return:particle.GravityParticleSystem</p>
+</li>
 </ul>
-
-<pre><code>this.system = tool.initParticle('evilParticle', 300,300, .5, .5);
-</code></pre>
-
-<h5>
-<a id="user-content-addchildrenarrcontext" class="anchor" href="#addchildrenarrcontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>addChildren(arr,context)</h5>
-
+<p><code>this.system = tool.initParticle('evilParticle', 300,300, .5, .5);</code></p>
+<h5><a id="user-content-addchildren(arr,context)" class="anchor" href="#addchildren%28arr%2Ccontext%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>addChildren(arr,context)</h5>
 <p>add a group to stage</p>
-
 <ul>
-<li><p>arr:egret.DisplayObject[]</p></li>
-<li><p>context:egret.DisplayObjectContainer</p></li>
-<li><p>void</p></li>
+<li>
+<p>arr:egret.DisplayObject[]</p>
+</li>
+<li>
+<p>context:egret.DisplayObjectContainer</p>
+</li>
+<li>
+<p>void</p>
+</li>
 </ul>
-
-<pre><code>tool.addChildren([this.bm,this.mc],this);
-</code></pre>
-
-<h5>
-<a id="user-content-removechildrenarrcontext" class="anchor" href="#removechildrenarrcontext" aria-hidden="true"><span class="octicon octicon-link"></span></a>removeChildren(arr,context)</h5>
-
+<p><code>tool.addChildren([this.bm,this.mc],this);</code></p>
+<h5><a id="user-content-removechildren(arr,context)" class="anchor" href="#removechildren%28arr%2Ccontext%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>removeChildren(arr,context)</h5>
 <p>remove a group from stage</p>
-
 <ul>
-<li><p>arr:egret.DisplayObject[]</p></li>
-<li><p>context:egret.DisplayObjectContainer</p></li>
-<li><p>void</p></li>
+<li>
+<p>arr:egret.DisplayObject[]</p>
+</li>
+<li>
+<p>context:egret.DisplayObjectContainer</p>
+</li>
+<li>
+<p>void</p>
+</li>
 </ul>
-
-<pre><code>tool.removeChildren([this.bm,this.mc],this);
-</code></pre>
-
-<h5>
-<a id="user-content-initscale9gridbitmaptexturerswrshrwrhwidthheightxyaxay" class="anchor" href="#initscale9gridbitmaptexturerswrshrwrhwidthheightxyaxay" aria-hidden="true"><span class="octicon octicon-link"></span></a>initScale9GridBitmap(texture,Rsw,Rsh,Rw,Rh,width?,height?,x?,y?,ax?,ay?)</h5>
-
+<p><code>tool.removeChildren([this.bm,this.mc],this);</code></p>
+<h5><a id="user-content-initscale9gridbitmap(texture,rsw,rsh,rw,rh,width?,height?,x?,y?,ax?,ay?)" class="anchor" href="#initscale9gridbitmap%28texture%2Crsw%2Crsh%2Crw%2Crh%2Cwidth%3F%2Cheight%3F%2Cx%3F%2Cy%3F%2Cax%3F%2Cay%3F%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>initScale9GridBitmap(texture,Rsw,Rsh,Rw,Rh,width?,height?,x?,y?,ax?,ay?)</h5>
 <p>Initialize a Scale 9 Grid Bitmap object</p>
-
 <ul>
-<li><p>texture:string </p></li>
-<li><p>Rsw Rsh Rw Rh:number</p></li>
-<li><p>width height x y ax ay:number default=0</p></li>
-<li><p>return:egret.Bitmap</p></li>
-</ul>
-
-<pre><code>//(x,y)_______________
-// |_Rsw_|Rsh_____|___|
+<li>
+<p>texture:string </p>
+</li>
+<li>
+<p>Rsw Rsh Rw Rh:number</p>
+</li>
+<li>
+<p>width height x y ax ay:number default=0</p>
+</li>
+<li>
+<p>return:egret.Bitmap</p>
+<p>//(x,y)<strong><em>_</em></strong><strong><em>_</em></strong><em>
+// |_Rsw</em>|Rsh<strong><em>_</em>|</strong><em>|
 // |     |        |Rh |height
-// |_____|__Rw____|___|
-// |_____|________|___|
-//        width
-
-this.s9g=tool.initScale9GridBitmap("scale9grid",50,50,100,100);
-</code></pre>
-
-<h5>
-<a id="user-content-test2recthitobj1obj2" class="anchor" href="#test2recthitobj1obj2" aria-hidden="true"><span class="octicon octicon-link"></span></a>test2RectHit(obj1,obj2)</h5>
-
+// |<strong><em>_</em>|</strong>Rw<strong><em>_|</em></strong>|
+// |<strong><em>_</em>|</strong><strong><em>_</em>_|</strong></em>|
+//        width</p>
+<p>this.s9g=tool.initScale9GridBitmap("scale9grid",50,50,100,100);</p>
+</li>
+</ul>
+<h5><a id="user-content-test2recthit(obj1,obj2)" class="anchor" href="#test2recthit%28obj1%2Cobj2%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>test2RectHit(obj1,obj2)</h5>
 <p>2 displayObject collision detection(anchor must be 0)</p>
-
 <ul>
-<li><p>obj1:egret.DisplayObject</p></li>
-<li><p>obj2:egret.DisplayObject</p></li>
-<li><p>return:boolean ishit?</p></li>
+<li>
+<p>obj1:egret.DisplayObject</p>
+</li>
+<li>
+<p>obj2:egret.DisplayObject</p>
+</li>
+<li>
+<p>return:boolean ishit?</p>
+</li>
 </ul>
-
-<pre><code>tool.test2RectHit(this.bm, this.bm2);
-</code></pre>
-
-<h5>
-<a id="user-content-getdataurlreqdatacallback" class="anchor" href="#getdataurlreqdatacallback" aria-hidden="true"><span class="octicon octicon-link"></span></a>getData(url,reqdata?,callback?)</h5>
-
+<p><code>tool.test2RectHit(this.bm, this.bm2);</code></p>
+<h5><a id="user-content-getdata(url,reqdata?,callback?)" class="anchor" href="#getdata%28url%2Creqdata%3F%2Ccallback%3F%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>getData(url,reqdata?,callback?)</h5>
 <p>egret Ajax connect with server </p>
-
 <ul>
-<li><p>url:string URL</p></li>
-<li><p>reqdata:string POST data if ===null use GET</p></li>
-<li><p>callback:function callback function</p></li>
-<li><p>void</p></li>
+<li>
+<p>url:string URL</p>
+</li>
+<li>
+<p>reqdata:string POST data if ===null use GET</p>
+</li>
+<li>
+<p>callback:function callback function</p>
+</li>
+<li>
+<p>void</p>
+</li>
 </ul>
-
-<pre><code>tool.getData('http://127.0.0.1:8888/cgi-bin/response.py','data=dkz',function(data){
+<p><code>tool.getData('http://127.0.0.1:8888/cgi-bin/response.py','data=dkz',function(data){
     console.log(data);
-});
-</code></pre>
-
-<h5>
-<a id="user-content-randomintn" class="anchor" href="#randomintn" aria-hidden="true"><span class="octicon octicon-link"></span></a>randomInt(n)</h5>
-
+});</code></p>
+<h5><a id="user-content-randomint(n)" class="anchor" href="#randomint%28n%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>randomInt(n)</h5>
 <p>return a random int between 0 to n-1</p>
-
 <ul>
-<li><p>n:number max </p></li>
-<li><p>return:int random int</p></li>
+<li>
+<p>n:number max </p>
+</li>
+<li>
+<p>return:int random int</p>
+</li>
 </ul>
-
-<pre><code>var r=tool.randomInt(10);
-</code></pre>
-
-<h5>
-<a id="user-content-btnpressbtnpresstexturetextureendfuncthatstartfunc" class="anchor" href="#btnpressbtnpresstexturetextureendfuncthatstartfunc" aria-hidden="true"><span class="octicon octicon-link"></span></a>btnPress(btn,presstexture,texture,endfunc,that,startfunc?)</h5>
-
+<p><code>var r=tool.randomInt(10);</code></p>
+<h5><a id="user-content-btnpress(btn,presstexture,texture,endfunc,that,startfunc?)" class="anchor" href="#btnpress%28btn%2Cpresstexture%2Ctexture%2Cendfunc%2Cthat%2Cstartfunc%3F%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>btnPress(btn,presstexture,texture,endfunc,that,startfunc?)</h5>
 <p>button press effect</p>
-
 <ul>
-<li><p>btn:egret.DisplayObject the button</p></li>
-<li><p>presstexture:string texture when button press</p></li>
-<li><p>texture:string normal texture</p></li>
-<li><p>endfunc:function touch end function</p></li>
-<li><p>that:egret.DisplayObjectContainer this context</p></li>
-<li><p>startfunc:function touch start function</p></li>
-<li><p>void</p></li>
+<li>
+<p>btn:egret.DisplayObject the button</p>
+</li>
+<li>
+<p>presstexture:string texture when button press</p>
+</li>
+<li>
+<p>texture:string normal texture</p>
+</li>
+<li>
+<p>endfunc:function touch end function</p>
+</li>
+<li>
+<p>that:egret.DisplayObjectContainer this context</p>
+</li>
+<li>
+<p>startfunc:function touch start function</p>
+</li>
+<li>
+<p>void</p>
+</li>
 </ul>
-
-<pre><code>tool.btnPress(this.leftBtn,'left_btn_press','left_btn',this.doright,this);
-</code></pre>
-
-<h5>
-<a id="user-content-setbestscorescore" class="anchor" href="#setbestscorescore" aria-hidden="true"><span class="octicon octicon-link"></span></a>setBestScore(score)</h5>
-
+<p><code>tool.btnPress(this.leftBtn,'left_btn_press','left_btn',this.doright,this);</code></p>
+<h5><a id="user-content-setbestscore(score)" class="anchor" href="#setbestscore%28score%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>setBestScore(score)</h5>
 <p>set localstorage bestscore and return bestscore</p>
-
 <p>*score:number </p>
-
 <p>*return bestScore:number</p>
-
-<pre><code>var bestScore=tool.setBestScore(this.score);
-</code></pre>
-
-<h3>
-<a id="user-content-componentts" class="anchor" href="#componentts" aria-hidden="true"><span class="octicon octicon-link"></span></a>component.ts</h3>
-
+<p><code>var bestScore=tool.setBestScore(this.score);</code></p>
+<h3><a id="user-content-component.ts" class="anchor" href="#component.ts" aria-hidden="true"><span class="octicon octicon-link"></span></a>component.ts</h3>
 <p>some useful components like air button</p>
-
-<h5>
-<a id="user-content-airbtntextwhxyaxaycolorfontsizelinewidthfontfamily" class="anchor" href="#airbtntextwhxyaxaycolorfontsizelinewidthfontfamily" aria-hidden="true"><span class="octicon octicon-link"></span></a>airBtn(text,w?,h?,x?,y?,ax?,ay?,color?,fontsize?,linewidth?,fontFamily?)</h5>
-
+<h5><a id="user-content-airbtn(text,w?,h?,x?,y?,ax?,ay?,color?,fontsize?,linewidth?,fontfamily?)" class="anchor" href="#airbtn%28text%2Cw%3F%2Ch%3F%2Cx%3F%2Cy%3F%2Cax%3F%2Cay%3F%2Ccolor%3F%2Cfontsize%3F%2Clinewidth%3F%2Cfontfamily%3F%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>airBtn(text,w?,h?,x?,y?,ax?,ay?,color?,fontsize?,linewidth?,fontFamily?)</h5>
 <p>Air Button</p>
-
 <ul>
-<li><p>text:string text value of this Button</p></li>
-<li><p>w:number width default=150</p></li>
-<li><p>h:number height default=60</p></li>
-<li><p>x:number x coordinate default=1</p></li>
-<li><p>y:number y coordinate default=1</p></li>
-<li><p>ax:number anchorX default=.5</p></li>
-<li><p>ay:number anchorY default=.5;</p></li>
-<li><p>color:colornumber color of this button border background and text default=0xffffff;</p></li>
-<li><p>fontsize:number font size default=40</p></li>
-<li><p>linewidth:number border width default=3</p></li>
-<li><p>fontFamily:string font family default='helvetica'</p></li>
-<li><p>return {"btn":sp,"bg":bg,"border":border,"text":value} </p></li>
-<li><p>btn:egret.Sprite this air button</p></li>
-<li><p>bg:egret.Shape air button background</p></li>
-<li><p>border:egret.Shape air button border</p></li>
-<li><p>text:egret.TextField air button value</p></li>
+<li>
+<p>text:string text value of this Button</p>
+</li>
+<li>
+<p>w:number width default=150</p>
+</li>
+<li>
+<p>h:number height default=60</p>
+</li>
+<li>
+<p>x:number x coordinate default=1</p>
+</li>
+<li>
+<p>y:number y coordinate default=1</p>
+</li>
+<li>
+<p>ax:number anchorX default=.5</p>
+</li>
+<li>
+<p>ay:number anchorY default=.5;</p>
+</li>
+<li>
+<p>color:colornumber color of this button border background and text default=0xffffff;</p>
+</li>
+<li>
+<p>fontsize:number font size default=40</p>
+</li>
+<li>
+<p>linewidth:number border width default=3</p>
+</li>
+<li>
+<p>fontFamily:string font family default='helvetica'</p>
+</li>
+<li>
+<p>return {"btn":sp,"bg":bg,"border":border,"text":value} </p>
+</li>
+<li>
+<p>btn:egret.Sprite this air button</p>
+</li>
+<li>
+<p>bg:egret.Shape air button background</p>
+</li>
+<li>
+<p>border:egret.Shape air button border</p>
+</li>
+<li>
+<p>text:egret.TextField air button value</p>
+</li>
 </ul>
-
-<pre><code>this.airbtn=component.airBtn('stop',null,null,tool.stageW/2,tool.stageH/2+300);
-this.addChild(this.airbtn.btn);
-</code></pre>
-
-<h5>
-<a id="user-content-airbtnpressairbtncallbackthatstartfunc" class="anchor" href="#airbtnpressairbtncallbackthatstartfunc" aria-hidden="true"><span class="octicon octicon-link"></span></a>airBtnPress(airbtn,callback,that,startfunc?)</h5>
-
+<p><code>this.airbtn=component.airBtn('stop',null,null,tool.stageW/2,tool.stageH/2+300);
+this.addChild(this.airbtn.btn);</code></p>
+<h5><a id="user-content-airbtnpress(airbtn,callback,that,startfunc?)" class="anchor" href="#airbtnpress%28airbtn%2Ccallback%2Cthat%2Cstartfunc%3F%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>airBtnPress(airbtn,callback,that,startfunc?)</h5>
 <p>air button press effect</p>
-
 <ul>
-<li><p>airbtn:component.airBtn air button</p></li>
-<li><p>callback:function callback function execute when touch end</p></li>
-<li><p>that:egret.DisplayObjectContainer this context</p></li>
-<li><p>startfunc:function touch start function</p></li>
-<li><p>void</p></li>
+<li>
+<p>airbtn:component.airBtn air button</p>
+</li>
+<li>
+<p>callback:function callback function execute when touch end</p>
+</li>
+<li>
+<p>that:egret.DisplayObjectContainer this context</p>
+</li>
+<li>
+<p>startfunc:function touch start function</p>
+</li>
+<li>
+<p>void</p>
+</li>
 </ul>
-
-<pre><code>component.airBtnPress(this.airbtn,stop,this);
+<p><code>component.airBtnPress(this.airbtn,stop,this);
 function stop(){
     this.render.stop();
-}
-</code></pre>
-
-<h3>
-<a id="user-content-renderts" class="anchor" href="#renderts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Render.ts</h3>
-
+}</code></p>
+<h3><a id="user-content-render.ts" class="anchor" href="#render.ts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Render.ts</h3>
 <p>Time-based Animation</p>
-
 <p>solve fps drop problems when using Frame-based Animation</p>
-
 <p><strong>example</strong></p>
-
-<pre><code>var render=new Render();
-
-render.register(this.loop,this);
-render.start();
-
-render.pause();
+<p>```
+var render=new Render();</p>
+<p>render.register(this.loop,this);
+render.start();</p>
+<p>render.pause();
 render.stop();
-render.resume();
-
-render.unregister();
-
-render.framerate=30;
-
-loop(){
+render.resume();</p>
+<p>render.unregister();</p>
+<p>render.framerate=30;</p>
+<p>loop(){
     //enterFrame
 }
-</code></pre>
-
+```</p>
 <p><strong>Animation Observer</strong></p>
-
-<pre><code>render;
+<p><code>render;
 animateArr=[];
 run(){
     this.render=new Render();
@@ -521,172 +558,99 @@ animateUnregister(func){
     if(index!==-1){
         this.animateArr.splice(index,1);
     }
-}
-</code></pre>
-
-<h5>
-<a id="user-content-fps" class="anchor" href="#fps" aria-hidden="true"><span class="octicon octicon-link"></span></a>FPS</h5>
-
+}</code></p>
+<h5><a id="user-content-fps" class="anchor" href="#fps" aria-hidden="true"><span class="octicon octicon-link"></span></a>FPS</h5>
 <ul>
 <li>:number</li>
 </ul>
-
 <p>fps default=60</p>
-
-<h5>
-<a id="user-content-acc" class="anchor" href="#acc" aria-hidden="true"><span class="octicon octicon-link"></span></a>acc</h5>
-
+<h5><a id="user-content-acc" class="anchor" href="#acc" aria-hidden="true"><span class="octicon octicon-link"></span></a>acc</h5>
 <ul>
 <li>:number</li>
 </ul>
-
 <p>accumulative time default=0</p>
-
-<h5>
-<a id="user-content-dt" class="anchor" href="#dt" aria-hidden="true"><span class="octicon octicon-link"></span></a>dt</h5>
-
+<h5><a id="user-content-dt" class="anchor" href="#dt" aria-hidden="true"><span class="octicon octicon-link"></span></a>dt</h5>
 <ul>
 <li>:number</li>
 </ul>
-
 <p>interval time between two frame</p>
-
 <p>default=Number((1000 / Render.FPS).toFixed(1))</p>
-
-<h5>
-<a id="user-content-callback" class="anchor" href="#callback" aria-hidden="true"><span class="octicon octicon-link"></span></a>callback</h5>
-
+<h5><a id="user-content-callback" class="anchor" href="#callback" aria-hidden="true"><span class="octicon octicon-link"></span></a>callback</h5>
 <ul>
 <li>:function</li>
 </ul>
-
 <p>loop function</p>
-
-<h4>
-<a id="user-content-context" class="anchor" href="#context" aria-hidden="true"><span class="octicon octicon-link"></span></a>context</h4>
-
+<h4><a id="user-content-context" class="anchor" href="#context" aria-hidden="true"><span class="octicon octicon-link"></span></a>context</h4>
 <ul>
 <li>:egret.DisplayObjectContainer</li>
 </ul>
-
 <p>context this</p>
-
-<h5>
-<a id="user-content-registercallback-context" class="anchor" href="#registercallback-context" aria-hidden="true"><span class="octicon octicon-link"></span></a>register(callback, context)</h5>
-
+<h5><a id="user-content-register(callback,-context)" class="anchor" href="#register%28callback%2C-context%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>register(callback, context)</h5>
 <p>register render</p>
-
 <ul>
-<li><p>callback:function</p></li>
-<li><p>context:egret.DisplayObjectContainer</p></li>
-<li><p>void</p></li>
+<li>
+<p>callback:function</p>
+</li>
+<li>
+<p>context:egret.DisplayObjectContainer</p>
+</li>
+<li>
+<p>void</p>
+</li>
 </ul>
-
-<h5>
-<a id="user-content-unregister" class="anchor" href="#unregister" aria-hidden="true"><span class="octicon octicon-link"></span></a>unregister()</h5>
-
+<h5><a id="user-content-unregister()" class="anchor" href="#unregister%28%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>unregister()</h5>
 <p>unregister render</p>
-
 <ul>
 <li>void</li>
 </ul>
-
-<h5>
-<a id="user-content-handled" class="anchor" href="#handled" aria-hidden="true"><span class="octicon octicon-link"></span></a>handle(d)</h5>
-
+<h5><a id="user-content-handle(d)" class="anchor" href="#handle%28d%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>handle(d)</h5>
 <p>notify call loop function</p>
-
 <ul>
 <li>d:number real interval time</li>
 </ul>
-
-<h5>
-<a id="user-content-start" class="anchor" href="#start" aria-hidden="true"><span class="octicon octicon-link"></span></a>start()</h5>
-
+<h5><a id="user-content-start()" class="anchor" href="#start%28%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>start()</h5>
 <p>start render</p>
-
 <ul>
 <li>void</li>
 </ul>
-
-<h5>
-<a id="user-content-stop" class="anchor" href="#stop" aria-hidden="true"><span class="octicon octicon-link"></span></a>stop()</h5>
-
+<h5><a id="user-content-stop()" class="anchor" href="#stop%28%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>stop()</h5>
 <p>stop render</p>
-
 <ul>
 <li>void</li>
 </ul>
-
-<h5>
-<a id="user-content-pause" class="anchor" href="#pause" aria-hidden="true"><span class="octicon octicon-link"></span></a>pause()</h5>
-
+<h5><a id="user-content-pause()" class="anchor" href="#pause%28%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>pause()</h5>
 <p>pause render</p>
-
 <ul>
 <li>void</li>
 </ul>
-
-<h5>
-<a id="user-content-resume" class="anchor" href="#resume" aria-hidden="true"><span class="octicon octicon-link"></span></a>resume()</h5>
-
+<h5><a id="user-content-resume()" class="anchor" href="#resume%28%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>resume()</h5>
 <p>resume render</p>
-
 <ul>
 <li>void</li>
 </ul>
-
-<h5>
-<a id="user-content-set-frameratefps" class="anchor" href="#set-frameratefps" aria-hidden="true"><span class="octicon octicon-link"></span></a>set framerate(fps)</h5>
-
+<h5><a id="user-content-set-framerate(fps)" class="anchor" href="#set-framerate%28fps%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>set framerate(fps)</h5>
 <p>set fps and dt</p>
-
 <ul>
 <li>void</li>
 </ul>
-
-<h3>
-<a id="user-content-resourcepy" class="anchor" href="#resourcepy" aria-hidden="true"><span class="octicon octicon-link"></span></a>resource.py</h3>
-
+<h3><a id="user-content-resource.py" class="anchor" href="#resource.py" aria-hidden="true"><span class="octicon octicon-link"></span></a>resource.py</h3>
 <p>create resource.json automatically</p>
-
 <p>standard naming rule use file name as texture name</p>
-
 <p>sprite sheet must be named like /^\w*SS.json$/</p>
-
-<h3>
-<a id="user-content-runserverpy" class="anchor" href="#runserverpy" aria-hidden="true"><span class="octicon octicon-link"></span></a>runServer.py</h3>
-
+<h3><a id="user-content-runserver.py" class="anchor" href="#runserver.py" aria-hidden="true"><span class="octicon octicon-link"></span></a>runServer.py</h3>
 <p>a python server</p>
-
-<h3>
-<a id="user-content-simpleserverpy" class="anchor" href="#simpleserverpy" aria-hidden="true"><span class="octicon octicon-link"></span></a>simpleserver.py</h3>
-
+<h3><a id="user-content-simpleserver.py" class="anchor" href="#simpleserver.py" aria-hidden="true"><span class="octicon octicon-link"></span></a>simpleserver.py</h3>
 <p>a python server (base on python 2.7)</p>
-
-<h3>
-<a id="user-content-cgi-binresponsepy" class="anchor" href="#cgi-binresponsepy" aria-hidden="true"><span class="octicon octicon-link"></span></a>cgi-bin/response.py</h3>
-
+<h3><a id="user-content-cgi-bin/response.py" class="anchor" href="#cgi-bin/response.py" aria-hidden="true"><span class="octicon octicon-link"></span></a>cgi-bin/response.py</h3>
 <p>a cgi server</p>
-
-<h3>
-<a id="user-content-egret_loaderjs" class="anchor" href="#egret_loaderjs" aria-hidden="true"><span class="octicon octicon-link"></span></a>egret_loader.js</h3>
-
+<h3><a id="user-content-egret_loader.js" class="anchor" href="#egret_loader.js" aria-hidden="true"><span class="octicon octicon-link"></span></a>egret_loader.js</h3>
 <p>a solution for iphone and android diffrent screen size</p>
-
 <p>android need scale stage to .5 and the tap event stageX and stageY need times 2</p>
-
 <p>use tool.ts setWH and getXY function set stage to .5 and get tap event stageX and Y</p>
-
-<h3>
-<a id="user-content-iso" class="anchor" href="#iso" aria-hidden="true"><span class="octicon octicon-link"></span></a>Iso</h3>
-
+<h3><a id="user-content-iso" class="anchor" href="#iso" aria-hidden="true"><span class="octicon octicon-link"></span></a>Iso</h3>
 <p>egret isometric projection library.</p>
-
 <p>create by may</p>
-
-<p><a href="http://davidkingzyb.github.io/blogmd/8.html">how to use?</a></p>
-</article>
+<p><a href="http://davidkingzyb.github.io/blogmd/8.html">how to use?</a></p></article>
 <article class="markdown-body">
 <!-- 多说评论框 start -->
 	<div id="discusspane"></div>

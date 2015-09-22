@@ -411,6 +411,19 @@ function searchAnchor(key){
 	return -1;
 }
 
+function wrapCode(){
+	var wrap=document.getElementsByTagName('code');
+	for(var i=0;i<wrap.length;i++){
+		if(wrap[i].outerHTML){
+			wrap[i].outerHTML='<pre>'+wrap[i].outerHTML+'</pre>';
+		}else{
+			var tmp = document.createElement('pre');
+    		tmp.appendChild(wrap.cloneNode(true));
+    		wrap.parentNode.replaceChild(tmp, wrap);
+		}
+	}
+}
+
 window.onload=function(){
 	
 	var canvas=document.getElementById("dkzlogo");
@@ -465,4 +478,6 @@ window.onload=function(){
 	var url=window.location.href;
 	var dsstr='<div class="ds-thread" data-thread-key="'+threadkey+'" data-title="'+pathname+'" data-url="'+url+'"></div>';
 	document.getElementById('discusspane').innerHTML=dsstr;
+
+	wrapCode();
 };
