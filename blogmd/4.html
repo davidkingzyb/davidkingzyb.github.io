@@ -4,7 +4,7 @@
 	<title>DKZ's Blog</title>
 	<meta charset="utf-8">
 	<meta name="viewport"
-          content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+          content="width=device-width,initial-scale=0.8, minimum-scale=0.8, maximum-scale=0.8, user-scalable=no"/>
 	<link rel="stylesheet" type="text/css" href="../res/md.css">
 	<link rel="stylesheet" type="text/css" href="../res/style.css">
 	<script type="text/javascript" src="blogImg/blogmd.js"></script>
@@ -23,7 +23,7 @@
 		</a>
 		<div id="bodyPane"><article class="markdown-body"><h1><a id="user-content-egretinit" class="anchor" href="#egretinit" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretInit</h1>
 <p><strong>Build egret project quickly.</strong></p>
-<p>2015/8/4 by DKZ update 2015/9/9</p>
+<p>2015/8/4 by DKZ update 2015/10/14</p>
 <p><a href="https://github.com/davidkingzyb/egretInit">github</a></p>
 <ul>
 <li>
@@ -42,6 +42,9 @@
 <p><strong>Render.ts</strong> Time-based Animation</p>
 </li>
 <li>
+<p><strong>loading.ts</strong> DKZ loading panel </p>
+</li>
+<li>
 <p><strong>resource.py</strong> create resource.json automatically</p>
 </li>
 <li>
@@ -52,9 +55,6 @@
 </li>
 <li>
 <p><strong>cgi-bin/response.py</strong> a cgi server</p>
-</li>
-<li>
-<p><strong>egret_loader.js</strong> a solution for iphone and android diffrent screen size</p>
 </li>
 <li>
 <p><strong>Iso</strong> egret isometric projection library.</p>
@@ -108,13 +108,47 @@
 </li>
 </ul>
 <p><code>debug.showGroupPosition([this.bm,this.mc],this);</code></p>
+<h5><a id="user-content-debuging()" class="anchor" href="#debuging%28%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>debuging()</h5>
+<p>debug game</p>
+<ul>
+<li>void</li>
+</ul>
+<p><code>debug.debuging();</code></p>
 <h5><a id="user-content-pause()-resume()" class="anchor" href="#pause%28%29-resume%28%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>pause() resume()</h5>
 <p>pause game and resume game</p>
 <ul>
 <li>void</li>
 </ul>
-<p><code>debug.pause();
-debug.resume();</code></p>
+<p><code>//console
+ei_pause();
+ei_resume();</code></p>
+<h5><a id="user-content-showdebug()" class="anchor" href="#showdebug%28%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>showDebug()</h5>
+<p>show debug panel</p>
+<p>*void</p>
+<h5><a id="user-content-unittest(func,context,argsarr,funcname)" class="anchor" href="#unittest%28func%2Ccontext%2Cargsarr%2Cfuncname%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>unitTest(func,context,argsarr,funcname)</h5>
+<p>unit test</p>
+<ul>
+<li>
+<p>func:function test function</p>
+</li>
+<li>
+<p>context:any this context</p>
+</li>
+<li>
+<p>argsarr:[] arguments array</p>
+</li>
+<li>
+<p>funcname:string function name</p>
+</li>
+</ul>
+<p>```
+    //define
+    debug.unitTest(this.print,this,['aaa'],'print');</p>
+<pre><code>//console
+print();
+print(['//args']);
+</code></pre>
+<p>```</p>
 <h3><a id="user-content-tool.ts" class="anchor" href="#tool.ts" aria-hidden="true"><span class="octicon octicon-link"></span></a>tool.ts</h3>
 <p>egret tools for Initialize standard egret Object</p>
 <p>please use resourse.py to keep texture name and sourse name correct</p>
@@ -313,6 +347,38 @@ function touchBegin(e){
 </li>
 </ul>
 <p><code>this.system = tool.initParticle('evilParticle', 300,300, .5, .5);</code></p>
+<h5><a id="user-content-initscale9gridbitmap(texture,rsw,rsh,rw,rh,width?,height?,x?,y?,ax?,ay?)" class="anchor" href="#initscale9gridbitmap%28texture%2Crsw%2Crsh%2Crw%2Crh%2Cwidth%3F%2Cheight%3F%2Cx%3F%2Cy%3F%2Cax%3F%2Cay%3F%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>initScale9GridBitmap(texture,Rsw,Rsh,Rw,Rh,width?,height?,x?,y?,ax?,ay?)</h5>
+<p>Initialize a Scale 9 Grid Bitmap object</p>
+<ul>
+<li>
+<p>texture:string </p>
+</li>
+<li>
+<p>Rsw Rsh Rw Rh:number</p>
+</li>
+<li>
+<p>width height x y ax ay:number default=0</p>
+</li>
+<li>
+<p>return:egret.Bitmap</p>
+</li>
+</ul>
+<p>```
+//(x,y)<strong><em>_</em></strong><strong><em>_</em></strong><em>
+// |_Rsw</em>|Rsh<strong><em>_</em>|</strong><em>|
+// |     |        |Rh |height
+// |<strong><em>_</em>|</strong>Rw<strong><em>_|</em></strong>|
+// |<strong><em>_</em>|</strong><strong><em>_</em>_|</strong></em>|
+//        width</p>
+<p>this.s9g=tool.initScale9GridBitmap("scale9grid",50,50,100,100);
+```</p>
+<h5><a id="user-content-initsound(texture)" class="anchor" href="#initsound%28texture%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>initSound(texture)</h5>
+<p>Initialize a sound object</p>
+<ul>
+<li>texture:string</li>
+</ul>
+<p><code>var bgm=tool.initSound('bgm');
+bgm.play(true);</code></p>
 <h5><a id="user-content-addchildren(arr,context)" class="anchor" href="#addchildren%28arr%2Ccontext%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>addChildren(arr,context)</h5>
 <p>add a group to stage</p>
 <ul>
@@ -341,29 +407,6 @@ function touchBegin(e){
 </li>
 </ul>
 <p><code>tool.removeChildren([this.bm,this.mc],this);</code></p>
-<h5><a id="user-content-initscale9gridbitmap(texture,rsw,rsh,rw,rh,width?,height?,x?,y?,ax?,ay?)" class="anchor" href="#initscale9gridbitmap%28texture%2Crsw%2Crsh%2Crw%2Crh%2Cwidth%3F%2Cheight%3F%2Cx%3F%2Cy%3F%2Cax%3F%2Cay%3F%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>initScale9GridBitmap(texture,Rsw,Rsh,Rw,Rh,width?,height?,x?,y?,ax?,ay?)</h5>
-<p>Initialize a Scale 9 Grid Bitmap object</p>
-<ul>
-<li>
-<p>texture:string </p>
-</li>
-<li>
-<p>Rsw Rsh Rw Rh:number</p>
-</li>
-<li>
-<p>width height x y ax ay:number default=0</p>
-</li>
-<li>
-<p>return:egret.Bitmap</p>
-<p>//(x,y)<strong><em>_</em></strong><strong><em>_</em></strong><em>
-// |_Rsw</em>|Rsh<strong><em>_</em>|</strong><em>|
-// |     |        |Rh |height
-// |<strong><em>_</em>|</strong>Rw<strong><em>_|</em></strong>|
-// |<strong><em>_</em>|</strong><strong><em>_</em>_|</strong></em>|
-//        width</p>
-<p>this.s9g=tool.initScale9GridBitmap("scale9grid",50,50,100,100);</p>
-</li>
-</ul>
 <h5><a id="user-content-test2recthit(obj1,obj2)" class="anchor" href="#test2recthit%28obj1%2Cobj2%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>test2RectHit(obj1,obj2)</h5>
 <p>2 displayObject collision detection(anchor must be 0)</p>
 <ul>
@@ -408,23 +451,23 @@ function touchBegin(e){
 </li>
 </ul>
 <p><code>var r=tool.randomInt(10);</code></p>
-<h5><a id="user-content-btnpress(btn,presstexture,texture,endfunc,that,startfunc?)" class="anchor" href="#btnpress%28btn%2Cpresstexture%2Ctexture%2Cendfunc%2Cthat%2Cstartfunc%3F%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>btnPress(btn,presstexture,texture,endfunc,that,startfunc?)</h5>
+<h5><a id="user-content-btnpress(btn,endfunc,that,presstexture?,texture?,startfunc?)" class="anchor" href="#btnpress%28btn%2Cendfunc%2Cthat%2Cpresstexture%3F%2Ctexture%3F%2Cstartfunc%3F%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>btnPress(btn,endfunc,that,presstexture?,texture?,startfunc?)</h5>
 <p>button press effect</p>
 <ul>
 <li>
 <p>btn:egret.DisplayObject the button</p>
 </li>
 <li>
-<p>presstexture:string texture when button press</p>
-</li>
-<li>
-<p>texture:string normal texture</p>
-</li>
-<li>
 <p>endfunc:function touch end function</p>
 </li>
 <li>
 <p>that:egret.DisplayObjectContainer this context</p>
+</li>
+<li>
+<p>presstexture:string texture when button press</p>
+</li>
+<li>
+<p>texture:string normal texture</p>
 </li>
 <li>
 <p>startfunc:function touch start function</p>
@@ -439,6 +482,46 @@ function touchBegin(e){
 <p>*score:number </p>
 <p>*return bestScore:number</p>
 <p><code>var bestScore=tool.setBestScore(this.score);</code></p>
+<h5><a id="user-content-setfullwidthobj(obj,w?,h?)" class="anchor" href="#setfullwidthobj%28obj%2Cw%3F%2Ch%3F%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>setFullWidthObj(obj,w?,h?)</h5>
+<p>set full width obj 's width equel to stage width and scale height</p>
+<ul>
+<li>
+<p>obj:egret.DisplayObject obj</p>
+</li>
+<li>
+<p>w:number texture width</p>
+</li>
+<li>
+<p>h:number texture height</p>
+</li>
+</ul>
+<h5><a id="user-content-setbgwh(bg)" class="anchor" href="#setbgwh%28bg%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>setBgWH(bg)</h5>
+<p>set background image width and height</p>
+<ul>
+<li>bg:egret.DisplayObject background</li>
+</ul>
+<h5><a id="user-content-formatrix(func,that,args:any[]=[],ilength=6,jlength=6)" class="anchor" href="#formatrix%28func%2Cthat%2Cargs%3Aany%5B%5D%3D%5B%5D%2Cilength%3D6%2Cjlength%3D6%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>forMatrix(func,that,args:any[]=[],ilength=6,jlength=6)</h5>
+<p>array matrix function </p>
+<ul>
+<li>
+<p>func:function execute function</p>
+</li>
+<li>
+<p>that:egret.DisplayObjectContainer context</p>
+</li>
+<li>
+<p>args:any[] arguments of func</p>
+</li>
+<li>
+<p>ilength:number line length</p>
+</li>
+<li>
+<p>jlength:number column length</p>
+</li>
+</ul>
+<p><code>tool.forMatrix(function(i,j){
+        this.mapfloorarr[i][j].alpha=.05;
+    },this);</code></p>
 <h3><a id="user-content-component.ts" class="anchor" href="#component.ts" aria-hidden="true"><span class="octicon octicon-link"></span></a>component.ts</h3>
 <p>some useful components like air button</p>
 <h5><a id="user-content-airbtn(text,w?,h?,x?,y?,ax?,ay?,color?,fontsize?,linewidth?,fontfamily?)" class="anchor" href="#airbtn%28text%2Cw%3F%2Ch%3F%2Cx%3F%2Cy%3F%2Cax%3F%2Cay%3F%2Ccolor%3F%2Cfontsize%3F%2Clinewidth%3F%2Cfontfamily%3F%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>airBtn(text,w?,h?,x?,y?,ax?,ay?,color?,fontsize?,linewidth?,fontFamily?)</h5>
@@ -535,30 +618,6 @@ render.resume();</p>
     //enterFrame
 }
 ```</p>
-<p><strong>Animation Observer</strong></p>
-<p><code>render;
-animateArr=[];
-run(){
-    this.render=new Render();
-    this.render.register(this.loop,this);
-    this.render.start();
-}
-loop(){
-    for(var i=0;i&lt;this.animateArr.length;i++){
-        this.animateArr[i].call(this);
-    }
-}
-animateRegister(func){
-    if(this.animateArr.indexOf(func)===-1){
-        this.animateArr.push(func);
-    }
-}
-animateUnregister(func){
-    var index=this.animateArr.indexOf(func);
-    if(index!==-1){
-        this.animateArr.splice(index,1);
-    }
-}</code></p>
 <h5><a id="user-content-fps" class="anchor" href="#fps" aria-hidden="true"><span class="octicon octicon-link"></span></a>FPS</h5>
 <ul>
 <li>:number</li>
@@ -633,6 +692,58 @@ animateUnregister(func){
 <ul>
 <li>void</li>
 </ul>
+<h3><a id="user-content-animation.py" class="anchor" href="#animation.py" aria-hidden="true"><span class="octicon octicon-link"></span></a>animation.py</h3>
+<p>Time-base Animation (add a observer to render)</p>
+<p><code>this.enterframe=new animation(this);
+    this.enterframe.onenterframe(this.animateObj);
+    this.enterframe.start();</code></p>
+<h5><a id="user-content-animationarr" class="anchor" href="#animationarr" aria-hidden="true"><span class="octicon octicon-link"></span></a>animationArr</h5>
+<p>register function array</p>
+<ul>
+<li>:array</li>
+</ul>
+<h5><a id="user-content-loop()" class="anchor" href="#loop%28%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>loop()</h5>
+<p>loop function call by handle</p>
+<ul>
+<li>void</li>
+</ul>
+<h5><a id="user-content-onenterframe(func)" class="anchor" href="#onenterframe%28func%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>onenterframe(func)</h5>
+<p>register function to loop</p>
+<ul>
+<li>void</li>
+</ul>
+<h5><a id="user-content-offenterframe(func)" class="anchor" href="#offenterframe%28func%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>offenterframe(func)</h5>
+<p>unregister function from loop</p>
+<ul>
+<li>void</li>
+</ul>
+<h5><a id="user-content-start()" class="anchor" href="#start%28%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>start()</h5>
+<p>start render</p>
+<ul>
+<li>void</li>
+</ul>
+<h5><a id="user-content-stop()" class="anchor" href="#stop%28%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>stop()</h5>
+<p>stop render</p>
+<ul>
+<li>void</li>
+</ul>
+<h5><a id="user-content-pause()" class="anchor" href="#pause%28%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>pause()</h5>
+<p>pause render</p>
+<ul>
+<li>void</li>
+</ul>
+<h5><a id="user-content-resume()" class="anchor" href="#resume%28%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>resume()</h5>
+<p>resume render</p>
+<ul>
+<li>void</li>
+</ul>
+<h5><a id="user-content-set-framerate(fps)" class="anchor" href="#set-framerate%28fps%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>set framerate(fps)</h5>
+<p>set fps and dt</p>
+<ul>
+<li>void</li>
+</ul>
+<h3><a id="user-content-loading.ts" class="anchor" href="#loading.ts" aria-hidden="true"><span class="octicon octicon-link"></span></a>loading.ts</h3>
+<p>loading panel and new stinger panel</p>
 <h3><a id="user-content-resource.py" class="anchor" href="#resource.py" aria-hidden="true"><span class="octicon octicon-link"></span></a>resource.py</h3>
 <p>create resource.json automatically</p>
 <p>standard naming rule use file name as texture name</p>
@@ -643,10 +754,6 @@ animateUnregister(func){
 <p>a python server (base on python 2.7)</p>
 <h3><a id="user-content-cgi-bin/response.py" class="anchor" href="#cgi-bin/response.py" aria-hidden="true"><span class="octicon octicon-link"></span></a>cgi-bin/response.py</h3>
 <p>a cgi server</p>
-<h3><a id="user-content-egret_loader.js" class="anchor" href="#egret_loader.js" aria-hidden="true"><span class="octicon octicon-link"></span></a>egret_loader.js</h3>
-<p>a solution for iphone and android diffrent screen size</p>
-<p>android need scale stage to .5 and the tap event stageX and stageY need times 2</p>
-<p>use tool.ts setWH and getXY function set stage to .5 and get tap event stageX and Y</p>
 <h3><a id="user-content-iso" class="anchor" href="#iso" aria-hidden="true"><span class="octicon octicon-link"></span></a>Iso</h3>
 <p>egret isometric projection library.</p>
 <p>create by may</p>
