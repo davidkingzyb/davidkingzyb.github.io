@@ -415,6 +415,9 @@ function getBlogJson(){
 
 function responseHandle(resp){
 	var respJson=JSON.parse(resp);
+	respJson.blog.sort(function(a,b){
+		return a.index-b.index;
+	});
 	var innerbodyPane='<div id="bodyTitle"><h1>DKZ&apos;s blog</h1><hr></div>';
 	while(respJson.blog.length!==0){
 		var article=respJson.blog.pop();
