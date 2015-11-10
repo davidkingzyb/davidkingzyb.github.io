@@ -1288,7 +1288,7 @@ var timedata = [{
 	"data": {
 		"title": "canvasTrigger",
 		"info": "canvas工具库",
-		"date": "2015.8-",
+		"date": "2015.8-10",
 		"list": ["https://github.com/davidkingzyb/canvasTrigger", "用于构建canvas图表与组件", "在canvas中定义对象", "向这些对象派发浏览器事件", "实现基于时间的帧动画和缓动动画"]
 	}
 }];
