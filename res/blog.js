@@ -401,7 +401,6 @@ function getBlogJson(){
 			if(!resp){
 				resp=xhr.responseText;
 				searchJson=JSON.parse(resp);
-				
 				responseHandle(resp);
 				
 			}
@@ -413,11 +412,15 @@ function getBlogJson(){
 	xhr.send(null);
 }
 
-function responseHandle(resp){
+function responseHandle(resp,isSearchReq){
 	var respJson=JSON.parse(resp);
 	respJson.blog.sort(function(a,b){
 		return a.index-b.index;
 	});
+	if(!isSearchReq){
+		respJson.blog.shift();
+		respJson.blog.shift();
+	}
 	var innerbodyPane='<div id="bodyTitle"><h1>DKZ&apos;s blog</h1><hr></div>';
 	while(respJson.blog.length!==0){
 		var article=respJson.blog.pop();
@@ -459,10 +462,10 @@ window.onload=function(){
 			}
 		}
 		if(req.blog.length===0){
-			req.blog.push(searchJson.blog[1]);
+			req.blog.push(searchJson.blog[0]);
 		}
 		var reqStr=JSON.stringify(req);
-		responseHandle(reqStr);
+		responseHandle(reqStr,true);
 	};
 
 	var footer=document.getElementById('footer');
