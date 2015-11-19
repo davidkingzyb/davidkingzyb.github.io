@@ -1272,7 +1272,7 @@ var timedata = [{
 	"data": {
 		"title": "meiriq Game",
 		"info": "每日Q游戏 前端开发工程师",
-		"date": "2015.4-",
+		"date": "2015.4-12",
 		"list": ["http://davidkingzyb.github.io/blogmd/10.html","使用egret引擎开发HTML5小游戏", "艾斯特的记忆 魔法师学徒 找出卧底", "双色消除物语 等多款游戏主程"]
 	}
 }, {
