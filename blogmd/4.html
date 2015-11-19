@@ -23,34 +23,23 @@
 		</a>
 		<div id="bodyPane"><article class="markdown-body"><h1><a id="user-content-egretinit" class="anchor" href="#egretinit" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretInit</h1>
 <p><strong>Build egret project quickly.</strong></p>
-<p>2015/8/4 by DKZ update 2015/11/10</p>
+<p>2015/8/4 by DKZ update 2015/11/11</p>
 <p><a href="https://github.com/davidkingzyb/egretInit">github</a></p>
-<h2><a id="user-content-demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h2>
-<ul>
-<li><a href="http://gameslibrary.meiriq.com/home/g/600">solardefence</a></li>
-<li><a href="http://gameslibrary.meiriq.com/home/g/604">findspy</a></li>
-<li><a href="http://gameslibrary.meiriq.com/home/g/621">doublecolor</a></li>
-<li><a href="http://gameslibrary.meiriq.com/home/g/626">strata</a></li>
-<li><a href="http://gameslibrary.meiriq.com/home/g/644">cubejump</a></li>
-<li><a href="http://gameslibrary.meiriq.com/home/g/655">qiuqiu</a></li>
-<li><a href="http://gameslibrary.meiriq.com/home/g/658">fallingshit</a></li>
-<li><a href="http://gameslibrary.meiriq.com/home/g/664">hotteacher</a></li>
-<li><a href="http://gameslibrary.meiriq.com/home/g/665">moonfish</a></li>
-<li><a href="http://gameslibrary.meiriq.com/home/g/669">aution</a></li>
-<li><a href="http://gameslibrary.meiriq.com/home/g/672">floor</a></li>
-<li><a href="http://gameslibrary.meiriq.com/home/g/676">ET</a></li>
-</ul>
-<p>ios</p>
-<ul>
-<li><a href="https://www.appannie.com/apps/ios/app/alex-memory/">esther</a></li>
-<li><a href="https://www.appannie.com/apps/ios/app/ma-la-jiao-shi">hotteacher</a></li>
-<li><a href="https://www.appannie.com/apps/ios/app/qi-huan-pai-mai-xing">aution</a></li>
-</ul>
+<p><a href="https://davidkingzyb.github.io/egretInit">demo</a></p>
 <h2><a id="user-content-list" class="anchor" href="#list" aria-hidden="true"><span class="octicon octicon-link"></span></a>List</h2>
 <ul>
 <li>
-<p><strong>egretInit</strong> An example of egret project base on egret</p>
+<p><strong>demo</strong> An egret demo game build by egretInit </p>
 </li>
+<li>
+<p><strong>egretInit</strong> An example of egret project base on egret 2.0</p>
+</li>
+<li>
+<p><strong>Iso</strong> egret isometric projection library.</p>
+</li>
+</ul>
+<hr />
+<ul>
 <li>
 <p><strong>debug.ts</strong> debug egret project</p>
 </li>
@@ -71,18 +60,6 @@
 </li>
 <li>
 <p><strong>update.py</strong> update egretInit automatically</p>
-</li>
-<li>
-<p><strong>runServer.py</strong> a python server</p>
-</li>
-<li>
-<p><strong>simpleserver.py</strong> a python server</p>
-</li>
-<li>
-<p><strong>cgi-bin/response.py</strong> a cgi server</p>
-</li>
-<li>
-<p><strong>Iso</strong> egret isometric projection library.</p>
 </li>
 </ul>
 <h2><a id="user-content-egretinit" class="anchor" href="#egretinit" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretInit</h2>
@@ -141,14 +118,6 @@
 <p><code>debug.debuging();</code></p>
 <h5><a id="user-content-pause()-resume()" class="anchor" href="#pause%28%29-resume%28%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>pause() resume()</h5>
 <p>pause game and resume game</p>
-<ul>
-<li>void</li>
-</ul>
-<p><code>//console
-ei_pause();
-ei_resume();</code></p>
-<h5><a id="user-content-showdebug()" class="anchor" href="#showdebug%28%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>showDebug()</h5>
-<p>show debug panel</p>
 <ul>
 <li>void</li>
 </ul>
@@ -692,6 +661,23 @@ this.addChild(this.airbtn.btn);</code></p>
 function stop(){
     this.render.stop();
 }</code></p>
+<h5><a id="user-content-initscorepane(score,context,callback)" class="anchor" href="#initscorepane%28score%2Ccontext%2Ccallback%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>initScorePane(score,context,callback)</h5>
+<p>Score Pane</p>
+<ul>
+<li>
+<p>score:int game score</p>
+</li>
+<li>
+<p>context:obj this object</p>
+</li>
+<li>
+<p>callback:function retry button callback function</p>
+</li>
+<li>
+<p>void</p>
+</li>
+</ul>
+<p><code>component.initScorePane(e.data,this,this.home);</code></p>
 <h3><a id="user-content-animation.ts" class="anchor" href="#animation.ts" aria-hidden="true"><span class="octicon octicon-link"></span></a>animation.ts</h3>
 <p>Time-base Animation </p>
 <p>solve fps drop problems when using Frame-based Animation</p>
@@ -724,38 +710,10 @@ function stop(){
 <li>:egret.DisplayObjectContainer</li>
 </ul>
 <p>context this</p>
-<h5><a id="user-content-register(callback,-context)" class="anchor" href="#register%28callback%2C-context%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>register(callback, context)</h5>
-<p>register render</p>
-<ul>
-<li>
-<p>callback:function</p>
-</li>
-<li>
-<p>context:egret.DisplayObjectContainer</p>
-</li>
-<li>
-<p>void</p>
-</li>
-</ul>
-<h5><a id="user-content-unregister()" class="anchor" href="#unregister%28%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>unregister()</h5>
-<p>unregister render</p>
-<ul>
-<li>void</li>
-</ul>
-<h5><a id="user-content-handle(d)" class="anchor" href="#handle%28d%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>handle(d)</h5>
-<p>notify call loop function</p>
-<ul>
-<li>d:number real interval time</li>
-</ul>
 <h5><a id="user-content-animationarr" class="anchor" href="#animationarr" aria-hidden="true"><span class="octicon octicon-link"></span></a>animationArr</h5>
 <p>register function array</p>
 <ul>
 <li>:array</li>
-</ul>
-<h5><a id="user-content-loop()" class="anchor" href="#loop%28%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>loop()</h5>
-<p>loop function call by handle</p>
-<ul>
-<li>void</li>
 </ul>
 <h5><a id="user-content-onenterframe(func)" class="anchor" href="#onenterframe%28func%29" aria-hidden="true"><span class="octicon octicon-link"></span></a>onenterframe(func)</h5>
 <p>register function to loop</p>
@@ -821,12 +779,12 @@ var interval=animation.tween('v',this.v,100,1000,this);</code></p>
 <p>sprite sheet must be named like /^\w*SS.json$/</p>
 <h3><a id="user-content-update.py" class="anchor" href="#update.py" aria-hidden="true"><span class="octicon octicon-link"></span></a>update.py</h3>
 <p>update egretInit automatically</p>
-<h3><a id="user-content-runserver.py" class="anchor" href="#runserver.py" aria-hidden="true"><span class="octicon octicon-link"></span></a>runServer.py</h3>
-<p>a python server</p>
-<h3><a id="user-content-simpleserver.py" class="anchor" href="#simpleserver.py" aria-hidden="true"><span class="octicon octicon-link"></span></a>simpleserver.py</h3>
-<p>a python server (base on python 2.7)</p>
-<h3><a id="user-content-cgi-bin/response.py" class="anchor" href="#cgi-bin/response.py" aria-hidden="true"><span class="octicon octicon-link"></span></a>cgi-bin/response.py</h3>
-<p>a cgi server</p>
+<p>```</p>
+<blockquote>
+<p>cd your_egret_src_path
+python update.py
+```</p>
+</blockquote>
 <h3><a id="user-content-iso" class="anchor" href="#iso" aria-hidden="true"><span class="octicon octicon-link"></span></a>Iso</h3>
 <p>egret isometric projection library.</p>
 <p>create by may</p>
