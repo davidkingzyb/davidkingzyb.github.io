@@ -1249,7 +1249,7 @@ var timedata = [{
 		"title": "油画家曾新",
 		"info": "父亲的油画展示页面",
 		"date": "2014.7-2014.8",
-		"list": ["http://zengxin.sinaapp.com", "给爸爸做的一个小站 展示爸爸的作品", "个性化定制可复用的UI组件", "django jquery svg sae"]
+		"list": ["http://zengxin.sinaapp.com", "给爸爸做的首页 展示爸爸的作品", "个性化定制可复用的UI组件", "django jquery svg sae"]
 	}
 }, {
 	"id": "CUBEx3",
@@ -1257,7 +1257,7 @@ var timedata = [{
 		"title": "CUBEx3",
 		"info": "独立游戏",
 		"date": "2014.11-",
-		"list": ["http://cubex3.sinaapp.com", "独立完成游戏的构思 角色设计", "功能设计 交互设计 UI及美工制作", "前端及后台的代码实现", "python django MySQL jquery CSS-transform"]
+		"list": ["http://cubex3.sinaapp.com", "独立完成游戏的构思 角色设计", "功能设计 交互设计 UI及美工制作", "前端及后台的代码实现","2015白鹭杯HTML5游戏开发者大赛最佳创意奖提名和最具潜力奖", "python django MySQL jquery CSS-transform"]
 	}
 }, {
 	"id": "Paypal_20payment",
@@ -1280,8 +1280,8 @@ var timedata = [{
 	"data": {
 		"title": "egretInit",
 		"info": "快速构建egret项目",
-		"date": "2015.6-",
-		"list": ["https://github.com/davidkingzyb/egretInit", "封装常用的egret方法与类", "优化工作流 快速定义资源", "提供屏幕适配解决方案", "优化egret帧动画", "debug工具 实现可视化编辑"]
+		"date": "2015.6-11",
+		"list": ["https://github.com/davidkingzyb/egretInit", "封装常用的egret方法与类", "优化工作流 快速定义资源", "基于时间使用observe模式的帧动画管理类","常用的可复用组件", "debug工具 实现可视化编辑"]
 	}
 }, {
 	"id": "canvasTrigger",
