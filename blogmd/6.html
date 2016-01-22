@@ -39,17 +39,16 @@
 <p>canvasTigger是一个用于在canvas标签内部定义对象并将浏览器的事件分发给这些对象的工具。</p>
 <p>基于observe模式设计。轻量级核心代码仅150行。具有良好扩展性，可自己定义形状、线段、图片等对象。包含简单的基于时间的帧动画和可视化编辑方法。</p>
 <h5><a id="user-content-quick-example" class="anchor" href="#quick-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>quick example</h5>
-<p>```
-    var ctcanvas=new ctCanvas('canvas');
-    ctcanvas.addTrigger('click');</p>
-<pre><code>var a=new ctFillRect(100,100,200,200,'#f00');
+<pre><code>var ctcanvas=new ctCanvas('canvas');
+ctcanvas.addTrigger('click');
+
+var a=new ctFillRect(100,100,200,200,'#f00');
 ctcanvas.addObj(a);
 
 a.on('click',function(){
     console.log('a click');
 });
 </code></pre>
-<p>```</p>
 <h5><a id="user-content-ctcanvas" class="anchor" href="#ctcanvas" aria-hidden="true"><span class="octicon octicon-link"></span></a>ctCanvas</h5>
 <p>canvas对象并包含注册在它上的ctObj对象。并包含注册、解绑、通知、重绘、添加删除初始化ctObj对象方法等。</p>
 <h5><a id="user-content-ctobj" class="anchor" href="#ctobj" aria-hidden="true"><span class="octicon octicon-link"></span></a>ctObj</h5>
@@ -57,18 +56,19 @@ a.on('click',function(){
 <h4><a id="user-content-animationsctrl" class="anchor" href="#animationsctrl" aria-hidden="true"><span class="octicon octicon-link"></span></a>animationsCtrl</h4>
 <p>animationsCtrl是一个基于时间的帧动画控制器。用于控制多个显示对象参与的复杂的动画。采用基于时间的帧动画，可有效解决复杂动画导致的浏览器fps下降造成的游戏卡顿问题。</p>
 <h5><a id="user-content-quick-example" class="anchor" href="#quick-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>quick example</h5>
-<p><code>aC_startMainLoop();
-    var i=0;
-    var anmt=new animationCtrl();
-    anmt.start();
-    anmt.on(function(){
-        i++;
-        console.log(i);
-        if(i&gt;2000){
-            anmt.stop();
-            aC_stopMainLoop();
-        }
-    },this);</code></p>
+<pre><code>aC_startMainLoop();
+var i=0;
+var anmt=new animationCtrl();
+anmt.start();
+anmt.on(function(){
+    i++;
+    console.log(i);
+    if(i&gt;2000){
+        anmt.stop();
+        aC_stopMainLoop();
+    }
+},this);
+</code></pre>
 <h5><a id="user-content-animationctrl" class="anchor" href="#animationctrl" aria-hidden="true"><span class="octicon octicon-link"></span></a>animationCtrl</h5>
 <p>控制器类，基于observe模式设计。包含注册解除启动结束暂停继续等方法。</p></article>
 <article class="markdown-body">
