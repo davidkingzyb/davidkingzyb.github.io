@@ -4,7 +4,6 @@
 import os
 import json
 import markdown
-from html.parser import HTMLParser
 import re
 import urllib
 
