@@ -84,23 +84,19 @@ window.onload=function(){
 	};
 
 	var footer=document.getElementById('footer');
-	function showFooter(h){
-		footer.style.height=h;
-	}
-	function hideFooter(h){
-		footer.style.height=h;
-	}
 	if(window.innerWidth>=750){
 		footer.onmouseover=function(){
-			showFooter('100px');
+			footer.style.height='100px';
 		};
 		footer.onmouseout=function(){
-			hideFooter('20px');
+			if(document.body.clientHeight-document.body.scrollTop-window.innerHeight>40){
+				footer.style.height='20px';
+			}
 		};
 	}
 
 	window.onscroll=function(){
-		if(document.body.clientHeight-document.body.scrollTop-window.innerHeight<20){
+		if(document.body.clientHeight-document.body.scrollTop-window.innerHeight<40){
 			if(window.innerWidth>=750){
 				footer.style.height='100px';
 			}
