@@ -842,7 +842,7 @@ var timedata = [{
 		"title": "对白",
 		"info": "台词查询网站",
 		"date": "2012.6-2014.2",
-		"list": ["http://dialogue.sinaapp.com", "台词分享查询网站 使用爬虫收集字幕文件并解析添加到数据库", "python django mysql sae sqlite"]
+		"list": ["http://dialogue.sinaapp.com", "台词分享查询网站 使用爬虫收集字幕文件并解析添加到数据库","2016/1增加微信接口可在公众号 造物 中使用", "python django flask mysql sae sqlite"]
 	}
 }, {
 	"id": "DKZ_20HOME",
