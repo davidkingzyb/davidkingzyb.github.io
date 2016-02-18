@@ -268,15 +268,17 @@ function showSkillTree() {
 	var nodeegret = new skillNode('egret', '#f0db4f', 580, 215, 1);
 	var nodejQuery = new skillNode('jQuery', '#f0db4f', 477, 331, 1);
 	var nodeLESS = new skillNode('LESS', '#ffb415', 360, 468, 1);
-	var nodedjango = new skillNode('django', '#574498', 91, 450, 1);
-	var nodeservlet = new skillNode('Servlet', '#574498', 39, 270, 1);
+	var nodedjango = new skillNode('django', '#574498', 154, 480, 1);
+	//var nodeservlet = new skillNode('Servlet', '#574498', 39, 270, 1);
+	var nodeflask=new skillNode('flask','#574498',58,380,1);
 	var nodeMySQL = new skillNode('MySQL', '#2e2a69', 96, 74, 1);
-	var groupnode2 = [nodeThreejs, nodetypescript, nodeegret, nodejQuery, nodeLESS, nodedjango, nodeservlet, nodeMySQL];
+	var groupnode2 = [nodeThreejs, nodetypescript, nodeegret, nodejQuery, nodeLESS, nodedjango,nodeflask, nodeMySQL];
 	var groupline2 = [];
 
 	lineNode2(nodeMySQL, nodeSQL.x + 30, nodeSQL.y + 30);
-	lineNode2(nodeservlet, nodeJava.x + 30, nodeJava.y + 30);
+	//lineNode2(nodeservlet, nodeJava.x + 30, nodeJava.y + 30);
 	lineNode2(nodedjango, nodepython.x + 30, nodepython.y + 30);
+	lineNode2(nodeflask, nodepython.x + 30, nodepython.y + 30);
 	lineNode2(nodeLESS, nodeCSS.x + 30, nodeCSS.y + 30);
 	lineNode2(nodetypescript, nodeJS.x + 30, nodeJS.y + 30);
 	lineNode2(nodeegret, nodetypescript.x + 30, nodetypescript.y + 30);
@@ -565,17 +567,19 @@ function skillTreeBoom(ctcanvas, skillhead) {
 		var nodeegret = new skillNode('egret', '#f0db4f', 580, 215, 0.01);
 		var nodejQuery = new skillNode('jQuery', '#f0db4f', 477, 331, 0.01);
 		var nodeLESS = new skillNode('LESS', '#ffb415', 360, 468, 0.01);
-		var nodedjango = new skillNode('django', '#574498', 91, 450, 0.01);
-		var nodeservlet = new skillNode('Servlet', '#574498', 39, 270, 0.01);
+		var nodedjango = new skillNode('django', '#574498', 154, 480, 0.01);
+		//var nodeservlet = new skillNode('Servlet', '#574498', 39, 270, 0.01);
+		var nodeflask=new skillNode('flask','#574498',58,380,0.01);
 		var nodeMySQL = new skillNode('MySQL', '#2e2a69', 96, 74, 0.01);
-		var groupnode2 = [nodeThreejs, nodetypescript, nodeegret, nodejQuery, nodeLESS, nodedjango, nodeservlet, nodeMySQL];
+		var groupnode2 = [nodeThreejs, nodetypescript, nodeegret, nodejQuery, nodeLESS, nodedjango,nodeflask, nodeMySQL];
 		var groupline2 = [];
 
 		function boom2() {
 
 			lineNode2(nodeMySQL, nodeSQL.x + 30, nodeSQL.y + 30);
-			lineNode2(nodeservlet, nodeJava.x + 30, nodeJava.y + 30);
+			//lineNode2(nodeservlet, nodeJava.x + 30, nodeJava.y + 30);
 			lineNode2(nodedjango, nodepython.x + 30, nodepython.y + 30);
+			lineNode2(nodeflask, nodepython.x + 30, nodepython.y + 30);
 			lineNode2(nodeLESS, nodeCSS.x + 30, nodeCSS.y + 30);
 			lineNode2(nodetypescript, nodeJS.x + 30, nodeJS.y + 30);
 			lineNode2(nodeegret, nodetypescript.x + 30, nodetypescript.y + 30);
@@ -588,8 +592,9 @@ function skillTreeBoom(ctcanvas, skillhead) {
 			ctcanvas.addObjs(groupnode2);
 
 			boomNode(nodeMySQL, nodeSQL.x, nodeSQL.y);
-			boomNode(nodeservlet, nodeJava.x, nodeJava.y);
+			//boomNode(nodeservlet, nodeJava.x, nodeJava.y);
 			boomNode(nodedjango, nodepython.x, nodepython.y);
+			boomNode(nodeflask, nodepython.x, nodepython.y);
 			boomNode(nodeLESS, nodeCSS.x, nodeCSS.y);
 			boomNode(nodeThreejs, nodeJS.x, nodeJS.y);
 			boomNode(nodetypescript, nodeJS.x, nodeJS.y);
