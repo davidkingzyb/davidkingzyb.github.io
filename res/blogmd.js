@@ -57,7 +57,12 @@ window.onload=function(){
 	searchbtn.onclick=function(){
 		var key=encodeURI(prompt('Search:')).toLowerCase();
 		var index=searchAnchor(key);
-		window.scrollTo(0,document.getElementsByClassName('anchor')[index].getBoundingClientRect().top+document.body.scrollTop);
+		if(index>=0){
+			window.scrollTo(0,document.getElementsByClassName('anchor')[index].getBoundingClientRect().top+document.body.scrollTop);
+		}else{
+			alert('cant find your key word.');
+		}
+		
 	};
 
 	var footer=document.getElementById('footer');
@@ -84,11 +89,12 @@ window.onload=function(){
 		}
 	};
 
-	var pathname=window.location.pathname.substring(1);
-	var threadkey=pathname.split('.')[0];
-	var url=window.location.href;
-	var dsstr='<div class="ds-thread" data-thread-key="'+threadkey+'" data-title="'+pathname+'" data-url="'+url+'"></div>';
-	document.getElementById('discusspane').innerHTML=dsstr;
+	// //duoshuo
+	// var pathname=window.location.pathname.substring(1);
+	// var threadkey=pathname.split('.')[0];
+	// var url=window.location.href;
+	// var dsstr='<div class="ds-thread" data-thread-key="'+threadkey+'" data-title="'+pathname+'" data-url="'+url+'"></div>';
+	// document.getElementById('discusspane').innerHTML=dsstr;
 
 	wrapCode();
 };

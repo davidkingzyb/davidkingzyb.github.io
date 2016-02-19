@@ -12,7 +12,7 @@ var searchJson;
 function getBlogJson(){
 	var xhr=new XMLHttpRequest();
 	xhr.onreadystatechange=function(){
-		if((xhr.status>=200&&xhr.status<300)||xhr.status==304){
+		if(xhr.readyState==4){
 			if(!resp){
 				resp=xhr.responseText;
 				searchJson=JSON.parse(resp);

@@ -1,6 +1,6 @@
 ```
-<artice class="markdown-body">
-<!-- 多说评论框 start -->
+	<artice class="markdown-body">
+	<!-- 多说评论框 start -->
 	<div id="discusspane"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
@@ -18,4 +18,4 @@
 																<!-- 多说公共JS代码 end -->
 
 																</article>
-																```
+```
