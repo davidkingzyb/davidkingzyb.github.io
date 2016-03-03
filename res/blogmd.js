@@ -39,8 +39,9 @@ function wrapCode(){
 	}
 }
 
-window.onload=function(){
-	
+//dkzlogo
+
+(function(){
 	var canvas=document.getElementById("dkzlogo");
 	var context=canvas.getContext('2d');
 	var DKZlogo=new DKZLogoClass(context,15);
@@ -49,6 +50,9 @@ window.onload=function(){
 	canvas.onclick=function(){
 		DKZlogo.fillrandomDKZ();
 	};
+})();
+
+window.onload=function(){
 
 	getSearchArr();
 
