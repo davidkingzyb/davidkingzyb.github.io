@@ -34,6 +34,9 @@ body{
 	#nav4{
 		border-radius: 15px;
 	}
+	#navio{
+		border-radius:15px;
+	}
 	/*pc timeline*/
 	#timeline{
 		position:absolute;
@@ -73,6 +76,9 @@ body{
 		float: left;
 	}
 	#nav4{
+		border-radius: 25px;
+	}
+	#navio{
 		border-radius: 25px;
 	}
 	/*mobile timeline*/

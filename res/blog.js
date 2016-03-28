@@ -48,6 +48,7 @@ function responseHandle(resp,isSearchReq){
 		}
 		innerbodyPane=innerbodyPane+'</article></a>';
 	}
+	innerbodyPane=innerbodyPane+'<div class="markdown-body" id="discusspane"><a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/1" class="discussbtn">Discuss</a><a href="blogmd/1.html" class="discussbtn">Contact</a><div id="copyright">&copy;2015-2016 by DKZ</div></div>';
 	document.getElementById('bodyPane').innerHTML=innerbodyPane;
 }
 
