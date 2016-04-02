@@ -10,5 +10,5 @@
 ####################################
 #  2016/03/11 by DKZ https://davidkingzyb.github.io
 
-issuearr=['1','1','2','3','4','5','6','7','8','9','10','11','12','13','14']
+issuearr=['1','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15']
 issueurl='https://github.com/davidkingzyb/davidkingzyb.github.io/issues/'
