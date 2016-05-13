@@ -21,11 +21,11 @@
 			<script type="text/javascript" src="../res/blogmd.js"></script>
 		</div>
 		</a>
-		<div id="bodyPane"><article class="markdown-body"><h1><a id="user-content-canvastrigger" class="anchor" href="#canvastrigger" aria-hidden="true"><span class="octicon octicon-link"></span></a>canvasTrigger</h1>
+		<div id="bodyPane"><article class="markdown-body"><h1><a id="user-content-canvastrigger" class="anchor" name="canvastrigger" aria-hidden="true"><span class="octicon octicon-link"></span></a>canvasTrigger</h1>
 <p><strong>define objects in canvas and dispatch canvas event to those objects.</strong></p>
 <p>2015/8/3 by DKZ update 2016/1/22</p>
 <p><a href="https://github.com/davidkingzyb/canvasTrigger">github</a></p>
-<h3><a id="user-content-list" class="anchor" href="#list" aria-hidden="true"><span class="octicon octicon-link"></span></a>List</h3>
+<h3><a id="user-content-list" class="anchor" name="list" aria-hidden="true"><span class="octicon octicon-link"></span></a>List</h3>
 <ul>
 <li>
 <p><strong>canvasTrigger</strong> define objects in canvas and dispatch canvas event to those objects.</p>
@@ -34,11 +34,11 @@
 <p><strong>animationsCtrl</strong> nimation controler to control frame animation</p>
 </li>
 </ul>
-<h3><a id="user-content-guide" class="anchor" href="#guide" aria-hidden="true"><span class="octicon octicon-link"></span></a>Guide</h3>
-<h4><a id="user-content-canvastrigger" class="anchor" href="#canvastrigger" aria-hidden="true"><span class="octicon octicon-link"></span></a>canvasTrigger</h4>
+<h3><a id="user-content-guide" class="anchor" name="guide" aria-hidden="true"><span class="octicon octicon-link"></span></a>Guide</h3>
+<h4><a id="user-content-canvastrigger" class="anchor" name="canvastrigger" aria-hidden="true"><span class="octicon octicon-link"></span></a>canvasTrigger</h4>
 <p>canvasTigger是一个用于在canvas标签内部定义对象并将浏览器的事件分发给这些对象的工具。</p>
 <p>基于observe模式设计。轻量级核心代码仅150行。具有良好扩展性，可自己定义形状、线段、图片等对象。包含简单的基于时间的帧动画和可视化编辑方法。</p>
-<h5><a id="user-content-quick-example" class="anchor" href="#quick-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>quick example</h5>
+<h5><a id="user-content-quick-example" class="anchor" name="quick-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>quick example</h5>
 <pre><code>var ctcanvas=new ctCanvas('canvas');
 ctcanvas.addTrigger('click');
 
@@ -49,13 +49,13 @@ a.on('click',function(){
     console.log('a click');
 });
 </code></pre>
-<h5><a id="user-content-ctcanvas" class="anchor" href="#ctcanvas" aria-hidden="true"><span class="octicon octicon-link"></span></a>ctCanvas</h5>
+<h5><a id="user-content-ctcanvas" class="anchor" name="ctcanvas" aria-hidden="true"><span class="octicon octicon-link"></span></a>ctCanvas</h5>
 <p>canvas对象并包含注册在它上的ctObj对象。并包含注册、解绑、通知、重绘、添加删除初始化ctObj对象方法等。</p>
-<h5><a id="user-content-ctobj" class="anchor" href="#ctobj" aria-hidden="true"><span class="octicon octicon-link"></span></a>ctObj</h5>
+<h5><a id="user-content-ctobj" class="anchor" name="ctobj" aria-hidden="true"><span class="octicon octicon-link"></span></a>ctObj</h5>
 <p>canvas上的显示对象父类，所有的显示对象都要继承它。包含基本的坐标、长宽属性，绘制和动画方法。可向其注册事件。</p>
-<h4><a id="user-content-animationsctrl" class="anchor" href="#animationsctrl" aria-hidden="true"><span class="octicon octicon-link"></span></a>animationsCtrl</h4>
+<h4><a id="user-content-animationsctrl" class="anchor" name="animationsctrl" aria-hidden="true"><span class="octicon octicon-link"></span></a>animationsCtrl</h4>
 <p>animationsCtrl是一个基于时间的帧动画控制器。用于控制多个显示对象参与的复杂的动画。采用基于时间的帧动画，可有效解决复杂动画导致的浏览器fps下降造成的游戏卡顿问题。</p>
-<h5><a id="user-content-quick-example" class="anchor" href="#quick-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>quick example</h5>
+<h5><a id="user-content-quick-example" class="anchor" name="quick-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>quick example</h5>
 <pre><code>aC_startMainLoop();
 var i=0;
 var anmt=new animationCtrl();
@@ -69,7 +69,7 @@ anmt.on(function(){
     }
 },this);
 </code></pre>
-<h5><a id="user-content-animationctrl" class="anchor" href="#animationctrl" aria-hidden="true"><span class="octicon octicon-link"></span></a>animationCtrl</h5>
+<h5><a id="user-content-animationctrl" class="anchor" name="animationctrl" aria-hidden="true"><span class="octicon octicon-link"></span></a>animationCtrl</h5>
 <p>控制器类，基于observe模式设计。包含注册解除启动结束暂停继续等方法。</p></article><div class="markdown-body" id="discusspane">
 	<div></div>
 	<a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/6" class="discussbtn">Discuss</a>

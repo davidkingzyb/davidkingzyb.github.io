@@ -51,7 +51,7 @@ def addGithubAnchor(htmlstr):
         pattern=x[0]
         data=x[1]
         idstr=' id="user-content-'+data.replace(' ','-').lower()+'"'
-        hrefstr=' href="#'+urllib.parse.quote(data.replace(' ','-').lower())+'"'
+        hrefstr=' name="'+urllib.parse.quote(data.replace(' ','-').lower())+'"'
         astr=pattern[:4]+'<a'+idstr+' class="anchor"'+hrefstr+' aria-hidden="true"><span class="octicon octicon-link"></span></a>'+data+pattern[-5:]
         html=html.replace(pattern,astr)
 

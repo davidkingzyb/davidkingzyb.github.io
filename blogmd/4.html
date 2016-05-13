@@ -21,12 +21,12 @@
 			<script type="text/javascript" src="../res/blogmd.js"></script>
 		</div>
 		</a>
-		<div id="bodyPane"><article class="markdown-body"><h1><a id="user-content-egretinit" class="anchor" href="#egretinit" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretInit</h1>
+		<div id="bodyPane"><article class="markdown-body"><h1><a id="user-content-egretinit" class="anchor" name="egretinit" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretInit</h1>
 <p><strong>Build egret project quickly.</strong></p>
 <p>2015/8/4 by DKZ update 2016/1/22</p>
 <p><a href="https://github.com/davidkingzyb/egretInit">github</a></p>
 <p><a href="https://davidkingzyb.github.io/egretInit">demo</a></p>
-<h2><a id="user-content-list" class="anchor" href="#list" aria-hidden="true"><span class="octicon octicon-link"></span></a>List</h2>
+<h2><a id="user-content-list" class="anchor" name="list" aria-hidden="true"><span class="octicon octicon-link"></span></a>List</h2>
 <ul>
 <li>
 <p><strong>demo</strong> An egret demo game build by egretInit </p>
@@ -62,40 +62,40 @@
 <p><strong>update.py</strong> update egretInit automatically</p>
 </li>
 </ul>
-<h2><a id="user-content-guide" class="anchor" href="#guide" aria-hidden="true"><span class="octicon octicon-link"></span></a>Guide</h2>
+<h2><a id="user-content-guide" class="anchor" name="guide" aria-hidden="true"><span class="octicon octicon-link"></span></a>Guide</h2>
 <p>egretInit是一个egret工具库，用于快速构建egret项目。其中包含一些在使用egret引擎制作游戏时常用的方法和工具，也有一部分我自己的可重用的组件，供大家参考使用。</p>
-<h3><a id="user-content-tool.ts" class="anchor" href="#tool.ts" aria-hidden="true"><span class="octicon octicon-link"></span></a>tool.ts</h3>
+<h3><a id="user-content-tool.ts" class="anchor" name="tool.ts" aria-hidden="true"><span class="octicon octicon-link"></span></a>tool.ts</h3>
 <p>tool.ts封装了一些高级方法，包含egret显示对象的初始化方法，常用的游戏碰撞检测，与后台的ajax通讯，屏幕适配，数据保存等方法。</p>
 <p>对象初始化方法将egret显示对象的常用属性封装在一个init方法内，减少代码量。在egret2.5+版本egret取消了anchorX／anchorY属性，使用这些方法可以继续在新建对象时使用anchor属性。并且配合resource.py使用可以不再定义texture名称，直接使用素材的文件名作为texture名。</p>
 <p>碰撞检测包涵两显示对象的矩形碰撞检测和两点间距离检测。</p>
 <p>将egret内置的与后台通讯的方法封装成类似jQuery ajax的方法，方便使用。</p>
 <p>更多内容请参考<a href="https://github.com/davidkingzyb/egretInit">github</a>上API文档。</p>
-<h5><a id="user-content-注：" class="anchor" href="#%E6%B3%A8%EF%BC%9A" aria-hidden="true"><span class="octicon octicon-link"></span></a>注：</h5>
+<h5><a id="user-content-注：" class="anchor" name="%E6%B3%A8%EF%BC%9A" aria-hidden="true"><span class="octicon octicon-link"></span></a>注：</h5>
 <ul>
 <li>要使用resource.py生成的resource.json定义素材</li>
 <li>stinger中对loading.ts有依赖，可在setWH方法中注释掉或在stinger中修改使用自己的制作人页面</li>
 </ul>
-<h3><a id="user-content-debug.ts" class="anchor" href="#debug.ts" aria-hidden="true"><span class="octicon octicon-link"></span></a>debug.ts</h3>
+<h3><a id="user-content-debug.ts" class="anchor" name="debug.ts" aria-hidden="true"><span class="octicon octicon-link"></span></a>debug.ts</h3>
 <p>debug.ts是用于调试游戏方便游戏制作的工具库。包含可视化编辑游戏的方法和单元测试方法。</p>
 <p>可视化编辑可用于显示egret显示对象在屏幕上坐标和范围，并将此对象设置为可移动的。方便在制作游戏时确定显示对象的位置。</p>
 <p>单元测试可在游戏中使用测试某个方法，或在游戏中设置作弊模式。</p>
-<h3><a id="user-content-animation.ts" class="anchor" href="#animation.ts" aria-hidden="true"><span class="octicon octicon-link"></span></a>animation.ts</h3>
+<h3><a id="user-content-animation.ts" class="anchor" name="animation.ts" aria-hidden="true"><span class="octicon octicon-link"></span></a>animation.ts</h3>
 <p>animation.ts是一个基于时间的帧动画控制器，用于控制多个显示对象参与的复杂的动画和执行碰撞检测。</p>
 <p>基于observe模式设计。并采用基于时间的帧动画，可有效解决复杂动画导致的浏览器fps下降造成的游戏卡顿问题。</p>
-<h3><a id="user-content-component.ts" class="anchor" href="#component.ts" aria-hidden="true"><span class="octicon octicon-link"></span></a>component.ts</h3>
+<h3><a id="user-content-component.ts" class="anchor" name="component.ts" aria-hidden="true"><span class="octicon octicon-link"></span></a>component.ts</h3>
 <p>component.ts中包含一套空气按钮的UI组件和一个简单的扁平化的结束得分页面。</p>
 <p>效果可在<a href="https://davidkingzyb.github.io/egretInit">demo</a>中查看。</p>
-<h3><a id="user-content-loading.ts" class="anchor" href="#loading.ts" aria-hidden="true"><span class="octicon octicon-link"></span></a>loading.ts</h3>
+<h3><a id="user-content-loading.ts" class="anchor" name="loading.ts" aria-hidden="true"><span class="octicon octicon-link"></span></a>loading.ts</h3>
 <p>loading.ts是我个人的游戏loading页面。包含一个用代码生成的DKZ logo。同时也作为制作人页和其他的页面背景使用。仅供参考。</p>
-<h3><a id="user-content-resource.py" class="anchor" href="#resource.py" aria-hidden="true"><span class="octicon octicon-link"></span></a>resource.py</h3>
+<h3><a id="user-content-resource.py" class="anchor" name="resource.py" aria-hidden="true"><span class="octicon octicon-link"></span></a>resource.py</h3>
 <p>一键生成resource.json定义资源的python3脚本。使用素材的文件名作为texture名，可配合tool.ts中的init方法使用。</p>
-<h3><a id="user-content-update.py" class="anchor" href="#update.py" aria-hidden="true"><span class="octicon octicon-link"></span></a>update.py</h3>
+<h3><a id="user-content-update.py" class="anchor" name="update.py" aria-hidden="true"><span class="octicon octicon-link"></span></a>update.py</h3>
 <p>在src目录下使用更新egretInit。</p>
-<h3><a id="user-content-egretinit" class="anchor" href="#egretinit" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretInit</h3>
+<h3><a id="user-content-egretinit" class="anchor" name="egretinit" aria-hidden="true"><span class="octicon octicon-link"></span></a>egretInit</h3>
 <p>一个egret项目种子文件。</p>
-<h3><a id="user-content-demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>demo</h3>
+<h3><a id="user-content-demo" class="anchor" name="demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>demo</h3>
 <p>使用egretInit工具和组建制作的战斗鸡小游戏。<a href="https://davidkingzyb.github.io/egretInit">点击开始</a></p>
-<h3><a id="user-content-iso" class="anchor" href="#iso" aria-hidden="true"><span class="octicon octicon-link"></span></a>Iso</h3>
+<h3><a id="user-content-iso" class="anchor" name="iso" aria-hidden="true"><span class="octicon octicon-link"></span></a>Iso</h3>
 <p>egret的等角投影工具库具体使用请参考<a href="http://davidkingzyb.github.io/blogmd/8.html">isometric projection</a></p></article><div class="markdown-body" id="discusspane">
 	<div></div>
 	<a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/4" class="discussbtn">Discuss</a>
