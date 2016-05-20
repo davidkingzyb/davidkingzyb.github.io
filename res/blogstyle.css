@@ -24,7 +24,7 @@ body{
 	padding:20px 100px 0px 100px; 
 }
 
-#footer a{
+#footer .btn{
 	border:1px solid white;
 	border-radius: 5px;
 	padding:5px 22px;
@@ -33,14 +33,14 @@ body{
 	font-family: Arial,Georgia,sans-serif;
 	font-size: 15px;
 }
-#footerR a{
+#footerR .btn{
 	padding:5px 10px;
 }
-#footer a:hover{
+#footer .btn:hover{
 	color:#82dffb;
 	border:1px solid #82dffb;
 }
-#footerR a:hover{
+#footerR .btn:hover{
 	color:#82dffb;
 	border:1px solid #82dffb;
 }
@@ -132,19 +132,20 @@ body{
 #copyright{
 	float: right;
 	font-size: 0.5em;
-	margin:15px 10px 2px 10px;
+	margin-right: 10px;
 }
 #discusspane{
 	margin-top: 5px;
 	padding:15px 15px 10px 15px;
 }
-.discussbtn{
+#discusspane .btn{
 	text-decoration: none !important;
 	border:1px solid #4183C4;
 	border-radius: 5px;
-	padding:5px 22px;
-	margin-left:10px;
+	padding:5px 15px;
+	margin: 5px;
 	color:#4183C4;
+	line-height: 40px;
 	font-family: Arial,Georgia,sans-serif;
 	font-size: 15px;
 }

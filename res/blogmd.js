@@ -8,25 +8,7 @@
 //////////////////////////////////////
 //  2016/01/28 by DKZ https://davidkingzyb.github.io
 
-var searchArr=[];
-
-function getSearchArr(){
-	var anchor=document.querySelectorAll(".anchor");
-	for(var i=0;i<anchor.length;i++){
-		searchArr.push(anchor[i].href.split('#')[1]);
-	}
-}
-
-function searchAnchor(key){
-	for(var i=0;i<searchArr.length;i++){
-		if(searchArr[i].indexOf(key)!==-1){
-			return i;
-		}
-	}
-	return -1;
-}
-
-function wrapCode(){
+function wrapCodePre(){
 	var wrap=document.getElementsByTagName('code');
 	for(var i=0;i<wrap.length;i++){
 		if(wrap[i].outerHTML){
@@ -53,22 +35,6 @@ function wrapCode(){
 })();
 
 window.onload=function(){
-
-	getSearchArr();
-
-	var searchbtn=document.getElementById("search");
-
-	searchbtn.onclick=function(){
-		var key=encodeURI(prompt('Search:')).toLowerCase();
-		var index=searchAnchor(key);
-		if(index>=0){
-			window.scrollTo(0,document.getElementsByClassName('anchor')[index].getBoundingClientRect().top+document.body.scrollTop);
-		}else{
-			alert('cant find your key word.');
-		}
-		
-	};
-
 	var footer=document.getElementById('footer');
 	if(window.innerWidth>=750){
 		footer.onmouseover=function(){
@@ -93,12 +59,5 @@ window.onload=function(){
 		}
 	};
 
-	// //duoshuo
-	// var pathname=window.location.pathname.substring(1);
-	// var threadkey=pathname.split('.')[0];
-	// var url=window.location.href;
-	// var dsstr='<div class="ds-thread" data-thread-key="'+threadkey+'" data-title="'+pathname+'" data-url="'+url+'"></div>';
-	// document.getElementById('discusspane').innerHTML=dsstr;
-
-	wrapCode();
+	wrapCodePre();
 };
