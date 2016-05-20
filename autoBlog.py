@@ -34,10 +34,10 @@ head=read('template/head.html')
 foot=read('template/foot.html')
 
 def packhtml(htmlbody,id):
-    if id<len(blogconfig.issuearr):
-        o={'discussurl':blogconfig.issueurl+str(id)}#blogconfig.issuearr[id]}
-    else:
-        o={'discussurl':'http://davidkingzyb.github.io/blogmd/0.html'}
+    #if id<len(blogconfig.issuearr):
+    o={'discussurl':blogconfig.issueurl+str(id)}#blogconfig.issuearr[id]}
+    #else:
+    #    o={'discussurl':'http://davidkingzyb.github.io/blogmd/0.html'}
     html=head+'<article class="markdown-body">'+htmlbody+'</article>'+render(o,foot)
     return html
 
