@@ -71,8 +71,7 @@ def doBlogs(files):
             if t=='md':
                 MDtoHTML(f)
 
-RSStemplate="""
-<?xml version="1.0" encoding="UTF-8"?>
+RSStemplate="""<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
     <title>DKZ's Blog</title>
