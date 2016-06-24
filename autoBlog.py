@@ -14,6 +14,7 @@ import markdown
 import re
 import urllib
 import blogconfig
+import cgi
 
 files=os.listdir('./blogmd');
 
@@ -87,7 +88,7 @@ RSStemplate="""<?xml version="1.0" encoding="UTF-8"?>
 
 def doRSS(o):
     global RSStemplate
-    RSStemplate+='<item><title>'+o['title']+'</title><link>http://davidkingzyb.github.io/blogmd/'+str(o['index'])+'.html</link><description>'+o['info']+'</description></item>'
+    RSStemplate+='<item><title>'+cgi.escape(o['title'])+'</title><link>http://davidkingzyb.github.io/blogmd/'+cgi.escape(str(o['index']))+'.html</link><description>'+cgi.escape(o['info'])+'</description></item>'
 
 def MDtoJson(file):
     print('md to json:'+file)
