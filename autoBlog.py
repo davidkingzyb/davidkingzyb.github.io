@@ -71,6 +71,25 @@ def doBlogs(files):
             if t=='md':
                 MDtoHTML(f)
 
+RSStemplate="""
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+    <title>DKZ's Blog</title>
+    <link>http://davidkingzyb.github.io/blog.html</link>
+    <description>Tech Program Design 无用的造物</description>
+    <copyright>&copy;2015-2016 by DKZ</copyright>
+    <image>
+        <url>http://davidkingzyb.github.io/res/img/cubehead.png</url>
+        <title>DKZ</title>
+        <link>http://davidkingzyb.github.io/blog.html</link>
+    </image>
+"""
+
+def doRSS(o):
+    global RSStemplate
+    RSStemplate+='<item><title>'+o['title']+'</title><link>http://davidkingzyb.github.io/blogmd/'+str(o['index'])+'.html</link><description>'+o['info']+'</description></item>'
+
 def MDtoJson(file):
     print('md to json:'+file)
     index=int(file.split('.')[0])
@@ -81,7 +100,9 @@ def MDtoJson(file):
         key=lines[4][:-1]
         img=lines[6]
         img=img[img.find('(')+1:-2]
-    return {"index":index,"title":title,"info":info,"key":key,"img":img}
+    result={"index":index,"title":title,"info":info,"key":key,"img":img}
+    doRSS(result)
+    return result
 
 def createBlogJson(files,jsonfile,bottom,top):
     blog=[]
@@ -97,6 +118,18 @@ def createBlogJson(files,jsonfile,bottom,top):
     with open(jsonfile+'.json','w', encoding='UTF-8') as bjf:
         bjf.write(json.dumps(blogJson))
 
+def createRSSfile(filename):
+    global RSStemplate
+    RSStemplate+='</channel></rss>'
+    with open(filename+'.xml','w',encoding='UTF-8') as rssf:
+        rssf.write(RSStemplate)
+    print('RSS ok')
+
+
 doBlogs(files)
 createBlogJson(files,'blog2015',0,10)
 createBlogJson(files,'blog2016',11,99)
+
+createRSSfile('rss')
+
+
