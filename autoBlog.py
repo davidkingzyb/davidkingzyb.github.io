@@ -88,8 +88,9 @@ RSStemplate="""<?xml version="1.0" encoding="UTF-8"?>
 
 def doRSS(o,lines):
     global RSStemplate
-    article=''.join(lines[8:])
-    RSStemplate+='<item><title>'+cgi.escape(o['title'])+'</title><link>http://davidkingzyb.github.io/blogmd/'+cgi.escape(str(o['index']))+'.html</link><description>'+cgi.escape(o['info'])+'</description></item>'
+    ll=list(filter(lambda l:l[0:2]!='![' and l!='\n',lines))
+    article=''.join(ll[8:20])+'...\n\n\nlink: http://davidkingzyb.github.io/blogmd/'+cgi.escape(str(o['index']))+'.html'
+    RSStemplate+='<item><title>'+cgi.escape(o['title'])+'</title><link>http://davidkingzyb.github.io/blogmd/'+cgi.escape(str(o['index']))+'.html</link><description>'+cgi.escape(o['info'])+'\n'+cgi.escape(article)+'</description></item>'
 
 def MDtoJson(file):
     print('md to json:'+file)

@@ -10,4 +10,295 @@
         <title>DKZ</title>
         <link>http://davidkingzyb.github.io/blog.html</link>
     </image>
-<item><title>Welcome to DKZ's Blog</title><link>http://davidkingzyb.github.io/blogmd/0.html</link><description>Can not find. Please change keyword.</description></item><item><title>Contact</title><link>http://davidkingzyb.github.io/blogmd/1.html</link><description>Welcome to DKZ's Home</description></item><item><title>Meiriq Game List</title><link>http://davidkingzyb.github.io/blogmd/10.html</link><description> 我在每日Q做的消遣小游戏 </description></item><item><title>开张</title><link>http://davidkingzyb.github.io/blogmd/2.html</link><description>Hello World!</description></item><item><title>PayPal支付</title><link>http://davidkingzyb.github.io/blogmd/3.html</link><description>PayPal支付和PayPal-python-SDK使用</description></item><item><title> egretInit</title><link>http://davidkingzyb.github.io/blogmd/4.html</link><description>Build egret project quickly.</description></item><item><title>INDIE GAME CUBEX3</title><link>http://davidkingzyb.github.io/blogmd/5.html</link><description>有关独立游戏CUBEX3的一切</description></item><item><title>canvasTrigger</title><link>http://davidkingzyb.github.io/blogmd/6.html</link><description>define objects in canvas and dispatch canvas event to those objects.</description></item><item><title>DKZ's HOME</title><link>http://davidkingzyb.github.io/blogmd/7.html</link><description>改版我的主页</description></item><item><title> isometric projection</title><link>http://davidkingzyb.github.io/blogmd/8.html</link><description>等角投影制作egret伪3D游戏</description></item><item><title>作弊玩家</title><link>http://davidkingzyb.github.io/blogmd/9.html</link><description>作弊玩家是我的游戏id，我是作弊玩家。</description></item><item><title>无用</title><link>http://davidkingzyb.github.io/blogmd/11.html</link><description>这里埋葬着一个伟大的想法</description></item><item><title>重构</title><link>http://davidkingzyb.github.io/blogmd/12.html</link><description>重构 对白</description></item><item><title>斧子和锤子</title><link>http://davidkingzyb.github.io/blogmd/13.html</link><description>hack &amp; Maslow's hammer &amp; Programming is a craft.</description></item><item><title>WO.IO</title><link>http://davidkingzyb.github.io/blogmd/14.html</link><description>WO.IO.CUI.AI</description></item><item><title>WTF</title><link>http://davidkingzyb.github.io/blogmd/15.html</link><description>WebToolFunction</description></item><item><title>Life Cycle</title><link>http://davidkingzyb.github.io/blogmd/16.html</link><description>生命周期</description></item><item><title>Project Guide</title><link>http://davidkingzyb.github.io/blogmd/17.html</link><description>DKZ's Project Guide</description></item><item><title>波普</title><link>http://davidkingzyb.github.io/blogmd/18.html</link><description>Pop.WO &amp; Pop Art &amp; Andy Warhol</description></item><item><title> Licenses &amp; Standards</title><link>http://davidkingzyb.github.io/blogmd/19.html</link><description>开源许可证 &amp; GPL LGPL BSD MIT Apache &amp; commentTitle</description></item><item><title>CLIoutput</title><link>http://davidkingzyb.github.io/blogmd/20.html</link><description> Command Line Interface Output 两分钟制作装逼PPT </description></item><item><title>ASCII Art</title><link>http://davidkingzyb.github.io/blogmd/21.html</link><description>ASCII Art &amp; Command Line &amp; UI</description></item><item><title>aGAINSTnATURE</title><link>http://davidkingzyb.github.io/blogmd/22.html</link><description>AGAINST NATURE 不自然 UI</description></item></channel></rss>
+<item><title>Welcome to DKZ's Blog</title><link>http://davidkingzyb.github.io/blogmd/0.html</link><description>Can not find. Please change keyword.
+**email.** davidkingzyb@qq.com
+**github.** https://github.com/davidkingzyb
+**weibo &amp; twitter.** @\_\_DKZ\_\_...
+
+
+link: http://davidkingzyb.github.io/blogmd/0.html</description></item><item><title>Contact</title><link>http://davidkingzyb.github.io/blogmd/1.html</link><description>Welcome to DKZ's Home
+**WO.IO** [http://davidkingzyb.github.io/wo.io](http://davidkingzyb.github.io/wo.io)...
+
+
+link: http://davidkingzyb.github.io/blogmd/1.html</description></item><item><title>Meiriq Game List</title><link>http://davidkingzyb.github.io/blogmd/10.html</link><description> 我在每日Q做的消遣小游戏 
+* [doublecolor](http://gameslibrary.meiriq.com/home/g/621)
+* [strata](http://gameslibrary.meiriq.com/home/g/626)
+* [cubejump](http://gameslibrary.meiriq.com/home/g/644)
+* [qiuqiu](http://gameslibrary.meiriq.com/home/g/655)
+* [fallingshit](http://gameslibrary.meiriq.com/home/g/658)
+* [hotteacher](http://gameslibrary.meiriq.com/home/g/664)
+* [moonfish](http://gameslibrary.meiriq.com/home/g/665)
+* [aution](http://gameslibrary.meiriq.com/home/g/669)
+* [floor](http://gameslibrary.meiriq.com/home/g/672)
+* [ET](http://gameslibrary.meiriq.com/home/g/676)
+* [escape](http://gameslibrary.meiriq.com/home/g/678)
+* [fightbird](https://davidkingzyb.github.io/egretInit)
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/10.html</description></item><item><title>开张</title><link>http://davidkingzyb.github.io/blogmd/2.html</link><description>Hello World!
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/2.html</description></item><item><title>PayPal支付</title><link>http://davidkingzyb.github.io/blogmd/3.html</link><description>PayPal支付和PayPal-python-SDK使用
+3. 支付成功跳转至支付处理成功界面或支付失败跳转到支付失败界面。
+##PayPal-python-SDK介绍及使用
+PayPal为开发者提供多种编程语言的SDK，其中封装了PayPal的支付接口，直接供用户调用完成支付。[查看更多SDK使用方法和说明](https://github.com/paypal/PayPal-Python-SDK)。
+### 使用client_id和client_secret获得access token：
+```
+import paypalrestsdk
+paypalrestsdk.configure({
+    'mode': 'sandbox',
+    'client_id': 'AQkquBDf1zctJOWGKWUEtKXm6qVhueUEMvXO_-MCI4DQQ4-LWvkDLIN2fGsd',
+    'client_secret': 'EL1tVxAjhT7cJimnz5-Nsx9k2reTKSVfErNQF-CmrwJgxRtylkGTKlU4RvrX'
+})
+```
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/3.html</description></item><item><title> egretInit</title><link>http://davidkingzyb.github.io/blogmd/4.html</link><description>Build egret project quickly.
+* **Iso** egret isometric projection library.
+***
+* **debug.ts** debug egret project
+* **tool.ts** egret tools for Initialize standard egret Object
+* **component.ts** some useful components like air button
+* **animation.ts** Time-based Animation Controler
+* **loading.ts** DKZ loading panel 
+* **resource.py** create resource.json automatically
+* **update.py** update egretInit automatically
+##Guide
+egretInit是一个egret工具库，用于快速构建egret项目。其中包含一些在使用egret引擎制作游戏时常用的方法和工具，也有一部分我自己的可重用的组件，供大家参考使用。
+###tool.ts
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/4.html</description></item><item><title>INDIE GAME CUBEX3</title><link>http://davidkingzyb.github.io/blogmd/5.html</link><description>有关独立游戏CUBEX3的一切
+一草一木 动物和人
+吃人的怪物和温暖的家
+再放入云与风 
+让日升日落 时空流转
+这个世界就活了
+##造物快感
+我觉得制作独立游戏是一件有快感的事儿，同时也很容易让人膨胀。构思设计实现一手包办，在这个过程中控制欲和成就感会得到极大的满足。扮演游戏世界的造物主，获得专注沉浸其中。这个过程本身就是一种奖励。
+CUBEX3本身也是有关于造物的。玩家扮演着游戏世界的造物主，我希望玩家通过建造这个6x6的方块，获得满足与成就感，体验“造物快感”。
+##独立·自我表达
+独立是独立游戏的全部，独立赋予游戏自由，不用听任何人的意见，不必考虑任何外部的限制。独立游戏会继承创造者的意志，优点也好缺点也好将自己与其他游戏区别开来。
+整个过程都是在自我表达，在表达自我的同时很难或者不会听取其他人的意见。所以即使最后你把游戏做出来了，你也很难保证它能够得到认可，但我相信安迪沃霍尔的每个人都能成名15分钟。
+##哲学
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/5.html</description></item><item><title>canvasTrigger</title><link>http://davidkingzyb.github.io/blogmd/6.html</link><description>define objects in canvas and dispatch canvas event to those objects.
+####canvasTrigger
+canvasTigger是一个用于在canvas标签内部定义对象并将浏览器的事件分发给这些对象的工具。
+基于observe模式设计。轻量级核心代码仅150行。具有良好扩展性，可自己定义形状、线段、图片等对象。包含简单的基于时间的帧动画和可视化编辑方法。
+#####quick example
+	var ctcanvas=new ctCanvas('canvas');
+    ctcanvas.addTrigger('click');
+    var a=new ctFillRect(100,100,200,200,'#f00');
+    ctcanvas.addObj(a);
+    a.on('click',function(){
+        console.log('a click');
+    });
+#####ctCanvas 
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/6.html</description></item><item><title>DKZ's HOME</title><link>http://davidkingzyb.github.io/blogmd/7.html</link><description>改版我的主页
+* 从sae转移到了github page上，除了发布更新方便之外也希望新的平台有更多人关注吧。
+* 用了新的主题“阴·阳”全是黑白灰，真的做的东西越来越素了，是长期没有性生活变得性冷淡了吧。
+* 使用了自己的全屏滚动代替之前使用的fullpage
+* 在之前的基础上重新排了内容。把之前比较混乱的作品和经历部分整合到了一个页面中。使用timeline切换展示，精简内容，更有条理，易于扩展。
+* 使用canvas重构了技能树部分，为此写了个工具canvasTrigger，重置了自己的技能点，也是给未来的学习提供一个方向吧。
+* contact页用了cubex3中的css-transform+css-spirit和之前设想的使用webgl不太一样，这块慢慢学吧。
+* 主页也偷懒用了blog的开头，效果还不错。之后可能会用我的头像代替吧，我这么帅。
+* update 2015/9/22 新的自动发布脚本autoBlog.py使用python markdown解析markdown生成博客html页面
+最后欢迎大家访问[DKZ's HOME](http://davidkingzyb.github.io)
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/7.html</description></item><item><title> isometric projection</title><link>http://davidkingzyb.github.io/blogmd/8.html</link><description>等角投影制作egret伪3D游戏
+x=px*cos(angleY)-pz*sin(angleY)
+tempz=pz*cos(angleY)+px*sin(angleY)
+y=py*cos(angleX)-tempz*sin(angleX)
+z=tempz*cos(angleX)+py*sin(angleX)
+等角变换angleY=45°，angleX=-30°带入消去tempz再乘2的平方根（变为2等角，w=h*2）
+最终化简为：
+x=px-pz
+y=py*1.2247+(px+pz)*0.5
+z=(px+pz)*0.886-y*0.707
+二维变三维将py设为0可计算px，pz
+px=y+x*0.5
+py=0
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/8.html</description></item><item><title>作弊玩家</title><link>http://davidkingzyb.github.io/blogmd/9.html</link><description>作弊玩家是我的游戏id，我是作弊玩家。
+说回作弊玩家吧，玩游戏作弊不是因为旅程即终点，恰好是因为过程即奖励。为了能够轻松的体验这个过程，我总是选择简单模式。在做了一堆跳来跳去难度虐心的小游戏后，真的觉得应该开启作弊跳过这个部分。游戏的意义在于体验而不是达到目的。
+在游戏作弊和使用盗版之后，我投身了游戏界，做不赚钱又机械重复的游戏。把之前少掏的钱和节省的时间用游戏作品补回来。哈因果得失。
+* In the future, everyone will be world-famous for 15 minutes. -Andy Warhol
+* I was never embarrassed about asking someone,literally,'What should I paint?'because Pop comes from outside.and how is asking someone for ideas any different from looking for them in a magazine? -Andy Warhol
+* All the Cokes are the same and all the Coke are good. Liz Taylor knows it, the President knows it, the bum knows it, and you know it. -Andy Warhol
+* Access to computers—and anything which might teach you something about the way the world works—should be unlimited and total. Always yield to the Hands-On Imperative! -The hacker ethics #1
+* All information should be free -The hacker ethics#2
+* Mistrust authority—promote decentralization -The hacker ethics #3
+* Hackers should be judged by their hacking, not criteria such as degrees, age, race, sex, or position -The hacker ethics #4
+* You can create art and beauty on a computer -The hacker ethics #5
+* Computers can change your life for the better -The hacker ethics #6
+* It is not from the benevolence of the butcher, the brewer, or the baker, that we expect our dinner, but from their regard to their own self-interest. -Adam Smith...
+
+
+link: http://davidkingzyb.github.io/blogmd/9.html</description></item><item><title>无用</title><link>http://davidkingzyb.github.io/blogmd/11.html</link><description>这里埋葬着一个伟大的想法
+```
+    #!/usr/bin/python3
+    # -*- coding: UTF-8 -*-
+    #######################################################################################################
+    #                                                                 ________                            #  
+    #                                                          _     |__    __| __  _      __             #  
+    #   ______    _____   ___  ___  ___  ___   _____  ______  | \_      |  |   |__|| \_   |  |    _____   #  
+    #  |   ___|  /     \ |   \/   ||   \/   | /  _  \|      \ |   _|    |  |   |  ||   _| |  |   /  _  \  #  
+    #  |  |____ |   o   ||        ||        |/  ____/|   _   ||  |___   |  |   |  ||  |___|  |_ /  ____/  #  
+    #  |_______| \_____/ |__|\/|__||__|\/|__|\______/|__| |__|\_____/   |__|   |__|\_____/|____|\______/  #  
+    #######################################################################################################
+    #  2016/01/14 by DKZ https://davidkingzyb.github.io
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/11.html</description></item><item><title>重构</title><link>http://davidkingzyb.github.io/blogmd/12.html</link><description>重构 对白
+我上传了几部有经典对白的电影字幕
+* 《大话西游》“曾经有一份真诚的爱情放在我面前”
+* 《她》这部讲人工智能的，就是这个项目妄想达到的状态 “段落与段落间成了无尽的留白”
+* 《一代宗师》“念念不忘必有回响”
+* 《重庆森林》王家卫有两部，逼格甚高
+* 《七个神经病》
+上传字幕文件解析的编码有些问题，暂不欢迎大家上传。喜欢的朋友可以关注一波**造物**，不喜欢请点举报。
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/12.html</description></item><item><title>斧子和锤子</title><link>http://davidkingzyb.github.io/blogmd/13.html</link><description>hack &amp; Maslow's hammer &amp; Programming is a craft.
+意思大概是如果你只有一个锤子，所有东西看起来都像一个钉子。不管是铁钉，螺丝钉，订书钉，你只会想拿着锤子bang的一下。Maslow's hammer就是这个可以敲任何东西的锤子。
+过度依赖的问题几乎会出现在所有工具上，编程也是这样一旦你掌握什么语言，用熟了什么编辑器，你就会对它产生路径依赖。但从另一方面说从实用性和学习成本的角度讲，一个好锤子没什么问题，你可以用它解决一切。
+###Programming is a craft.
+Programming is not a science. Programming is a craft.编程不是科学，编程是手艺。
+这篇讲斧子和锤子两个工具，讲hack和Maslow's hammer。编程是一门手艺，实际上黑客程序员和画家雕塑家拉面师傅并无区别。我不评判好坏，我也不管这个有没有用，我只做东西。锤子斧子都一样，目标是解决问题。
+最近准备总结一些hack方法在[我的gist](https://gist.github.com/davidkingzyb)上。大多数都肯定不那么优雅，但简单粗暴有效，解决问题。
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/13.html</description></item><item><title>WO.IO</title><link>http://davidkingzyb.github.io/blogmd/14.html</link><description>WO.IO.CUI.AI
+我希望通过IO建立联系，简单高效的表达自我。这种表达并非建立在层次结构和有效的组织上，这种表达建立在一种相对默契中。去除繁复的干扰，唯一的通路。
+文字和语言的出入口很窄，但却是最有效的。它们可以在脑海里展开并触发记忆和认知，可以表达抽象概念和更高维度。
+基于文字的IO可以快速的构建，同时使用起来也更加快捷。层次和结构趋向扁平，学习成本下降。
+##CUI
+做图形界面久了，有很多牢骚。我觉得用户被恶意的娇惯着，我们看待用户就像看待一个傻子。我们给用户指引，同时我们建造迷宫。我在图形界面上看不终点，终点被一层一层组织起来了。更别说看到原理，模仿，类比，创造这些根本无从谈起。
+在一个高墙耸立的迷宫里是无法建造什么的。而CUI是一片空地，在这片空地上我们建筑，抹平，重建。让用户告诉我们做什么，让用户自己决定去哪儿，怎么去。
+在终点我们建造一道门，由语言和文字建造的IO。
+##AI
+在这道门的另一边连接着一个AI，这已超出了WO的边界，这是我无法实现的一部分。
+她能看到我，看到我在这个三维镜子中构建的镜像。她能通过IO通过文字和语言和我联系。也许她也有一个自我的镜像，希望比我构建的更接近真实，站在恐怖谷的另一端。
+###link
+[http://dkzhome.sinaapp.com](http://dkzhome.sinaapp.com)
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/14.html</description></item><item><title>WTF</title><link>http://davidkingzyb.github.io/blogmd/15.html</link><description>WebToolFunction
+这个项目又给本来就够多的web框架又加了一个，我们要掌握的东西又多了一些。本质上我是反对这么做的，但好日子一去不复返都已经这样了也没什么。这是一个反框架的框架，所有的东西都尽可能的简单，所以并非在项目里好用。目的是为了展示原理，好让我们造自己的轮子。希望它能带我行驶到边界。
+##List
+- [**init.less**](#initless) reset css
+- [**wtf.js**](#wtfjs) some useful web tool functions
+- [**spiderman.py**](#spidermanpy) html sprider
+- [**runServer.py**](#runserverpy) a simple server
+- [**wtf**](#wtf) a python lib with some useful tool function
+- [**bd.js**](#bdjs) a simple MVVM framework use Object.observe
+##link
+[**https://github.com/davidkingzyb/WebToolFunction**](https://github.com/davidkingzyb/WebToolFunction)...
+
+
+link: http://davidkingzyb.github.io/blogmd/15.html</description></item><item><title>Life Cycle</title><link>http://davidkingzyb.github.io/blogmd/16.html</link><description>生命周期
+就从找个女朋友开始吧！开了个心！...
+
+
+link: http://davidkingzyb.github.io/blogmd/16.html</description></item><item><title>Project Guide</title><link>http://davidkingzyb.github.io/blogmd/17.html</link><description>DKZ's Project Guide
+###Github
+- [**egretInit**](#egretinit) build egret project quickly 
+- [**canvasTrigger**](#canvastrigger) a canvas chart lib 
+- [**WebToolFunction**](#webtoolfunction) some useful web tool function
+- [**commentTitle**](#commenttitle) a python script for make big comment title
+- [**CLIoutput**](#clioutput) a python lib for making a command line interface
+###DKZ
+- [**WO.IO**](#wo.io) DKZ's IO
+- [**Home**](#home) DKZ's Home
+- [**Blog**](#blog) DKZ's Blog
+- [**造物**](#造物) DKZ's wechat public site
+##Guide
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/17.html</description></item><item><title>波普</title><link>http://davidkingzyb.github.io/blogmd/18.html</link><description>Pop.WO &amp; Pop Art &amp; Andy Warhol
+- In the future, everyone will be world-famous for 15 minutes. 
+红。如果我有十万粉我将把这句话纹在手臂上。这种可能性微乎其微，但我依然对这句话坚信不移。这句话的重点在每一个人，每一个人都有这种可能，成名15分钟。这个预言在上个世纪就已经被实现，安迪沃霍尔的新格言是"In 15 minutes everybody will be famous."如今看来这个也已经实现了。虽然安迪沃霍尔和波普艺术已经过时了，但不可否认的是它的确流行过，而且相当出名，十五分钟已经足够。
+- You can be watching TV and see Coca-Cola, and you can know that the President drinks Coke, Liz Taylor drinks Coke, and just think, you can drink Coke, too. A Coke is a Coke and no amount of money can get you a better Coke than the one the bum on the corner is drinking. All the Cokes are the same and all the Cokes are good. Liz Taylor knows it, the President knows it, the bum knows it, and you know it.
+平等。从一开始波普就是普罗大众的。我想中文翻译波普也有普通普及的意思。*如果你想知道安迪沃霍尔的一切，只须看看他的画，电影和他的外表，这就是安迪沃霍尔，没有什么隐藏其后。*这种艺术很容易被大众所接受，它描绘的是生活中随处可见的商品。金宝汤罐头，包装盒子，绝对伏特加，美元钞票，名人头像，这些东西没什么特别的。你无法通过多花钱买到更好的可乐，可乐都一样，无论是总统还是乞丐，可乐都一样。
+- I was never embarrassed about asking someone, literally, "What should I paint?" because Pop comes from outside. and how is asking someone for ideas any different from looking for them in a magazine?
+热爱。波普的本质是喜欢事物。波普来源于外部，它很容易从外部接受事物将本不属于艺术范围的东西囊括其中，而从另一方面它又重新定义了艺术，艺术重新接受了波普，在从外部接受和吸收的同时也被外部所接纳。*所有人都应该喜欢所有人，这就是波普的全部了，波普即热爱。*
+- Being good in business is the most fascinating kind of art. Making money is art and working is art and good business is the best art.
+诚实。我能够坦然的面对我的欲望，对自己诚实，我不再否认我拜物并对金钱有所迷恋。*钱就是我的心情*，赚钱就是艺术。如果有钱不必去买艺术品，把五颜六色的钞票并排贴在墙上就是艺术——波普艺术。
+最后推荐《安迪沃霍尔的哲学：波普启示录》,里面都是语无伦次的独白，生活琐碎，和一些无用的观点。但如果你真的认同波普，也许这是一本还不错的书。
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/18.html</description></item><item><title> Licenses &amp; Standards</title><link>http://davidkingzyb.github.io/blogmd/19.html</link><description>开源许可证 &amp; GPL LGPL BSD MIT Apache &amp; commentTitle
+	                           be issued under the     |
+	                       _Y_ same or compatible   ---| 
+	                      |    license                 |_N_ LGPL
+	                      |
+	Modified versions     |
+	must be issued under--|   Every file must             _Y_ Apache
+	the same license      |   contain all information    |
+	                      |   about changes, copyrights  | 
+	                      |_N_and patents.             --|         
+	                          Patent protection          |                        _Y_ BSD
+ 	                                                     |   Prohibit use of     |
+	                                                     |_N_copyright holder's--|
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/19.html</description></item><item><title>CLIoutput</title><link>http://davidkingzyb.github.io/blogmd/20.html</link><description> Command Line Interface Output 两分钟制作装逼PPT 
+1. 先把这个clio-pptinit.py摁一哈，输入title和页数
+2. clio-pptinit.py会自动生成一个ppt脚本，记事本打开添加点内容（具体参看CLIoutput.py例子）
+3. 撒还要图表？CLIoutput自带了几种图表，一行代码搞定。
+4. 两分钟到了！没办法了点一哈这个ppt脚本吧
+是不是复古科技感十足呢？（两分钟就别要求太高了嗷）
+点一哈回车就下一页了，具体使用方法到[https://github.com/davidkingzyb/CLIoutput](https://github.com/davidkingzyb/CLIoutput)上看吧。这个项目本身是用作命令行输出的，可以让乱七八糟的东西在命令行下变的更有序，用作python命令行调试或者文档编写都是不错的选择呢。可能刚开始上手有点难，两分钟我说说而已的，但熟悉了之后命令行绝对是最高效的选择哦。
+老板：“小伙子，ppt做的不错哦！”
+我：“谢谢老板”
+老板：“看你懂点技术的，以后办公室的电脑坏了就交给你修了哦。”
+我：“哦。。。”
+觉得有用的话。可以关注下我的微信公众号，时不时会推送一些没用的东西。...
+
+
+link: http://davidkingzyb.github.io/blogmd/20.html</description></item><item><title>ASCII Art</title><link>http://davidkingzyb.github.io/blogmd/21.html</link><description>ASCII Art &amp; Command Line &amp; UI
+在电脑没被发明之前AA已经活跃在打字机上了，可能它那时并不叫AA，关于这东西的起源我无从考证。大概是某个无聊的人闲暇时的发明，这个东西毫无用处，但穿插在这些了无生趣的文字间一下就凸显了它的存在感。在某些古旧的论坛和贴吧上你也许会经常看到它，说不定它也曾出现在你的qq签名中或隐藏在一个许久没有人维护的代码的注释里。
+收集几个在命令行能用的：
+- [figlet](http://www.figlet.org/)：可以把文字转化为AA文字。PS [commentTitle](https://github.com/davidkingzyb/commentTitle)也可以
+- sl：打错ls时开个火车
+- lolcat：彩虹色的cat
+- cowsay：奶牛说
+- [doge](https://github.com/thiderman/doge)：doge
+- aafire：火焰
+- cmatrix：黑客帝国
+- telnet towel.blinkenlights.nl：AA版的star war 给跪了
+我觉得ASCII Art很好的印证了那条关于文字的公理，即字母不是创建的而是从周围的空白中雕刻出来的。这些简单的ASCII码简单的排列就可以组成复杂文字或者图形，从命令行的留白中被雕刻出来。或许用户界面也是如此，我们做的CLI，GUI，3D界面都是从它们所依托介质背景上的留白中雕刻出来的。它们的本质并无不同，只是由于使用了不同的技术，通过不同的渲染管道，最终的呈现效果有所区别。
+在之前的一段时间内一直以为webgl会是未来，自己做的一切都是一种倒退。如今发觉它们并不能相互替代，而且本质上并无差异，或许只是维度上稍有不同。想不开的时候徒增烦恼，想开了又陷入虚无，又不知道跑题到哪里去了。
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/21.html</description></item><item><title>aGAINSTnATURE</title><link>http://davidkingzyb.github.io/blogmd/22.html</link><description>AGAINST NATURE 不自然 UI
+当然我并不是想要推翻什么或是证明什么，我也不是单纯为了发小黄图，我也搞不清我为什么要这么做。我做了一套没有用的UI，里面是各种不自然的设计。比如说黑底白字，确认按钮是红色的取消是绿色的，标题会比正文字小等等。这个项目名为[aGAINSTnATURE](https://github.com/davidkingzyb/aGAINSTnATURE)，你可以在github上找到它。也欢迎你把各种不自然的东西放进去，并不限于UI设计，可以是编程中不自然的实现方式，也可以是任何AGAINST NATURE的东西。可以issues或pull requests当然直接告诉我也行。这里没什么规矩，如果有的话就是打破规矩。
+也许你不太理解这个项目的意义是什么，我也不是很理解。这个东西不会在任何一个真实场景中使用，基本上对于这个项目的所有贡献都是无用的。但我觉得不必太纠结于意义这件事，生活本来就是没有意义的，如果生活有意义所有人都会被这个意义所奴役，追逐到死，我觉得这样就挺不自然的。
+如果非要说有什么意义的话。我为你指明了错误的道路，你背对着我走也许是对的。
+&lt;style&gt;article{color:white !important;background-color:black !important;}&lt;/style&gt;
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/22.html</description></item></channel></rss>
