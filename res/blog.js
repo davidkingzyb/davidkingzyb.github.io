@@ -34,7 +34,7 @@ function doYear(year){
 	responseHandle(window['blog'+year]);
 }
 
-function responseHandle(blogJson) {
+function responseHandle(blogJson,isError,fromSearch) {
 	var respJson=JSON.parse(JSON.stringify(blogJson));
     respJson.blog.sort(function(a, b) {
         return a.index - b.index;
@@ -42,7 +42,11 @@ function responseHandle(blogJson) {
     var innerbodyPane = '<div id="bodyTitle"><h1>DKZ&apos;s blog</h1><hr></div>';
     while (respJson.blog.length !== 0) {
         var article = respJson.blog.pop();
-        if(article.index!==0&&article.index!==1){
+        if(!fromSearch){
+            if(article.index===0||article.index===1){
+                continue;
+            }
+        }
 			innerbodyPane = innerbodyPane + '<a href="blogmd/' + article.index + '.html">';
 	        innerbodyPane = innerbodyPane + '<article class="markdown-body"><h1>' + article.title + '</h1>';
 	        innerbodyPane = innerbodyPane + '<p><strong>' + article.info + '</strong></p>';
@@ -51,8 +55,13 @@ function responseHandle(blogJson) {
 	            innerbodyPane = innerbodyPane + '<p><img src="blogmd/' + article.img + '" style="max-width:100%;"></p>';
 	        }
 	        innerbodyPane = innerbodyPane + '</article></a>';
-        }
         
+    }
+    if(isError){
+        innerbodyPane = innerbodyPane + '<article class="markdown-body"><h1>Ooops!</h1>';
+        innerbodyPane = innerbodyPane + '<p><strong>Can not find. Please change keyword.</strong></p>';
+        innerbodyPane = innerbodyPane + '<p>please contact <a href="blogmd/1.html">DKZ</a> to fix it</p>';
+        innerbodyPane = innerbodyPane + '</article>';
     }
     innerbodyPane = innerbodyPane + '<div class="markdown-body" id="discusspane">' 
     + '<a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/1" class="btn">Discuss</a>' 
@@ -96,10 +105,12 @@ window.onload = function() {
                     req.blog.push(searchJson[i]);
                 }
             }
+            var isError=false;
             if (req.blog.length === 0) {
-                req.blog.push(searchJson[0]);
+                // req.blog.push(searchJson[0]);
+                isError=true;
             }
-            responseHandle(req);
+            responseHandle(req,isError,true);
         }
 
     };
