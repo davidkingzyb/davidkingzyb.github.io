@@ -57,7 +57,10 @@ function responseHandle(blogJson) {
     innerbodyPane = innerbodyPane + '<div class="markdown-body" id="discusspane">' 
     + '<a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/1" class="btn">Discuss</a>' 
     + '<a href="javascript:doYear(2016)" class="btn">2016</a>' 
-    + '<a href="javascript:doYear(2015)" class="btn">2015</a>' + '<a href="blogmd/1.html" class="btn">Contact</a>' + '<div id="copyright">&copy;2015-2016 by DKZ</div></div>';
+    + '<a href="javascript:doYear(2015)" class="btn">2015</a>' 
+    + '<a href="blogmd/1.html" class="btn">Contact</a>'
+    + '<a href="rss.xml" class="btn">RSS</a>'
+    + '<div id="copyright">&copy;2015-2016 by DKZ</div></div>';
     document.getElementById('bodyPane').innerHTML = innerbodyPane;
 }
 

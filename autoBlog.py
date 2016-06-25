@@ -86,8 +86,9 @@ RSStemplate="""<?xml version="1.0" encoding="UTF-8"?>
     </image>
 """
 
-def doRSS(o):
+def doRSS(o,lines):
     global RSStemplate
+    article=''.join(lines[8:])
     RSStemplate+='<item><title>'+cgi.escape(o['title'])+'</title><link>http://davidkingzyb.github.io/blogmd/'+cgi.escape(str(o['index']))+'.html</link><description>'+cgi.escape(o['info'])+'</description></item>'
 
 def MDtoJson(file):
@@ -101,7 +102,7 @@ def MDtoJson(file):
         img=lines[6]
         img=img[img.find('(')+1:-2]
     result={"index":index,"title":title,"info":info,"key":key,"img":img}
-    doRSS(result)
+    doRSS(result,lines)
     return result
 
 def createBlogJson(files,jsonfile,bottom,top):
