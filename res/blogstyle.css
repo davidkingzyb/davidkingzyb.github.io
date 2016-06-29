@@ -149,5 +149,9 @@ body{
 	font-family: Arial,Georgia,sans-serif;
 	font-size: 15px;
 }
+#discusspane .btn:hover{
+	color:#82dffb;
+	border: #82dffb 1px solid;
+}
 
 
