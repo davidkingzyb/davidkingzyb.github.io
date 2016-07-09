@@ -1,0 +1,157 @@
+a{text-decoration: none}
+body{
+	background-color: #333333;
+	margin:0px;
+}
+#headPane{
+	background-color: #333333;
+}
+#bodyPane{
+	padding-bottom: 100px;
+}
+#dkzlogo{
+	margin:30px 0px 20px 0px;
+}
+#headmain{
+	width:340px;
+	margin:0 auto;
+}
+#bodyTitle{
+	text-align: center;
+	font-family: Impact,Helvetica,Arial,sans-serif;
+	color:#444444;
+	font-size: 1.7em;
+	padding:20px 100px 0px 100px; 
+}
+
+#footer .btn{
+	border:1px solid white;
+	border-radius: 5px;
+	padding:5px 22px;
+	margin:5px;
+	color:white;
+	font-family: Arial,Georgia,sans-serif;
+	font-size: 15px;
+}
+#footerR .btn{
+	padding:5px 10px;
+}
+#footer .btn:hover{
+	color:#82dffb;
+	border:1px solid #82dffb;
+}
+#footerR .btn:hover{
+	color:#82dffb;
+	border:1px solid #82dffb;
+}
+#footer{
+	background-color: #111111;
+	padding:0px;
+	position:fixed;
+	height:20px;
+	width:100%;
+	bottom:0px;
+	z-index: 99;
+}
+
+
+@media only screen and (max-width: 750px){
+	/*mobile*/
+	#cubehead{
+		position:absolute;
+		left:50px;
+		top:18px;
+	}
+	#footerL{
+		position:absolute;
+		left:140px;
+		top:20px;
+	}
+	#footerR{
+		position:absolute;
+		left:140px;
+		top:60px;
+	}
+  	.markdown-body{
+  		border: 1px solid #ddd;
+  		background-color: white;
+  		margin: 16px 10px 0px 10px;
+  		padding: 30px;
+	}
+	#container{
+		width:90%;
+		margin:0 auto;
+		background-color: #f5f5f5;
+	}
+	#footerPane{
+		position:absolute;
+		left:50%;
+		margin-left: -200px;
+	}
+	#footer{
+		height:100px;
+	}
+
+}
+
+@media only screen and (min-width: 750px){
+	/*pc*/
+	#cubehead{
+	position:absolute;
+	left:50%;
+	margin:18px 20px 18px -35px  ;
+}
+	#footerR{
+		position:absolute;
+		right:15%;
+		margin-top:45px;
+	}
+	#footerL{
+		position:absolute;
+		left:15%;
+		margin-top:45px;
+	}
+  	.markdown-body{
+ 		border: 1px solid #ddd;
+ 		background-color: white;
+ 		margin: 16px 50px 0px 50px;
+ 		padding: 30px;
+	}
+	#container{
+		width:80%;
+		margin:0 auto;
+		background-color: #f5f5f5;
+	}
+	#footerPane{
+		width:80%;
+		height: 100px;
+		margin:0 auto;
+	}
+}
+
+#copyright{
+	float: right;
+	font-size: 0.5em;
+	margin-right: 10px;
+}
+#discusspane{
+	margin-top: 5px;
+	padding:15px 15px 10px 15px;
+}
+#discusspane .btn{
+	text-decoration: none !important;
+	border:1px solid #4183C4;
+	border-radius: 5px;
+	padding:5px 15px;
+	margin: 5px;
+	color:#4183C4;
+	line-height: 40px;
+	font-family: Arial,Georgia,sans-serif;
+	font-size: 15px;
+}
+#discusspane .btn:hover{
+	color:#82dffb;
+	border: #82dffb 1px solid;
+}
+
+
