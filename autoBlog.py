@@ -67,7 +67,7 @@ def MDtoHTML(mdfile):
 
 def doBlogs(files):
     for f in files:
-        if(f!='blogImg'):
+        if(f!='blogImg' and f!='blogImg_src'):
             t=f.split('.')[1]
             if t=='md':
                 MDtoHTML(f)
@@ -109,7 +109,7 @@ def MDtoJson(file):
 def createBlogJson(files,jsonfile,bottom,top):
     blog=[]
     for f in files:
-        if(f!='blogImg'):
+        if(f!='blogImg' and f!='blogImg_src'):
             t=f.split('.')[1]
             if t=='md':
                 x=int(f.split('.')[0])
