@@ -68,7 +68,7 @@ function responseHandle(blogJson,isError,fromSearch) {
     + '<a href="javascript:doYear(2016)" class="btn">2016</a>' 
     + '<a href="javascript:doYear(2015)" class="btn">2015</a>' 
     + '<a href="blogmd/1.html" class="btn">Contact</a>'
-    + '<a href="rss.xml" class="btn" style="color:#ff9632;border:#ff9632 1px solid;">RSS</a>'
+    // + '<a href="rss.xml" class="btn" style="color:#ff9632;border:#ff9632 1px solid;">RSS</a>'
     + '<div id="copyright">&copy;2015-2016 by DKZ</div></div>';
     document.getElementById('bodyPane').innerHTML = innerbodyPane;
 }

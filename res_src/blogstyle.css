@@ -153,5 +153,8 @@ body{
 	color:#82dffb;
 	border: #82dffb 1px solid;
 }
-
+#footer #rssbtn:hover{
+	color:#ff9632;
+	border:#ff9632 1px solid;
+}
 
