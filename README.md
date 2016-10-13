@@ -6,13 +6,20 @@ by DKZ 2015/9/25
 
 
 
+##Links
 
+###DKZ
 
-### [Enter Home](https://davidkingzyb.github.io)
+- [Blogs](http://davidkingzyb.github.io/blog.html)
+- [WO.IO](http://davidkingzyb.github.io/wo.io)
+- [Home](http://davidkingzyb.github.io/home.html)
+- [CV](http://davidkingzyb.github.io/cv.html)
 
-### [Enter Blog](https://davidkingzyb.github.io/blog.html)
+###Project
 
-##autoBlog.py
+see more details click [github](https://github.com/davidkingzyb) or [my project guide](http://davidkingzyb.github.io/blogmd/17.html)
 
-Automatic parser markdown files to html files
-
+- [WebToolFunction](http://davidkingzyb.github.io/WebToolFunction)
+- [canvasTrigger](http://davidkingzyb.github.io/canvasTrigger/demo/skilltreetest/skilltreetest.html)
+- [aGAINSTnATURE](https://davidkingzyb.github.io/aGAINSTnATURE/)
+- [egretInit](https://davidkingzyb.github.io/egretInit/)
