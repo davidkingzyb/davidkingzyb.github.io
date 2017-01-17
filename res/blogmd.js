@@ -1,1 +1,63 @@
-function wrapCodePre(){for(var e=document.getElementsByTagName("code"),o=0;o<e.length;o++)if(e[o].outerHTML)e[o].outerHTML="<pre>"+e[o].outerHTML+"</pre>";else{var n=document.createElement("pre");n.appendChild(e.cloneNode(!0)),e.parentNode.replaceChild(n,e)}}!function(){var e=document.getElementById("dkzlogo"),o=e.getContext("2d"),n=new DKZLogoClass(o,15);n.drawDKZ("stroke"),setTimeout(n.animateDKZ(),2e3),e.onclick=function(){n.fillrandomDKZ()}}(),window.onload=function(){var e=document.getElementById("footer");window.innerWidth>=750&&(e.onmouseover=function(){e.style.height="100px"},e.onmouseout=function(){document.body.clientHeight-document.body.scrollTop-window.innerHeight>40&&(e.style.height="20px")}),window.onscroll=function(){document.body.clientHeight-document.body.scrollTop-window.innerHeight<40?window.innerWidth>=750&&(e.style.height="100px"):window.innerWidth>=750&&(e.style.height="20px")},wrapCodePre()};
+//////////////////////////////////////
+//  `_______  `__   __  `_______    //  
+//  |   __  \ |  | /  / |___   /    //  
+//  |  |  \  \|  |/  /     /  /     //  
+//  |  |  |  ||   _  \    /  /      //  
+//  |  |__|  ||  | \  \  /  /____   //  
+//  |________/|__|  \__\/________|  //  
+//////////////////////////////////////
+//  2016/01/28 by DKZ https://davidkingzyb.github.io
+
+function wrapCodePre(){
+	var wrap=document.getElementsByTagName('code');
+	for(var i=0;i<wrap.length;i++){
+		if(wrap[i].outerHTML){
+			wrap[i].outerHTML='<pre>'+wrap[i].outerHTML+'</pre>';
+		}else{
+			var tmp = document.createElement('pre');
+    		tmp.appendChild(wrap.cloneNode(true));
+    		wrap.parentNode.replaceChild(tmp, wrap);
+		}
+	}
+}
+
+//dkzlogo
+
+(function(){
+	var canvas=document.getElementById("dkzlogo");
+	var context=canvas.getContext('2d');
+	var DKZlogo=new DKZLogoClass(context,15);
+	DKZlogo.drawDKZ('stroke');
+	setTimeout(DKZlogo.animateDKZ(),2000);
+	canvas.onclick=function(){
+		DKZlogo.fillrandomDKZ();
+	};
+})();
+
+window.onload=function(){
+	var footer=document.getElementById('footer');
+	if(window.innerWidth>=750){
+		footer.onmouseover=function(){
+			footer.style.height='100px';
+		};
+		footer.onmouseout=function(){
+			if(document.body.clientHeight-document.body.scrollTop-window.innerHeight>40){
+				footer.style.height='20px';
+			}
+		};
+	}
+
+	window.onscroll=function(){
+		if(document.body.clientHeight-document.body.scrollTop-window.innerHeight<40){
+			if(window.innerWidth>=750){
+				footer.style.height='100px';
+			}
+		}else{
+			if(window.innerWidth>=750){
+				footer.style.height='20px';
+			}
+		}
+	};
+
+	wrapCodePre();
+};

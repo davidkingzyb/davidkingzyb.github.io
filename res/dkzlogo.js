@@ -1,1 +1,410 @@
-var DKZLogoClass=function(){function o(o,e){this.context=o,this.w=Math.sqrt(3)*e,this.h=e}function e(o,e){o.closePath(),o.fillStyle=e,o.fill(),o.lineWidth=1,o.strokeStyle="#000000",o.stroke(),o.beginPath()}var i={};return i.drawWhite1=function(o,e,i){o.moveTo(1*e,7*i),o.lineTo(1*e,15*i),o.lineTo(2*e,16*i),o.lineTo(2*e,8*i),o.lineTo(1*e,7*i)},i.drawWhite2=function(o,e,i){o.moveTo(1*e,7*i),o.lineTo(3*e,5*i),o.lineTo(3*e,7*i),o.lineTo(2*e,8*i),o.lineTo(1*e,7*i)},i.drawWhite3=function(o,e,i){o.moveTo(3*e,5*i),o.lineTo(3*e,7*i),o.lineTo(4*e,6*i),o.lineTo(3*e,5*i)},i.drawWhite4=function(o,e,i){o.moveTo(4*e,6*i),o.lineTo(3*e,7*i),o.lineTo(4*e,8*i),o.lineTo(4*e,6*i)},i.drawWhite5=function(o,e,i){o.moveTo(4*e,6*i),o.lineTo(5*e,7*i),o.lineTo(4*e,8*i),o.lineTo(4*e,6*i)},i.drawWhite6=function(o,e,i){o.moveTo(5*e,7*i),o.lineTo(4*e,8*i),o.lineTo(4*e,12*i),o.lineTo(5*e,11*i),o.lineTo(5*e,7*i)},i.drawWhite7=function(o,e,i){o.moveTo(4*e,12*i),o.lineTo(3*e,13*i),o.lineTo(4*e,14*i),o.lineTo(4*e,12*i)},i.drawWhite8=function(o,e,i){o.moveTo(4*e,14*i),o.lineTo(2*e,16*i),o.lineTo(2*e,8*i),o.lineTo(3*e,7*i),o.lineTo(4*e,8*i),o.lineTo(3*e,9*i),o.lineTo(3*e,13*i),o.lineTo(4*e,14*i)},i.drawWhite9=function(o,e,i){o.moveTo(4*e,12*i),o.lineTo(5*e,13*i),o.lineTo(5*e,11*i),o.lineTo(4*e,12*i)},i.drawWhite10=function(o,e,i){o.moveTo(4*e,4*i),o.lineTo(5*e,5*i),o.lineTo(5*e,7*i),o.lineTo(4*e,6*i),o.lineTo(4*e,4*i)},i.drawWhite11=function(o,e,i){o.moveTo(4*e,4*i),o.lineTo(5*e,3*i),o.lineTo(6*e,4*i),o.lineTo(5*e,5*i),o.lineTo(4*e,4*i)},i.drawWhite12=function(o,e,i){o.moveTo(5*e,5*i),o.lineTo(6*e,4*i),o.lineTo(6*e,6*i),o.lineTo(7*e,5*i),o.lineTo(7*e,7*i),o.lineTo(8*e,6*i),o.lineTo(8*e,10*i),o.lineTo(7*e,11*i),o.lineTo(7*e,9*i),o.lineTo(6*e,10*i),o.lineTo(6*e,12*i),o.lineTo(5*e,13*i),o.lineTo(5*e,5*i)},i.drawWhite13=function(o,e,i){o.moveTo(6*e,2*i),o.lineTo(7*e,1*i),o.lineTo(8*e,2*i),o.lineTo(7*e,3*i),o.lineTo(6*e,2*i)},i.drawWhite14=function(o,e,i){o.moveTo(7*e,3*i),o.lineTo(8*e,2*i),o.lineTo(8*e,4*i),o.lineTo(7*e,5*i),o.lineTo(7*e,3*i)},i.drawWhite15=function(o,e,i){o.moveTo(8*e,2*i),o.lineTo(9*e,1*i),o.lineTo(12*e,4*i),o.lineTo(11*e,5*i),o.lineTo(8*e,2*i)},i.drawWhite16=function(o,e,i){o.moveTo(12*e,4*i),o.lineTo(12*e,8*i),o.lineTo(11*e,7*i),o.lineTo(11*e,5*i),o.lineTo(12*e,4*i)},i.drawWhite17=function(o,e,i){o.moveTo(12*e,8*i),o.lineTo(11*e,9*i),o.lineTo(11*e,7*i),o.lineTo(12*e,8*i)},i.drawWhite18=function(o,e,i){o.moveTo(11*e,9*i),o.lineTo(10*e,8*i),o.lineTo(11*e,7*i),o.lineTo(11*e,9*i)},i.drawWhite19=function(o,e,i){o.moveTo(10*e,8*i),o.lineTo(11*e,7*i),o.lineTo(11*e,5*i),o.lineTo(8*e,2*i),o.lineTo(8*e,4*i),o.lineTo(10*e,6*i),o.lineTo(10*e,8*i)},i.drawWhite20=function(o,e,i){o.moveTo(8*e,6*i),o.lineTo(8*e,10*i),o.lineTo(11*e,13*i),o.lineTo(11*e,11*i),o.lineTo(10*e,10*i),o.lineTo(10*e,8*i),o.lineTo(8*e,6*i)},i.drawWhite21=function(o,e,i){o.moveTo(11*e,13*i),o.lineTo(12*e,12*i),o.lineTo(12*e,10*i),o.lineTo(11*e,11*i),o.lineTo(11*e,13*i)},i.drawBlack5=function(o,e,i){o.moveTo(12*e,10*i),o.lineTo(11*e,11*i),o.lineTo(10*e,10*i),o.lineTo(11*e,9*i),o.lineTo(12*e,10*i)},i.drawBlack4=function(o,e,i){o.moveTo(9*e,5*i),o.lineTo(8*e,6*i),o.lineTo(10*e,8*i),o.lineTo(10*e,6*i),o.lineTo(9*e,5*i)},i.drawBlack1=function(o,e,i){o.moveTo(3*e,11*i),o.lineTo(4*e,12*i),o.lineTo(3*e,13*i),o.lineTo(3*e,11*i)},i.drawBlack2=function(o,e,i){o.moveTo(6*e,4*i),o.lineTo(7*e,5*i),o.lineTo(6*e,6*i),o.lineTo(6*e,4*i)},i.drawBlack3=function(o,e,i){o.moveTo(7*e,5*i),o.lineTo(8*e,6*i),o.lineTo(7*e,7*i),o.lineTo(7*e,5*i)},i.drawGrey1=function(o,e,i){o.moveTo(4*e,8*i),o.lineTo(4*e,12*i),o.lineTo(3*e,11*i),o.lineTo(3*e,9*i),o.lineTo(4*e,8*i)},i.drawGrey2=function(o,e,i){o.moveTo(6*e,10*i),o.lineTo(7*e,9*i),o.lineTo(7*e,11*i),o.lineTo(6*e,10*i)},i.drawGrey3=function(o,e,i){o.moveTo(6*e,2*i),o.lineTo(6*e,4*i),o.lineTo(7*e,5*i),o.lineTo(7*e,3*i),o.lineTo(6*e,2*i)},i.drawGrey4=function(o,e,i){o.moveTo(11*e,9*i),o.lineTo(10*e,10*i),o.lineTo(10*e,8*i),o.lineTo(11*e,9*i)},o.prototype.drawDKZ=function(o){var e=this.context,n=this.h,l=this.w;e.beginPath();for(var t=1;t<=21;t++)i["drawWhite"+t](e,l,n);e.closePath(),"fill"===o&&(e.fillStyle="#cccccc",e.fill(),e.lineWidth=1,e.strokeStyle="#000000",e.stroke()),"stroke"===o&&(e.lineWidth=1,e.strokeStyle="#ffffff",e.stroke()),e.beginPath();for(var T=1;T<=5;T++)i["drawBlack"+T](e,l,n);e.closePath(),"fill"===o&&(e.fillStyle="#222222",e.fill(),e.lineWidth=1,e.strokeStyle="#000000",e.stroke()),"stroke"===o&&(e.lineWidth=1,e.strokeStyle="#ffffff",e.stroke()),e.beginPath();for(var a=1;a<=4;a++)i["drawGrey"+a](e,l,n);e.closePath(),"fill"===o&&(e.fillStyle="#777777",e.fill(),e.lineWidth=1,e.strokeStyle="#000000",e.stroke()),"stroke"===o&&(e.lineWidth=1,e.strokeStyle="#ffffff",e.stroke())},o.prototype.animateDKZ=function(){function o(){i["drawWhite"+r](t,a,T),e(t,"#cccccc"),r++,r<=21&&setTimeout(arguments.callee,100)}function n(){i["drawGrey"+c](t,a,T),e(t,"#777777"),c++,c<=4&&setTimeout(arguments.callee,700)}function l(){i["drawBlack"+f](t,a,T),e(t,"#222222"),f++,f<=5&&setTimeout(arguments.callee,550)}var t=this.context,T=this.h,a=this.w;t.beginPath();var r=1;o();var c=1;n();var f=1;l()},o.prototype.fillrandomDKZ=function(){function o(){function o(){var o=Math.ceil(255*Math.random()).toString(16),e=Math.ceil(255*Math.random()).toString(16),i=Math.ceil(255*Math.random()).toString(16);1===o.length&&(o+=o),1===e.length&&(e+=e),1===i.length&&(i+=i);var n="#"+o+e+i;return n}var a=Math.random();a<.2?i["drawGrey"+Math.ceil(4*Math.random())](n,t,l):a<.4?i["drawBlack"+Math.ceil(5*Math.random())](n,t,l):i["drawWhite"+Math.ceil(21*Math.random())](n,t,l),e(n,o()),T++,T<50&&setTimeout(arguments.callee,50)}var n=this.context,l=this.h,t=this.w;n.beginPath();var T=0;o();var a=this;setTimeout(function(){a.context.clearRect(0,0,a.w,a.h),a.drawDKZ("fill")},3e3)},o}();
+//////////////////////////////////////
+//  `_______  `__   __  `_______    //  
+//  |   __  \ |  | /  / |___   /    //  
+//  |  |  \  \|  |/  /     /  /     //  
+//  |  |  |  ||   _  \    /  /      //  
+//  |  |__|  ||  | \  \  /  /____   //  
+//  |________/|__|  \__\/________|  //  
+//////////////////////////////////////
+//  2016/01/28 by DKZ https://davidkingzyb.github.io
+
+//=================dkz logo=================
+
+var DKZLogoClass = (function() {
+    function DKZLogoClass(context, scale) {
+        this.context = context;
+        this.w = Math.sqrt(3) * scale;
+        this.h = scale;
+    }
+
+    var d = {};
+    d.drawWhite1 = function(context, w, h) {
+        context.moveTo(1 * w, 7 * h);
+        context.lineTo(1 * w, 15 * h);
+        context.lineTo(2 * w, 16 * h);
+        context.lineTo(2 * w, 8 * h);
+        context.lineTo(1 * w, 7 * h);
+    };
+    d.drawWhite2 = function(context, w, h) {
+        context.moveTo(1 * w, 7 * h);
+        context.lineTo(3 * w, 5 * h);
+        context.lineTo(3 * w, 7 * h);
+        context.lineTo(2 * w, 8 * h);
+        context.lineTo(1 * w, 7 * h);
+    };
+
+    d.drawWhite3 = function(context, w, h) {
+        context.moveTo(3 * w, 5 * h);
+        context.lineTo(3 * w, 7 * h);
+        context.lineTo(4 * w, 6 * h);
+        context.lineTo(3 * w, 5 * h);
+    };
+    d.drawWhite4 = function(context, w, h) {
+        context.moveTo(4 * w, 6 * h);
+        context.lineTo(3 * w, 7 * h);
+        context.lineTo(4 * w, 8 * h);
+        context.lineTo(4 * w, 6 * h);
+    };
+    d.drawWhite5 = function(context, w, h) {
+        context.moveTo(4 * w, 6 * h);
+        context.lineTo(5 * w, 7 * h);
+        context.lineTo(4 * w, 8 * h);
+        context.lineTo(4 * w, 6 * h);
+    };
+    d.drawWhite6 = function(context, w, h) {
+        context.moveTo(5 * w, 7 * h);
+        context.lineTo(4 * w, 8 * h);
+        context.lineTo(4 * w, 12 * h);
+        context.lineTo(5 * w, 11 * h);
+        context.lineTo(5 * w, 7 * h);
+    };
+    d.drawWhite7 = function(context, w, h) {
+        context.moveTo(4 * w, 12 * h);
+        context.lineTo(3 * w, 13 * h);
+        context.lineTo(4 * w, 14 * h);
+        context.lineTo(4 * w, 12 * h);
+    };
+    d.drawWhite8 = function(context, w, h) {
+        context.moveTo(4 * w, 14 * h);
+        context.lineTo(2 * w, 16 * h);
+        context.lineTo(2 * w, 8 * h);
+        context.lineTo(3 * w, 7 * h);
+        context.lineTo(4 * w, 8 * h);
+        context.lineTo(3 * w, 9 * h);
+        context.lineTo(3 * w, 13 * h);
+        context.lineTo(4 * w, 14 * h);
+    };
+    d.drawWhite9 = function(context, w, h) {
+        context.moveTo(4 * w, 12 * h);
+        context.lineTo(5 * w, 13 * h);
+        context.lineTo(5 * w, 11 * h);
+        context.lineTo(4 * w, 12 * h);
+    };
+    d.drawWhite10 = function(context, w, h) {
+        context.moveTo(4 * w, 4 * h);
+        context.lineTo(5 * w, 5 * h);
+        context.lineTo(5 * w, 7 * h);
+        context.lineTo(4 * w, 6 * h);
+        context.lineTo(4 * w, 4 * h);
+    };
+    d.drawWhite11 = function(context, w, h) {
+        context.moveTo(4 * w, 4 * h);
+        context.lineTo(5 * w, 3 * h);
+        context.lineTo(6 * w, 4 * h);
+        context.lineTo(5 * w, 5 * h);
+        context.lineTo(4 * w, 4 * h);
+    };
+    d.drawWhite12 = function(context, w, h) {
+        context.moveTo(5 * w, 5 * h);
+        context.lineTo(6 * w, 4 * h);
+        context.lineTo(6 * w, 6 * h);
+        context.lineTo(7 * w, 5 * h);
+        context.lineTo(7 * w, 7 * h);
+        context.lineTo(8 * w, 6 * h);
+        context.lineTo(8 * w, 10 * h);
+        context.lineTo(7 * w, 11 * h);
+        context.lineTo(7 * w, 9 * h);
+        context.lineTo(6 * w, 10 * h);
+        context.lineTo(6 * w, 12 * h);
+        context.lineTo(5 * w, 13 * h);
+        context.lineTo(5 * w, 5 * h);
+    };
+    d.drawWhite13 = function(context, w, h) {
+        context.moveTo(6 * w, 2 * h);
+        context.lineTo(7 * w, 1 * h);
+        context.lineTo(8 * w, 2 * h);
+        context.lineTo(7 * w, 3 * h);
+        context.lineTo(6 * w, 2 * h);
+    };
+    d.drawWhite14 = function(context, w, h) {
+        context.moveTo(7 * w, 3 * h);
+        context.lineTo(8 * w, 2 * h);
+        context.lineTo(8 * w, 4 * h);
+        context.lineTo(7 * w, 5 * h);
+        context.lineTo(7 * w, 3 * h);
+    };
+    d.drawWhite15 = function(context, w, h) {
+        context.moveTo(8 * w, 2 * h);
+        context.lineTo(9 * w, 1 * h);
+        context.lineTo(12 * w, 4 * h);
+        context.lineTo(11 * w, 5 * h);
+        context.lineTo(8 * w, 2 * h);
+    };
+    d.drawWhite16 = function(context, w, h) {
+        context.moveTo(12 * w, 4 * h);
+        context.lineTo(12 * w, 8 * h);
+        context.lineTo(11 * w, 7 * h);
+        context.lineTo(11 * w, 5 * h);
+        context.lineTo(12 * w, 4 * h);
+    };
+    d.drawWhite17 = function(context, w, h) {
+        context.moveTo(12 * w, 8 * h);
+        context.lineTo(11 * w, 9 * h);
+        context.lineTo(11 * w, 7 * h);
+        context.lineTo(12 * w, 8 * h);
+    };
+    d.drawWhite18 = function(context, w, h) {
+        context.moveTo(11 * w, 9 * h);
+        context.lineTo(10 * w, 8 * h);
+        context.lineTo(11 * w, 7 * h);
+        context.lineTo(11 * w, 9 * h);
+    };
+    d.drawWhite19 = function(context, w, h) {
+        context.moveTo(10 * w, 8 * h);
+        context.lineTo(11 * w, 7 * h);
+        context.lineTo(11 * w, 5 * h);
+        context.lineTo(8 * w, 2 * h);
+        context.lineTo(8 * w, 4 * h);
+        context.lineTo(10 * w, 6 * h);
+        context.lineTo(10 * w, 8 * h);
+    };
+    d.drawWhite20 = function(context, w, h) {
+        context.moveTo(8 * w, 6 * h);
+        context.lineTo(8 * w, 10 * h);
+        context.lineTo(11 * w, 13 * h);
+        context.lineTo(11 * w, 11 * h);
+        context.lineTo(10 * w, 10 * h);
+        context.lineTo(10 * w, 8 * h);
+        context.lineTo(8 * w, 6 * h);
+    };
+    d.drawWhite21 = function(context, w, h) {
+        context.moveTo(11 * w, 13 * h);
+        context.lineTo(12 * w, 12 * h);
+        context.lineTo(12 * w, 10 * h);
+        context.lineTo(11 * w, 11 * h);
+        context.lineTo(11 * w, 13 * h);
+    };
+    d.drawBlack5 = function(context, w, h) {
+        context.moveTo(12 * w, 10 * h);
+        context.lineTo(11 * w, 11 * h);
+        context.lineTo(10 * w, 10 * h);
+        context.lineTo(11 * w, 9 * h);
+        context.lineTo(12 * w, 10 * h);
+    };
+    d.drawBlack4 = function(context, w, h) {
+        context.moveTo(9 * w, 5 * h);
+        context.lineTo(8 * w, 6 * h);
+        context.lineTo(10 * w, 8 * h);
+        context.lineTo(10 * w, 6 * h);
+        context.lineTo(9 * w, 5 * h);
+    };
+    d.drawBlack1 = function(context, w, h) {
+        context.moveTo(3 * w, 11 * h);
+        context.lineTo(4 * w, 12 * h);
+        context.lineTo(3 * w, 13 * h);
+        context.lineTo(3 * w, 11 * h);
+    };
+    d.drawBlack2 = function(context, w, h) {
+        context.moveTo(6 * w, 4 * h);
+        context.lineTo(7 * w, 5 * h);
+        context.lineTo(6 * w, 6 * h);
+        context.lineTo(6 * w, 4 * h);
+    };
+    d.drawBlack3 = function(context, w, h) {
+        context.moveTo(7 * w, 5 * h);
+        context.lineTo(8 * w, 6 * h);
+        context.lineTo(7 * w, 7 * h);
+        context.lineTo(7 * w, 5 * h);
+    };
+    d.drawGrey1 = function(context, w, h) {
+        context.moveTo(4 * w, 8 * h);
+        context.lineTo(4 * w, 12 * h);
+        context.lineTo(3 * w, 11 * h);
+        context.lineTo(3 * w, 9 * h);
+        context.lineTo(4 * w, 8 * h);
+    };
+    d.drawGrey2 = function(context, w, h) {
+        context.moveTo(6 * w, 10 * h);
+        context.lineTo(7 * w, 9 * h);
+        context.lineTo(7 * w, 11 * h);
+        context.lineTo(6 * w, 10 * h);
+    };
+    d.drawGrey3 = function(context, w, h) {
+        context.moveTo(6 * w, 2 * h);
+        context.lineTo(6 * w, 4 * h);
+        context.lineTo(7 * w, 5 * h);
+        context.lineTo(7 * w, 3 * h);
+        context.lineTo(6 * w, 2 * h);
+    };
+    d.drawGrey4 = function(context, w, h) {
+        context.moveTo(11 * w, 9 * h);
+        context.lineTo(10 * w, 10 * h);
+        context.lineTo(10 * w, 8 * h);
+        context.lineTo(11 * w, 9 * h);
+    };
+
+    function fillDKZ(context, color) {
+        context.closePath();
+        context.fillStyle = color;
+        context.fill();
+        context.lineWidth = 1;
+        context.strokeStyle = '#000000';
+        context.stroke();
+        context.beginPath();
+    }
+    DKZLogoClass.prototype.drawDKZ = function(mood) {
+        var context = this.context;
+        var h = this.h;
+        var w = this.w;
+        context.beginPath();
+
+        for (var i = 1; i <= 21; i++) {
+            d['drawWhite' + i](context, w, h);
+        }
+
+        context.closePath();
+
+        if (mood === 'fill') {
+
+            context.fillStyle = '#cccccc';
+            context.fill();
+            context.lineWidth = 1;
+            context.strokeStyle = '#000000';
+            context.stroke();
+        }
+        if (mood === 'stroke') {
+            context.lineWidth = 1;
+            context.strokeStyle = '#ffffff';
+            context.stroke();
+        }
+
+        context.beginPath();
+
+        for (var j = 1; j <= 5; j++) {
+            d['drawBlack' + j](context, w, h);
+        }
+        context.closePath();
+
+        if (mood === 'fill') {
+
+            context.fillStyle = '#222222';
+            context.fill();
+            context.lineWidth = 1;
+            context.strokeStyle = '#000000';
+            context.stroke();
+        }
+        if (mood === 'stroke') {
+            context.lineWidth = 1;
+            context.strokeStyle = '#ffffff';
+            context.stroke();
+        }
+
+        context.beginPath();
+
+        for (var k = 1; k <= 4; k++) {
+            d['drawGrey' + k](context, w, h);
+        }
+
+
+        context.closePath();
+
+        if (mood === 'fill') {
+
+            context.fillStyle = '#777777';
+            context.fill();
+            context.lineWidth = 1;
+            context.strokeStyle = '#000000';
+            context.stroke();
+        }
+
+        if (mood === 'stroke') {
+            context.lineWidth = 1;
+            context.strokeStyle = '#ffffff';
+            context.stroke();
+        }
+
+    };
+    DKZLogoClass.prototype.animateDKZ = function() {
+        var context = this.context;
+        var h = this.h;
+        var w = this.w;
+        context.beginPath();
+        var i = 1;
+
+        function loop() {
+            d['drawWhite' + i](context, w, h);
+            fillDKZ(context, '#cccccc');
+            i++;
+            if (i <= 21) {
+                setTimeout(arguments.callee, 100);
+            }
+        }
+        loop();
+
+        var j = 1;
+
+        function loop2() {
+            d['drawGrey' + j](context, w, h);
+            fillDKZ(context, '#777777');
+            j++;
+            if (j <= 4) {
+                setTimeout(arguments.callee, 700);
+            }
+        }
+        loop2();
+
+        var k = 1;
+
+        function loop3() {
+            d['drawBlack' + k](context, w, h);
+            fillDKZ(context, '#222222');
+            k++;
+            if (k <= 5) {
+                setTimeout(arguments.callee, 550);
+            }
+        }
+        loop3();
+    };
+    DKZLogoClass.prototype.fillrandomDKZ = function() {
+        var context = this.context;
+        var h = this.h;
+        var w = this.w;
+        context.beginPath();
+        var i = 0;
+
+        function loop() {
+            var r = Math.random();
+            if (r < 0.2) {
+                d['drawGrey' + Math.ceil(Math.random() * 4)](context, w, h);
+            } else if (r < 0.4) {
+                d['drawBlack' + Math.ceil(Math.random() * 5)](context, w, h);
+            } else {
+                d['drawWhite' + Math.ceil(Math.random() * 21)](context, w, h);
+            }
+
+            function randomColor() {
+                var r = Math.ceil(Math.random() * 255).toString(16);
+                var g = Math.ceil(Math.random() * 255).toString(16);
+                var b = Math.ceil(Math.random() * 255).toString(16);
+                if (r.length === 1) {
+                    r = r + r;
+                }
+                if (g.length === 1) {
+                    g = g + g;
+                }
+                if (b.length === 1) {
+                    b = b + b;
+                }
+                var colorstr = '#' + r + g + b;
+                return colorstr;
+
+            }
+            fillDKZ(context, randomColor());
+            i++;
+            if (i < 50) {
+                setTimeout(arguments.callee, 50);
+            }
+        }
+        loop();
+        var that = this;
+        setTimeout(function() {
+            that.context.clearRect(0, 0, that.w, that.h);
+            that.drawDKZ('fill');
+        }, 3000);
+        // setTimeout(function() {
+        //     that.drawDKZ('fill');
+        // }, 4000);
+    };
+    return DKZLogoClass;
+
+})();
