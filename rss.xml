@@ -403,13 +403,10 @@ link: http://davidkingzyb.github.io/blogmd/15.html</description></item><item><ti
 link: http://davidkingzyb.github.io/blogmd/16.html</description></item><item><title>Project Guide</title><link>http://davidkingzyb.github.io/blogmd/17.html</link><description>DKZ's Project Guide
 ##List
 
-###Projects
-
-- [**对白**](#对白) movie dialogue search and share website
-
 ###games
 
-- [**CubeX3**](#cubex3) an indie game 
+- [**CubeX3**](#cubex3) indie game 
+- [**山海**](#山海) indie game 
 
 
 ###Github
@@ -417,12 +414,15 @@ link: http://davidkingzyb.github.io/blogmd/16.html</description></item><item><ti
 - [**egretInit**](#egretinit) build egret project quickly 
 - [**canvasTrigger**](#canvastrigger) a canvas chart lib 
 - [**WebToolFunction**](#webtoolfunction) some useful web tool function
+- [**pccold**](#pccold) douyutv script
 - [**commentTitle**](#commenttitle) a python script for make big comment title
 - [**CLIoutput**](#clioutput) a python lib for making a command line interface
 
 
 ###DKZ
 
+- [**WO.IO**](#wo.io) DKZ's IO
+- [**Blog**](#blog) DKZ's Blog
 ...
 
 
