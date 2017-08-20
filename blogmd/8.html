@@ -1,128 +1,208 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>DKZ's Blog</title>
-	<meta charset="utf-8">
-	<meta name="viewport"
-          content="width=device-width,initial-scale=0.8, minimum-scale=0.8, maximum-scale=0.8, user-scalable=no"/>
-	<link rel="stylesheet" type="text/css" href="../res/md.css">
-	<link rel="stylesheet" type="text/css" href="../res/blogstyle.css">
-	<script type="text/javascript" src="../res/dkzlogo.js"></script>
-</head>
-<body>
-	<div id="container">
-		<a href="#top">
-			<div id="headPane">
-			<div id="headmain">
-				<canvas id="dkzlogo" width="340" height="250">
-					<img src="../res/img/dkzlogo.png">
-				</canvas>
-			</div>
-			<script type="text/javascript" src="../res/blogmd.js"></script>
-		</div>
-		</a>
-		<div id="bodyPane"><article class="markdown-body"><h1><a class="anchor" name="isometric-projection"><span class="octicon octicon-link"></span></a>isometric projection</h1>
-<p><strong>等角投影制作egret伪3D游戏</strong></p>
-<p>2015/9/3 by DKZ thx. May</p>
-<p>最近在制作一款类似cubejump的游戏伪3D游戏，接下来cubex3的手机版也要想要使用等角投影制作。</p>
-<p>感谢剑龙写的egret版本的等角投影库，我简单研究了下原理，可能下面的笔记会有错误，具体请参考《Flash ActionScript 3.0 动画高级教程》</p>
-<p>简单的说等角变换是将三维世界的点变化成为二维平面上的坐标来确定对象的位置，在游戏中实现伪3D效果</p>
-<h2><a class="anchor" name="%E5%8E%9F%E7%90%86"><span class="octicon octicon-link"></span></a>原理</h2>
-<p>三维空间点p(px,py,pz)沿y轴旋转angleY沿x轴旋转angleX得到二维平面上点(x,y)和深度z</p>
-<p>x=px<em>cos(angleY)-pz</em>sin(angleY)</p>
-<p>tempz=pz<em>cos(angleY)+px</em>sin(angleY)</p>
-<p>y=py<em>cos(angleX)-tempz</em>sin(angleX)</p>
-<p>z=tempz<em>cos(angleX)+py</em>sin(angleX)</p>
-<p>等角变换angleY=45°，angleX=-30°带入消去tempz再乘2的平方根（变为2等角，w=h*2）</p>
-<p>最终化简为：</p>
-<p>x=px-pz</p>
-<p>y=py<em>1.2247+(px+pz)</em>0.5</p>
-<p>z=(px+pz)<em>0.886-y</em>0.707</p>
-<p>二维变三维将py设为0可计算px，pz</p>
-<p>px=y+x*0.5</p>
-<p>py=0</p>
-<p>pz=y-x*0.5</p>
-<h2><a class="anchor" name="%E4%BD%BF%E7%94%A8"><span class="octicon octicon-link"></span></a>使用</h2>
-<p>可以前往<a href="https://github.com/davidkingzyb/egretInit">egretInit</a>获得这个库</p>
-<p>其中主要包括</p>
-<h3><a class="anchor" name="point3d.ts"><span class="octicon octicon-link"></span></a>Point3D.ts</h3>
-<p>三维空间点类</p>
-<h3><a class="anchor" name="isoutils.ts"><span class="octicon octicon-link"></span></a>IsoUtils.ts</h3>
-<p>换算坐标类</p>
-<h5><a class="anchor" name="isotoscreen%28p3d%3Apoint3d%29%3Aegret.point"><span class="octicon octicon-link"></span></a>isoToScreen(p3d:Point3D):egret.Point</h5>
-<p>三维到二维</p>
-<h5><a class="anchor" name="xyztoxy%28x%2Cy%2Cz%29"><span class="octicon octicon-link"></span></a>XYZToXY(x,y,z)</h5>
-<p>三维到二维</p>
-<h5><a class="anchor" name="screentoiso%28p2d%3Aegret.point%29%3Apoint3d"><span class="octicon octicon-link"></span></a>screenToIso(p2d:egret.Point):Point3D</h5>
-<p>二维到三维</p>
-<h3><a class="anchor" name="isoobject.ts"><span class="octicon octicon-link"></span></a>IsoObject.ts</h3>
-<p>等角投影对象类，所有显示对象都要扩展这个类</p>
-<h5><a class="anchor" name="_px%3Anumber"><span class="octicon octicon-link"></span></a>_px:number</h5>
-<h5><a class="anchor" name="_py%3Anumber"><span class="octicon octicon-link"></span></a>_py:number</h5>
-<h5><a class="anchor" name="_pz%3Anumber"><span class="octicon octicon-link"></span></a>_pz:number</h5>
-<h5><a class="anchor" name="_position%3Apoint3d"><span class="octicon octicon-link"></span></a>_position:Point3D</h5>
-<p>三维坐标和三维点</p>
-<h5><a class="anchor" name="_width%3Anumber"><span class="octicon octicon-link"></span></a>_width:number</h5>
-<h5><a class="anchor" name="_height%3Anumber"><span class="octicon octicon-link"></span></a>_height:number</h5>
-<p>显示对象宽和高用于碰撞检测或显示对象排布</p>
-<h5><a class="anchor" name="_walkable%3Aboolean-%3D-false"><span class="octicon octicon-link"></span></a>_walkable:boolean = false</h5>
-<h5><a class="anchor" name="_vx%3Anumber-%3D-0"><span class="octicon octicon-link"></span></a>_vx:number = 0</h5>
-<h5><a class="anchor" name="_vy%3Anumber-%3D-0"><span class="octicon octicon-link"></span></a>_vy:number = 0</h5>
-<h5><a class="anchor" name="_vz%3Anumber-%3D-0"><span class="octicon octicon-link"></span></a>_vz:number = 0</h5>
-<p>三维空间中三个方向的运动速度</p>
-<h5><a class="anchor" name="updatescreenposition%28%29%3Avoid"><span class="octicon octicon-link"></span></a>updateScreenPosition():void</h5>
-<p>调用IsoUtils计算并更新二维平面中的位置</p>
-<h5><a class="anchor" name="setposition%28x%2Cy%2Cz%29%3Avoid"><span class="octicon octicon-link"></span></a>setPosition(x,y,z):void</h5>
-<p>设置三维空间中位置</p>
-<h5><a class="anchor" name="get-depth%28%29"><span class="octicon octicon-link"></span></a>get depth()</h5>
-<p>获得深度</p>
-<h5><a class="anchor" name="update%28p%3Anumber-%3D-1%29%3Avoid"><span class="octicon octicon-link"></span></a>update(p:number = 1):void</h5>
-<p>更新位置（用在frame loop中）</p>
-<h3><a class="anchor" name="isoworld.ts"><span class="octicon octicon-link"></span></a>IsoWorld.ts</h3>
-<p>等角投影世界</p>
-<h5><a class="anchor" name="_floor%3Aegret.displayobjectcontainer"><span class="octicon octicon-link"></span></a>_floor:egret.DisplayObjectContainer</h5>
-<p>地面容器（不参与深度排序）</p>
-<h5><a class="anchor" name="_world%3Aegret.displayobjectcontainer"><span class="octicon octicon-link"></span></a>_world:egret.DisplayObjectContainer</h5>
-<p>世界容器（参与深度排序）</p>
-<h5><a class="anchor" name="_objects%3Aisoobject%5B%5D-%3D-%5B%5D"><span class="octicon octicon-link"></span></a>_objects:IsoObject[] = []</h5>
-<p>等角变换对象数组</p>
-<h5><a class="anchor" name="addchildtoworld%28child%3Aisoobject%29%3Avoid"><span class="octicon octicon-link"></span></a>addChildToWorld(child:IsoObject):void</h5>
-<p>添加一个等角变换对象到世界中</p>
-<h5><a class="anchor" name="removechildfromworld%28child%3Aisoobject%29%3Avoid"><span class="octicon octicon-link"></span></a>removeChildFromWorld(child:IsoObject):void</h5>
-<p>从世界删除一个等角变换对象</p>
-<h5><a class="anchor" name="addchildtofloor%28child%3Aisoobject%29%3Avoid"><span class="octicon octicon-link"></span></a>addChildToFloor(child:IsoObject):void</h5>
-<p>添加一个等角变换对象到地板中</p>
-<h5><a class="anchor" name="removechildfromfloor%28child%3Aisoobject%29%3Avoid"><span class="octicon octicon-link"></span></a>removeChildFromFloor(child:IsoObject):void</h5>
-<p>从地板删除一个等角变换对象</p>
-<h5><a class="anchor" name="sort%28%29%3Avoid"><span class="octicon octicon-link"></span></a>sort():void</h5>
-<p>对等角变换世界排序</p>
-<h3><a class="anchor" name="bitmaptile.ts"><span class="octicon octicon-link"></span></a>BitmapTile.ts</h3>
-<p>等角投影位图 extends IsoObject</p>
-<p>设计师注意位图使用二等角长宽比1:2（或根据需要定制此类）</p>
-<p>其他还有几个扩展IsoObject的类可以用作参考</p></article><div class="markdown-body" id="discusspane">
-	<a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/8" class="btn">Discuss</a>
-	<a href="../blog.html?year=2017" class="btn">2017</a>
-	<a href="../blog.html?year=2016" class="btn">2016</a>
-	<a href="../blog.html?year=2015" class="btn">2015</a>
-	<a href="../blogmd/1.html" class="btn">Contact</a>
-	<!-- <a href="../rss.xml" class="btn" style="color:#ff9632;border:#ff9632 1px solid;">RSS</a> -->
-	<div id="copyright">&copy;2015-2017 by DKZ</div>
-</div>
-</div>
-	</div>
-<div id="footer">
-	<div id="footerPane">
-		<a href="../blogmd/1.html"><img id="cubehead" src="../res/img/cubehead.png"></a>
-		<div id="footerL">
-			<!-- <a class="btn" href="../home.html">Home</a> -->
-			<a class="btn" href="../wo.io">WO.IO</a><a id="rssbtn" href="../rss.xml" class="btn">RSS</a>
-			
-		</div>
-		<div id="footerR">
-			<a class="btn" href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/8" id="discussbtn">Discuss</a><a class="btn" href="../blog.html">Contents</a><a class="btn" href="#top">Top</a>
-		</div>
 
-	</div>
+<head>
+    <title>DKZ's Blog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=0.8, minimum-scale=0.8, maximum-scale=0.8, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../res/md.css">
+    <link rel="stylesheet" type="text/css" href="../res/blogstyle.css">
+    <script type="text/javascript" src="../res/dkzlogo.js"></script>
+</head>
+
+<body>
+    <div id="footer">
+        <div id="footerPane">
+            <a href="../blogmd/1.html"><img id="cubehead" src="../res/img/cubehead.png"></a>
+            <div id="footerL">
+                <!-- <a class="btn" href="../home.html">Home</a> -->
+                <a class="btn" href="../wo.io">WO.IO</a><a id="rssbtn" href="../rss.xml" class="btn">RSS</a>
+            </div>
+            <div id="footerR">
+                <a class="btn" href="{{discussurl}}" id="discussbtn">Discuss</a><a class="btn" href="../blog.html">Contents</a><a class="btn" href="#top">Top</a>
+            </div>
+        </div>
+    </div>
+    <div id="container">
+        <a href="#top">
+            <div id="headPane">
+                <div id="headmain">
+                    <canvas id="dkzlogo" width="340" height="250">
+                        <img src="../res/img/dkzlogo.png">
+                    </canvas>
+                </div>
+                <script type="text/javascript" src="../res/blogmd.js"></script>
+            </div>
+        </a>
+        <div id="bodyPane">
+<article class="markdown-body"><h1><a class="anchor" name="isometric-projection"><span class="octicon octicon-link"></span></a>isometric projection</h1>
+
+<p><strong>等角投影制作egret伪3D游戏</strong></p>
+
+<p>2015/9/3 by DKZ thx. May</p>
+
+<p>最近在制作一款类似cubejump的游戏伪3D游戏，接下来cubex3的手机版也要想要使用等角投影制作。</p>
+
+<p>感谢剑龙写的egret版本的等角投影库，我简单研究了下原理，可能下面的笔记会有错误，具体请参考《Flash ActionScript 3.0 动画高级教程》</p>
+
+<p>简单的说等角变换是将三维世界的点变化成为二维平面上的坐标来确定对象的位置，在游戏中实现伪3D效果</p>
+
+<h2><a class="anchor" name="%E5%8E%9F%E7%90%86"><span class="octicon octicon-link"></span></a>原理</h2>
+
+<p>三维空间点p(px,py,pz)沿y轴旋转angleY沿x轴旋转angleX得到二维平面上点(x,y)和深度z</p>
+
+<p>x=px<em>cos(angleY)-pz</em>sin(angleY)</p>
+
+<p>tempz=pz<em>cos(angleY)+px</em>sin(angleY)</p>
+
+<p>y=py<em>cos(angleX)-tempz</em>sin(angleX)</p>
+
+<p>z=tempz<em>cos(angleX)+py</em>sin(angleX)</p>
+
+<p>等角变换angleY=45°，angleX=-30°带入消去tempz再乘2的平方根（变为2等角，w=h*2）</p>
+
+<p>最终化简为：</p>
+
+<p>x=px-pz</p>
+
+<p>y=py<em>1.2247+(px+pz)</em>0.5</p>
+
+<p>z=(px+pz)<em>0.886-y</em>0.707</p>
+
+<p>二维变三维将py设为0可计算px，pz</p>
+
+<p>px=y+x*0.5</p>
+
+<p>py=0</p>
+
+<p>pz=y-x*0.5</p>
+
+<h2><a class="anchor" name="%E4%BD%BF%E7%94%A8"><span class="octicon octicon-link"></span></a>使用</h2>
+
+<p>可以前往<a href="https://github.com/davidkingzyb/egretInit">egretInit</a>获得这个库</p>
+
+<p>其中主要包括</p>
+
+<h3><a class="anchor" name="point3d.ts"><span class="octicon octicon-link"></span></a>Point3D.ts</h3>
+
+<p>三维空间点类</p>
+
+<h3><a class="anchor" name="isoutils.ts"><span class="octicon octicon-link"></span></a>IsoUtils.ts</h3>
+
+<p>换算坐标类</p>
+
+<h5><a class="anchor" name="isotoscreen%28p3d%3Apoint3d%29%3Aegret.point"><span class="octicon octicon-link"></span></a>isoToScreen(p3d:Point3D):egret.Point</h5>
+
+<p>三维到二维</p>
+
+<h5><a class="anchor" name="xyztoxy%28x%2Cy%2Cz%29"><span class="octicon octicon-link"></span></a>XYZToXY(x,y,z)</h5>
+
+<p>三维到二维</p>
+
+<h5><a class="anchor" name="screentoiso%28p2d%3Aegret.point%29%3Apoint3d"><span class="octicon octicon-link"></span></a>screenToIso(p2d:egret.Point):Point3D</h5>
+
+<p>二维到三维</p>
+
+<h3><a class="anchor" name="isoobject.ts"><span class="octicon octicon-link"></span></a>IsoObject.ts</h3>
+
+<p>等角投影对象类，所有显示对象都要扩展这个类</p>
+
+<h5><a class="anchor" name="_px%3Anumber"><span class="octicon octicon-link"></span></a>_px:number</h5>
+
+<h5><a class="anchor" name="_py%3Anumber"><span class="octicon octicon-link"></span></a>_py:number</h5>
+
+<h5><a class="anchor" name="_pz%3Anumber"><span class="octicon octicon-link"></span></a>_pz:number</h5>
+
+<h5><a class="anchor" name="_position%3Apoint3d"><span class="octicon octicon-link"></span></a>_position:Point3D</h5>
+
+<p>三维坐标和三维点</p>
+
+<h5><a class="anchor" name="_width%3Anumber"><span class="octicon octicon-link"></span></a>_width:number</h5>
+
+<h5><a class="anchor" name="_height%3Anumber"><span class="octicon octicon-link"></span></a>_height:number</h5>
+
+<p>显示对象宽和高用于碰撞检测或显示对象排布</p>
+
+<h5><a class="anchor" name="_walkable%3Aboolean-%3D-false"><span class="octicon octicon-link"></span></a>_walkable:boolean = false</h5>
+
+<h5><a class="anchor" name="_vx%3Anumber-%3D-0"><span class="octicon octicon-link"></span></a>_vx:number = 0</h5>
+
+<h5><a class="anchor" name="_vy%3Anumber-%3D-0"><span class="octicon octicon-link"></span></a>_vy:number = 0</h5>
+
+<h5><a class="anchor" name="_vz%3Anumber-%3D-0"><span class="octicon octicon-link"></span></a>_vz:number = 0</h5>
+
+<p>三维空间中三个方向的运动速度</p>
+
+<h5><a class="anchor" name="updatescreenposition%28%29%3Avoid"><span class="octicon octicon-link"></span></a>updateScreenPosition():void</h5>
+
+<p>调用IsoUtils计算并更新二维平面中的位置</p>
+
+<h5><a class="anchor" name="setposition%28x%2Cy%2Cz%29%3Avoid"><span class="octicon octicon-link"></span></a>setPosition(x,y,z):void</h5>
+
+<p>设置三维空间中位置</p>
+
+<h5><a class="anchor" name="get-depth%28%29"><span class="octicon octicon-link"></span></a>get depth()</h5>
+
+<p>获得深度</p>
+
+<h5><a class="anchor" name="update%28p%3Anumber-%3D-1%29%3Avoid"><span class="octicon octicon-link"></span></a>update(p:number = 1):void</h5>
+
+<p>更新位置（用在frame loop中）</p>
+
+<h3><a class="anchor" name="isoworld.ts"><span class="octicon octicon-link"></span></a>IsoWorld.ts</h3>
+
+<p>等角投影世界</p>
+
+<h5><a class="anchor" name="_floor%3Aegret.displayobjectcontainer"><span class="octicon octicon-link"></span></a>_floor:egret.DisplayObjectContainer</h5>
+
+<p>地面容器（不参与深度排序）</p>
+
+<h5><a class="anchor" name="_world%3Aegret.displayobjectcontainer"><span class="octicon octicon-link"></span></a>_world:egret.DisplayObjectContainer</h5>
+
+<p>世界容器（参与深度排序）</p>
+
+<h5><a class="anchor" name="_objects%3Aisoobject%5B%5D-%3D-%5B%5D"><span class="octicon octicon-link"></span></a>_objects:IsoObject[] = []</h5>
+
+<p>等角变换对象数组</p>
+
+<h5><a class="anchor" name="addchildtoworld%28child%3Aisoobject%29%3Avoid"><span class="octicon octicon-link"></span></a>addChildToWorld(child:IsoObject):void</h5>
+
+<p>添加一个等角变换对象到世界中</p>
+
+<h5><a class="anchor" name="removechildfromworld%28child%3Aisoobject%29%3Avoid"><span class="octicon octicon-link"></span></a>removeChildFromWorld(child:IsoObject):void</h5>
+
+<p>从世界删除一个等角变换对象</p>
+
+<h5><a class="anchor" name="addchildtofloor%28child%3Aisoobject%29%3Avoid"><span class="octicon octicon-link"></span></a>addChildToFloor(child:IsoObject):void</h5>
+
+<p>添加一个等角变换对象到地板中</p>
+
+<h5><a class="anchor" name="removechildfromfloor%28child%3Aisoobject%29%3Avoid"><span class="octicon octicon-link"></span></a>removeChildFromFloor(child:IsoObject):void</h5>
+
+<p>从地板删除一个等角变换对象</p>
+
+<h5><a class="anchor" name="sort%28%29%3Avoid"><span class="octicon octicon-link"></span></a>sort():void</h5>
+
+<p>对等角变换世界排序</p>
+
+<h3><a class="anchor" name="bitmaptile.ts"><span class="octicon octicon-link"></span></a>BitmapTile.ts</h3>
+
+<p>等角投影位图 extends IsoObject</p>
+
+<p>设计师注意位图使用二等角长宽比1:2（或根据需要定制此类）</p>
+
+<p>其他还有几个扩展IsoObject的类可以用作参考</p>
+</article><div class="markdown-body" id="discusspane">
+    <a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/8" class="btn">Discuss</a>
+    <a href="../blog.html?year=2017" class="btn">2017</a>
+    <a href="../blog.html?year=2016" class="btn">2016</a>
+    <a href="../blog.html?year=2015" class="btn">2015</a>
+    <a href="../blogmd/1.html" class="btn">Contact</a>
+    <!-- <a href="../rss.xml" class="btn" style="color:#ff9632;border:#ff9632 1px solid;">RSS</a> -->
+    <div id="copyright">&copy;2015-2017 by DKZ</div>
+</div>
+</div>
 </div>
 </body>
+
 </html>

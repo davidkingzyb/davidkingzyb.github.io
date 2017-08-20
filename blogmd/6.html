@@ -1,61 +1,90 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>DKZ's Blog</title>
-	<meta charset="utf-8">
-	<meta name="viewport"
-          content="width=device-width,initial-scale=0.8, minimum-scale=0.8, maximum-scale=0.8, user-scalable=no"/>
-	<link rel="stylesheet" type="text/css" href="../res/md.css">
-	<link rel="stylesheet" type="text/css" href="../res/blogstyle.css">
-	<script type="text/javascript" src="../res/dkzlogo.js"></script>
-</head>
-<body>
-	<div id="container">
-		<a href="#top">
-			<div id="headPane">
-			<div id="headmain">
-				<canvas id="dkzlogo" width="340" height="250">
-					<img src="../res/img/dkzlogo.png">
-				</canvas>
-			</div>
-			<script type="text/javascript" src="../res/blogmd.js"></script>
-		</div>
-		</a>
-		<div id="bodyPane"><article class="markdown-body"><h1><a class="anchor" name="canvastrigger"><span class="octicon octicon-link"></span></a>canvasTrigger</h1>
-<p><strong>define objects in canvas and dispatch canvas event to those objects.</strong></p>
-<p>2015/8/3 by DKZ update 2016/1/22</p>
-<p><a href="https://github.com/davidkingzyb/canvasTrigger">github</a></p>
-<h3><a class="anchor" name="list"><span class="octicon octicon-link"></span></a>List</h3>
-<ul>
-<li>
-<p><strong>canvasTrigger</strong> define objects in canvas and dispatch canvas event to those objects.</p>
-</li>
-<li>
-<p><strong>animationsCtrl</strong> nimation controler to control frame animation</p>
-</li>
-</ul>
-<h3><a class="anchor" name="guide"><span class="octicon octicon-link"></span></a>Guide</h3>
-<h4><a class="anchor" name="canvastrigger"><span class="octicon octicon-link"></span></a>canvasTrigger</h4>
-<p>canvasTigger是一个用于在canvas标签内部定义对象并将浏览器的事件分发给这些对象的工具。</p>
-<p>基于observe模式设计。轻量级核心代码仅150行。具有良好扩展性，可自己定义形状、线段、图片等对象。包含简单的基于时间的帧动画和可视化编辑方法。</p>
-<h5><a class="anchor" name="quick-example"><span class="octicon octicon-link"></span></a>quick example</h5>
-<pre><code>var ctcanvas=new ctCanvas('canvas');
-ctcanvas.addTrigger('click');
 
-var a=new ctFillRect(100,100,200,200,'#f00');
+<head>
+    <title>DKZ's Blog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=0.8, minimum-scale=0.8, maximum-scale=0.8, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../res/md.css">
+    <link rel="stylesheet" type="text/css" href="../res/blogstyle.css">
+    <script type="text/javascript" src="../res/dkzlogo.js"></script>
+</head>
+
+<body>
+    <div id="footer">
+        <div id="footerPane">
+            <a href="../blogmd/1.html"><img id="cubehead" src="../res/img/cubehead.png"></a>
+            <div id="footerL">
+                <!-- <a class="btn" href="../home.html">Home</a> -->
+                <a class="btn" href="../wo.io">WO.IO</a><a id="rssbtn" href="../rss.xml" class="btn">RSS</a>
+            </div>
+            <div id="footerR">
+                <a class="btn" href="{{discussurl}}" id="discussbtn">Discuss</a><a class="btn" href="../blog.html">Contents</a><a class="btn" href="#top">Top</a>
+            </div>
+        </div>
+    </div>
+    <div id="container">
+        <a href="#top">
+            <div id="headPane">
+                <div id="headmain">
+                    <canvas id="dkzlogo" width="340" height="250">
+                        <img src="../res/img/dkzlogo.png">
+                    </canvas>
+                </div>
+                <script type="text/javascript" src="../res/blogmd.js"></script>
+            </div>
+        </a>
+        <div id="bodyPane">
+<article class="markdown-body"><h1><a class="anchor" name="canvastrigger"><span class="octicon octicon-link"></span></a>canvasTrigger</h1>
+
+<p><strong>define objects in canvas and dispatch canvas event to those objects.</strong></p>
+
+<p>2015/8/3 by DKZ update 2016/1/22</p>
+
+<p><a href="https://github.com/davidkingzyb/canvasTrigger">github</a></p>
+
+<h3><a class="anchor" name="list"><span class="octicon octicon-link"></span></a>List</h3>
+
+<ul>
+<li><p><strong>canvasTrigger</strong> define objects in canvas and dispatch canvas event to those objects.</p></li>
+<li><p><strong>animationsCtrl</strong> nimation controler to control frame animation</p></li>
+</ul>
+
+<h3><a class="anchor" name="guide"><span class="octicon octicon-link"></span></a>Guide</h3>
+
+<h4><a class="anchor" name="canvastrigger"><span class="octicon octicon-link"></span></a>canvasTrigger</h4>
+
+<p>canvasTigger是一个用于在canvas标签内部定义对象并将浏览器的事件分发给这些对象的工具。</p>
+
+<p>基于observe模式设计。轻量级核心代码仅150行。具有良好扩展性，可自己定义形状、线段、图片等对象。包含简单的基于时间的帧动画和可视化编辑方法。</p>
+
+<h5><a class="anchor" name="quick-example"><span class="octicon octicon-link"></span></a>quick example</h5>
+
+<pre><code>var ctcanvas=new ctCanvas(&#39;canvas&#39;);
+ctcanvas.addTrigger(&#39;click&#39;);
+
+var a=new ctFillRect(100,100,200,200,&#39;#f00&#39;);
 ctcanvas.addObj(a);
 
-a.on('click',function(){
-    console.log('a click');
+a.on(&#39;click&#39;,function(){
+    console.log(&#39;a click&#39;);
 });
 </code></pre>
+
 <h5><a class="anchor" name="ctcanvas"><span class="octicon octicon-link"></span></a>ctCanvas</h5>
+
 <p>canvas对象并包含注册在它上的ctObj对象。并包含注册、解绑、通知、重绘、添加删除初始化ctObj对象方法等。</p>
+
 <h5><a class="anchor" name="ctobj"><span class="octicon octicon-link"></span></a>ctObj</h5>
+
 <p>canvas上的显示对象父类，所有的显示对象都要继承它。包含基本的坐标、长宽属性，绘制和动画方法。可向其注册事件。</p>
+
 <h4><a class="anchor" name="animationsctrl"><span class="octicon octicon-link"></span></a>animationsCtrl</h4>
+
 <p>animationsCtrl是一个基于时间的帧动画控制器。用于控制多个显示对象参与的复杂的动画。采用基于时间的帧动画，可有效解决复杂动画导致的浏览器fps下降造成的游戏卡顿问题。</p>
+
 <h5><a class="anchor" name="quick-example"><span class="octicon octicon-link"></span></a>quick example</h5>
+
 <pre><code>aC_startMainLoop();
 var i=0;
 var anmt=new animationCtrl();
@@ -69,31 +98,21 @@ anmt.on(function(){
     }
 },this);
 </code></pre>
-<h5><a class="anchor" name="animationctrl"><span class="octicon octicon-link"></span></a>animationCtrl</h5>
-<p>控制器类，基于observe模式设计。包含注册解除启动结束暂停继续等方法。</p></article><div class="markdown-body" id="discusspane">
-	<a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/6" class="btn">Discuss</a>
-	<a href="../blog.html?year=2017" class="btn">2017</a>
-	<a href="../blog.html?year=2016" class="btn">2016</a>
-	<a href="../blog.html?year=2015" class="btn">2015</a>
-	<a href="../blogmd/1.html" class="btn">Contact</a>
-	<!-- <a href="../rss.xml" class="btn" style="color:#ff9632;border:#ff9632 1px solid;">RSS</a> -->
-	<div id="copyright">&copy;2015-2017 by DKZ</div>
-</div>
-</div>
-	</div>
-<div id="footer">
-	<div id="footerPane">
-		<a href="../blogmd/1.html"><img id="cubehead" src="../res/img/cubehead.png"></a>
-		<div id="footerL">
-			<!-- <a class="btn" href="../home.html">Home</a> -->
-			<a class="btn" href="../wo.io">WO.IO</a><a id="rssbtn" href="../rss.xml" class="btn">RSS</a>
-			
-		</div>
-		<div id="footerR">
-			<a class="btn" href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/6" id="discussbtn">Discuss</a><a class="btn" href="../blog.html">Contents</a><a class="btn" href="#top">Top</a>
-		</div>
 
-	</div>
+<h5><a class="anchor" name="animationctrl"><span class="octicon octicon-link"></span></a>animationCtrl</h5>
+
+<p>控制器类，基于observe模式设计。包含注册解除启动结束暂停继续等方法。</p>
+</article><div class="markdown-body" id="discusspane">
+    <a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/6" class="btn">Discuss</a>
+    <a href="../blog.html?year=2017" class="btn">2017</a>
+    <a href="../blog.html?year=2016" class="btn">2016</a>
+    <a href="../blog.html?year=2015" class="btn">2015</a>
+    <a href="../blogmd/1.html" class="btn">Contact</a>
+    <!-- <a href="../rss.xml" class="btn" style="color:#ff9632;border:#ff9632 1px solid;">RSS</a> -->
+    <div id="copyright">&copy;2015-2017 by DKZ</div>
+</div>
+</div>
 </div>
 </body>
+
 </html>

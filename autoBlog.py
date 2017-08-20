@@ -10,7 +10,7 @@
 
 import os
 import json
-import markdown
+import misaka
 import re
 import urllib
 import blogconfig
@@ -59,7 +59,7 @@ def addGithubAnchor(htmlstr):
 def MDtoHTML(mdfile):
     print('md to html:'+mdfile)
     md=read('./blogmd/'+mdfile)
-    html=markdown.markdown(md)
+    html=misaka.html(md,extensions=['tables','fenced-code'])
     html=addGithubAnchor(html)
     html=packhtml(html,int(mdfile.split('.')[0]))
     write('./blogmd/'+mdfile[:-3]+'.html',html)

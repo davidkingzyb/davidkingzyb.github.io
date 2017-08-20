@@ -1,103 +1,132 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>DKZ's Blog</title>
-	<meta charset="utf-8">
-	<meta name="viewport"
-          content="width=device-width,initial-scale=0.8, minimum-scale=0.8, maximum-scale=0.8, user-scalable=no"/>
-	<link rel="stylesheet" type="text/css" href="../res/md.css">
-	<link rel="stylesheet" type="text/css" href="../res/blogstyle.css">
-	<script type="text/javascript" src="../res/dkzlogo.js"></script>
+    <title>DKZ's Blog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=0.8, minimum-scale=0.8, maximum-scale=0.8, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../res/md.css">
+    <link rel="stylesheet" type="text/css" href="../res/blogstyle.css">
+    <script type="text/javascript" src="../res/dkzlogo.js"></script>
 </head>
+
 <body>
-	<div id="container">
-		<a href="#top">
-			<div id="headPane">
-			<div id="headmain">
-				<canvas id="dkzlogo" width="340" height="250">
-					<img src="../res/img/dkzlogo.png">
-				</canvas>
-			</div>
-			<script type="text/javascript" src="../res/blogmd.js"></script>
-		</div>
-		</a>
-		<div id="bodyPane"><article class="markdown-body"><h1><a class="anchor" name="paypal%E6%94%AF%E4%BB%98"><span class="octicon octicon-link"></span></a>PayPal支付</h1>
+    <div id="footer">
+        <div id="footerPane">
+            <a href="../blogmd/1.html"><img id="cubehead" src="../res/img/cubehead.png"></a>
+            <div id="footerL">
+                <!-- <a class="btn" href="../home.html">Home</a> -->
+                <a class="btn" href="../wo.io">WO.IO</a><a id="rssbtn" href="../rss.xml" class="btn">RSS</a>
+            </div>
+            <div id="footerR">
+                <a class="btn" href="{{discussurl}}" id="discussbtn">Discuss</a><a class="btn" href="../blog.html">Contents</a><a class="btn" href="#top">Top</a>
+            </div>
+        </div>
+    </div>
+    <div id="container">
+        <a href="#top">
+            <div id="headPane">
+                <div id="headmain">
+                    <canvas id="dkzlogo" width="340" height="250">
+                        <img src="../res/img/dkzlogo.png">
+                    </canvas>
+                </div>
+                <script type="text/javascript" src="../res/blogmd.js"></script>
+            </div>
+        </a>
+        <div id="bodyPane">
+<article class="markdown-body"><h1><a class="anchor" name="paypal%E6%94%AF%E4%BB%98"><span class="octicon octicon-link"></span></a>PayPal支付</h1>
+
 <p><strong>PayPal支付和PayPal-python-SDK使用</strong></p>
+
 <p>2015/8/1 by DKZ</p>
+
 <p>PayPal提供完善的支付接口和<a href="https://developer.paypal.com/docs/">文档支持</a></p>
-<p>在构建一个支付系统之前，首先要在PayPal上注册个人高级账号并创建应用，PayPal会提供唯一的client_id和client_secret供构建支付使用。执行支付之前PayPal要求使用client_id和client_secret获得一个access token，通过这个access token就可以调用PayPal的支付接口了。</p>
+
+<p>在构建一个支付系统之前，首先要在PayPal上注册个人高级账号并创建应用，PayPal会提供唯一的client<em>id和client</em>secret供构建支付使用。执行支付之前PayPal要求使用client<em>id和client</em>secret获得一个access token，通过这个access token就可以调用PayPal的支付接口了。</p>
+
 <p>PayPal支付流程主要分为以下三步：</p>
+
 <ol>
 <li>创建并向PayPal传送一个支付请求。</li>
 <li>跳转到PayPal页面，PayPal引导用户完成支付。</li>
 <li>支付成功跳转至支付处理成功界面或支付失败跳转到支付失败界面。</li>
 </ol>
+
 <h2><a class="anchor" name="paypal-python-sdk%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8"><span class="octicon octicon-link"></span></a>PayPal-python-SDK介绍及使用</h2>
+
 <p>PayPal为开发者提供多种编程语言的SDK，其中封装了PayPal的支付接口，直接供用户调用完成支付。<a href="https://github.com/paypal/PayPal-Python-SDK">查看更多SDK使用方法和说明</a>。</p>
-<h3><a class="anchor" name="%E4%BD%BF%E7%94%A8client_id%E5%92%8Cclient_secret%E8%8E%B7%E5%BE%97access-token%EF%BC%9A"><span class="octicon octicon-link"></span></a>使用client_id和client_secret获得access token：</h3>
-<p><code>import paypalrestsdk
+
+<h3><a class="anchor" name="%E4%BD%BF%E7%94%A8client%3Cem%3Eid%E5%92%8Cclient%3C/em%3Esecret%E8%8E%B7%E5%BE%97access-token%EF%BC%9A"><span class="octicon octicon-link"></span></a>使用client<em>id和client</em>secret获得access token：</h3>
+
+<pre><code>import paypalrestsdk
 paypalrestsdk.configure({
-    'mode': 'sandbox',
-    'client_id': 'AQkquBDf1zctJOWGKWUEtKXm6qVhueUEMvXO_-MCI4DQQ4-LWvkDLIN2fGsd',
-    'client_secret': 'EL1tVxAjhT7cJimnz5-Nsx9k2reTKSVfErNQF-CmrwJgxRtylkGTKlU4RvrX'
-})</code></p>
+    &#39;mode&#39;: &#39;sandbox&#39;,
+    &#39;client_id&#39;: &#39;AQkquBDf1zctJOWGKWUEtKXm6qVhueUEMvXO_-MCI4DQQ4-LWvkDLIN2fGsd&#39;,
+    &#39;client_secret&#39;: &#39;EL1tVxAjhT7cJimnz5-Nsx9k2reTKSVfErNQF-CmrwJgxRtylkGTKlU4RvrX&#39;
+})
+</code></pre>
+
 <p>其中mode为支付环境，可以选择sandbox沙箱环境供测试使用或live环境进行真实的支付请求。服务器会返回一个json类型值：</p>
-<p><code>{"scope":"https://api.paypal.com/v1/payments/.* email https://api.paypal.com/v1/vault/credit-card openid https://uri.paypal.com/services/invoicing https://api.paypal.com/v1/developer/.* https://api.paypal.com/v1/vault/credit-card/.*","access_token":"A015xIqJSci5-6gjr9Z2KrjXi12zYoNML-xH12oi7w15pjg","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":28800}</code></p>
+
+<pre><code>{&quot;scope&quot;:&quot;https://api.paypal.com/v1/payments/.* email https://api.paypal.com/v1/vault/credit-card openid https://uri.paypal.com/services/invoicing https://api.paypal.com/v1/developer/.* https://api.paypal.com/v1/vault/credit-card/.*&quot;,&quot;access_token&quot;:&quot;A015xIqJSci5-6gjr9Z2KrjXi12zYoNML-xH12oi7w15pjg&quot;,&quot;token_type&quot;:&quot;Bearer&quot;,&quot;app_id&quot;:&quot;APP-80W284485P519543T&quot;,&quot;expires_in&quot;:28800}
+</code></pre>
+
 <p>其中包括access token。</p>
+
 <h3><a class="anchor" name="%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%94%AF%E4%BB%98%EF%BC%9A"><span class="octicon octicon-link"></span></a>创建一个支付：</h3>
-<p><code>payment = paypalrestsdk.Payment({
-    "intent": "sale",
-    "payer": {
-        "payment_method": "paypal" 
+
+<pre><code>payment = paypalrestsdk.Payment({
+    &quot;intent&quot;: &quot;sale&quot;,
+    &quot;payer&quot;: {
+        &quot;payment_method&quot;: &quot;paypal&quot; 
     },
-    "redirect_urls": {
-        "return_url": "https://devtools-paypal.com/guide/pay_paypal/python?success=true",
-        "cancel_url": "https://devtools-paypal.com/guide/pay_paypal/python?cancel=true" 
+    &quot;redirect_urls&quot;: {
+        &quot;return_url&quot;: &quot;https://devtools-paypal.com/guide/pay_paypal/python?success=true&quot;,
+        &quot;cancel_url&quot;: &quot;https://devtools-paypal.com/guide/pay_paypal/python?cancel=true&quot; 
     },
-    "transactions": [ {
-        "amount": {
-            "total": "12",
-            "currency": "USD" 
+    &quot;transactions&quot;: [ {
+        &quot;amount&quot;: {
+            &quot;total&quot;: &quot;12&quot;,
+            &quot;currency&quot;: &quot;USD&quot; 
         },
-        "description": "creating a payment" 
+        &quot;description&quot;: &quot;creating a payment&quot; 
     }] 
 })
-payment.create()</code></p>
-<p>向Payment方法中传递intent、payer、transactions参数，其中payer中包含“payment_method”、“return_url”、“cancel_url”分别对应支付方法、支付成功跳转地址、支付失败跳转地址，可使用的支付方法包括“paypal”PayPal账户和“credit_card”信用卡。Transactions中包含具体的支付订单信息，包括“total”总计、“currency”使用货币、“description”描述等。
-payment.create()方法会返回一个boolean值，如果为false则订单创建失败，如果为true服务器会返回json类型的定单详情：</p>
-<p><code>{"id":"PAY-8LP54154BP414945AKUPJ37Y","create_time":"2015-04-03T14:04:47Z","update_time":"2015-04-03T14:04:47Z","state":"created","intent":"sale","payer":{"payment_method":"paypal","payer_info":{"shipping_address":{}}},"transactions":[{"amount":{"total":"12.00","currency":"USD","details":{"subtotal":"12.00"}},"description":"creating a payment","related_resources":[]}],"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAY-8LP54154BP414945AKUPJ37Y","rel":"self","method":"GET"},{"href":"https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&amp;token=EC-15P25616UF798962P","rel":"approval_url","method":"REDIRECT"},{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAY-8LP54154BP414945AKUPJ37Y/execute","rel":"execute","method":"POST"}]}</code></p>
-<p>其中“links”数组中的第二个元组包含应跳转的PayPal页面地址。</p>
-<h3><a class="anchor" name="%E6%94%AF%E4%BB%98%E6%88%90%E5%8A%9F%E5%A4%84%E7%90%86"><span class="octicon octicon-link"></span></a>支付成功处理</h3>
-<p>用户在PayPal页面中完成支付后，PayPal会自动跳转回之前设定的支付请求成功处理页面并将paymentId和payerID以参数的形式传递给页面。</p>
-<p><code>payment = paypalrestsdk.Payment.find("PAY-57363176S1057143SKE2HO3A")
-if payment.execute({"payer_id": "DUFRQ8GWYMJXC"}):
-    print("Payment execute successfully")
-else:
-    print(payment.error)</code></p>
-<p>使用payment.find(paymentId)方法查找订单并使用payment.execute(paymentId,payerID)方法执行订单加入支付用户信息。payment.execute方法会返回一个boolean值，若为true则代表处理成功，false为处理失败。</p></article><div class="markdown-body" id="discusspane">
-	<a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/3" class="btn">Discuss</a>
-	<a href="../blog.html?year=2017" class="btn">2017</a>
-	<a href="../blog.html?year=2016" class="btn">2016</a>
-	<a href="../blog.html?year=2015" class="btn">2015</a>
-	<a href="../blogmd/1.html" class="btn">Contact</a>
-	<!-- <a href="../rss.xml" class="btn" style="color:#ff9632;border:#ff9632 1px solid;">RSS</a> -->
-	<div id="copyright">&copy;2015-2017 by DKZ</div>
-</div>
-</div>
-	</div>
-<div id="footer">
-	<div id="footerPane">
-		<a href="../blogmd/1.html"><img id="cubehead" src="../res/img/cubehead.png"></a>
-		<div id="footerL">
-			<!-- <a class="btn" href="../home.html">Home</a> -->
-			<a class="btn" href="../wo.io">WO.IO</a><a id="rssbtn" href="../rss.xml" class="btn">RSS</a>
-			
-		</div>
-		<div id="footerR">
-			<a class="btn" href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/3" id="discussbtn">Discuss</a><a class="btn" href="../blog.html">Contents</a><a class="btn" href="#top">Top</a>
-		</div>
+payment.create()
+</code></pre>
 
-	</div>
+<p>向Payment方法中传递intent、payer、transactions参数，其中payer中包含“payment<em>method”、“return</em>url”、“cancel<em>url”分别对应支付方法、支付成功跳转地址、支付失败跳转地址，可使用的支付方法包括“paypal”PayPal账户和“credit</em>card”信用卡。Transactions中包含具体的支付订单信息，包括“total”总计、“currency”使用货币、“description”描述等。
+payment.create()方法会返回一个boolean值，如果为false则订单创建失败，如果为true服务器会返回json类型的定单详情：</p>
+
+<pre><code>{&quot;id&quot;:&quot;PAY-8LP54154BP414945AKUPJ37Y&quot;,&quot;create_time&quot;:&quot;2015-04-03T14:04:47Z&quot;,&quot;update_time&quot;:&quot;2015-04-03T14:04:47Z&quot;,&quot;state&quot;:&quot;created&quot;,&quot;intent&quot;:&quot;sale&quot;,&quot;payer&quot;:{&quot;payment_method&quot;:&quot;paypal&quot;,&quot;payer_info&quot;:{&quot;shipping_address&quot;:{}}},&quot;transactions&quot;:[{&quot;amount&quot;:{&quot;total&quot;:&quot;12.00&quot;,&quot;currency&quot;:&quot;USD&quot;,&quot;details&quot;:{&quot;subtotal&quot;:&quot;12.00&quot;}},&quot;description&quot;:&quot;creating a payment&quot;,&quot;related_resources&quot;:[]}],&quot;links&quot;:[{&quot;href&quot;:&quot;https://api.sandbox.paypal.com/v1/payments/payment/PAY-8LP54154BP414945AKUPJ37Y&quot;,&quot;rel&quot;:&quot;self&quot;,&quot;method&quot;:&quot;GET&quot;},{&quot;href&quot;:&quot;https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&amp;token=EC-15P25616UF798962P&quot;,&quot;rel&quot;:&quot;approval_url&quot;,&quot;method&quot;:&quot;REDIRECT&quot;},{&quot;href&quot;:&quot;https://api.sandbox.paypal.com/v1/payments/payment/PAY-8LP54154BP414945AKUPJ37Y/execute&quot;,&quot;rel&quot;:&quot;execute&quot;,&quot;method&quot;:&quot;POST&quot;}]}
+</code></pre>
+
+<p>其中“links”数组中的第二个元组包含应跳转的PayPal页面地址。</p>
+
+<h3><a class="anchor" name="%E6%94%AF%E4%BB%98%E6%88%90%E5%8A%9F%E5%A4%84%E7%90%86"><span class="octicon octicon-link"></span></a>支付成功处理</h3>
+
+<p>用户在PayPal页面中完成支付后，PayPal会自动跳转回之前设定的支付请求成功处理页面并将paymentId和payerID以参数的形式传递给页面。</p>
+
+<pre><code>payment = paypalrestsdk.Payment.find(&quot;PAY-57363176S1057143SKE2HO3A&quot;)
+if payment.execute({&quot;payer_id&quot;: &quot;DUFRQ8GWYMJXC&quot;}):
+    print(&quot;Payment execute successfully&quot;)
+else:
+    print(payment.error)
+</code></pre>
+
+<p>使用payment.find(paymentId)方法查找订单并使用payment.execute(paymentId,payerID)方法执行订单加入支付用户信息。payment.execute方法会返回一个boolean值，若为true则代表处理成功，false为处理失败。</p>
+</article><div class="markdown-body" id="discusspane">
+    <a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/3" class="btn">Discuss</a>
+    <a href="../blog.html?year=2017" class="btn">2017</a>
+    <a href="../blog.html?year=2016" class="btn">2016</a>
+    <a href="../blog.html?year=2015" class="btn">2015</a>
+    <a href="../blogmd/1.html" class="btn">Contact</a>
+    <!-- <a href="../rss.xml" class="btn" style="color:#ff9632;border:#ff9632 1px solid;">RSS</a> -->
+    <div id="copyright">&copy;2015-2017 by DKZ</div>
+</div>
+</div>
 </div>
 </body>
+
 </html>

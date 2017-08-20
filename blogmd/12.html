@@ -1,79 +1,84 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>DKZ's Blog</title>
-	<meta charset="utf-8">
-	<meta name="viewport"
-          content="width=device-width,initial-scale=0.8, minimum-scale=0.8, maximum-scale=0.8, user-scalable=no"/>
-	<link rel="stylesheet" type="text/css" href="../res/md.css">
-	<link rel="stylesheet" type="text/css" href="../res/blogstyle.css">
-	<script type="text/javascript" src="../res/dkzlogo.js"></script>
-</head>
-<body>
-	<div id="container">
-		<a href="#top">
-			<div id="headPane">
-			<div id="headmain">
-				<canvas id="dkzlogo" width="340" height="250">
-					<img src="../res/img/dkzlogo.png">
-				</canvas>
-			</div>
-			<script type="text/javascript" src="../res/blogmd.js"></script>
-		</div>
-		</a>
-		<div id="bodyPane"><article class="markdown-body"><h1><a class="anchor" name="%E9%87%8D%E6%9E%84"><span class="octicon octicon-link"></span></a>重构</h1>
-<p><strong>重构 对白</strong></p>
-<p>2016/1/30 by DKZ</p>
-<p>重构，指的是在程序开发过程中不改变外部行为单就程序内部作出的修改。大概意思就是重做一遍，东西还是相同的东西，功能也没有什么大的变化，样子也和之前差不多。我最近重构了<a href="http://dialogue.sinaapp.com/">对白</a>这个项目。讨论这样做的意义比重构这件事情本身更没有意义。我就直接说对白这个项目吧。</p>
-<p>严格意义上讲<strong>对白</strong>是我的第一个比较完整的项目。一个查询电影对白的网站，用户可以自己上传电影字幕文件。基于这些字幕文件，提供对白关键字的查询。做第一个版本的时候刚学python，射手网也还在，做这个仅仅是因为爱好，妄想达到一种你说一句话我用一句电影对白来回答你的人工智能效果。到当前这个版本的时候编程成为了饭碗，射手网（伪）还在，不知道重构它有什么意义，还是那些功能，人工智能并没有出现，只能回你一句不知所云的对白。</p>
-<p>对白经历了三次比较大的重构。起先是看了一本《head first python》的书作为我的python启蒙照猫画虎写了对白的原型。用的是python内置的CGI拼接字符串来响应请求，自己写了个srt字幕文件的解析器，把字幕文件导入到sqlite中去。</p>
-<p><img alt="duibaiold" src="blogImg/duibaiold.jpg" /></p>
-<p>第二次重构是为了把项目放到sae上去，用了django框架，数据库改用mysql。样子变成了上面这种<a href="http://2.dialogue.sinaapp.com/">复古的形态</a>，加了些ajax的功能。还尝试分词，优化搜索。但是这些优化并没有起到实际的效果，我没办法找到最合适的那句话，也不能把所有的答案都呈现出来。我想仅靠我自己上传的那些电影字幕无法获得足够大的数据库支持这些算法，数据出口太窄也应该背锅。但说到底就算你坐在我面前问我本人，我也很难用唯一的答案回答你，人工智能什么的不更是扯淡呢吗？</p>
-<p><img alt="duibaiwx" src="blogImg/duibaiwx.jpg" /></p>
-<p>第三次，这一次重构，主要是简化，用flask代替django，删去了不必要的功能，换了个样子，虽然复古的看起来还不错，但是想到我要重写这部份样式，我不得不放弃了它，或许等我下次有空再考虑重构这部分吧。srt的文件解析使用了pysrt这个库，有一些乱码的问题有待解决。增加了一个微信的接口，可以关注我的微信号<strong>造物</strong>尝试这个功能。第三版的源码放在<a href="https://github.com/davidkingzyb/duibai">github</a>上对这个项目有兴趣或者需要参考可以前往。</p>
-<p><img alt="zaowuurl" src="blogImg/zaowuurl.jpg" /></p>
-<p>我上传了几部有经典对白的电影字幕</p>
-<ul>
-<li>
-<p>《大话西游》“曾经有一份真诚的爱情放在我面前”</p>
-</li>
-<li>
-<p>《她》这部讲人工智能的，就是这个项目妄想达到的状态 “段落与段落间成了无尽的留白”</p>
-</li>
-<li>
-<p>《一代宗师》“念念不忘必有回响”</p>
-</li>
-<li>
-<p>《重庆森林》王家卫有两部，逼格甚高</p>
-</li>
-<li>
-<p>《七个神经病》</p>
-</li>
-</ul>
-<p>上传字幕文件解析的编码有些问题，暂不欢迎大家上传。喜欢的朋友可以关注一波<strong>造物</strong>，不喜欢请点举报。</p></article><div class="markdown-body" id="discusspane">
-	<a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/12" class="btn">Discuss</a>
-	<a href="../blog.html?year=2017" class="btn">2017</a>
-	<a href="../blog.html?year=2016" class="btn">2016</a>
-	<a href="../blog.html?year=2015" class="btn">2015</a>
-	<a href="../blogmd/1.html" class="btn">Contact</a>
-	<!-- <a href="../rss.xml" class="btn" style="color:#ff9632;border:#ff9632 1px solid;">RSS</a> -->
-	<div id="copyright">&copy;2015-2017 by DKZ</div>
-</div>
-</div>
-	</div>
-<div id="footer">
-	<div id="footerPane">
-		<a href="../blogmd/1.html"><img id="cubehead" src="../res/img/cubehead.png"></a>
-		<div id="footerL">
-			<!-- <a class="btn" href="../home.html">Home</a> -->
-			<a class="btn" href="../wo.io">WO.IO</a><a id="rssbtn" href="../rss.xml" class="btn">RSS</a>
-			
-		</div>
-		<div id="footerR">
-			<a class="btn" href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/12" id="discussbtn">Discuss</a><a class="btn" href="../blog.html">Contents</a><a class="btn" href="#top">Top</a>
-		</div>
 
-	</div>
+<head>
+    <title>DKZ's Blog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=0.8, minimum-scale=0.8, maximum-scale=0.8, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../res/md.css">
+    <link rel="stylesheet" type="text/css" href="../res/blogstyle.css">
+    <script type="text/javascript" src="../res/dkzlogo.js"></script>
+</head>
+
+<body>
+    <div id="footer">
+        <div id="footerPane">
+            <a href="../blogmd/1.html"><img id="cubehead" src="../res/img/cubehead.png"></a>
+            <div id="footerL">
+                <!-- <a class="btn" href="../home.html">Home</a> -->
+                <a class="btn" href="../wo.io">WO.IO</a><a id="rssbtn" href="../rss.xml" class="btn">RSS</a>
+            </div>
+            <div id="footerR">
+                <a class="btn" href="{{discussurl}}" id="discussbtn">Discuss</a><a class="btn" href="../blog.html">Contents</a><a class="btn" href="#top">Top</a>
+            </div>
+        </div>
+    </div>
+    <div id="container">
+        <a href="#top">
+            <div id="headPane">
+                <div id="headmain">
+                    <canvas id="dkzlogo" width="340" height="250">
+                        <img src="../res/img/dkzlogo.png">
+                    </canvas>
+                </div>
+                <script type="text/javascript" src="../res/blogmd.js"></script>
+            </div>
+        </a>
+        <div id="bodyPane">
+<article class="markdown-body"><h1><a class="anchor" name="%E9%87%8D%E6%9E%84"><span class="octicon octicon-link"></span></a>重构</h1>
+
+<p><strong>重构 对白</strong></p>
+
+<p>2016/1/30 by DKZ</p>
+
+<p>重构，指的是在程序开发过程中不改变外部行为单就程序内部作出的修改。大概意思就是重做一遍，东西还是相同的东西，功能也没有什么大的变化，样子也和之前差不多。我最近重构了<a href="http://dialogue.sinaapp.com/">对白</a>这个项目。讨论这样做的意义比重构这件事情本身更没有意义。我就直接说对白这个项目吧。</p>
+
+<p>严格意义上讲<strong>对白</strong>是我的第一个比较完整的项目。一个查询电影对白的网站，用户可以自己上传电影字幕文件。基于这些字幕文件，提供对白关键字的查询。做第一个版本的时候刚学python，射手网也还在，做这个仅仅是因为爱好，妄想达到一种你说一句话我用一句电影对白来回答你的人工智能效果。到当前这个版本的时候编程成为了饭碗，射手网（伪）还在，不知道重构它有什么意义，还是那些功能，人工智能并没有出现，只能回你一句不知所云的对白。</p>
+
+<p>对白经历了三次比较大的重构。起先是看了一本《head first python》的书作为我的python启蒙照猫画虎写了对白的原型。用的是python内置的CGI拼接字符串来响应请求，自己写了个srt字幕文件的解析器，把字幕文件导入到sqlite中去。</p>
+
+<p><img src="blogImg/duibaiold.jpg" alt="duibaiold"></p>
+
+<p>第二次重构是为了把项目放到sae上去，用了django框架，数据库改用mysql。样子变成了上面这种<a href="http://2.dialogue.sinaapp.com/">复古的形态</a>，加了些ajax的功能。还尝试分词，优化搜索。但是这些优化并没有起到实际的效果，我没办法找到最合适的那句话，也不能把所有的答案都呈现出来。我想仅靠我自己上传的那些电影字幕无法获得足够大的数据库支持这些算法，数据出口太窄也应该背锅。但说到底就算你坐在我面前问我本人，我也很难用唯一的答案回答你，人工智能什么的不更是扯淡呢吗？</p>
+
+<p><img src="blogImg/duibaiwx.jpg" alt="duibaiwx"></p>
+
+<p>第三次，这一次重构，主要是简化，用flask代替django，删去了不必要的功能，换了个样子，虽然复古的看起来还不错，但是想到我要重写这部份样式，我不得不放弃了它，或许等我下次有空再考虑重构这部分吧。srt的文件解析使用了pysrt这个库，有一些乱码的问题有待解决。增加了一个微信的接口，可以关注我的微信号<strong>造物</strong>尝试这个功能。第三版的源码放在<a href="https://github.com/davidkingzyb/duibai">github</a>上对这个项目有兴趣或者需要参考可以前往。</p>
+
+<p><img src="blogImg/zaowuurl.jpg" alt="zaowuurl"></p>
+
+<p>我上传了几部有经典对白的电影字幕</p>
+
+<ul>
+<li><p>《大话西游》“曾经有一份真诚的爱情放在我面前”</p></li>
+<li><p>《她》这部讲人工智能的，就是这个项目妄想达到的状态 “段落与段落间成了无尽的留白”</p></li>
+<li><p>《一代宗师》“念念不忘必有回响”</p></li>
+<li><p>《重庆森林》王家卫有两部，逼格甚高</p></li>
+<li><p>《七个神经病》</p></li>
+</ul>
+
+<p>上传字幕文件解析的编码有些问题，暂不欢迎大家上传。喜欢的朋友可以关注一波<strong>造物</strong>，不喜欢请点举报。</p>
+</article><div class="markdown-body" id="discusspane">
+    <a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/12" class="btn">Discuss</a>
+    <a href="../blog.html?year=2017" class="btn">2017</a>
+    <a href="../blog.html?year=2016" class="btn">2016</a>
+    <a href="../blog.html?year=2015" class="btn">2015</a>
+    <a href="../blogmd/1.html" class="btn">Contact</a>
+    <!-- <a href="../rss.xml" class="btn" style="color:#ff9632;border:#ff9632 1px solid;">RSS</a> -->
+    <div id="copyright">&copy;2015-2017 by DKZ</div>
+</div>
+</div>
 </div>
 </body>
+
 </html>

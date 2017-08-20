@@ -1,125 +1,147 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>DKZ's Blog</title>
-	<meta charset="utf-8">
-	<meta name="viewport"
-          content="width=device-width,initial-scale=0.8, minimum-scale=0.8, maximum-scale=0.8, user-scalable=no"/>
-	<link rel="stylesheet" type="text/css" href="../res/md.css">
-	<link rel="stylesheet" type="text/css" href="../res/blogstyle.css">
-	<script type="text/javascript" src="../res/dkzlogo.js"></script>
+    <title>DKZ's Blog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=0.8, minimum-scale=0.8, maximum-scale=0.8, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../res/md.css">
+    <link rel="stylesheet" type="text/css" href="../res/blogstyle.css">
+    <script type="text/javascript" src="../res/dkzlogo.js"></script>
 </head>
+
 <body>
-	<div id="container">
-		<a href="#top">
-			<div id="headPane">
-			<div id="headmain">
-				<canvas id="dkzlogo" width="340" height="250">
-					<img src="../res/img/dkzlogo.png">
-				</canvas>
-			</div>
-			<script type="text/javascript" src="../res/blogmd.js"></script>
-		</div>
-		</a>
-		<div id="bodyPane"><article class="markdown-body"><h1><a class="anchor" name="egretinit"><span class="octicon octicon-link"></span></a>egretInit</h1>
+    <div id="footer">
+        <div id="footerPane">
+            <a href="../blogmd/1.html"><img id="cubehead" src="../res/img/cubehead.png"></a>
+            <div id="footerL">
+                <!-- <a class="btn" href="../home.html">Home</a> -->
+                <a class="btn" href="../wo.io">WO.IO</a><a id="rssbtn" href="../rss.xml" class="btn">RSS</a>
+            </div>
+            <div id="footerR">
+                <a class="btn" href="{{discussurl}}" id="discussbtn">Discuss</a><a class="btn" href="../blog.html">Contents</a><a class="btn" href="#top">Top</a>
+            </div>
+        </div>
+    </div>
+    <div id="container">
+        <a href="#top">
+            <div id="headPane">
+                <div id="headmain">
+                    <canvas id="dkzlogo" width="340" height="250">
+                        <img src="../res/img/dkzlogo.png">
+                    </canvas>
+                </div>
+                <script type="text/javascript" src="../res/blogmd.js"></script>
+            </div>
+        </a>
+        <div id="bodyPane">
+<article class="markdown-body"><h1><a class="anchor" name="egretinit"><span class="octicon octicon-link"></span></a>egretInit</h1>
+
 <p><strong>Build egret project quickly.</strong></p>
+
 <p>2015/8/4 by DKZ update 2016/1/22</p>
+
 <p><a href="https://github.com/davidkingzyb/egretInit">github</a></p>
+
 <p><a href="https://davidkingzyb.github.io/egretInit">demo</a></p>
+
 <h2><a class="anchor" name="list"><span class="octicon octicon-link"></span></a>List</h2>
+
 <ul>
-<li>
-<p><strong>demo</strong> An egret demo game build by egretInit </p>
-</li>
-<li>
-<p><strong>egretInit</strong> An example of egret project base on egret 2.5.x</p>
-</li>
-<li>
-<p><strong>Iso</strong> egret isometric projection library.</p>
-</li>
+<li><p><strong>demo</strong> An egret demo game build by egretInit </p></li>
+<li><p><strong>egretInit</strong> An example of egret project base on egret 2.5.x</p></li>
+<li><p><strong>Iso</strong> egret isometric projection library.</p></li>
 </ul>
-<hr />
+
+<hr>
+
 <ul>
-<li>
-<p><strong>debug.ts</strong> debug egret project</p>
-</li>
-<li>
-<p><strong>tool.ts</strong> egret tools for Initialize standard egret Object</p>
-</li>
-<li>
-<p><strong>component.ts</strong> some useful components like air button</p>
-</li>
-<li>
-<p><strong>animation.ts</strong> Time-based Animation Controler</p>
-</li>
-<li>
-<p><strong>loading.ts</strong> DKZ loading panel </p>
-</li>
-<li>
-<p><strong>resource.py</strong> create resource.json automatically</p>
-</li>
-<li>
-<p><strong>update.py</strong> update egretInit automatically</p>
-</li>
+<li><p><strong>debug.ts</strong> debug egret project</p></li>
+<li><p><strong>tool.ts</strong> egret tools for Initialize standard egret Object</p></li>
+<li><p><strong>component.ts</strong> some useful components like air button</p></li>
+<li><p><strong>animation.ts</strong> Time-based Animation Controler</p></li>
+<li><p><strong>loading.ts</strong> DKZ loading panel </p></li>
+<li><p><strong>resource.py</strong> create resource.json automatically</p></li>
+<li><p><strong>update.py</strong> update egretInit automatically</p></li>
 </ul>
+
 <h2><a class="anchor" name="guide"><span class="octicon octicon-link"></span></a>Guide</h2>
+
 <p>egretInit是一个egret工具库，用于快速构建egret项目。其中包含一些在使用egret引擎制作游戏时常用的方法和工具，也有一部分我自己的可重用的组件，供大家参考使用。</p>
+
 <h3><a class="anchor" name="tool.ts"><span class="octicon octicon-link"></span></a>tool.ts</h3>
+
 <p>tool.ts封装了一些高级方法，包含egret显示对象的初始化方法，常用的游戏碰撞检测，与后台的ajax通讯，屏幕适配，数据保存等方法。</p>
+
 <p>对象初始化方法将egret显示对象的常用属性封装在一个init方法内，减少代码量。在egret2.5+版本egret取消了anchorX／anchorY属性，使用这些方法可以继续在新建对象时使用anchor属性。并且配合resource.py使用可以不再定义texture名称，直接使用素材的文件名作为texture名。</p>
+
 <p>碰撞检测包涵两显示对象的矩形碰撞检测和两点间距离检测。</p>
+
 <p>将egret内置的与后台通讯的方法封装成类似jQuery ajax的方法，方便使用。</p>
+
 <p>更多内容请参考<a href="https://github.com/davidkingzyb/egretInit">github</a>上API文档。</p>
+
 <h5><a class="anchor" name="%E6%B3%A8%EF%BC%9A"><span class="octicon octicon-link"></span></a>注：</h5>
+
 <ul>
 <li>要使用resource.py生成的resource.json定义素材</li>
 <li>stinger中对loading.ts有依赖，可在setWH方法中注释掉或在stinger中修改使用自己的制作人页面</li>
 </ul>
-<h3><a class="anchor" name="debug.ts"><span class="octicon octicon-link"></span></a>debug.ts</h3>
-<p>debug.ts是用于调试游戏方便游戏制作的工具库。包含可视化编辑游戏的方法和单元测试方法。</p>
-<p>可视化编辑可用于显示egret显示对象在屏幕上坐标和范围，并将此对象设置为可移动的。方便在制作游戏时确定显示对象的位置。</p>
-<p>单元测试可在游戏中使用测试某个方法，或在游戏中设置作弊模式。</p>
-<h3><a class="anchor" name="animation.ts"><span class="octicon octicon-link"></span></a>animation.ts</h3>
-<p>animation.ts是一个基于时间的帧动画控制器，用于控制多个显示对象参与的复杂的动画和执行碰撞检测。</p>
-<p>基于observe模式设计。并采用基于时间的帧动画，可有效解决复杂动画导致的浏览器fps下降造成的游戏卡顿问题。</p>
-<h3><a class="anchor" name="component.ts"><span class="octicon octicon-link"></span></a>component.ts</h3>
-<p>component.ts中包含一套空气按钮的UI组件和一个简单的扁平化的结束得分页面。</p>
-<p>效果可在<a href="https://davidkingzyb.github.io/egretInit">demo</a>中查看。</p>
-<h3><a class="anchor" name="loading.ts"><span class="octicon octicon-link"></span></a>loading.ts</h3>
-<p>loading.ts是我个人的游戏loading页面。包含一个用代码生成的DKZ logo。同时也作为制作人页和其他的页面背景使用。仅供参考。</p>
-<h3><a class="anchor" name="resource.py"><span class="octicon octicon-link"></span></a>resource.py</h3>
-<p>一键生成resource.json定义资源的python3脚本。使用素材的文件名作为texture名，可配合tool.ts中的init方法使用。</p>
-<h3><a class="anchor" name="update.py"><span class="octicon octicon-link"></span></a>update.py</h3>
-<p>在src目录下使用更新egretInit。</p>
-<h3><a class="anchor" name="egretinit"><span class="octicon octicon-link"></span></a>egretInit</h3>
-<p>一个egret项目种子文件。</p>
-<h3><a class="anchor" name="demo"><span class="octicon octicon-link"></span></a>demo</h3>
-<p>使用egretInit工具和组建制作的战斗鸡小游戏。<a href="https://davidkingzyb.github.io/egretInit">点击开始</a></p>
-<h3><a class="anchor" name="iso"><span class="octicon octicon-link"></span></a>Iso</h3>
-<p>egret的等角投影工具库具体使用请参考<a href="http://davidkingzyb.github.io/blogmd/8.html">isometric projection</a></p></article><div class="markdown-body" id="discusspane">
-	<a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/4" class="btn">Discuss</a>
-	<a href="../blog.html?year=2017" class="btn">2017</a>
-	<a href="../blog.html?year=2016" class="btn">2016</a>
-	<a href="../blog.html?year=2015" class="btn">2015</a>
-	<a href="../blogmd/1.html" class="btn">Contact</a>
-	<!-- <a href="../rss.xml" class="btn" style="color:#ff9632;border:#ff9632 1px solid;">RSS</a> -->
-	<div id="copyright">&copy;2015-2017 by DKZ</div>
-</div>
-</div>
-	</div>
-<div id="footer">
-	<div id="footerPane">
-		<a href="../blogmd/1.html"><img id="cubehead" src="../res/img/cubehead.png"></a>
-		<div id="footerL">
-			<!-- <a class="btn" href="../home.html">Home</a> -->
-			<a class="btn" href="../wo.io">WO.IO</a><a id="rssbtn" href="../rss.xml" class="btn">RSS</a>
-			
-		</div>
-		<div id="footerR">
-			<a class="btn" href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/4" id="discussbtn">Discuss</a><a class="btn" href="../blog.html">Contents</a><a class="btn" href="#top">Top</a>
-		</div>
 
-	</div>
+<h3><a class="anchor" name="debug.ts"><span class="octicon octicon-link"></span></a>debug.ts</h3>
+
+<p>debug.ts是用于调试游戏方便游戏制作的工具库。包含可视化编辑游戏的方法和单元测试方法。</p>
+
+<p>可视化编辑可用于显示egret显示对象在屏幕上坐标和范围，并将此对象设置为可移动的。方便在制作游戏时确定显示对象的位置。</p>
+
+<p>单元测试可在游戏中使用测试某个方法，或在游戏中设置作弊模式。</p>
+
+<h3><a class="anchor" name="animation.ts"><span class="octicon octicon-link"></span></a>animation.ts</h3>
+
+<p>animation.ts是一个基于时间的帧动画控制器，用于控制多个显示对象参与的复杂的动画和执行碰撞检测。</p>
+
+<p>基于observe模式设计。并采用基于时间的帧动画，可有效解决复杂动画导致的浏览器fps下降造成的游戏卡顿问题。</p>
+
+<h3><a class="anchor" name="component.ts"><span class="octicon octicon-link"></span></a>component.ts</h3>
+
+<p>component.ts中包含一套空气按钮的UI组件和一个简单的扁平化的结束得分页面。</p>
+
+<p>效果可在<a href="https://davidkingzyb.github.io/egretInit">demo</a>中查看。</p>
+
+<h3><a class="anchor" name="loading.ts"><span class="octicon octicon-link"></span></a>loading.ts</h3>
+
+<p>loading.ts是我个人的游戏loading页面。包含一个用代码生成的DKZ logo。同时也作为制作人页和其他的页面背景使用。仅供参考。</p>
+
+<h3><a class="anchor" name="resource.py"><span class="octicon octicon-link"></span></a>resource.py</h3>
+
+<p>一键生成resource.json定义资源的python3脚本。使用素材的文件名作为texture名，可配合tool.ts中的init方法使用。</p>
+
+<h3><a class="anchor" name="update.py"><span class="octicon octicon-link"></span></a>update.py</h3>
+
+<p>在src目录下使用更新egretInit。</p>
+
+<h3><a class="anchor" name="egretinit"><span class="octicon octicon-link"></span></a>egretInit</h3>
+
+<p>一个egret项目种子文件。</p>
+
+<h3><a class="anchor" name="demo"><span class="octicon octicon-link"></span></a>demo</h3>
+
+<p>使用egretInit工具和组建制作的战斗鸡小游戏。<a href="https://davidkingzyb.github.io/egretInit">点击开始</a></p>
+
+<h3><a class="anchor" name="iso"><span class="octicon octicon-link"></span></a>Iso</h3>
+
+<p>egret的等角投影工具库具体使用请参考<a href="http://davidkingzyb.github.io/blogmd/8.html">isometric projection</a></p>
+</article><div class="markdown-body" id="discusspane">
+    <a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/4" class="btn">Discuss</a>
+    <a href="../blog.html?year=2017" class="btn">2017</a>
+    <a href="../blog.html?year=2016" class="btn">2016</a>
+    <a href="../blog.html?year=2015" class="btn">2015</a>
+    <a href="../blogmd/1.html" class="btn">Contact</a>
+    <!-- <a href="../rss.xml" class="btn" style="color:#ff9632;border:#ff9632 1px solid;">RSS</a> -->
+    <div id="copyright">&copy;2015-2017 by DKZ</div>
+</div>
+</div>
 </div>
 </body>
+
 </html>

@@ -40,7 +40,7 @@ link: http://davidkingzyb.github.io/blogmd/0.html</description></item><item><tit
 **WO.IO** [http://davidkingzyb.github.io/wo.io](http://davidkingzyb.github.io/wo.io)...
 
 
-link: http://davidkingzyb.github.io/blogmd/1.html</description></item><item><title>Meiriq Game List</title><link>http://davidkingzyb.github.io/blogmd/10.html</link><description> 我在每日Q做的消遣小游戏 
+link: http://davidkingzyb.github.io/blogmd/1.html</description></item><item><title>Meiriq Game List</title><link>http://davidkingzyb.github.io/blogmd/10.html</link><description>我在每日Q做的消遣小游戏
 以下是我在每日Q制作的无聊小游戏列表，按时间顺序排列。
 
 其中大多使用了[egretInit](https://github.com/davidkingzyb/egretInit)这个工具库以快速构建egret项目
@@ -478,7 +478,7 @@ link: http://davidkingzyb.github.io/blogmd/18.html</description></item><item><ti
 ...
 
 
-link: http://davidkingzyb.github.io/blogmd/19.html</description></item><item><title>CLIoutput</title><link>http://davidkingzyb.github.io/blogmd/20.html</link><description> Command Line Interface Output 两分钟制作装逼PPT 
+link: http://davidkingzyb.github.io/blogmd/19.html</description></item><item><title>CLIoutput</title><link>http://davidkingzyb.github.io/blogmd/20.html</link><description>Command Line Interface Output 两分钟制作装逼PPT
 老大：“哎，把老板演讲用的PPT给我。”
 
 我：“！？”（好像周五的时候老板提过这么一会事，不是让我做吧？周末陪妈妈过节谁还记得这事儿呢。。。）
@@ -620,4 +620,30 @@ link: http://davidkingzyb.github.io/blogmd/24.html</description></item><item><ti
 ...
 
 
-link: http://davidkingzyb.github.io/blogmd/25.html</description></item></channel></rss>
+link: http://davidkingzyb.github.io/blogmd/25.html</description></item><item><title> Deadline</title><link>http://davidkingzyb.github.io/blogmd/26.html</link><description>Your deadline is something birthday.
+写在 ShanHai Campfire 上线前。
+
+今年计划做的一些事。
+
+* Design ShanHai Campfire
+* Restructure ShanHai
+* Blueprint ZaoWu (ShanHai back_end)
+* Chapter 5 Campfire
+* Chat and Npc function
+
+按部就班的完成了。
+
+* **May** Design &amp; Prototype
+* **Jun**  Restructure &amp; Development
+* **Jul** Development &amp; Deploy
+	* **06** shanhaicampfire.com domin
+	* **18** ali server
+* **Aug** Test &amp; IOS project init
+	*  **09** beta version
+*  **Sep** Online
+	* **04**  Birthday
+
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/26.html</description></item></channel></rss>
