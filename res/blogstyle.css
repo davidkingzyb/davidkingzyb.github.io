@@ -104,12 +104,12 @@ body{
 	#footerR{
 		position:absolute;
 		right:15%;
-		margin-top:45px;
+		margin-top:40px;
 	}
 	#footerL{
 		position:absolute;
 		left:15%;
-		margin-top:45px;
+		margin-top:40px;
 	}
   	.markdown-body{
  		border: 1px solid #ddd;
