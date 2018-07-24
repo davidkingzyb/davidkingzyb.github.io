@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DKZ's Blog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=0.8, minimum-scale=0.8, maximum-scale=0.8, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../res/md.css">
+    <link rel="stylesheet" type="text/css" href="../res/blogstyle.css">
+    <script type="text/javascript" src="../res/dkzlogo.js"></script>
+</head>
+
+<body>
+    <div id="footer">
+        <div id="footerPane">
+            <a href="../blogmd/1.html"><img id="cubehead" src="../res/img/cubehead.png"></a>
+            <div id="footerL">
+                <!-- <a class="btn" href="../home.html">Home</a> -->
+                <a class="btn" href="../wo.io">WO.IO</a><a id="rssbtn" href="../rss.xml" class="btn">RSS</a>
+            </div>
+            <div id="footerR">
+                <a class="btn" href="{{discussurl}}" id="discussbtn">Discuss</a><a class="btn" href="../blog.html">Contents</a><a class="btn" href="#top">Top</a>
+            </div>
+        </div>
+    </div>
+    <div id="container">
+        <a href="#top">
+            <div id="headPane">
+                <div id="headmain">
+                    <canvas id="dkzlogo" width="340" height="250">
+                        <img src="../res/img/dkzlogo.png">
+                    </canvas>
+                </div>
+                <script type="text/javascript" src="../res/blogmd.js"></script>
+            </div>
+        </a>
+        <div id="bodyPane">
+<article class="markdown-body"><h1><a class="anchor" name="typescript-mixin"><span class="octicon octicon-link"></span></a>TypeScript Mixin</h1>
+
+<p><strong>When I see a monster that walks like a monster and fight like a monster and roar like a monster, I call that monster a monster.</strong></p>
+
+<p>2018/7/24 by DKZ</p>
+
+<p>想聊聊TypeScript里的多继承，最近一直在做自己的项目，写的比较随意一些。想来我的第一份工作就是用TypeScript写egret游戏。过了几年兜兜转转还是在做这事，对路径的依赖越来越强，大概是写的太多了的缘故吧。</p>
+
+<p>我虽然写的是TypeScript但我是一个JavaScript开发者，TypeScript的官网上有一个叫playground的东西，在左边些ts右边会有对应的js出来。初学者一定不要用这个东西，因为一旦你发现类型声明不会影响到编译成js的结果，你就再也不会写类型声明了。而“类型”是ts的主要功能，会在编译js的时候做类型检查，如果所有的对象都是any的话，就跳过了这步，使用ts就没有意义了。我从不在ts中写类型声明。</p>
+
+<p>本篇的主题，ts的多继承，js是基于原型链的继承，所以ts不允许多继承没有道理。使用下面两个方法直接把那个来源类的方法挂到目标类的原型链上，就可以在目标类使用来源类的方法了。当然你要绕过编译检查可能需要在目标类做一个声明。</p>
+
+<pre><code>    mixinClass(source,target){        
+        Object.getOwnPropertyNames(source.prototype).forEach(name =&gt; {
+            if (name !== &quot;constructor&quot; &amp;&amp; name.indexOf(&#39;__&#39;)&lt;0) {
+                if(target.prototype[name]){
+                    tool.log(&#39;*** targer overload&#39;,name);
+                }
+                target.prototype[name] = source.prototype[name];
+            }
+        });
+    }
+
+    mixinFunction(funcname,source,target){
+         target.prototype[funcname]=source.prototype[funcname];
+    }
+</code></pre>
+
+<p>这只是把方法偷到了目标类上，并不是一个完整的多继承实现，你还需要手工定制目标类的constructor，要避免钻石继承或是实现mro还需要其他的工作要做。但这个方法暂时够用了。</p>
+
+<p>我可以理解ts或是java要禁止多重继承的原因，写几个interface实现它也没什么不可以。我只是懒得把一个东西实现很多次罢了。这可能是我喜欢js和python这类语言的原因。并不是想挑起什么语言战争，我现在觉得使用某个语言是注定的，你的性格和你走过的路决定了你使用什么语言，而且使用这种语言会直接影响到你的编程思维。我可以想象在多人协作大型项目中这些限制能带来一些好处，但很明显这些好处并不是给那些搬砖的人的。可能你会说代码是要写给人看的，我觉得你说的对，也许这是没人看我代码的原因之一吧。哈哈哈</p>
+
+<p>最近经常感觉有人在我身后说:”Dijkstra would not have liked this.”</p>
+
+<p>开头的那句有关鸭式辨型的话改自James Whitecomb Riley的名言。但当你想造一个怪物的时候，不必想那么多，无论怎样它都是一个怪物。</p>
+</article><div class="markdown-body" id="discusspane">
+    <a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/28" class="btn">Discuss</a>
+    <a href="../blog.html?year=2018" class="btn">2018</a>
+    <a href="../blog.html?year=2017" class="btn">2017</a>
+    <a href="../blog.html?year=2016" class="btn">2016</a>
+    <a href="../blog.html?year=2015" class="btn">2015</a>
+    <div id="copyright">&copy;2015-2018 by DKZ</div>
+</div>
+</div>
+</div>
+</body>
+
+</html>

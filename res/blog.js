@@ -9,32 +9,27 @@
 //  2016/01/28 by DKZ https://davidkingzyb.github.io
 var resp;
 var searchJson;
+var blog2018;
 var blog2017;
 var blog2016;
 var blog2015;
 
+
+
 function getBlogJson() {
-    wtf.get('blog2017.json', function(d) {
-        blog2017 = d;
-        var year = wtf.urlquery('year');
-        if (year == null || year == '2017') {
-            doYear(2017);
-        }
-    })
-    wtf.get('blog2016.json', function(d) {
-        blog2016 = d;
-        var year = wtf.urlquery('year');
-        if (year == '2016') {
-            doYear(2016);
-        }
-    });
-    wtf.get('blog2015.json', function(d) {
-        blog2015 = d;
-        var year = wtf.urlquery('year');
-        if (year == '2015') {
-            doYear(2015);
-        }
-    });
+    function _getBlogJson(year){
+        wtf.get('blog'+year+'.json', function(d) {
+            window['blog'+year] = d;
+            var y = wtf.urlquery('year');
+            if (y == null || y == year) {
+                doYear(year);
+            }
+        })
+    }
+    _getBlogJson(2015);
+    _getBlogJson(2016);
+    _getBlogJson(2017);
+    _getBlogJson(2018);
 }
 
 function doYear(year) {
@@ -74,10 +69,11 @@ function responseHandle(blogJson, isError, fromSearch) {
     innerbodyPane = innerbodyPane 
     + '<div class="markdown-body" id="discusspane">' 
     + '<a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/1" class="btn">Discuss</a>' 
+    + '<a href="javascript:doYear(2018)" class="btn">2018</a>' 
     + '<a href="javascript:doYear(2017)" class="btn">2017</a>' 
     + '<a href="javascript:doYear(2016)" class="btn">2016</a>' 
     + '<a href="javascript:doYear(2015)" class="btn">2015</a>' 
-    + '<div id="copyright">&copy;2015-2017 by DKZ</div></div>';
+    + '<div id="copyright">&copy;2015-2018 by DKZ</div></div>';
     document.getElementById('bodyPane').innerHTML = innerbodyPane;
 }
 
@@ -100,7 +96,7 @@ window.onload = function() {
 
     searchbtn.onclick = function() {
 
-        searchJson = blog2015.blog.concat(blog2016.blog).concat(blog2017.blog);
+        searchJson = blog2015.blog.concat(blog2016.blog).concat(blog2017.blog).concat(blog2018.blog);
         console.log(searchJson)
 
 
