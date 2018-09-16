@@ -8,20 +8,15 @@
 //////////////////////////////////////
 //  2016/01/28 by DKZ https://davidkingzyb.github.io
 var resp;
-var searchJson;
-var blog2018;
-var blog2017;
-var blog2016;
-var blog2015;
-
-
+var searchJson=[];
+var blogobj={};
 
 function getBlogJson() {
     function _getBlogJson(year){
         wtf.get('blog'+year+'.json', function(d) {
-            window['blog'+year] = d;
+            blogobj['blog'+year] = d;
             var y = wtf.urlquery('year');
-            if (y == null || y == year) {
+            if (y == year||year==2018) {
                 doYear(year);
             }
         })
@@ -34,7 +29,7 @@ function getBlogJson() {
 
 function doYear(year) {
     var year = year;
-    responseHandle(window['blog' + year]);
+    responseHandle(blogobj['blog' + year]);
 }
 
 function responseHandle(blogJson, isError, fromSearch) {
@@ -96,9 +91,10 @@ window.onload = function() {
 
     searchbtn.onclick = function() {
 
-        searchJson = blog2015.blog.concat(blog2016.blog).concat(blog2017.blog).concat(blog2018.blog);
+        for(var x in blogobj){
+            searchJson=searchJson.concat(blogobj[x].blog)
+        }
         console.log(searchJson)
-
 
         var key = prompt('Search:');
         if (key) {
