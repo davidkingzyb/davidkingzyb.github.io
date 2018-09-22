@@ -47,13 +47,25 @@
 
 <p>本篇的主题，ts的多继承，js是基于原型链的继承，所以ts不允许多继承没有道理。使用下面两个方法直接把那个来源类的方法挂到目标类的原型链上，就可以在目标类使用来源类的方法了。当然你要绕过编译检查可能需要在目标类做一个声明。</p>
 
-<pre><code>    mixinClass(source,target){        
+<pre><code>    mixinClass(source,target){    
+        //public and private function   
         Object.getOwnPropertyNames(source.prototype).forEach(name =&gt; {
             if (name !== &quot;constructor&quot; &amp;&amp; name.indexOf(&#39;__&#39;)&lt;0) {
                 if(target.prototype[name]){
-                    tool.log(&#39;*** targer overload&#39;,name);
-                }
-                target.prototype[name] = source.prototype[name];
+                    console.warn(&#39;*** target already have&#39;,name);
+                }else{
+                    target.prototype[name] = source.prototype[name];
+                } 
+            }
+        });
+        //static function
+        Object.getOwnPropertyNames(source).forEach(name =&gt; {
+            if(&#39;length,name,prototype,arguments,caller&#39;.indexOf(name)&lt;0){
+                if(target[name]){
+                    console.warn(&#39;*** target already have &#39;,name);
+                }else{
+                    target[name] = source[name];
+                } 
             }
         });
     }
