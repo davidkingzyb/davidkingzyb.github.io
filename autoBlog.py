@@ -36,10 +36,11 @@ foot=read('template/foot.html')
 
 def packhtml(htmlbody,id):
     #if id<len(blogconfig.issuearr):
-    o={'discussurl':blogconfig.issueurl+str(id)}#blogconfig.issuearr[id]}
+    # o={'discussurl':blogconfig.issueurl+str(id)}#blogconfig.issuearr[id]}
     #else:
     #    o={'discussurl':'http://davidkingzyb.github.io/blogmd/0.html'}
-    html=head+'<article class="markdown-body">'+htmlbody+'</article>'+render(o,foot)
+    o={'discussurl':'https://github.com/davidkingzyb/davidkingzyb.github.io/issues/1'};
+    html=render(o,head)+'<article class="markdown-body">'+htmlbody+'</article>'+render(o,foot)
     return html
 
 
@@ -78,7 +79,7 @@ RSStemplate="""<?xml version="1.0" encoding="UTF-8"?>
     <title>DKZ's Blog</title>
     <link>http://davidkingzyb.github.io/blog.html</link>
     <description>Tech Program Design 造物</description>
-    <copyright>(c)2015-2018 by DKZ</copyright>
+    <copyright>(c)2015-2019 by DKZ</copyright>
     <image>
         <url>http://davidkingzyb.github.io/res/img/cubehead.png</url>
         <title>DKZ</title>
@@ -132,7 +133,8 @@ doBlogs(files)
 createBlogJson(files,'blog2015',0,10)
 createBlogJson(files,'blog2016',11,24)
 createBlogJson(files,'blog2017',25,27)
-createBlogJson(files,'blog2018',28,99)
+createBlogJson(files,'blog2018',28,30)
+createBlogJson(files,'blog2019',31,99)
 
 createRSSfile('rss')
 

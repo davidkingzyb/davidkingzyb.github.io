@@ -4,39 +4,24 @@
     <title>DKZ's Blog</title>
     <link>http://davidkingzyb.github.io/blog.html</link>
     <description>Tech Program Design 造物</description>
-    <copyright>(c)2015-2018 by DKZ</copyright>
+    <copyright>(c)2015-2019 by DKZ</copyright>
     <image>
         <url>http://davidkingzyb.github.io/res/img/cubehead.png</url>
         <title>DKZ</title>
         <link>http://davidkingzyb.github.io/blog.html</link>
     </image>
-<item><title>INDIE GAME CUBEX3</title><link>http://davidkingzyb.github.io/blogmd/5.html</link><description>有关独立游戏CUBEX3的一切
+<item><title>Welcome to DKZ's Blog</title><link>http://davidkingzyb.github.io/blogmd/0.html</link><description>Welcome
 
-##CUBEX3
+##DKZ
 
-起初神创造天地
+**email.** davidkingzyb@qq.com
 
-地是空虚混沌 渊面黑暗
+**github.** https://github.com/davidkingzyb
 
-神说 要有光
-
-有了光再制作这个世界的
-
-一草一木 动物和人
-
-吃人的怪物和温暖的家
-
-再放入云与风 
-
-让日升日落 时空流转
-
-这个世界就活了
-
-##造物快感
-...
+**weibo &amp; twitter.** @\_\_DKZ\_\_...
 
 
-link: http://davidkingzyb.github.io/blogmd/5.html</description></item><item><title>Contact</title><link>http://davidkingzyb.github.io/blogmd/1.html</link><description>Welcome to DKZ's Home
+link: http://davidkingzyb.github.io/blogmd/0.html</description></item><item><title>Contact</title><link>http://davidkingzyb.github.io/blogmd/1.html</link><description>Welcome to DKZ's Home
 
 
 
@@ -55,44 +40,7 @@ link: http://davidkingzyb.github.io/blogmd/5.html</description></item><item><tit
 **WO.IO** [http://davidkingzyb.github.io/wo.io](http://davidkingzyb.github.io/wo.io)...
 
 
-link: http://davidkingzyb.github.io/blogmd/1.html</description></item><item><title>Welcome to DKZ's Blog</title><link>http://davidkingzyb.github.io/blogmd/0.html</link><description>Welcome
-
-##DKZ
-
-**email.** davidkingzyb@qq.com
-
-**github.** https://github.com/davidkingzyb
-
-**weibo &amp; twitter.** @\_\_DKZ\_\_...
-
-
-link: http://davidkingzyb.github.io/blogmd/0.html</description></item><item><title> egretInit</title><link>http://davidkingzyb.github.io/blogmd/4.html</link><description>Build egret project quickly.
-[github](https://github.com/davidkingzyb/egretInit)
-
-[demo](https://davidkingzyb.github.io/egretInit)
-
-##List
-
-* **demo** An egret demo game build by egretInit 
-
-* **egretInit** An example of egret project base on egret 2.5.x
-
-* **Iso** egret isometric projection library.
-
-***
-
-* **debug.ts** debug egret project
-
-* **tool.ts** egret tools for Initialize standard egret Object
-
-* **component.ts** some useful components like air button
-
-* **animation.ts** Time-based Animation Controler
-
-...
-
-
-link: http://davidkingzyb.github.io/blogmd/4.html</description></item><item><title>Meiriq Game List</title><link>http://davidkingzyb.github.io/blogmd/10.html</link><description>我在每日Q做的消遣小游戏
+link: http://davidkingzyb.github.io/blogmd/1.html</description></item><item><title>Meiriq Game List</title><link>http://davidkingzyb.github.io/blogmd/10.html</link><description>我在每日Q做的消遣小游戏
 以下是我在每日Q制作的无聊小游戏列表，按时间顺序排列。
 
 其中大多使用了[egretInit](https://github.com/davidkingzyb/egretInit)这个工具库以快速构建egret项目
@@ -118,59 +66,15 @@ link: http://davidkingzyb.github.io/blogmd/4.html</description></item><item><tit
 ...
 
 
-link: http://davidkingzyb.github.io/blogmd/10.html</description></item><item><title>作弊玩家</title><link>http://davidkingzyb.github.io/blogmd/9.html</link><description>作弊玩家是我的游戏id，我是作弊玩家。
-作弊玩家是我的游戏id，我是作弊玩家。
+link: http://davidkingzyb.github.io/blogmd/10.html</description></item><item><title>开张</title><link>http://davidkingzyb.github.io/blogmd/2.html</link><description>Hello World!
+我有三年没有写任何东西了，好像没什么可以说的。感觉自己基本上定型了，从无意识的到潜意识的，我能认知和意识到的一切。人生观价值观世界观，前路未来命运。坚信的只会更坚信，怀疑的依旧很怀疑。等待时间修正我的路，穿过未知，立于这世间，Hello World！
 
-连看了两部电影现在睡不着了，趁着这劲写点东西。就从这两部电影开始吧，等了好久网上才找到资源，在我的小房间里一个人捧着笔记本全看了。看完便睡不着了，无法拿着过了季的电影与人分享，电影上映后漫长的等待，变成沉默中的回味。这成为了我的观影习惯，即使去电影院也会等这电影快下了挑个人少的地方看夜场。我不常去电影院，但我通常会留好电影在硬盘里过夜，这已是我对一部电影的最大礼遇和崇高赞美了。
+主要是分享一些自己的作品和一些技术上的问题吧。
 
-在所有艺术家中最拜安迪沃霍尔，他主张波普来自外部，可复制的，普罗大众的。我开始接受一些黑客精神，没有限制的，开源分享的。
-
-可能在为自己的行为辩解，我看网上下载的免费电影，玩盗版游戏。可能很多东西并不是非黑即白的，也可能是毕业后自己就染上了灰度。我不再支持版权之类的东西以谋求思想和行为的统一。
-
-大学学经济，我们吃的面包不是靠面包匠的施舍，是自己挣来的。我承认，但不否认有些人无偿做着很伟大的事情。
-
-说回作弊玩家吧，玩游戏作弊不是因为旅程即终点，恰好是因为过程即奖励。为了能够轻松的体验这个过程，我总是选择简单模式。在做了一堆跳来跳去难度虐心的小游戏后，真的觉得应该开启作弊跳过这个部分。游戏的意义在于体验而不是达到目的。
-
-在游戏作弊和使用盗版之后，我投身了游戏界，做不赚钱又机械重复的游戏。把之前少掏的钱和节省的时间用游戏作品补回来。哈因果得失。
-
-* In the future, everyone will be world-famous for 15 minutes. -Andy Warhol
-
-* I was never embarrassed about asking someone,literally,'What should I paint?'because Pop comes from outside.and how is asking someone for ideas any different from looking for them in a magazine? -Andy Warhol
-
-* All the Cokes are the same and all the Coke are good. Liz Taylor knows it, the President knows it, the bum knows it, and you know it. -Andy Warhol
-
-* Access to computers—and anything which might teach you something about the way the world works—should be unlimited and total. Always yield to the Hands-On Imperative! -The hacker ethics #1
-
-...
+可以通过底部contact联系我...
 
 
-link: http://davidkingzyb.github.io/blogmd/9.html</description></item><item><title> isometric projection</title><link>http://davidkingzyb.github.io/blogmd/8.html</link><description>等角投影制作egret伪3D游戏
-最近在制作一款类似cubejump的游戏伪3D游戏，接下来cubex3的手机版也要想要使用等角投影制作。
-
-感谢剑龙写的egret版本的等角投影库，我简单研究了下原理，可能下面的笔记会有错误，具体请参考《Flash ActionScript 3.0 动画高级教程》
-
-简单的说等角变换是将三维世界的点变化成为二维平面上的坐标来确定对象的位置，在游戏中实现伪3D效果
-
-##原理
-
-三维空间点p(px,py,pz)沿y轴旋转angleY沿x轴旋转angleX得到二维平面上点(x,y)和深度z
-
-x=px*cos(angleY)-pz*sin(angleY)
-
-tempz=pz*cos(angleY)+px*sin(angleY)
-
-y=py*cos(angleX)-tempz*sin(angleX)
-
-z=tempz*cos(angleX)+py*sin(angleX)
-
-等角变换angleY=45°，angleX=-30°带入消去tempz再乘2的平方根（变为2等角，w=h*2）
-
-最终化简为：
-
-...
-
-
-link: http://davidkingzyb.github.io/blogmd/8.html</description></item><item><title>PayPal支付</title><link>http://davidkingzyb.github.io/blogmd/3.html</link><description>PayPal支付和PayPal-python-SDK使用
+link: http://davidkingzyb.github.io/blogmd/2.html</description></item><item><title>PayPal支付</title><link>http://davidkingzyb.github.io/blogmd/3.html</link><description>PayPal支付和PayPal-python-SDK使用
 PayPal提供完善的支付接口和[文档支持](https://developer.paypal.com/docs/)
 
 在构建一个支付系统之前，首先要在PayPal上注册个人高级账号并创建应用，PayPal会提供唯一的client_id和client_secret供构建支付使用。执行支付之前PayPal要求使用client_id和client_secret获得一个access token，通过这个access token就可以调用PayPal的支付接口了。
@@ -196,33 +100,59 @@ paypalrestsdk.configure({
 ...
 
 
-link: http://davidkingzyb.github.io/blogmd/3.html</description></item><item><title>DKZ's HOME</title><link>http://davidkingzyb.github.io/blogmd/7.html</link><description>改版我的主页
+link: http://davidkingzyb.github.io/blogmd/3.html</description></item><item><title> egretInit</title><link>http://davidkingzyb.github.io/blogmd/4.html</link><description>Build egret project quickly.
+[github](https://github.com/davidkingzyb/egretInit)
 
-特别热衷于做这件事，展示分享或者说是炫耀吧(没错就是这么自恋！我最帅！
+[demo](https://davidkingzyb.github.io/egretInit)
 
-说真的做这件事的意义真不大，更多是为了自己开心从单调的工作中跳出来。至于多少人能看到？是否真的可以改变世界？我会不会红？真的说不准
+##List
 
-update 2016/1/24 想做一个CUI的界面。也许这会是未来，说未来也许大了点我并不能够将世界扛在肩上，只管去做，也许是一个程序员的一厢情愿吧。总之最近在学些新东西，大概是flask和tornado选一个，再看看react吧。
+* **demo** An egret demo game build by egretInit 
 
-##介绍一下改版内容
+* **egretInit** An example of egret project base on egret 2.5.x
 
-* 从sae转移到了github page上，除了发布更新方便之外也希望新的平台有更多人关注吧。
+* **Iso** egret isometric projection library.
 
-* 用了新的主题“阴·阳”全是黑白灰，真的做的东西越来越素了，是长期没有性生活变得性冷淡了吧。
+***
 
-* 使用了自己的全屏滚动代替之前使用的fullpage
+* **debug.ts** debug egret project
 
-* 在之前的基础上重新排了内容。把之前比较混乱的作品和经历部分整合到了一个页面中。使用timeline切换展示，精简内容，更有条理，易于扩展。
+* **tool.ts** egret tools for Initialize standard egret Object
 
-* 使用canvas重构了技能树部分，为此写了个工具canvasTrigger，重置了自己的技能点，也是给未来的学习提供一个方向吧。
+* **component.ts** some useful components like air button
 
-* contact页用了cubex3中的css-transform+css-spirit和之前设想的使用webgl不太一样，这块慢慢学吧。
+* **animation.ts** Time-based Animation Controler
 
-* 主页也偷懒用了blog的开头，效果还不错。之后可能会用我的头像代替吧，我这么帅。
 ...
 
 
-link: http://davidkingzyb.github.io/blogmd/7.html</description></item><item><title>canvasTrigger</title><link>http://davidkingzyb.github.io/blogmd/6.html</link><description>define objects in canvas and dispatch canvas event to those objects.
+link: http://davidkingzyb.github.io/blogmd/4.html</description></item><item><title>INDIE GAME CUBEX3</title><link>http://davidkingzyb.github.io/blogmd/5.html</link><description>有关独立游戏CUBEX3的一切
+
+##CUBEX3
+
+起初神创造天地
+
+地是空虚混沌 渊面黑暗
+
+神说 要有光
+
+有了光再制作这个世界的
+
+一草一木 动物和人
+
+吃人的怪物和温暖的家
+
+再放入云与风 
+
+让日升日落 时空流转
+
+这个世界就活了
+
+##造物快感
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/5.html</description></item><item><title>canvasTrigger</title><link>http://davidkingzyb.github.io/blogmd/6.html</link><description>define objects in canvas and dispatch canvas event to those objects.
 [github](https://github.com/davidkingzyb/canvasTrigger)
 
 ###List
@@ -248,107 +178,111 @@ canvasTigger是一个用于在canvas标签内部定义对象并将浏览器的�
 ...
 
 
-link: http://davidkingzyb.github.io/blogmd/6.html</description></item><item><title>开张</title><link>http://davidkingzyb.github.io/blogmd/2.html</link><description>Hello World!
-我有三年没有写任何东西了，好像没什么可以说的。感觉自己基本上定型了，从无意识的到潜意识的，我能认知和意识到的一切。人生观价值观世界观，前路未来命运。坚信的只会更坚信，怀疑的依旧很怀疑。等待时间修正我的路，穿过未知，立于这世间，Hello World！
+link: http://davidkingzyb.github.io/blogmd/6.html</description></item><item><title>DKZ's HOME</title><link>http://davidkingzyb.github.io/blogmd/7.html</link><description>改版我的主页
 
-主要是分享一些自己的作品和一些技术上的问题吧。
+特别热衷于做这件事，展示分享或者说是炫耀吧(没错就是这么自恋！我最帅！
 
-可以通过底部contact联系我...
+说真的做这件事的意义真不大，更多是为了自己开心从单调的工作中跳出来。至于多少人能看到？是否真的可以改变世界？我会不会红？真的说不准
 
+update 2016/1/24 想做一个CUI的界面。也许这会是未来，说未来也许大了点我并不能够将世界扛在肩上，只管去做，也许是一个程序员的一厢情愿吧。总之最近在学些新东西，大概是flask和tornado选一个，再看看react吧。
 
-link: http://davidkingzyb.github.io/blogmd/2.html</description></item><item><title>波普</title><link>http://davidkingzyb.github.io/blogmd/18.html</link><description>Pop.WO &amp; Pop Art &amp; Andy Warhol
+##介绍一下改版内容
 
-最近给WO加了PopWO和PopShow两个命令。会随机的给WO上色，有那么一点波普的意思。大概是如下效果，大家可以访问[http://davidkingzyb.github.io/wo.io](http://davidkingzyb.github.io/wo.io)尝试。所以这篇的主题是波普艺术和安迪沃霍尔。
+* 从sae转移到了github page上，除了发布更新方便之外也希望新的平台有更多人关注吧。
 
+* 用了新的主题“阴·阳”全是黑白灰，真的做的东西越来越素了，是长期没有性生活变得性冷淡了吧。
 
-##Pop Art &amp; Andy Warhol
+* 使用了自己的全屏滚动代替之前使用的fullpage
 
-在所有艺术家中最拜安迪沃霍尔，他在半个世纪前重新定义了绘画，从此罐头和广告也值得一画。这些带有视觉冲击力的罐头，广告被复制和生产出来，连同他的思想，哲学被重新定义和接受。
+* 在之前的基础上重新排了内容。把之前比较混乱的作品和经历部分整合到了一个页面中。使用timeline切换展示，精简内容，更有条理，易于扩展。
 
-在此之前绘画应该是独一无二的精英产物，任何复制和与大众相关的都会缩减其价值。但波普的价值没有被缩减，波普本生即是普罗大众和可复制的，而它的价值并不在此，它的价值在于与生俱来的平等自由，对于外部的接受和热爱和对现实和欲望的诚实坦然。
+* 使用canvas重构了技能树部分，为此写了个工具canvasTrigger，重置了自己的技能点，也是给未来的学习提供一个方向吧。
 
+* contact页用了cubex3中的css-transform+css-spirit和之前设想的使用webgl不太一样，这块慢慢学吧。
 
-- In the future, everyone will be world-famous for 15 minutes. 
-
-红。如果我有十万粉我将把这句话纹在手臂上。这种可能性微乎其微，但我依然对这句话坚信不移。这句话的重点在每一个人，每一个人都有这种可能，成名15分钟。这个预言在上个世纪就已经被实现，安迪沃霍尔的新格言是"In 15 minutes everybody will be famous."如今看来这个也已经实现了。虽然安迪沃霍尔和波普艺术已经过时了，但不可否认的是它的确流行过，而且相当出名，十五分钟已经足够。
-
-
-- You can be watching TV and see Coca-Cola, and you can know that the President drinks Coke, Liz Taylor drinks Coke, and just think, you can drink Coke, too. A Coke is a Coke and no amount of money can get you a better Coke than the one the bum on the corner is drinking. All the Cokes are the same and all the Cokes are good. Liz Taylor knows it, the President knows it, the bum knows it, and you know it.
-
-平等。从一开始波普就是普罗大众的。我想中文翻译波普也有普通普及的意思。*如果你想知道安迪沃霍尔的一切，只须看看他的画，电影和他的外表，这就是安迪沃霍尔，没有什么隐藏其后。*这种艺术很容易被大众所接受，它描绘的是生活中随处可见的商品。金宝汤罐头，包装盒子，绝对伏特加，美元钞票，名人头像，这些东西没什么特别的。你无法通过多花钱买到更好的可乐，可乐都一样，无论是总统还是乞丐，可乐都一样。
-
-
-- I was never embarrassed about asking someone, literally, "What should I paint?" because Pop comes from outside. and how is asking someone for ideas any different from looking for them in a magazine?
+* 主页也偷懒用了blog的开头，效果还不错。之后可能会用我的头像代替吧，我这么帅。
 ...
 
 
-link: http://davidkingzyb.github.io/blogmd/18.html</description></item><item><title> Licenses &amp; Standards</title><link>http://davidkingzyb.github.io/blogmd/19.html</link><description>开源许可证 &amp; GPL LGPL BSD MIT Apache &amp; commentTitle
-给[commentTitle](https://github.com/davidkingzyb/commentTitle)添加了选择开源许可证功能，可以在文件头部选择添加 GPL LGPL BSD MIT Apache 许可证其中之一了。
+link: http://davidkingzyb.github.io/blogmd/7.html</description></item><item><title> isometric projection</title><link>http://davidkingzyb.github.io/blogmd/8.html</link><description>等角投影制作egret伪3D游戏
+最近在制作一款类似cubejump的游戏伪3D游戏，接下来cubex3的手机版也要想要使用等角投影制作。
 
-开源许可证是用来声明权利的，通过这个声明软件被赋予自由。
+感谢剑龙写的egret版本的等角投影库，我简单研究了下原理，可能下面的笔记会有错误，具体请参考《Flash ActionScript 3.0 动画高级教程》
 
-本来这是一篇科普文章，关于[自由软件运动](https://zh.wikipedia.org/wiki/%E8%87%AA%E7%94%B1%E8%BD%AF%E4%BB%B6%E8%BF%90%E5%8A%A8)，[开源软件](https://zh.wikipedia.org/wiki/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6)，Copyright和[Copyleft](https://zh.wikipedia.org/wiki/Copyleft)等。但我发现我无法抛弃自己的立场中立的看待这件事，所以这里只谈如何使用它。
+简单的说等角变换是将三维世界的点变化成为二维平面上的坐标来确定对象的位置，在游戏中实现伪3D效果
 
-来自[Paul Miller](http://paulmillr.com/posts/simple-description-of-popular-software-licenses/)的图帮助我们选择开源许可证。
+##原理
 
+三维空间点p(px,py,pz)沿y轴旋转angleY沿x轴旋转angleX得到二维平面上点(x,y)和深度z
 
-	                           All linked works must    _Y_ GPL
-	                           be issued under the     |
-	                       _Y_ same or compatible   ---| 
-	                      |    license                 |_N_ LGPL
-	                      |
-	Modified versions     |
-	must be issued under--|   Every file must             _Y_ Apache
-	the same license      |   contain all information    |
-	                      |   about changes, copyrights  | 
-	                      |_N_and patents.             --|         
-	                          Patent protection          |                        _Y_ BSD
- 	                                                     |   Prohibit use of     |
-	                                                     |_N_copyright holder's--|
-...
+x=px*cos(angleY)-pz*sin(angleY)
 
+tempz=pz*cos(angleY)+px*sin(angleY)
 
-link: http://davidkingzyb.github.io/blogmd/19.html</description></item><item><title>Life Cycle</title><link>http://davidkingzyb.github.io/blogmd/16.html</link><description>生命周期
-受精，孕育，出生，成长，老去，死亡。世间万物都在这个循环里，被时间推动着，我想没什么可以逃出去，软件也一样。SDLC系统开发生命周期，开发，上线，经历版本迭代，运营维护，重构，但最终它会死亡。下线，废弃，遗忘。
+y=py*cos(angleX)-tempz*sin(angleX)
 
-今天是个下雨天，我下线了对白和CubeX3的数据库服务。我本不想谈论这些，这儿真的太多负能量了。这并不是我的本意，我想从积极的层面去理解这件事。但并不能够，如同这世界上大多数事情一样，它没什么积极影响，也无需消极的看待它。它就这么发生了，没什么所谓。
+z=tempz*cos(angleX)+py*sin(angleX)
 
-我觉的这不是消极，天地不仁以万物为刍狗。从造物者的角度来看，不是针对谁，在座的各位都是狗。作为制作这个东西的人，我也尝试把这件事看开点。事实上，CubeX3会变为本地保存，只是获得宇宙成就时无法和其他玩家互动了。对白可能无法使用但还是可以在github上找到它的源码。
+等角变换angleY=45°，angleX=-30°带入消去tempz再乘2的平方根（变为2等角，w=h*2）
 
-总之这件事没什么影响。但还是觉得有点对不起我的玩家和造物的关注者。我记得小时候玩过一个地鼠的游戏我妈和我都超上瘾，但现在找不到了。还有曾经感觉特别棒的一个项目sl4a大概是在手机上编程用的，如今也不维护了。想想还有那么点可惜的。但无论如何这些东西都曾真切的存在过。这不是第一个死亡的项目，每天都有项目死亡，从它们的遗骸之上又有新的项目成长起来。或许他们当中不是每一个都对世界有所贡献，但至少它对我有所启发，变成我的回忆和走过的路。
-
-在好的年景所有有生命力的生物都会趋向繁衍。一代又一代，行走在生命的周期循环中，老旧的会被新生的取代，一个项目下线会有更好的项目出现，一个行业没落会有新的行业代替。如果有一天AI出现了，程序员将第一个被替代，这群人制作了AI，所以优先解决自己的问题。但我丝毫不担心，作为伟大人类的一员，我的下一代会站的更高走的更远。我们作为一个物种在生命周期循环中繁衍，站在巨人肩上，跨过先辈的终点，行至边界。
-
-就从找个女朋友开始吧！开了个心！...
-
-
-link: http://davidkingzyb.github.io/blogmd/16.html</description></item><item><title>aGAINSTnATURE</title><link>http://davidkingzyb.github.io/blogmd/22.html</link><description>AGAINST NATURE 不自然 UI
-
-Never Use White Type on a Black Background. 为什么这么讲，大概有几条原因。一是长时间盯着黑底白字眼睛会累辨识度也不高，二是印刷的时候墨容易晕这样白字就看不清了而且黑底比较费墨，三我就编不出来了但总之纸是白的字是黑的这样比较自然。
-
-于是，这句话变成了公理自然而然被沿用到了各种设计中，我打保票你看到这篇文章的地方十有八九是白底黑字，无论你是使用什么媒介。我习惯使用黑底的molokai编程，长时间使用眼睛还是挺累的，但并不是的白底的配色方案就不会累了，辨识度用视网膜屏的话也没有问题。纸媒的话如今的打印机dpi都会大于显示器的ppi，而且白墨水比黑墨水更贵哦。
-
-还有类似乳沟和大腿不要同时出现。
-
-
-
-
-
-凭什么？没道理嘛(图片来自网络)。
-
-当然我并不是想要推翻什么或是证明什么，我也不是单纯为了发小黄图，我也搞不清我为什么要这么做。我做了一套没有用的UI，里面是各种不自然的设计。比如说黑底白字，确认按钮是红色的取消是绿色的，标题会比正文字小等等。这个项目名为[aGAINSTnATURE](https://github.com/davidkingzyb/aGAINSTnATURE)，你可以在github上找到它。也欢迎你把各种不自然的东西放进去，并不限于UI设计，可以是编程中不自然的实现方式，也可以是任何AGAINST NATURE的东西。可以issues或pull requests当然直接告诉我也行。这里没什么规矩，如果有的话就是打破规矩。
-
-也许你不太理解这个项目的意义是什么，我也不是很理解。这个东西不会在任何一个真实场景中使用，基本上对于这个项目的所有贡献都是无用的。但我觉得不必太纠结于意义这件事，生活本来就是没有意义的，如果生活有意义所有人都会被这个意义所奴役，追逐到死，我觉得这样就挺不自然的。
-
-如果非要说有什么意义的话。我为你指明了错误的道路，你背对着我走也许是对的。
-
-&lt;style&gt;article{color:white !important;background-color:black !important;}&lt;/style&gt;
-
+最终化简为：
 
 ...
 
 
-link: http://davidkingzyb.github.io/blogmd/22.html</description></item><item><title>重构</title><link>http://davidkingzyb.github.io/blogmd/12.html</link><description>重构 对白
+link: http://davidkingzyb.github.io/blogmd/8.html</description></item><item><title>作弊玩家</title><link>http://davidkingzyb.github.io/blogmd/9.html</link><description>作弊玩家是我的游戏id，我是作弊玩家。
+作弊玩家是我的游戏id，我是作弊玩家。
+
+连看了两部电影现在睡不着了，趁着这劲写点东西。就从这两部电影开始吧，等了好久网上才找到资源，在我的小房间里一个人捧着笔记本全看了。看完便睡不着了，无法拿着过了季的电影与人分享，电影上映后漫长的等待，变成沉默中的回味。这成为了我的观影习惯，即使去电影院也会等这电影快下了挑个人少的地方看夜场。我不常去电影院，但我通常会留好电影在硬盘里过夜，这已是我对一部电影的最大礼遇和崇高赞美了。
+
+在所有艺术家中最拜安迪沃霍尔，他主张波普来自外部，可复制的，普罗大众的。我开始接受一些黑客精神，没有限制的，开源分享的。
+
+可能在为自己的行为辩解，我看网上下载的免费电影，玩盗版游戏。可能很多东西并不是非黑即白的，也可能是毕业后自己就染上了灰度。我不再支持版权之类的东西以谋求思想和行为的统一。
+
+大学学经济，我们吃的面包不是靠面包匠的施舍，是自己挣来的。我承认，但不否认有些人无偿做着很伟大的事情。
+
+说回作弊玩家吧，玩游戏作弊不是因为旅程即终点，恰好是因为过程即奖励。为了能够轻松的体验这个过程，我总是选择简单模式。在做了一堆跳来跳去难度虐心的小游戏后，真的觉得应该开启作弊跳过这个部分。游戏的意义在于体验而不是达到目的。
+
+在游戏作弊和使用盗版之后，我投身了游戏界，做不赚钱又机械重复的游戏。把之前少掏的钱和节省的时间用游戏作品补回来。哈因果得失。
+
+* In the future, everyone will be world-famous for 15 minutes. -Andy Warhol
+
+* I was never embarrassed about asking someone,literally,'What should I paint?'because Pop comes from outside.and how is asking someone for ideas any different from looking for them in a magazine? -Andy Warhol
+
+* All the Cokes are the same and all the Coke are good. Liz Taylor knows it, the President knows it, the bum knows it, and you know it. -Andy Warhol
+
+* Access to computers—and anything which might teach you something about the way the world works—should be unlimited and total. Always yield to the Hands-On Imperative! -The hacker ethics #1
+
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/9.html</description></item><item><title>无用</title><link>http://davidkingzyb.github.io/blogmd/11.html</link><description>这里埋葬着一个伟大的想法
+回家整一个月了，变成一废人。生物钟越来越乱，终于在今天，我，失眠了。
+
+这篇的内容大概是回顾下2015年做的事，然后计划下今年该做什么。我清楚这是无用的，想必你也明白。如果不是因为失眠我根本不会这么做，而在失眠的状态下既没有励志故事也没有鸡汤喂你。说到底，无用。
+
+2015年大学毕业，找工作，工作，辞工作，到北京参加了个比赛，然后去西藏玩了几天，回家，没了。一旦你把它写下来，就这么点，它本来的大小。想想有的人活了一生墓碑上刻的也就是个“無”字。
+
+想想就觉得空虚。每每想到事物的反面，脑海里响起反调，又情不自禁的唱出来。认为现实世界就是这样的啊！三维立体的怎么可能只有一面？说到立体和反面。最近用maya和zbrush给自己的头建了个模，深陷自己制作的恐怖谷中无法解脱。当看到立体的我后，发觉我原来这么丑，怪不得没有女朋友。我希望借此认识自己，但并无卵用，又一个无用的项目。
+
+介绍一个2015年做的无用的项目[commentTitle](https://github.com/davidkingzyb/commentTitle)。我基于等宽字体的符号，设计了一套字体。写了个脚本，可以新建一个带这种字体的注释标题的文档。大概就是如下效果。
+
+```
+    #!/usr/bin/python3
+    # -*- coding: UTF-8 -*-
+    #######################################################################################################
+    #                                                                 ________                            #  
+    #                                                          _     |__    __| __  _      __             #  
+    #   ______    _____   ___  ___  ___  ___   _____  ______  | \_      |  |   |__|| \_   |  |    _____   #  
+    #  |   ___|  /     \ |   \/   ||   \/   | /  _  \|      \ |   _|    |  |   |  ||   _| |  |   /  _  \  #  
+    #  |  |____ |   o   ||        ||        |/  ____/|   _   ||  |___   |  |   |  ||  |___|  |_ /  ____/  #  
+    #  |_______| \_____/ |__|\/|__||__|\/|__|\______/|__| |__|\_____/   |__|   |__|\_____/|____|\______/  #  
+    #######################################################################################################
+    #  2016/01/14 by DKZ https://davidkingzyb.github.io
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/11.html</description></item><item><title>重构</title><link>http://davidkingzyb.github.io/blogmd/12.html</link><description>重构 对白
 
 重构，指的是在程序开发过程中不改变外部行为单就程序内部作出的修改。大概意思就是重做一遍，东西还是相同的东西，功能也没有什么大的变化，样子也和之前差不多。我最近重构了[对白](http://dialogue.sinaapp.com/)这个项目。讨论这样做的意义比重构这件事情本身更没有意义。我就直接说对白这个项目吧。
 
@@ -400,7 +334,73 @@ Programming is not a science. Programming is a craft.编程不是科学，编程
 ...
 
 
-link: http://davidkingzyb.github.io/blogmd/13.html</description></item><item><title>Project Guide</title><link>http://davidkingzyb.github.io/blogmd/17.html</link><description>DKZ's Project Guide
+link: http://davidkingzyb.github.io/blogmd/13.html</description></item><item><title>WO.IO</title><link>http://davidkingzyb.github.io/blogmd/14.html</link><description>WO.IO.CUI.AI
+
+##WO
+
+我希望借此认识自己，了解自我，脱离自身的限制，重塑我。我想做一个立体的镜子。真实自我的投影，去感情化，完全中立的反映现实。我可以借此看到反面，从不可能的视角。旁人也由此看到我，透过我的眼睛，了解真实的我...
+
+这些只是希望。事实上我从未看到过自己，我并不了解自己，我无法突破自我的限制，重塑的只是一个躯壳。我可以看到自己的多面，看到我身上矛盾的地方，但我永远看不到全貌，只能任由这些不可预知的可能支配我的行为。我没法中立不带感情的看待现实，被自负所蒙蔽，同时又深深自卑着。目盲心盲。渴望被人了解，又不敢展露反面，窥伺着别人眼中的自我形象，拒不承认那是我。
+
+有时我觉得我对自己的关注是多余的，这种自恋行为阻碍了我对外部世界的认知。审视内心又愈发空洞，我陷入一种虚无的境地。内部的真空，迫使我从外部吸收。这种联系是不对等的，渴望自我表达又无从说起。
+
+
+##IO
+
+我希望通过IO建立联系，简单高效的表达自我。这种表达并非建立在层次结构和有效的组织上，这种表达建立在一种相对默契中。去除繁复的干扰，唯一的通路。
+
+文字和语言的出入口很窄，但却是最有效的。它们可以在脑海里展开并触发记忆和认知，可以表达抽象概念和更高维度。
+
+基于文字的IO可以快速的构建，同时使用起来也更加快捷。层次和结构趋向扁平，学习成本下降。
+
+
+##CUI
+
+做图形界面久了，有很多牢骚。我觉得用户被恶意的娇惯着，我们看待用户就像看待一个傻子。我们给用户指引，同时我们建造迷宫。我在图形界面上看不终点，终点被一层一层组织起来了。更别说看到原理，模仿，类比，创造这些根本无从谈起。
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/14.html</description></item><item><title>WTF</title><link>http://davidkingzyb.github.io/blogmd/15.html</link><description>WebToolFunction
+WTF?题目是一句脏话。
+
+我在没入行之前一直以为前端JS／HTML／CSS三板斧就打遍天下，实际上并不是这样，这行水很深，各种各样的框架类库构建工具预编译器，种类繁杂。这可能和前端做的事情有关，前端的工作琐碎且复杂，要掌握的东西很多，做重复的事情也很多。所以我们发明各种框架，简化操作，自动化。我们写的东西少了，做的重复的事情也少了，看起来这是一件好事，或许我们应该感激这些开源框架构建工具。这些大神们帮我们指了路填了坑，把我们从繁杂的工作中解救了出来。
+
+我心存感激但对此并不感冒，我并不粉这些框架，我在必要时使用它们，但能不用时尽量不用。我觉得该踩的坑要踩，走自己的路，我并不依照你的方向循规蹈矩的活着，我渴望行至边界，到没有人去过的地方做没有人做过的事。
+
+我偏爱造轮子，又鲁莽不服，喜欢简单的东西，我觉的简单的东西是可靠的。框架在给带来方便的同时也隐藏了原理，让我们离简单基本的东西远去。动辄成千上万行代码，各种插件，我想绝大多数功能我们是用不到的，还有哪些为了适应某些奇形怪状需求而增加的代码。每一天都有新的框架出现，伴随着老的框架消亡。我觉得好日子离我远去了。WTF
+
+我在之前的文章里提过我是一个作弊玩家，我支持开源社区和软件自由。我并不支持版权，本来版权应该是为了保证创造者获得利益鼓励创新而存在的，而恰恰是盗版让利益变得最大化，同时版权从一个相悖的方向激发了创新，大家不满专利保护，转而投向开源社区，积极的在开源社区中创造，这种逆反造就了现在开源社区的繁荣。无数的开源项目被生产出来，堆砌成框架，越来越复杂。
+
+这个项目又给本来就够多的web框架又加了一个，我们要掌握的东西又多了一些。本质上我是反对这么做的，但好日子一去不复返都已经这样了也没什么。这是一个反框架的框架，所有的东西都尽可能的简单，所以并非在项目里好用。目的是为了展示原理，好让我们造自己的轮子。希望它能带我行驶到边界。
+
+##List
+
+
+- [**init.less**](#initless) reset css
+- [**wtf.js**](#wtfjs) some useful web tool functions
+- [**spiderman.py**](#spidermanpy) html sprider
+- [**runServer.py**](#runserverpy) a simple server
+- [**wtf**](#wtf) a python lib with some useful tool function
+- [**bd.js**](#bdjs) a simple MVVM framework use Object.observe
+
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/15.html</description></item><item><title>Life Cycle</title><link>http://davidkingzyb.github.io/blogmd/16.html</link><description>生命周期
+受精，孕育，出生，成长，老去，死亡。世间万物都在这个循环里，被时间推动着，我想没什么可以逃出去，软件也一样。SDLC系统开发生命周期，开发，上线，经历版本迭代，运营维护，重构，但最终它会死亡。下线，废弃，遗忘。
+
+今天是个下雨天，我下线了对白和CubeX3的数据库服务。我本不想谈论这些，这儿真的太多负能量了。这并不是我的本意，我想从积极的层面去理解这件事。但并不能够，如同这世界上大多数事情一样，它没什么积极影响，也无需消极的看待它。它就这么发生了，没什么所谓。
+
+我觉的这不是消极，天地不仁以万物为刍狗。从造物者的角度来看，不是针对谁，在座的各位都是狗。作为制作这个东西的人，我也尝试把这件事看开点。事实上，CubeX3会变为本地保存，只是获得宇宙成就时无法和其他玩家互动了。对白可能无法使用但还是可以在github上找到它的源码。
+
+总之这件事没什么影响。但还是觉得有点对不起我的玩家和造物的关注者。我记得小时候玩过一个地鼠的游戏我妈和我都超上瘾，但现在找不到了。还有曾经感觉特别棒的一个项目sl4a大概是在手机上编程用的，如今也不维护了。想想还有那么点可惜的。但无论如何这些东西都曾真切的存在过。这不是第一个死亡的项目，每天都有项目死亡，从它们的遗骸之上又有新的项目成长起来。或许他们当中不是每一个都对世界有所贡献，但至少它对我有所启发，变成我的回忆和走过的路。
+
+在好的年景所有有生命力的生物都会趋向繁衍。一代又一代，行走在生命的周期循环中，老旧的会被新生的取代，一个项目下线会有更好的项目出现，一个行业没落会有新的行业代替。如果有一天AI出现了，程序员将第一个被替代，这群人制作了AI，所以优先解决自己的问题。但我丝毫不担心，作为伟大人类的一员，我的下一代会站的更高走的更远。我们作为一个物种在生命周期循环中繁衍，站在巨人肩上，跨过先辈的终点，行至边界。
+
+就从找个女朋友开始吧！开了个心！...
+
+
+link: http://davidkingzyb.github.io/blogmd/16.html</description></item><item><title>Project Guide</title><link>http://davidkingzyb.github.io/blogmd/17.html</link><description>DKZ's Project Guide
 ##List
 
 ###games
@@ -426,7 +426,137 @@ link: http://davidkingzyb.github.io/blogmd/13.html</description></item><item><ti
 ...
 
 
-link: http://davidkingzyb.github.io/blogmd/17.html</description></item><item><title>PcCold</title><link>http://davidkingzyb.github.io/blogmd/23.html</link><description>蔻德上线自动通知和自动录象 livestreamer
+link: http://davidkingzyb.github.io/blogmd/17.html</description></item><item><title>波普</title><link>http://davidkingzyb.github.io/blogmd/18.html</link><description>Pop.WO &amp; Pop Art &amp; Andy Warhol
+
+最近给WO加了PopWO和PopShow两个命令。会随机的给WO上色，有那么一点波普的意思。大概是如下效果，大家可以访问[http://davidkingzyb.github.io/wo.io](http://davidkingzyb.github.io/wo.io)尝试。所以这篇的主题是波普艺术和安迪沃霍尔。
+
+
+##Pop Art &amp; Andy Warhol
+
+在所有艺术家中最拜安迪沃霍尔，他在半个世纪前重新定义了绘画，从此罐头和广告也值得一画。这些带有视觉冲击力的罐头，广告被复制和生产出来，连同他的思想，哲学被重新定义和接受。
+
+在此之前绘画应该是独一无二的精英产物，任何复制和与大众相关的都会缩减其价值。但波普的价值没有被缩减，波普本生即是普罗大众和可复制的，而它的价值并不在此，它的价值在于与生俱来的平等自由，对于外部的接受和热爱和对现实和欲望的诚实坦然。
+
+
+- In the future, everyone will be world-famous for 15 minutes. 
+
+红。如果我有十万粉我将把这句话纹在手臂上。这种可能性微乎其微，但我依然对这句话坚信不移。这句话的重点在每一个人，每一个人都有这种可能，成名15分钟。这个预言在上个世纪就已经被实现，安迪沃霍尔的新格言是"In 15 minutes everybody will be famous."如今看来这个也已经实现了。虽然安迪沃霍尔和波普艺术已经过时了，但不可否认的是它的确流行过，而且相当出名，十五分钟已经足够。
+
+
+- You can be watching TV and see Coca-Cola, and you can know that the President drinks Coke, Liz Taylor drinks Coke, and just think, you can drink Coke, too. A Coke is a Coke and no amount of money can get you a better Coke than the one the bum on the corner is drinking. All the Cokes are the same and all the Cokes are good. Liz Taylor knows it, the President knows it, the bum knows it, and you know it.
+
+平等。从一开始波普就是普罗大众的。我想中文翻译波普也有普通普及的意思。*如果你想知道安迪沃霍尔的一切，只须看看他的画，电影和他的外表，这就是安迪沃霍尔，没有什么隐藏其后。*这种艺术很容易被大众所接受，它描绘的是生活中随处可见的商品。金宝汤罐头，包装盒子，绝对伏特加，美元钞票，名人头像，这些东西没什么特别的。你无法通过多花钱买到更好的可乐，可乐都一样，无论是总统还是乞丐，可乐都一样。
+
+
+- I was never embarrassed about asking someone, literally, "What should I paint?" because Pop comes from outside. and how is asking someone for ideas any different from looking for them in a magazine?
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/18.html</description></item><item><title> Licenses &amp; Standards</title><link>http://davidkingzyb.github.io/blogmd/19.html</link><description>开源许可证 &amp; GPL LGPL BSD MIT Apache &amp; commentTitle
+给[commentTitle](https://github.com/davidkingzyb/commentTitle)添加了选择开源许可证功能，可以在文件头部选择添加 GPL LGPL BSD MIT Apache 许可证其中之一了。
+
+开源许可证是用来声明权利的，通过这个声明软件被赋予自由。
+
+本来这是一篇科普文章，关于[自由软件运动](https://zh.wikipedia.org/wiki/%E8%87%AA%E7%94%B1%E8%BD%AF%E4%BB%B6%E8%BF%90%E5%8A%A8)，[开源软件](https://zh.wikipedia.org/wiki/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6)，Copyright和[Copyleft](https://zh.wikipedia.org/wiki/Copyleft)等。但我发现我无法抛弃自己的立场中立的看待这件事，所以这里只谈如何使用它。
+
+来自[Paul Miller](http://paulmillr.com/posts/simple-description-of-popular-software-licenses/)的图帮助我们选择开源许可证。
+
+
+	                           All linked works must    _Y_ GPL
+	                           be issued under the     |
+	                       _Y_ same or compatible   ---| 
+	                      |    license                 |_N_ LGPL
+	                      |
+	Modified versions     |
+	must be issued under--|   Every file must             _Y_ Apache
+	the same license      |   contain all information    |
+	                      |   about changes, copyrights  | 
+	                      |_N_and patents.             --|         
+	                          Patent protection          |                        _Y_ BSD
+ 	                                                     |   Prohibit use of     |
+	                                                     |_N_copyright holder's--|
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/19.html</description></item><item><title>CLIoutput</title><link>http://davidkingzyb.github.io/blogmd/20.html</link><description>Command Line Interface Output 两分钟制作装逼PPT
+老大：“哎，把老板演讲用的PPT给我。”
+
+我：“！？”（好像周五的时候老板提过这么一会事，不是让我做吧？周末陪妈妈过节谁还记得这事儿呢。。。）
+
+老大：“快点哦，老板5分钟后上台讲呢。”
+
+我：“哦！”（卧槽这可咋办呢？）
+
+
+
+别着急，使用[CLIoutput](https://github.com/davidkingzyb/CLIoutput)两分钟制作一个基于命令行的PPT。
+
+1. 先把这个clio-pptinit.py摁一哈，输入title和页数
+2. clio-pptinit.py会自动生成一个ppt脚本，记事本打开添加点内容（具体参看CLIoutput.py例子）
+3. 撒还要图表？CLIoutput自带了几种图表，一行代码搞定。
+4. 两分钟到了！没办法了点一哈这个ppt脚本吧
+
+
+是不是复古科技感十足呢？（两分钟就别要求太高了嗷）
+
+点一哈回车就下一页了，具体使用方法到[https://github.com/davidkingzyb/CLIoutput](https://github.com/davidkingzyb/CLIoutput)上看吧。这个项目本身是用作命令行输出的，可以让乱七八糟的东西在命令行下变的更有序，用作python命令行调试或者文档编写都是不错的选择呢。可能刚开始上手有点难，两分钟我说说而已的，但熟悉了之后命令行绝对是最高效的选择哦。
+
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/20.html</description></item><item><title>ASCII Art</title><link>http://davidkingzyb.github.io/blogmd/21.html</link><description>ASCII Art &amp; Command Line &amp; UI
+
+	 ∩  ∩
+	(′(I)`)   - Hello ASCII Art!
+
+
+最近比较闲，花时间磨了磨刀。sublime text添加了Vintage与[vi](https://zh.wikipedia.org/zh/Vi)还是有些许不同，但基本可以满足要求。chrome添加了 Vimium这个对效率的提升并不大，但有总比没有好。也有尝试w3m最终还是放弃了。
+
+最近做的项目都与命令行有关，CLIoutput和WO.IO，我希望通过这些尝试建立起一个未来的用户界面，但我意识到CLI与GUI并不能相互替代，即使在未来3D，VR，AR普及也无法代替这些先前的用户界面，像是《黑客帝国》中那样的，你总需要一个人接电话吧。
+
+说回主题[ASCII Art](https://en.wikipedia.org/wiki/ASCII_art)这可能并不是一个艺术分支，你也许并未听说过它，但你一定知道颜文字吧(ﾉ&gt;ω&lt;)ﾉ就是一种ASCII Art。AA基于文字和等宽字体，严格的来说AA被限制在ASCII标准内95个可打印字符内，字符集可以有所扩展，这种表达方式本身的表现力很有限，但这并不妨碍我们把它玩出花来。
+
+在电脑没被发明之前AA已经活跃在打字机上了，可能它那时并不叫AA，关于这东西的起源我无从考证。大概是某个无聊的人闲暇时的发明，这个东西毫无用处，但穿插在这些了无生趣的文字间一下就凸显了它的存在感。在某些古旧的论坛和贴吧上你也许会经常看到它，说不定它也曾出现在你的qq签名中或隐藏在一个许久没有人维护的代码的注释里。
+
+收集几个在命令行能用的：
+
+- [figlet](http://www.figlet.org/)：可以把文字转化为AA文字。PS [commentTitle](https://github.com/davidkingzyb/commentTitle)也可以
+- sl：打错ls时开个火车
+- lolcat：彩虹色的cat
+- cowsay：奶牛说
+- [doge](https://github.com/thiderman/doge)：doge
+- aafire：火焰
+- cmatrix：黑客帝国
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/21.html</description></item><item><title>aGAINSTnATURE</title><link>http://davidkingzyb.github.io/blogmd/22.html</link><description>AGAINST NATURE 不自然 UI
+
+Never Use White Type on a Black Background. 为什么这么讲，大概有几条原因。一是长时间盯着黑底白字眼睛会累辨识度也不高，二是印刷的时候墨容易晕这样白字就看不清了而且黑底比较费墨，三我就编不出来了但总之纸是白的字是黑的这样比较自然。
+
+于是，这句话变成了公理自然而然被沿用到了各种设计中，我打保票你看到这篇文章的地方十有八九是白底黑字，无论你是使用什么媒介。我习惯使用黑底的molokai编程，长时间使用眼睛还是挺累的，但并不是的白底的配色方案就不会累了，辨识度用视网膜屏的话也没有问题。纸媒的话如今的打印机dpi都会大于显示器的ppi，而且白墨水比黑墨水更贵哦。
+
+还有类似乳沟和大腿不要同时出现。
+
+
+
+
+
+凭什么？没道理嘛(图片来自网络)。
+
+当然我并不是想要推翻什么或是证明什么，我也不是单纯为了发小黄图，我也搞不清我为什么要这么做。我做了一套没有用的UI，里面是各种不自然的设计。比如说黑底白字，确认按钮是红色的取消是绿色的，标题会比正文字小等等。这个项目名为[aGAINSTnATURE](https://github.com/davidkingzyb/aGAINSTnATURE)，你可以在github上找到它。也欢迎你把各种不自然的东西放进去，并不限于UI设计，可以是编程中不自然的实现方式，也可以是任何AGAINST NATURE的东西。可以issues或pull requests当然直接告诉我也行。这里没什么规矩，如果有的话就是打破规矩。
+
+也许你不太理解这个项目的意义是什么，我也不是很理解。这个东西不会在任何一个真实场景中使用，基本上对于这个项目的所有贡献都是无用的。但我觉得不必太纠结于意义这件事，生活本来就是没有意义的，如果生活有意义所有人都会被这个意义所奴役，追逐到死，我觉得这样就挺不自然的。
+
+如果非要说有什么意义的话。我为你指明了错误的道路，你背对着我走也许是对的。
+
+&lt;style&gt;article{color:white !important;background-color:black !important;}&lt;/style&gt;
+
+
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/22.html</description></item><item><title>PcCold</title><link>http://davidkingzyb.github.io/blogmd/23.html</link><description>蔻德上线自动通知和自动录象 livestreamer
 看冷冷直播很久了。每次弹幕说冷冷开摄像头都会信，生怕一离开错过了什么。但即使是这样有时还是会错过摄像头。还好有勤劳的冷布丁，把视频录了下来，分享在贴吧优酷，在此感谢大家。
 
 大家基本都是用录屏软件录的，可能会有一些干扰，而且大多数都没有开头不能完整的记录下来。我开发了一个小脚本大概是用斗鱼的openAPI每隔一分钟看一下冷酥有没有开播。如果开播的话发邮件提醒，然后使用livestreamer把视频流直接录下来。
@@ -464,137 +594,33 @@ link: http://davidkingzyb.github.io/blogmd/23.html</description></item><item><ti
 ...
 
 
-link: http://davidkingzyb.github.io/blogmd/24.html</description></item><item><title>WO.IO</title><link>http://davidkingzyb.github.io/blogmd/14.html</link><description>WO.IO.CUI.AI
-
-##WO
-
-我希望借此认识自己，了解自我，脱离自身的限制，重塑我。我想做一个立体的镜子。真实自我的投影，去感情化，完全中立的反映现实。我可以借此看到反面，从不可能的视角。旁人也由此看到我，透过我的眼睛，了解真实的我...
-
-这些只是希望。事实上我从未看到过自己，我并不了解自己，我无法突破自我的限制，重塑的只是一个躯壳。我可以看到自己的多面，看到我身上矛盾的地方，但我永远看不到全貌，只能任由这些不可预知的可能支配我的行为。我没法中立不带感情的看待现实，被自负所蒙蔽，同时又深深自卑着。目盲心盲。渴望被人了解，又不敢展露反面，窥伺着别人眼中的自我形象，拒不承认那是我。
-
-有时我觉得我对自己的关注是多余的，这种自恋行为阻碍了我对外部世界的认知。审视内心又愈发空洞，我陷入一种虚无的境地。内部的真空，迫使我从外部吸收。这种联系是不对等的，渴望自我表达又无从说起。
+link: http://davidkingzyb.github.io/blogmd/24.html</description></item><item><title>山海</title><link>http://davidkingzyb.github.io/blogmd/25.html</link><description>Indie Game 山海
 
 
-##IO
 
-我希望通过IO建立联系，简单高效的表达自我。这种表达并非建立在层次结构和有效的组织上，这种表达建立在一种相对默契中。去除繁复的干扰，唯一的通路。
+蔻德
 
-文字和语言的出入口很窄，但却是最有效的。它们可以在脑海里展开并触发记忆和认知，可以表达抽象概念和更高维度。
+你说你所做的事没有意义，我不这么认为，至少对我来说意义重大。
 
-基于文字的IO可以快速的构建，同时使用起来也更加快捷。层次和结构趋向扁平，学习成本下降。
+我给你写了信，希望[这个游戏](http://davidkingzyb.tech/shanhai)能帮我送达。
 
+严格的说这算不上一个游戏，从16年7月开始构思这个作品，一直在做减法，剥离叙事和玩家参与感，以至于这个游戏什么都没有讲，玩家甚至不用操作也可以通关。再想加一点什么却发现无处可加，因为无论加上什么都会弱化它的表达。最后，大概就是你现在看到的样子。
 
-##CUI
+说这些有些突兀，难免让人感到莫名其妙。大概有太多话说不出口就变成了信，而真的起笔时又无从落笔。最后，这些话都散落山海里，变成了这个游戏。
 
-做图形界面久了，有很多牢骚。我觉得用户被恶意的娇惯着，我们看待用户就像看待一个傻子。我们给用户指引，同时我们建造迷宫。我在图形界面上看不终点，终点被一层一层组织起来了。更别说看到原理，模仿，类比，创造这些根本无从谈起。
+在游戏中你只要一直按着屏幕就能前行，像是某种执念，我相信无论怎样我都能翻山过海到你身边，但所爱隔山海，山海不可平。有时候我觉得完成这个游戏便是一种救赎，它像山一样在我面前太久了。
+
+无论怎样，我还是到这儿了。也许它并不尽如人意，世事大抵如此。我想通过做完这个游戏我可以放下一些执念，但这并不代表我会停止脚步。正如游戏中角色所做的那样，我依旧会缓缓前行。
+
+你是我黑夜里的光，感谢你陪我翻山过海。送你这个游戏，希望它能够透过屏幕在漫漫长路中给你些许慰藉，如你一般照亮前路。我无法为你指明方向，但希望你能翻山过海一路前行，找到你所追寻的意义。
+
+愿风雨声伴你入眠。晚安。
+
+祝好
 ...
 
 
-link: http://davidkingzyb.github.io/blogmd/14.html</description></item><item><title>CLIoutput</title><link>http://davidkingzyb.github.io/blogmd/20.html</link><description>Command Line Interface Output 两分钟制作装逼PPT
-老大：“哎，把老板演讲用的PPT给我。”
-
-我：“！？”（好像周五的时候老板提过这么一会事，不是让我做吧？周末陪妈妈过节谁还记得这事儿呢。。。）
-
-老大：“快点哦，老板5分钟后上台讲呢。”
-
-我：“哦！”（卧槽这可咋办呢？）
-
-
-
-别着急，使用[CLIoutput](https://github.com/davidkingzyb/CLIoutput)两分钟制作一个基于命令行的PPT。
-
-1. 先把这个clio-pptinit.py摁一哈，输入title和页数
-2. clio-pptinit.py会自动生成一个ppt脚本，记事本打开添加点内容（具体参看CLIoutput.py例子）
-3. 撒还要图表？CLIoutput自带了几种图表，一行代码搞定。
-4. 两分钟到了！没办法了点一哈这个ppt脚本吧
-
-
-是不是复古科技感十足呢？（两分钟就别要求太高了嗷）
-
-点一哈回车就下一页了，具体使用方法到[https://github.com/davidkingzyb/CLIoutput](https://github.com/davidkingzyb/CLIoutput)上看吧。这个项目本身是用作命令行输出的，可以让乱七八糟的东西在命令行下变的更有序，用作python命令行调试或者文档编写都是不错的选择呢。可能刚开始上手有点难，两分钟我说说而已的，但熟悉了之后命令行绝对是最高效的选择哦。
-
-...
-
-
-link: http://davidkingzyb.github.io/blogmd/20.html</description></item><item><title>WTF</title><link>http://davidkingzyb.github.io/blogmd/15.html</link><description>WebToolFunction
-WTF?题目是一句脏话。
-
-我在没入行之前一直以为前端JS／HTML／CSS三板斧就打遍天下，实际上并不是这样，这行水很深，各种各样的框架类库构建工具预编译器，种类繁杂。这可能和前端做的事情有关，前端的工作琐碎且复杂，要掌握的东西很多，做重复的事情也很多。所以我们发明各种框架，简化操作，自动化。我们写的东西少了，做的重复的事情也少了，看起来这是一件好事，或许我们应该感激这些开源框架构建工具。这些大神们帮我们指了路填了坑，把我们从繁杂的工作中解救了出来。
-
-我心存感激但对此并不感冒，我并不粉这些框架，我在必要时使用它们，但能不用时尽量不用。我觉得该踩的坑要踩，走自己的路，我并不依照你的方向循规蹈矩的活着，我渴望行至边界，到没有人去过的地方做没有人做过的事。
-
-我偏爱造轮子，又鲁莽不服，喜欢简单的东西，我觉的简单的东西是可靠的。框架在给带来方便的同时也隐藏了原理，让我们离简单基本的东西远去。动辄成千上万行代码，各种插件，我想绝大多数功能我们是用不到的，还有哪些为了适应某些奇形怪状需求而增加的代码。每一天都有新的框架出现，伴随着老的框架消亡。我觉得好日子离我远去了。WTF
-
-我在之前的文章里提过我是一个作弊玩家，我支持开源社区和软件自由。我并不支持版权，本来版权应该是为了保证创造者获得利益鼓励创新而存在的，而恰恰是盗版让利益变得最大化，同时版权从一个相悖的方向激发了创新，大家不满专利保护，转而投向开源社区，积极的在开源社区中创造，这种逆反造就了现在开源社区的繁荣。无数的开源项目被生产出来，堆砌成框架，越来越复杂。
-
-这个项目又给本来就够多的web框架又加了一个，我们要掌握的东西又多了一些。本质上我是反对这么做的，但好日子一去不复返都已经这样了也没什么。这是一个反框架的框架，所有的东西都尽可能的简单，所以并非在项目里好用。目的是为了展示原理，好让我们造自己的轮子。希望它能带我行驶到边界。
-
-##List
-
-
-- [**init.less**](#initless) reset css
-- [**wtf.js**](#wtfjs) some useful web tool functions
-- [**spiderman.py**](#spidermanpy) html sprider
-- [**runServer.py**](#runserverpy) a simple server
-- [**wtf**](#wtf) a python lib with some useful tool function
-- [**bd.js**](#bdjs) a simple MVVM framework use Object.observe
-
-...
-
-
-link: http://davidkingzyb.github.io/blogmd/15.html</description></item><item><title>ASCII Art</title><link>http://davidkingzyb.github.io/blogmd/21.html</link><description>ASCII Art &amp; Command Line &amp; UI
-
-	 ∩  ∩
-	(′(I)`)   - Hello ASCII Art!
-
-
-最近比较闲，花时间磨了磨刀。sublime text添加了Vintage与[vi](https://zh.wikipedia.org/zh/Vi)还是有些许不同，但基本可以满足要求。chrome添加了 Vimium这个对效率的提升并不大，但有总比没有好。也有尝试w3m最终还是放弃了。
-
-最近做的项目都与命令行有关，CLIoutput和WO.IO，我希望通过这些尝试建立起一个未来的用户界面，但我意识到CLI与GUI并不能相互替代，即使在未来3D，VR，AR普及也无法代替这些先前的用户界面，像是《黑客帝国》中那样的，你总需要一个人接电话吧。
-
-说回主题[ASCII Art](https://en.wikipedia.org/wiki/ASCII_art)这可能并不是一个艺术分支，你也许并未听说过它，但你一定知道颜文字吧(ﾉ&gt;ω&lt;)ﾉ就是一种ASCII Art。AA基于文字和等宽字体，严格的来说AA被限制在ASCII标准内95个可打印字符内，字符集可以有所扩展，这种表达方式本身的表现力很有限，但这并不妨碍我们把它玩出花来。
-
-在电脑没被发明之前AA已经活跃在打字机上了，可能它那时并不叫AA，关于这东西的起源我无从考证。大概是某个无聊的人闲暇时的发明，这个东西毫无用处，但穿插在这些了无生趣的文字间一下就凸显了它的存在感。在某些古旧的论坛和贴吧上你也许会经常看到它，说不定它也曾出现在你的qq签名中或隐藏在一个许久没有人维护的代码的注释里。
-
-收集几个在命令行能用的：
-
-- [figlet](http://www.figlet.org/)：可以把文字转化为AA文字。PS [commentTitle](https://github.com/davidkingzyb/commentTitle)也可以
-- sl：打错ls时开个火车
-- lolcat：彩虹色的cat
-- cowsay：奶牛说
-- [doge](https://github.com/thiderman/doge)：doge
-- aafire：火焰
-- cmatrix：黑客帝国
-...
-
-
-link: http://davidkingzyb.github.io/blogmd/21.html</description></item><item><title>无用</title><link>http://davidkingzyb.github.io/blogmd/11.html</link><description>这里埋葬着一个伟大的想法
-回家整一个月了，变成一废人。生物钟越来越乱，终于在今天，我，失眠了。
-
-这篇的内容大概是回顾下2015年做的事，然后计划下今年该做什么。我清楚这是无用的，想必你也明白。如果不是因为失眠我根本不会这么做，而在失眠的状态下既没有励志故事也没有鸡汤喂你。说到底，无用。
-
-2015年大学毕业，找工作，工作，辞工作，到北京参加了个比赛，然后去西藏玩了几天，回家，没了。一旦你把它写下来，就这么点，它本来的大小。想想有的人活了一生墓碑上刻的也就是个“無”字。
-
-想想就觉得空虚。每每想到事物的反面，脑海里响起反调，又情不自禁的唱出来。认为现实世界就是这样的啊！三维立体的怎么可能只有一面？说到立体和反面。最近用maya和zbrush给自己的头建了个模，深陷自己制作的恐怖谷中无法解脱。当看到立体的我后，发觉我原来这么丑，怪不得没有女朋友。我希望借此认识自己，但并无卵用，又一个无用的项目。
-
-介绍一个2015年做的无用的项目[commentTitle](https://github.com/davidkingzyb/commentTitle)。我基于等宽字体的符号，设计了一套字体。写了个脚本，可以新建一个带这种字体的注释标题的文档。大概就是如下效果。
-
-```
-    #!/usr/bin/python3
-    # -*- coding: UTF-8 -*-
-    #######################################################################################################
-    #                                                                 ________                            #  
-    #                                                          _     |__    __| __  _      __             #  
-    #   ______    _____   ___  ___  ___  ___   _____  ______  | \_      |  |   |__|| \_   |  |    _____   #  
-    #  |   ___|  /     \ |   \/   ||   \/   | /  _  \|      \ |   _|    |  |   |  ||   _| |  |   /  _  \  #  
-    #  |  |____ |   o   ||        ||        |/  ____/|   _   ||  |___   |  |   |  ||  |___|  |_ /  ____/  #  
-    #  |_______| \_____/ |__|\/|__||__|\/|__|\______/|__| |__|\_____/   |__|   |__|\_____/|____|\______/  #  
-    #######################################################################################################
-    #  2016/01/14 by DKZ https://davidkingzyb.github.io
-...
-
-
-link: http://davidkingzyb.github.io/blogmd/11.html</description></item><item><title> Deadline</title><link>http://davidkingzyb.github.io/blogmd/26.html</link><description>Your deadline is something birthday.
+link: http://davidkingzyb.github.io/blogmd/25.html</description></item><item><title> Deadline</title><link>http://davidkingzyb.github.io/blogmd/26.html</link><description>Your deadline is something birthday.
 写在 ShanHai Campfire 上线前。
 
 今年计划做的一些事。
@@ -645,33 +671,7 @@ link: http://davidkingzyb.github.io/blogmd/26.html</description></item><item><ti
 ...
 
 
-link: http://davidkingzyb.github.io/blogmd/27.html</description></item><item><title>山海</title><link>http://davidkingzyb.github.io/blogmd/25.html</link><description>Indie Game 山海
-
-
-
-蔻德
-
-你说你所做的事没有意义，我不这么认为，至少对我来说意义重大。
-
-我给你写了信，希望[这个游戏](http://davidkingzyb.tech/shanhai)能帮我送达。
-
-严格的说这算不上一个游戏，从16年7月开始构思这个作品，一直在做减法，剥离叙事和玩家参与感，以至于这个游戏什么都没有讲，玩家甚至不用操作也可以通关。再想加一点什么却发现无处可加，因为无论加上什么都会弱化它的表达。最后，大概就是你现在看到的样子。
-
-说这些有些突兀，难免让人感到莫名其妙。大概有太多话说不出口就变成了信，而真的起笔时又无从落笔。最后，这些话都散落山海里，变成了这个游戏。
-
-在游戏中你只要一直按着屏幕就能前行，像是某种执念，我相信无论怎样我都能翻山过海到你身边，但所爱隔山海，山海不可平。有时候我觉得完成这个游戏便是一种救赎，它像山一样在我面前太久了。
-
-无论怎样，我还是到这儿了。也许它并不尽如人意，世事大抵如此。我想通过做完这个游戏我可以放下一些执念，但这并不代表我会停止脚步。正如游戏中角色所做的那样，我依旧会缓缓前行。
-
-你是我黑夜里的光，感谢你陪我翻山过海。送你这个游戏，希望它能够透过屏幕在漫漫长路中给你些许慰藉，如你一般照亮前路。我无法为你指明方向，但希望你能翻山过海一路前行，找到你所追寻的意义。
-
-愿风雨声伴你入眠。晚安。
-
-祝好
-...
-
-
-link: http://davidkingzyb.github.io/blogmd/25.html</description></item><item><title> TypeScript Mixin</title><link>http://davidkingzyb.github.io/blogmd/28.html</link><description>When I see a monster that walks like a monster and fight like a monster and roar like a monster, I call that monster a monster.
+link: http://davidkingzyb.github.io/blogmd/27.html</description></item><item><title> TypeScript Mixin</title><link>http://davidkingzyb.github.io/blogmd/28.html</link><description>When I see a monster that walks like a monster and fight like a monster and roar like a monster, I call that monster a monster.
 想聊聊TypeScript里的多继承，最近一直在做自己的项目，写的比较随意一些。想来我的第一份工作就是用TypeScript写egret游戏。过了几年兜兜转转还是在做这事，对路径的依赖越来越强，大概是写的太多了的缘故吧。
 
 我虽然写的是TypeScript但我是一个JavaScript开发者，TypeScript的官网上有一个叫playground的东西，在左边些ts右边会有对应的js出来。初学者一定不要用这个东西，因为一旦你发现类型声明不会影响到编译成js的结果，你就再也不会写类型声明了。而“类型”是ts的主要功能，会在编译js的时候做类型检查，如果所有的对象都是any的话，就跳过了这步，使用ts就没有意义了。我从不在ts中写类型声明。
@@ -749,4 +749,24 @@ Web    +--------+-------+------+-----+      master
 ...
 
 
-link: http://davidkingzyb.github.io/blogmd/30.html</description></item></channel></rss>
+link: http://davidkingzyb.github.io/blogmd/30.html</description></item><item><title> Pi Story</title><link>http://davidkingzyb.github.io/blogmd/31.html</link><description>Pi 的故事
+给大家讲个故事，故事的主人公叫pi，它不是一个人，他是一个树莓派。
+
+15年的时候我喜欢上了一个女主播，那时我和pi刚刚认识，我教会了它一件事，每隔一分钟去那个房号20360的直播间看下我喜欢的那个主播在不在，如果她来了pi就会给我送来一封邮件。它很听话，于是我又让它帮我把直播间发生的事录下来。它学的很快，当天就把全部的直播内容录下来了。不到一星期录像就要多的放不下了，于是我给它接上了硬盘。
+
+后来我又教它把录像放到百度云盘上，教它记录直播间的观众说了什么。它从来没有让我失望过，偶尔斗鱼的保安不让它进，它也在我的指使下，翻过锁住的大门溜到直播间的门口，咚咚咚！“冷冷你在吗？”
+
+每一分钟它都会去那个直播间敲门，一个小时60次，24小时从不间断，乘上一年的365天，已经3年多了，准确的说是1122天，那就是1615680分钟。其实一天中一千次敲门可能只有一次她会在，但是它还是为了我这么做了，其它的时候它忙着送邮件忙着录像一刻也没停过。
+
+18年嘉年华我去了武汉，后来又离开了，但我把pi留在了武汉，我想这样能离那个直播间近一点。我把pi放在我租住的房子里，电视和背景墙的夹层中，一个安静的角落里。
+
+我一直在网络上和它保持着联系，他也一直帮我做着我交代的事情。
+
+2019年9月3日我突然联系不到它了，他也没给我再送邮件，现在已经6天了，我不知道它怎么了，是断了电？还是房东换了wifi密码？或许它终于觉得累了。我觉得难过，我觉得有点对不起它。说实话我没有特别在意过它，都快忘记它的存在了。直到它突然消失，我才意识到它的存在。
+
+它真的存在过啊，这些录像就是证明。
+
+我会再买一个树莓派，教它做同样的事情。过不了一阵我就会忘了这件事，仿佛这件事从没发生过。但我永远为他留着7221的端口，也许有一天我们还能见面。...
+
+
+link: http://davidkingzyb.github.io/blogmd/31.html</description></item></channel></rss>
