@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DKZ's Blog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=0.8, minimum-scale=0.8, maximum-scale=0.8, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../res/md.css">
+    <link rel="stylesheet" type="text/css" href="../res/blogstyle.css">
+    <script type="text/javascript" src="../res/dkzlogo.js"></script>
+</head>
+
+<body>
+    <div id="footer">
+        <div id="footerPane">
+            <a href="../blogmd/1.html"><img id="cubehead" src="../res/img/cubehead.png"></a>
+            <div id="footerL">
+                <!-- <a class="btn" href="../home.html">Home</a> -->
+                <a class="btn" href="//davidkingzyb.tech">Home</a><a id="rssbtn" href="../rss.xml" class="btn">RSS</a>
+            </div>
+            <div id="footerR">
+                <a class="btn" href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/1" id="discussbtn">Discuss</a><a class="btn" href="../blog.html">Contents</a><a class="btn" href="#top">Top</a>
+            </div>
+        </div>
+    </div>
+    <div id="container">
+        <a href="#top">
+            <div id="headPane">
+                <div id="headmain">
+                    <canvas id="dkzlogo" width="340" height="250">
+                        <img src="../res/img/dkzlogo.png">
+                    </canvas>
+                </div>
+                <script type="text/javascript" src="../res/blogmd.js"></script>
+            </div>
+        </a>
+        <div id="bodyPane">
+<article class="markdown-body"><h1><a class="anchor" name="machine-learning-in-action"><span class="octicon octicon-link"></span></a>Machine Learning in Action</h1>
+
+<p><strong>Machine Learning in Action</strong></p>
+
+<p>2019/5/15 by DKZ</p>
+
+<p>学习了Andrew Ng的Machine Learing入门视频课程，结合了Machine Learning in Action这本书的代码实践。</p>
+
+<p>以下代码整理自Machine Learning in Action，少数地方为使用python3做了改动。</p>
+
+<h2><a class="anchor" name="knn"><span class="octicon octicon-link"></span></a>kNN</h2>
+
+<p><code>distance=sqrt(sum((target-train)**2))</code></p>
+
+<ol>
+<li>data [x,y,...] labal</li>
+<li>train data matrix [data,...] and [labal,] </li>
+<li>normMat(trainMat) and normVec(targetData)</li>
+<li>kNN(targetVec,trainMat,labals,k) return nearist labal
+
+<ol>
+<li>calc distance</li>
+<li>sort</li>
+<li>find max count label</li>
+</ol></li>
+</ol>
+
+<pre><code class="language-py">def normMat(dataMat):
+    minVals = dataMat.min(0)
+    maxVals = dataMat.max(0)
+    ranges = maxVals - minVals
+    normDataSet = zeros(shape(dataMat))
+    m = dataMat.shape[0]
+    normDataSet = dataMat - tile(minVals, (m,1))
+    normDataSet = normDataSet/tile(ranges, (m,1))
+    return normDataSet, ranges, minVals
+
+def normVec(dataVec,minVals,ranges):
+    return (dataVec-minVals)/ranges
+
+def kNN(targetVec, trainMat, labels, k):
+    &quot;&quot;&quot;
+    targetVec [num,...] 
+    trainMat [[num,...],[num,...],...] 
+    labels [str,str,...] train data label
+    k int count range
+    &quot;&quot;&quot;
+    trainMatSize = trainMat.shape[0]
+    diffMat = tile(targetVec, (trainMatSize,1)) - trainMat # targetArr to targetMat [target,...] then [[target-train],...] 
+    sqDiffMat = diffMat**2 # [[(target-train)**2]]
+    sqDistances = sqDiffMat.sum(axis=1) # [sum([(target-train)**2]),...]
+    distances = sqDistances**0.5 # useless?
+    sortedDistIndicies = distances.argsort() # sort distance array [index,...]
+    # find k nearist train data count label return max
+    classCount={} 
+    for i in range(k):
+        voteIlabel = labels[sortedDistIndicies[i]]
+        classCount[voteIlabel] = classCount.get(voteIlabel,0) + 1
+    sortedClassCount = sorted(classCount.items(), key=operator.itemgetter(1), reverse=True)
+    return sortedClassCount[0][0]
+</code></pre>
+
+<h2><a class="anchor" name="decision-tree"><span class="octicon octicon-link"></span></a>Decision Tree</h2>
+
+<p>ID3</p>
+
+<p><code>entropy=-sum(log2(prob)*prob)</code></p>
+
+<ol>
+<li>data [feature,...,cls]</li>
+<li>train data matrix [[feature,...,cls],...] feature labels [feature_name,...]</li>
+<li>creatTree(trainMat,labels)
+
+<ol>
+<li>get sub matrix by every unique type in features </li>
+<li>calc <code>entropy*prob</code> find smallest as best feature</li>
+<li>splic sub matrix by best feature</li>
+<li>recursive creat sub tree</li>
+</ol></li>
+<li>classify by tree</li>
+</ol>
+
+<pre><code class="language-py">def calcShannonEnt(dataMat):
+    numEntries = len(dataMat)
+    labelCounts = {}
+    for featVec in dataMat: #the the number of unique elements and their occurance
+        currentLabel = featVec[-1]
+        if currentLabel not in labelCounts.keys(): labelCounts[currentLabel] = 0
+        labelCounts[currentLabel] += 1
+    shannonEnt = 0.0
+    for key in labelCounts:
+        prob = float(labelCounts[key])/numEntries
+        shannonEnt -= prob * log(prob,2) #log base 2
+    return shannonEnt # -sum(log2(prob)*prob) average infomation
+    
+def splitDataSet(dataMat, axis, value):
+    resultDataMat = []
+    for featVec in dataMat:
+        if featVec[axis] == value:
+            reducedFeatVec = featVec[:axis]     #chop out axis used for splitting
+            reducedFeatVec.extend(featVec[axis+1:])
+            resultDataMat.append(reducedFeatVec)
+    return resultDataMat
+    
+def chooseBestFeatureToSplit(dataMat):
+    numFeatures = len(dataMat[0]) - 1      #the last column is used for the class
+    baseEntropy = calcShannonEnt(dataMat)
+    bestInfoGain = 0.0; bestFeature = -1
+    for i in range(numFeatures):        #iterate over all the features
+        featList = [example[i] for example in dataMat] # [feature_i,...]
+        uniqueVals = set(featList) # unique type in feature_i {feature_it,...} featurn_i 
+        newEntropy = 0.0
+        for value in uniqueVals:
+            subDataMat = splitDataSet(dataMat, i, value) # featurn_it =&gt; [[feature_except_i,...,cls],...]
+            prob = len(subDataMat)/float(len(dataMat))
+            newEntropy += prob * calcShannonEnt(subDataMat) # smaller better    
+        infoGain = baseEntropy - newEntropy     # calculate the info gain; ie reduction in entropy
+        if (infoGain &gt; bestInfoGain):       
+            bestInfoGain = infoGain         
+            bestFeature = i
+    return bestFeature                      # returns best feature index
+
+def createTree(dataMat,labels):
+    &quot;&quot;&quot;
+    ID3
+    dataMat [[feature,...,cls],...]
+    labels [feature_name,...] featurn label
+    &quot;&quot;&quot;
+    classList = [example[-1] for example in dataMat] # class array [cls,...]
+    # stop splitting when all of the classes are equal
+    if classList.count(classList[0]) == len(classList): 
+        return classList[0]
+    # stop splitting when there are no more features in dataMat
+    if len(dataMat[0]) == 1: 
+        return majorityCnt(classList)
+    bestFeat = chooseBestFeatureToSplit(dataMat)
+    bestFeatLabel = labels[bestFeat]
+    theTree = {bestFeatLabel:{}}
+    del(labels[bestFeat])
+    # subtree
+    featValues = [example[bestFeat] for example in dataMat]
+    uniqueVals = set(featValues)
+    for value in uniqueVals:
+        subLabels = labels[:]       #copy all of labels, so trees don&#39;t mess up existing labels
+        theTree[bestFeatLabel][value] = createTree(splitDataSet(dataMat, bestFeat, value),subLabels)
+    return theTree # {feature_label_i:{feature_i_a:subtree|cls,...}} 
+
+def classify(tree,featureLabel,targetVec):
+    firstStr = list(tree.keys())[0]
+    secondDict = tree[firstStr]
+    featIndex = featureLabel.index(firstStr)
+    key = targetVec[featIndex]
+    valueOfFeat = secondDict[key]
+    if isinstance(valueOfFeat, dict): 
+        classLabel = classify(valueOfFeat, featureLabel, targetVec)
+    else: classLabel = valueOfFeat
+    return classLabel
+</code></pre>
+
+<h2><a class="anchor" name="naive-bayes"><span class="octicon octicon-link"></span></a>Naive Bayes</h2>
+
+<pre><code>P(A|B) = P(B|A)P(A)/P(B)
+</code></pre>
+
+<ol>
+<li>creat dictionary (a unique word vector)
+
+<ul>
+<li>calculate most frequence word and delect from dictionary</li>
+<li>or remove from stop word list</li>
+</ul></li>
+<li>transform wordVec to dataVec 
+
+<ul>
+<li>set-of-words model or bag-of-words model</li>
+<li>mark in or not at dictionary </li>
+<li>dataVec to dataMat</li>
+</ul></li>
+</ol>
+
+<pre><code class="language-py">def createDictionary(wordMat):
+    vocabSet = set([])  #create empty set
+    for document in wordMat:
+        vocabSet = vocabSet | set(document) #union of the two sets
+    return list(vocabSet)
+
+def wordVecToDataVec(dictionary, wordVec):
+    returnVec = [0]*len(dictionary)
+    for word in wordVec:
+        if word in dictionary:
+            # returnVec[dictionary.index(word)] = 1
+            returnVec[dictionary.index(word)] += 1
+        else: print(&quot;the word: %s is not in my Vocabulary!&quot; % word)
+    return returnVec    
+</code></pre>
+
+<ol>
+<li>train naive bayes </li>
+<li>classify</li>
+</ol>
+
+<pre><code class="language-py">def trainNaiveBayes(trainMat,labels):
+    numTrainDocs = len(trainMat)
+    numWords = len(trainMat[0])
+    pClass1 = sum(labels)/float(numTrainDocs)
+    p0Num = ones(numWords); p1Num = ones(numWords)      #change to ones() 
+    p0Denom = 2.0; p1Denom = 2.0                        #change to 2.0
+    # p0Denom = 0; p1Denom =0                       
+    for i in range(numTrainDocs):
+        if labels[i] == 1:
+            p1Num += trainMat[i]
+            p1Denom += sum(trainMat[i])
+        else:
+            p0Num += trainMat[i]
+            p0Denom += sum(trainMat[i])
+    p1Vect = log(p1Num/p1Denom)          #change to log() for better distribution
+    p0Vect = log(p0Num/p0Denom)          
+    # p1Vect = p1Num/p1Denom         
+    # p0Vect = p0Num/p0Denom         
+    return p0Vect,p1Vect,pClass1
+
+def classifyNB(targetVec, p0Vec, p1Vec, pClass1):
+    p1 = sum(targetVec * p1Vec) + log(pClass1)    #element-wise mult
+    p0 = sum(targetVec * p0Vec) + log(1.0 - pClass1)
+    if p1 &gt; p0:
+        return 1
+    else: 
+        return 0
+</code></pre>
+
+<h2><a class="anchor" name="logistics-regres"><span class="octicon octicon-link"></span></a>Logistics Regres</h2>
+
+<pre><code>sigmoid(inX)=1/(1+exp(-inX))
+
+weights=weights+alpha*error*dataMat.transpose()
+
+</code></pre>
+
+<ol>
+<li>calculate sigmoid result</li>
+<li>find error and new weight</li>
+<li>regres weight</li>
+</ol>
+
+<pre><code class="language-py">def sigmoid(inX):
+    return 1.0/(1+exp(-inX))
+
+def gradAscent(dataMatIn, classLabels):
+    dataMatrix = mat(dataMatIn)             #convert to NumPy matrix
+    labelMat = mat(classLabels).transpose() #convert to NumPy matrix
+    m,n = shape(dataMatrix)
+    alpha = 0.001
+    maxCycles = 500
+    weights = ones((n,1))
+    for k in range(maxCycles):              #heavy on matrix operations
+        h = sigmoid(dataMatrix*weights)     #matrix mult
+        error = (labelMat - h)              #vector subtraction
+        weights = weights + alpha * dataMatrix.transpose()* error #matrix mult
+    return weights
+
+# random optimized
+def stocGradAscent(dataMatrix, classLabels, numIter=150):
+    m,n = shape(dataMatrix)
+    weights = ones(n)   #initialize to all ones
+    for j in range(numIter):
+        dataIndex = list(range(m))
+        for i in range(m):
+            alpha = 4/(1.0+j+i)+0.0001    #apha decreases with iteration, does not 
+            randIndex = int(random.uniform(0,len(dataIndex)))#go to 0 because of the constant
+            h = sigmoid(sum(dataMatrix[randIndex]*weights))
+            error = classLabels[randIndex] - h
+            weights = weights + alpha * error * dataMatrix[randIndex]
+            del(dataIndex[randIndex])
+    return weights
+
+def classifyVector(inX, weights):
+    prob = sigmoid(sum(inX*weights))
+    if prob &gt; 0.5: return 1.0
+    else: return 0.0
+</code></pre>
+
+<h2><a class="anchor" name="svn"><span class="octicon octicon-link"></span></a>SVN</h2>
+
+<h3><a class="anchor" name="simple-smo"><span class="octicon octicon-link"></span></a>simple SMO</h3>
+
+<pre><code class="language-py">def selectJrand(i,m):
+    j=i #we want to select any J not equal to i
+    while (j==i):
+        j = int(random.uniform(0,m))
+    return j
+
+def clipAlpha(aj,H,L):
+    if aj &gt; H: 
+        aj = H
+    if L &gt; aj:
+        aj = L
+    return aj
+
+def smoSimple(dataMatIn, classLabels, C, toler, maxIter):
+    &quot;&quot;&quot;
+    C:float bigger err less overfitting, C smaller margin bigger
+    toler:float max error
+    &quot;&quot;&quot;
+    dataMatrix = mat(dataMatIn); labelMat = mat(classLabels).transpose()
+    b = 0; m,n = shape(dataMatrix)
+    alphas = mat(zeros((m,1)))
+    iter = 0
+    while (iter &lt; maxIter):
+        alphaPairsChanged = 0
+        for i in range(m):
+            fXi = float(multiply(alphas,labelMat).T*(dataMatrix*dataMatrix[i,:].T)) + b
+            Ei = fXi - float(labelMat[i])#if checks if an example violates KKT conditions
+            if ((labelMat[i]*Ei &lt; -toler) and (alphas[i] &lt; C)) or ((labelMat[i]*Ei &gt; toler) and (alphas[i] &gt; 0)):
+                j = selectJrand(i,m)
+                fXj = float(multiply(alphas,labelMat).T*(dataMatrix*dataMatrix[j,:].T)) + b
+                Ej = fXj - float(labelMat[j])
+                alphaIold = alphas[i].copy(); alphaJold = alphas[j].copy();
+                if (labelMat[i] != labelMat[j]):
+                    L = max(0, alphas[j] - alphas[i])
+                    H = min(C, C + alphas[j] - alphas[i])
+                else:
+                    L = max(0, alphas[j] + alphas[i] - C)
+                    H = min(C, alphas[j] + alphas[i])
+                if L==H: print(&quot;L==H&quot;); continue
+                eta = 2.0 * dataMatrix[i,:]*dataMatrix[j,:].T - dataMatrix[i,:]*dataMatrix[i,:].T - dataMatrix[j,:]*dataMatrix[j,:].T
+                if eta &gt;= 0: print(&quot;eta&gt;=0&quot;); continue
+                alphas[j] -= labelMat[j]*(Ei - Ej)/eta
+                alphas[j] = clipAlpha(alphas[j],H,L)
+                if (abs(alphas[j] - alphaJold) &lt; 0.00001): 
+                    print(&quot;j not moving enough&quot;) 
+                    continue
+                alphas[i] += labelMat[j]*labelMat[i]*(alphaJold - alphas[j])#update i by the same amount as j
+                                                                        #the update is in the oppostie direction
+                b1 = b - Ei- labelMat[i]*(alphas[i]-alphaIold)*dataMatrix[i,:]*dataMatrix[i,:].T - labelMat[j]*(alphas[j]-alphaJold)*dataMatrix[i,:]*dataMatrix[j,:].T
+                b2 = b - Ej- labelMat[i]*(alphas[i]-alphaIold)*dataMatrix[i,:]*dataMatrix[j,:].T - labelMat[j]*(alphas[j]-alphaJold)*dataMatrix[j,:]*dataMatrix[j,:].T
+                if (0 &lt; alphas[i]) and (C &gt; alphas[i]): b = b1
+                elif (0 &lt; alphas[j]) and (C &gt; alphas[j]): b = b2
+                else: b = (b1 + b2)/2.0
+                alphaPairsChanged += 1
+                print(&quot;iter: %d i:%d, pairs changed %d&quot; % (iter,i,alphaPairsChanged))
+        if (alphaPairsChanged == 0): iter += 1
+        else: iter = 0
+        print(&quot;iteration number: %d&quot; % iter)
+    return b,alphas#alphas[i]&gt;0  i is support vecter
+
+def calcWs(alphas,dataArr,classLabels):
+    X = mat(dataArr); labelMat = mat(classLabels).transpose()
+    m,n = shape(X)
+    w = zeros((n,1))
+    for i in range(m):
+        w += multiply(alphas[i]*labelMat[i],X[i,:].T)
+    return w
+
+p0=dataMat[0]*mat(w)+b
+</code></pre>
+
+<h3><a class="anchor" name="platt-smo"><span class="octicon octicon-link"></span></a>Platt SMO</h3>
+
+<pre><code class="language-py">def kernelTrans(X, A, kTup): #calc the kernel or transform data to a higher dimensional space
+    m,n = shape(X)
+    K = mat(zeros((m,1)))
+    if kTup[0]==&#39;lin&#39;: K = X * A.T   #linear kernel
+    elif kTup[0]==&#39;rbf&#39;:
+        for j in range(m):
+            deltaRow = X[j,:] - A
+            K[j] = deltaRow*deltaRow.T
+        K = exp(K/(-1*kTup[1]**2)) #divide in NumPy is element-wise not matrix like Matlab
+    else: raise NameError(&#39;Houston We Have a Problem -- \
+    That Kernel is not recognized&#39;)
+    return K
+
+class optStruct:
+    def __init__(self,dataMatIn, classLabels, C, toler, kTup):  # Initialize the structure with the parameters 
+        self.X = dataMatIn
+        self.labelMat = classLabels
+        self.C = C
+        self.tol = toler
+        self.m = shape(dataMatIn)[0]
+        self.alphas = mat(zeros((self.m,1)))
+        self.b = 0
+        self.eCache = mat(zeros((self.m,2))) #first column is valid flag
+        self.K = mat(zeros((self.m,self.m)))
+        for i in range(self.m):
+            self.K[:,i] = kernelTrans(self.X, self.X[i,:], kTup)
+        
+def calcEk(oS, k):
+    fXk = float(multiply(oS.alphas,oS.labelMat).T*oS.K[:,k] + oS.b)
+    Ek = fXk - float(oS.labelMat[k])
+    return Ek
+        
+def selectJ(i, oS, Ei):         #this is the second choice -heurstic, and calcs Ej
+    maxK = -1; maxDeltaE = 0; Ej = 0
+    oS.eCache[i] = [1,Ei]  #set valid #choose the alpha that gives the maximum delta E
+    validEcacheList = nonzero(oS.eCache[:,0].A)[0]
+    if (len(validEcacheList)) &gt; 1:
+        for k in validEcacheList:   #loop through valid Ecache values and find the one that maximizes delta E
+            if k == i: continue #don&#39;t calc for i, waste of time
+            Ek = calcEk(oS, k)
+            deltaE = abs(Ei - Ek)
+            if (deltaE &gt; maxDeltaE):
+                maxK = k; maxDeltaE = deltaE; Ej = Ek
+        return maxK, Ej
+    else:   #in this case (first time around) we don&#39;t have any valid eCache values
+        j = selectJrand(i, oS.m)
+        Ej = calcEk(oS, j)
+    return j, Ej
+
+def updateEk(oS, k):#after any alpha has changed update the new value in the cache
+    Ek = calcEk(oS, k)
+    oS.eCache[k] = [1,Ek]
+        
+def innerL(i, oS):
+    Ei = calcEk(oS, i)
+    if ((oS.labelMat[i]*Ei &lt; -oS.tol) and (oS.alphas[i] &lt; oS.C)) or ((oS.labelMat[i]*Ei &gt; oS.tol) and (oS.alphas[i] &gt; 0)):
+        j,Ej = selectJ(i, oS, Ei) #this has been changed from selectJrand
+        alphaIold = oS.alphas[i].copy(); alphaJold = oS.alphas[j].copy();
+        if (oS.labelMat[i] != oS.labelMat[j]):
+            L = max(0, oS.alphas[j] - oS.alphas[i])
+            H = min(oS.C, oS.C + oS.alphas[j] - oS.alphas[i])
+        else:
+            L = max(0, oS.alphas[j] + oS.alphas[i] - oS.C)
+            H = min(oS.C, oS.alphas[j] + oS.alphas[i])
+        if L==H: 
+            # print(&quot;L==H&quot;) 
+            return 0
+        eta = 2.0 * oS.K[i,j] - oS.K[i,i] - oS.K[j,j] #changed for kernel
+        if eta &gt;= 0: 
+            # print(&quot;eta&gt;=0&quot;)
+            return 0
+        oS.alphas[j] -= oS.labelMat[j]*(Ei - Ej)/eta
+        oS.alphas[j] = clipAlpha(oS.alphas[j],H,L)
+        updateEk(oS, j) #added this for the Ecache
+        if (abs(oS.alphas[j] - alphaJold) &lt; 0.00001): 
+            # print(&quot;j not moving enough&quot;)
+            return 0
+        oS.alphas[i] += oS.labelMat[j]*oS.labelMat[i]*(alphaJold - oS.alphas[j])#update i by the same amount as j
+        updateEk(oS, i) #added this for the Ecache                    #the update is in the oppostie direction
+        b1 = oS.b - Ei- oS.labelMat[i]*(oS.alphas[i]-alphaIold)*oS.K[i,i] - oS.labelMat[j]*(oS.alphas[j]-alphaJold)*oS.K[i,j]
+        b2 = oS.b - Ej- oS.labelMat[i]*(oS.alphas[i]-alphaIold)*oS.K[i,j]- oS.labelMat[j]*(oS.alphas[j]-alphaJold)*oS.K[j,j]
+        if (0 &lt; oS.alphas[i]) and (oS.C &gt; oS.alphas[i]): oS.b = b1
+        elif (0 &lt; oS.alphas[j]) and (oS.C &gt; oS.alphas[j]): oS.b = b2
+        else: oS.b = (b1 + b2)/2.0
+        return 1
+    else: return 0
+
+def smoP(dataMatIn, classLabels, C, toler, maxIter,kTup=(&#39;lin&#39;, 0)):    #full Platt SMO
+    oS = optStruct(mat(dataMatIn),mat(classLabels).transpose(),C,toler, kTup)
+    iter = 0
+    entireSet = True; alphaPairsChanged = 0
+    while (iter &lt; maxIter) and ((alphaPairsChanged &gt; 0) or (entireSet)):
+        alphaPairsChanged = 0
+        if entireSet:   #go over all
+            for i in range(oS.m):        
+                alphaPairsChanged += innerL(i,oS)
+                # print(&quot;fullSet, iter: %d i:%d, pairs changed %d&quot; % (iter,i,alphaPairsChanged))
+            iter += 1
+        else:#go over non-bound (railed) alphas
+            nonBoundIs = nonzero((oS.alphas.A &gt; 0) * (oS.alphas.A &lt; C))[0]
+            for i in nonBoundIs:
+                alphaPairsChanged += innerL(i,oS)
+                # print(&quot;non-bound, iter: %d i:%d, pairs changed %d&quot; % (iter,i,alphaPairsChanged))
+            iter += 1
+        if entireSet: entireSet = False #toggle entire set loop
+        elif (alphaPairsChanged == 0): entireSet = True  
+        # print(&quot;iteration number: %d&quot; % iter)
+    return oS.b,oS.alphas
+
+datMat=mat(dataMatIn)
+labelMat = mat(classLabels).transpose()
+svInd=nonzero(alphas.A&gt;0)[0]# support vecters index
+sVs=datMat[svInd] # get matrix of only support vectors
+labelSV = labelMat[svInd] #support vecters labels
+m,n = shape(datMat)
+errorCount = 0
+for i in range(m):
+    kernelEval = kernelTrans(sVs,datMat[i,:],(&#39;rbf&#39;, k1))
+    predict=kernelEval.T * multiply(labelSV,alphas[svInd]) + b # predict
+    if sign(predict)!=sign(classLabels[i]): errorCount += 1
+</code></pre>
+
+<h2><a class="anchor" name="adaboost"><span class="octicon octicon-link"></span></a>AdaBoost</h2>
+
+<pre><code class="language-py">def stumpClassify(dataMatrix,dimen,threshVal,threshIneq):#just classify the data
+    retArray = ones((shape(dataMatrix)[0],1))
+    if threshIneq == &#39;lt&#39;:
+        retArray[dataMatrix[:,dimen] &lt;= threshVal] = -1.0
+    else:
+        retArray[dataMatrix[:,dimen] &gt; threshVal] = -1.0
+    # print(&#39;retArray&#39;,retArray)#
+    return retArray
+
+def buildStump(dataArr,classLabels,D):
+    dataMatrix = mat(dataArr); labelMat = mat(classLabels).T
+    m,n = shape(dataMatrix)
+    numSteps = 10.0; bestStump = {}; bestClasEst = mat(zeros((m,1)))
+    minError = inf #init error sum, to +infinity
+    for i in range(n):#loop over all dimensions
+        rangeMin = dataMatrix[:,i].min(); rangeMax = dataMatrix[:,i].max();
+        stepSize = (rangeMax-rangeMin)/numSteps
+        for j in range(-1,int(numSteps)+1):#loop over all range in current dimension
+            for inequal in [&#39;lt&#39;, &#39;gt&#39;]: #go over less than and greater than
+                threshVal = (rangeMin + float(j) * stepSize)
+                predictedVals = stumpClassify(dataMatrix,i,threshVal,inequal)#call stump classify with i, j, lessThan
+                errArr = mat(ones((m,1)))
+                errArr[predictedVals == labelMat] = 0
+                weightedError = D.T*errArr  #calc total error multiplied by D
+                # print(&quot;split: dim %d, thresh %.2f, thresh ineqal: %s, the weighted error is %.3f&quot; % (i, threshVal, inequal, weightedError))
+                if weightedError &lt; minError:
+                    minError = weightedError
+                    bestClasEst = predictedVals.copy()
+                    bestStump[&#39;dim&#39;] = i
+                    bestStump[&#39;thresh&#39;] = threshVal
+                    bestStump[&#39;ineq&#39;] = inequal
+    return bestStump,minError,bestClasEst
+
+def adaBoostTrainDS(dataArr,classLabels,numIt=40):
+    weakClassArr = []
+    m = shape(dataArr)[0]
+    D = mat(ones((m,1))/m)   #init D to all equal
+    aggClassEst = mat(zeros((m,1)))
+    for i in range(numIt):
+        bestStump,error,classEst = buildStump(dataArr,classLabels,D)#build Stump
+        # print(&quot;D:&quot;,D.T)
+        alpha = float(0.5*log((1.0-error)/max(error,1e-16)))#calc alpha, throw in max(error,eps) to account for error=0
+        bestStump[&#39;alpha&#39;] = alpha  
+        weakClassArr.append(bestStump)                  #store Stump Params in Array
+        # print(&quot;classEst: &quot;,classEst.T)
+        expon = multiply(-1*alpha*mat(classLabels).T,classEst) #exponent for D calc, getting messy
+        D = multiply(D,exp(expon))                              #Calc New D for next iteration
+        D = D/D.sum()
+        #calc training error of all classifiers, if this is 0 quit for loop early (use break)
+        aggClassEst += alpha*classEst
+        # print(&quot;aggClassEst: &quot;,aggClassEst.T)
+        aggErrors = multiply(sign(aggClassEst) != mat(classLabels).T,ones((m,1)))
+        errorRate = aggErrors.sum()/m
+        # print(&quot;total error: &quot;,errorRate)
+        if errorRate == 0.0: break
+    return weakClassArr,aggClassEst
+
+def adaClassify(datToClass,classifierArr):#dataMat[i],weakClassArr
+    dataMatrix = mat(datToClass)#do stuff similar to last aggClassEst in adaBoostTrainDS
+    m = shape(dataMatrix)[0]
+    aggClassEst = mat(zeros((m,1)))
+    for i in range(len(classifierArr)):
+        classEst = stumpClassify(dataMatrix,classifierArr[i][&#39;dim&#39;],\
+                                 classifierArr[i][&#39;thresh&#39;],\
+                                 classifierArr[i][&#39;ineq&#39;])#call stump classify
+        aggClassEst += classifierArr[i][&#39;alpha&#39;]*classEst
+        # print(aggClassEst)
+    return sign(aggClassEst)
+</code></pre>
+
+<h2><a class="anchor" name="linear-regression"><span class="octicon octicon-link"></span></a>Linear Regression</h2>
+
+<h3><a class="anchor" name="ordinary-least-squares-methods"><span class="octicon octicon-link"></span></a>Ordinary Least Squares Methods</h3>
+
+<pre><code>err=sum(yi-xi.T*w)^2
+w=(X.T*X)^-1*X.T*y #min err
+
+y=x*w
+</code></pre>
+
+<pre><code class="language-py">def standRegres(xData,yArr):
+    xMat = mat(xData); yMat = mat(yArr).T
+    xTx = xMat.T*xMat
+    if linalg.det(xTx) == 0.0:
+        print(&quot;This matrix is singular, cannot do inverse&quot;)
+        return
+    ws = xTx.I * (xMat.T*yMat)
+    return ws
+
+y=xData*ws
+corr=corrcoef(y.T,yArr)
+</code></pre>
+
+<h3><a class="anchor" name="locally-weighted-linear-regression"><span class="octicon octicon-link"></span></a>Locally Weighted Linear Regression</h3>
+
+<p><code>w=(X.T*W*X)^-1*X.T*W*y</code></p>
+
+<pre><code class="language-py">def lwlr(testPoint,xData,yArr,k=1.0): # k smaller near point weight biger
+    xMat = mat(xData); yMat = mat(yArr).T
+    m = shape(xMat)[0]
+    weights = mat(eye((m)))
+    for j in range(m):                      #next 2 lines create weights matrix
+        diffMat = testPoint - xMat[j,:]     #
+        weights[j,j] = exp(diffMat*diffMat.T/(-2.0*k**2))
+    xTx = xMat.T * (weights * xMat)
+    if linalg.det(xTx) == 0.0:
+        print(&quot;This matrix is singular, cannot do inverse&quot;)
+        return
+    ws = xTx.I * (xMat.T * (weights * yMat))
+    return testPoint * ws
+</code></pre>
+
+<h3><a class="anchor" name="ridge-regression"><span class="octicon octicon-link"></span></a>Ridge Regression</h3>
+
+<p>feature &gt; sample</p>
+
+<p><code>w=(X.T*X+lamda*I)^-1*X.T*y</code></p>
+
+<pre><code class="language-py">def ridgeRegres(xMat,yMat,lam=0.2):# xMat=mat(xData) yMat=mat(yArr).T
+    xTx = xMat.T*xMat
+    denom = xTx + eye(shape(xMat)[1])*lam
+    if linalg.det(denom) == 0.0:
+        print(&quot;This matrix is singular, cannot do inverse&quot;)
+        return
+    ws = denom.I * (xMat.T*yMat)
+    return ws
+</code></pre>
+
+<h3><a class="anchor" name="stage-regres"><span class="octicon octicon-link"></span></a>Stage Regres</h3>
+
+<pre><code class="language-py">def stageWise(xArr,yArr,eps=0.01,numIt=100):
+    xMat = mat(xArr); yMat=mat(yArr).T
+    yMean = mean(yMat,0)
+    yMat = yMat - yMean     #can also regularize ys but will get smaller coef
+    xMat = regularize(xMat)
+    m,n=shape(xMat)
+    ws = zeros((n,1)); wsTest = ws.copy(); wsMax = ws.copy()
+    for i in range(numIt):
+        # print(ws.T)
+        lowestError = inf; 
+        for j in range(n):
+            for sign in [-1,1]:
+                wsTest = ws.copy()
+                wsTest[j] += eps*sign
+                yTest = xMat*wsTest
+                rssE = rssError(yMat.A,yTest.A)
+                if rssE &lt; lowestError:
+                    lowestError = rssE
+                    wsMax = wsTest
+        ws = wsMax.copy()
+    return ws.T
+</code></pre>
+
+<h2><a class="anchor" name="cart"><span class="octicon octicon-link"></span></a>CART</h2>
+
+<p>1.create tree use train data</p>
+
+<p>2.tree pruning use test data</p>
+
+<p>3.forecast</p>
+
+<pre><code class="language-py">def binSplitDataSet(dataSet, feature, value):
+    mat0 = dataSet[nonzero(dataSet[:,feature] &gt; value)[0],:]
+    mat1 = dataSet[nonzero(dataSet[:,feature] &lt;= value)[0],:]
+    return mat0,mat
+
+def chooseBestSplit(dataSet, leafType=regLeaf, errType=regErr, ops=(1,4)):
+    tolS = ops[0]# spiit min error
+    tolN = ops[1]# split min item number
+    #if all the target variables are the same value: quit and return value
+    if len(set(dataSet[:,-1].T.tolist()[0])) == 1: #exit cond 1
+        return None, leafType(dataSet)
+    m,n = shape(dataSet)
+    #the choice of the best feature is driven by Reduction in RSS error from mean
+    S = errType(dataSet)
+    bestS = inf; bestIndex = 0; bestValue = 0
+    for featIndex in range(n-1):
+        for splitVal in set((dataSet[:, featIndex].T.A.tolist())[0]):
+            mat0, mat1 = binSplitDataSet(dataSet, featIndex, splitVal)
+            if (shape(mat0)[0] &lt; tolN) or (shape(mat1)[0] &lt; tolN): continue
+            newS = errType(mat0) + errType(mat1)
+            if newS &lt; bestS: 
+                bestIndex = featIndex
+                bestValue = splitVal
+                bestS = newS
+    #if the decrease (S-bestS) is less than a threshold don&#39;t do the split
+    if (S - bestS) &lt; tolS: 
+        return None, leafType(dataSet) #exit cond 2
+    mat0, mat1 = binSplitDataSet(dataSet, bestIndex, bestValue)
+    if (shape(mat0)[0] &lt; tolN) or (shape(mat1)[0] &lt; tolN):  #exit cond 3
+        return None, leafType(dataSet)
+    return bestIndex,bestValue#returns the best feature to split on
+                              #and the value used for that split
+
+def createTree(dataSet, leafType=regLeaf, errType=regErr, ops=(1,4)):#assume dataSet is NumPy Mat so we can array filtering
+    feat, val = chooseBestSplit(dataSet, leafType, errType, ops)#choose the best split
+    if feat == None: return val #if the splitting hit a stop condition return val
+    retTree = {}
+    retTree[&#39;spInd&#39;] = feat
+    retTree[&#39;spVal&#39;] = val
+    lSet, rSet = binSplitDataSet(dataSet, feat, val)
+    retTree[&#39;left&#39;] = createTree(lSet, leafType, errType, ops)
+    retTree[&#39;right&#39;] = createTree(rSet, leafType, errType, ops)
+    return retTree # {spInd:split_feat_index,spVal:split_feat_value,left:tree|leafType,right:tree|leafType}
+</code></pre>
+
+<h4><a class="anchor" name="regression-tree"><span class="octicon octicon-link"></span></a>regression tree</h4>
+
+<pre><code class="language-py">def regLeaf(dataSet):#returns the value used for each leaf
+    return mean(dataSet[:,-1])
+
+def regErr(dataSet):
+    return var(dataSet[:,-1]) * shape(dataSet)[0]
+</code></pre>
+
+<p><strong>TreePruning</strong></p>
+
+<p>for regression tree</p>
+
+<pre><code class="language-py">def isTree(obj):
+    return (type(obj).__name__==&#39;dict&#39;)
+
+def getMean(tree):
+    if isTree(tree[&#39;right&#39;]): tree[&#39;right&#39;] = getMean(tree[&#39;right&#39;])
+    if isTree(tree[&#39;left&#39;]): tree[&#39;left&#39;] = getMean(tree[&#39;left&#39;])
+    return (tree[&#39;left&#39;]+tree[&#39;right&#39;])/2.0
+    
+def prune(tree, testData):
+    if shape(testData)[0] == 0: return getMean(tree) #if we have no test data collapse the tree
+    if (isTree(tree[&#39;right&#39;]) or isTree(tree[&#39;left&#39;])):#if the branches are not trees try to prune them
+        lSet, rSet = binSplitDataSet(testData, tree[&#39;spInd&#39;], tree[&#39;spVal&#39;])
+    if isTree(tree[&#39;left&#39;]): tree[&#39;left&#39;] = prune(tree[&#39;left&#39;], lSet)
+    if isTree(tree[&#39;right&#39;]): tree[&#39;right&#39;] =  prune(tree[&#39;right&#39;], rSet)
+    #if they are now both leafs, see if we can merge them
+    if not isTree(tree[&#39;left&#39;]) and not isTree(tree[&#39;right&#39;]):
+        lSet, rSet = binSplitDataSet(testData, tree[&#39;spInd&#39;], tree[&#39;spVal&#39;])
+        errorNoMerge = sum(power(lSet[:,-1] - tree[&#39;left&#39;],2)) +\
+            sum(power(rSet[:,-1] - tree[&#39;right&#39;],2))
+        treeMean = (tree[&#39;left&#39;]+tree[&#39;right&#39;])/2.0
+        errorMerge = sum(power(testData[:,-1] - treeMean,2))
+        if errorMerge &lt; errorNoMerge: 
+            print(&quot;merging&quot;)
+            return treeMean
+        else: return tree
+    else: return tree
+</code></pre>
+
+<pre><code class="language-py">def regTreeEval(model, inDat):
+    return float(model)
+</code></pre>
+
+<h4><a class="anchor" name="model-tree"><span class="octicon octicon-link"></span></a>model tree</h4>
+
+<pre><code class="language-py">def linearSolve(dataSet):   #helper function used in two places
+    m,n = shape(dataSet)
+    X = mat(ones((m,n))); Y = mat(ones((m,1)))#create a copy of data with 1 in 0th postion
+    X[:,1:n] = dataSet[:,0:n-1]; Y = dataSet[:,-1]#and strip out Y
+    xTx = X.T*X
+    if linalg.det(xTx) == 0.0:
+        raise NameError(&#39;This matrix is singular, cannot do inverse,\n\
+        try increasing the second value of ops&#39;)
+    ws = xTx.I * (X.T * Y)
+    return ws,X,Y
+
+def modelLeaf(dataSet):#create linear model and return coeficients
+    ws,X,Y = linearSolve(dataSet)
+    return ws
+
+def modelErr(dataSet):
+    ws,X,Y = linearSolve(dataSet)
+    yHat = X * ws
+    return sum(power(Y - yHat,2))
+</code></pre>
+
+<pre><code class="language-py">def modelTreeEval(model, inDat):
+    n = shape(inDat)[1]
+    X = mat(ones((1,n+1)))
+    X[:,1:n+1]=inDat
+    return float(X*model)
+</code></pre>
+
+<p><strong>Forecast</strong></p>
+
+<pre><code class="language-py">def treeForeCast(tree, inData, modelEval=regTreeEval):
+    if not isTree(tree): return modelEval(tree, inData)
+    if inData[tree[&#39;spInd&#39;]] &gt; tree[&#39;spVal&#39;]:
+        if isTree(tree[&#39;left&#39;]): return treeForeCast(tree[&#39;left&#39;], inData, modelEval)
+        else: return modelEval(tree[&#39;left&#39;], inData)
+    else:
+        if isTree(tree[&#39;right&#39;]): return treeForeCast(tree[&#39;right&#39;], inData, modelEval)
+        else: return modelEval(tree[&#39;right&#39;], inData)
+        
+def createForeCast(tree, testData, modelEval=regTreeEval):
+    m=len(testData)
+    yHat = mat(zeros((m,1)))
+    for i in range(m):
+        yHat[i,0] = treeForeCast(tree, mat(testData[i]), modelEval)
+    return yHat
+</code></pre>
+
+<h2><a class="anchor" name="kmeans"><span class="octicon octicon-link"></span></a>kMeans</h2>
+
+<ol>
+<li>for each data point assign it to the closest centroid</li>
+<li>for each centriod recalculate it to mean</li>
+<li>loop until centriod dont change </li>
+</ol>
+
+<pre><code class="language-py">def distEclud(vecA, vecB):
+    return sqrt(sum(power(vecA - vecB, 2))) #la.norm(vecA-vecB)
+
+def randCent(dataSet, k):
+    n = shape(dataSet)[1]
+    centroids = mat(zeros((k,n)))#create centroid mat
+    for j in range(n):#create random cluster centers, within bounds of each dimension
+        minJ = min(dataSet[:,j]) 
+        rangeJ = float(max(dataSet[:,j]) - minJ)
+        centroids[:,j] = mat(minJ + rangeJ * random.rand(k,1))
+    return centroids
+
+def kMeans(dataSet, k, distMeas=distEclud, createCent=randCent):
+    m = shape(dataSet)[0]
+    clusterAssment = mat(zeros((m,2)))#create mat to assign data points 
+                                      #to a centroid, also holds SE of each point
+    centroids = createCent(dataSet, k)
+    clusterChanged = True
+    while clusterChanged:
+        clusterChanged = False
+        for i in range(m):#for each data point assign it to the closest centroid
+            minDist = inf; minIndex = -1
+            for j in range(k):
+                distJI = distMeas(centroids[j,:],dataSet[i,:])
+                if distJI &lt; minDist:
+                    minDist = distJI; minIndex = j
+            if clusterAssment[i,0] != minIndex: clusterChanged = True
+            clusterAssment[i,:] = minIndex,minDist**2
+        # print(centroids)
+        for cent in range(k):#recalculate centroids
+            ptsInClust = dataSet[nonzero(clusterAssment[:,0].A==cent)[0]]#get all the point in this cluster
+            centroids[cent,:] = mean(ptsInClust, axis=0) #assign centroid to mean 
+    return centroids, clusterAssment# mat [index,distance] 
+</code></pre>
+
+<pre><code class="language-py"># dichotomy optimize
+def biKmeans(dataSet, k, distMeas=distEclud):
+    m = shape(dataSet)[0]
+    clusterAssment = mat(zeros((m,2)))
+    centroid0 = mean(dataSet, axis=0).tolist()[0]
+    centList =[centroid0] #create a list with one centroid
+    for j in range(m):#calc initial Error
+        clusterAssment[j,1] = distMeas(mat(centroid0), dataSet[j,:])**2
+    while (len(centList) &lt; k):
+        lowestSSE = inf
+        for i in range(len(centList)):
+            ptsInCurrCluster = dataSet[nonzero(clusterAssment[:,0].A==i)[0],:]#get the data points currently in cluster i
+            centroidMat, splitClustAss = kMeans(ptsInCurrCluster, 2, distMeas)
+            sseSplit = sum(splitClustAss[:,1])#compare the SSE to the currrent minimum
+            sseNotSplit = sum(clusterAssment[nonzero(clusterAssment[:,0].A!=i)[0],1])
+            # print(&quot;sseSplit, and notSplit: &quot;,sseSplit,sseNotSplit)
+            if (sseSplit + sseNotSplit) &lt; lowestSSE:
+                bestCentToSplit = i
+                bestNewCents = centroidMat
+                bestClustAss = splitClustAss.copy()
+                lowestSSE = sseSplit + sseNotSplit
+        bestClustAss[nonzero(bestClustAss[:,0].A == 1)[0],0] = len(centList) #change 1 to 3,4, or whatever
+        bestClustAss[nonzero(bestClustAss[:,0].A == 0)[0],0] = bestCentToSplit
+        # print(&#39;the bestCentToSplit is: &#39;,bestCentToSplit)
+        # print(&#39;the len of bestClustAss is: &#39;, len(bestClustAss))
+        centList[bestCentToSplit] = bestNewCents[0,:].tolist()[0]#replace a centroid with two best centroids 
+        centList.append(bestNewCents[1,:].tolist()[0])
+        clusterAssment[nonzero(clusterAssment[:,0].A == bestCentToSplit)[0],:]= bestClustAss#reassign new clusters, and SSE
+    return mat(centList), clusterAssment
+</code></pre>
+
+<h2><a class="anchor" name="apriori"><span class="octicon octicon-link"></span></a>Apriori</h2>
+
+<pre><code class="language-py">def createC1(dataSet):
+    C1 = []
+    for transaction in dataSet:
+        for item in transaction:
+            if not [item] in C1:
+                C1.append([item])
+                
+    C1.sort()
+    return list(map(frozenset, C1))#use frozen set so we
+                            #can use it as a key in a dict    
+
+def scanD(D, Ck, minSupport):
+    ssCnt = {}
+    for tid in D:
+        for can in Ck:
+            if can.issubset(tid):
+                if not can in ssCnt: ssCnt[can]=1
+                else: ssCnt[can] += 1
+    numItems = float(len(D))
+    retList = []
+    supportData = {}
+    for key in ssCnt:
+        support = ssCnt[key]/numItems # issubset/total 
+        if support &gt;= minSupport:
+            retList.insert(0,key)
+        supportData[key] = support
+    return retList, supportData
+
+def aprioriGen(Lk, k): #creates Ck
+    retList = []
+    lenLk = len(Lk)
+    for i in range(lenLk):
+        for j in range(i+1, lenLk): 
+            L1 = list(Lk[i])[:k-2]; L2 = list(Lk[j])[:k-2]
+            L1.sort(); L2.sort()
+            if L1==L2: #if first k-2 elements are equal
+                retList.append(Lk[i] | Lk[j]) #set union
+    return retList
+
+def apriori(dataSet, minSupport = 0.5):
+    C1 = createC1(dataSet) # set len = 1
+    D = list(map(set, dataSet))
+    L1, supportData = scanD(D, C1, minSupport)
+    L = [L1]
+    k = 2
+    while (len(L[k-2]) &gt; 0):
+        Ck = aprioriGen(L[k-2], k) # set len = k
+        Lk, supK = scanD(D, Ck, minSupport)#scan DB to get Lk
+        supportData.update(supK)
+        L.append(Lk)
+        k += 1
+    return L, supportData # [[Ck&gt;minSupport],] , {set:support}
+
+def generateRules(L, supportData, minConf=0.7):
+    bigRuleList = []
+    for i in range(1, len(L)):#only get the sets with two or more items ,no C1
+        for freqSet in L[i]:
+            H1 = [frozenset([item]) for item in freqSet] #[1 item frozen set]
+            if (i &gt; 1):
+                rulesFromConseq(freqSet, H1, supportData, bigRuleList, minConf)
+            else:
+                calcConf(freqSet, H1, supportData, bigRuleList, minConf)
+    return bigRuleList         
+
+def calcConf(freqSet, H, supportData, brl, minConf=0.7):
+    prunedH = [] #create new list to return
+    for conseq in H:
+        conf = supportData[freqSet]/supportData[freqSet-conseq] #calc confidence
+        if conf &gt;= minConf: 
+            print(freqSet-conseq,&#39;--&gt;&#39;,conseq,&#39;conf:&#39;,conf)
+            brl.append((freqSet-conseq, conseq, conf))
+            prunedH.append(conseq)
+    return prunedH
+
+def rulesFromConseq(freqSet, H, supportData, brl, minConf=0.7):
+    m = len(H[0])
+    if (len(freqSet) &gt; (m + 1)): #try further merging
+        Hmp1 = aprioriGen(H, m+1)#create Hm+1 new candidates
+        Hmp1 = calcConf(freqSet, Hmp1, supportData, brl, minConf)
+        if (len(Hmp1) &gt; 1):    #need at least two sets to merge
+            rulesFromConseq(freqSet, Hmp1, supportData, brl, minConf)
+</code></pre>
+
+<h2><a class="anchor" name="fp-growth"><span class="octicon octicon-link"></span></a>FP-Growth</h2>
+
+<pre><code class="language-py">class treeNode:
+    def __init__(self, nameValue, numOccur, parentNode):
+        self.name = nameValue
+        self.count = numOccur
+        self.nodeLink = None
+        self.parent = parentNode      #needs to be updated
+        self.children = {} 
+    
+    def inc(self, numOccur):
+        self.count += numOccur
+        
+    def disp(self, ind=1):
+        print(&#39;  &#39;*ind, self.name, &#39; &#39;, self.count)
+        for child in self.children.values():
+            child.disp(ind+1)
+
+def createTree(dataSet, minSup=1): #create FP-tree from dataset but don&#39;t mine
+    headerTable = {} # {item:[times,treenode]}
+    #go over dataSet twice
+    for trans in dataSet:#first pass counts frequency of occurance
+        for item in trans:
+            headerTable[item] = headerTable.get(item, 0) + dataSet[trans]
+    for k in list(headerTable.keys()):  #remove items not meeting minSup
+        if headerTable[k] &lt; minSup: 
+            del(headerTable[k])
+    freqItemSet = set(headerTable.keys())
+    # print(&#39;freqItemSet: &#39;,freqItemSet)
+    if len(freqItemSet) == 0: return None, None  #if no items meet min support --&gt;get out
+    for k in headerTable:
+        headerTable[k] = [headerTable[k], None] #reformat headerTable to use Node link 
+    # print(&#39;headerTable: &#39;,headerTable) 
+    retTree = treeNode(&#39;Null Set&#39;, 1, None) #create tree
+    for tranSet, count in dataSet.items():  #go through dataset 2nd time; count always = 1
+        localD = {} # {item_transet:times}
+        for item in tranSet:  #put transaction items in order
+            if item in freqItemSet:
+                localD[item] = headerTable[item][0]
+        if len(localD) &gt; 0:
+            orderedItems = [v[0] for v in sorted(localD.items(), key=lambda p: p[1], reverse=True)]
+            # print(&#39;orderedItems&#39;,orderedItems,localD)
+            updateTree(orderedItems, retTree, headerTable, count)#populate tree with ordered freq itemset
+    return retTree, headerTable #return tree and header table
+
+def updateTree(items, inTree, headerTable, count):
+    if items[0] in inTree.children:#check if orderedItems[0] in retTree.children
+        inTree.children[items[0]].inc(count) #incrament count
+    else:   #add items[0] to inTree.children
+        inTree.children[items[0]] = treeNode(items[0], count, inTree)
+        if headerTable[items[0]][1] == None: #update header table 
+            headerTable[items[0]][1] = inTree.children[items[0]]
+        else:
+            updateHeader(headerTable[items[0]][1], inTree.children[items[0]])
+    if len(items) &gt; 1:#call updateTree() with remaining ordered items
+        updateTree(items[1::], inTree.children[items[0]], headerTable, count)
+        
+def updateHeader(nodeToTest, targetNode):   #this version does not use recursion
+    while (nodeToTest.nodeLink != None):    #Do not use recursion to traverse a linked list!
+        nodeToTest = nodeToTest.nodeLink
+    nodeToTest.nodeLink = targetNode
+        
+def ascendTree(leafNode, prefixPath): #ascends from leaf node to root
+    if leafNode.parent != None:
+        prefixPath.append(leafNode.name)
+        ascendTree(leafNode.parent, prefixPath)
+    
+def findPrefixPath(basePat, treeNode): #treeNode comes from header table
+    condPats = {}
+    while treeNode != None:
+        prefixPath = []
+        ascendTree(treeNode, prefixPath)
+        if len(prefixPath) &gt; 1: 
+            condPats[frozenset(prefixPath[1:])] = treeNode.count
+        treeNode = treeNode.nodeLink
+    return condPats
+
+def mineTree(inTree, headerTable, minSup, preFix, freqItemList):
+    bigL = [v[0] for v in sorted(headerTable.items(), key=lambda p: str(p[1]))]#(sort header table);[item]
+    # print(&#39;bigL&#39;,bigL)
+    for basePat in bigL:  #start from bottom of header table
+        newFreqSet = preFix.copy()
+        newFreqSet.add(basePat)
+        # print(&#39;finalFrequent Item: &#39;,newFreqSet)    #append to set
+        freqItemList.append(newFreqSet)
+        condPattBases = findPrefixPath(basePat, headerTable[basePat][1])
+        # print(&#39;condPattBases :&#39;,basePat, condPattBases)
+        #2. construct cond FP-tree from cond. pattern base
+        myCondTree, myHead = createTree(condPattBases, minSup)
+        # print(&#39;head from conditional tree: &#39;, myHead)
+        if myHead != None: #3. mine cond. FP-tree
+            print(&#39;conditional tree for: &#39;,newFreqSet)
+            myCondTree.disp(1)            
+            mineTree(myCondTree, myHead, minSup, newFreqSet, freqItemList)
+</code></pre>
+
+<h2><a class="anchor" name="pca"><span class="octicon octicon-link"></span></a>PCA</h2>
+
+<pre><code class="language-py">def pca(dataMat, topNfeat=9999999):
+    meanVals = mean(dataMat, axis=0)
+    meanRemoved = dataMat - meanVals #remove mean
+    covMat = cov(meanRemoved, rowvar=0)
+    eigVals,eigVects = linalg.eig(mat(covMat))
+    eigValInd = argsort(eigVals)            #sort, sort goes smallest to largest
+    eigValInd = eigValInd[:-(topNfeat+1):-1]  #cut off unwanted dimensions
+    redEigVects = eigVects[:,eigValInd]       #reorganize eig vects largest to smallest
+    lowDDataMat = meanRemoved * redEigVects #transform data into new dimensions
+    reconMat = (lowDDataMat * redEigVects.T) + meanVals
+    return lowDDataMat, reconMat
+</code></pre>
+
+<h2><a class="anchor" name="svd"><span class="octicon octicon-link"></span></a>SVD</h2>
+
+<pre><code>U,Sigma,VT=svd(datamat)
+lowdatamat=Uk*Sigmak*VTk
+</code></pre>
+
+<h3><a class="anchor" name="recommend-engine"><span class="octicon octicon-link"></span></a>Recommend Engine</h3>
+
+<p>collaborative filtering</p>
+
+<pre><code class="language-py">#datamat=[user]=[[itemscore]]
+def ecludSim(inA,inB):
+    return 1.0/(1.0 + la.norm(inA - inB))
+
+def pearsSim(inA,inB):
+    if len(inA) &lt; 3 : return 1.0
+    return 0.5+0.5*corrcoef(inA, inB, rowvar = 0)[0][1]
+
+def cosSim(inA,inB):
+    num = float(inA.T*inB)
+    denom = la.norm(inA)*la.norm(inB)
+    return 0.5+0.5*(num/denom)
+
+def standEst(dataMat, user, simMeas, item):
+    n = shape(dataMat)[1]
+    simTotal = 0.0; ratSimTotal = 0.0
+    for j in range(n):
+        userRating = dataMat[user,j]
+        if userRating == 0: continue
+        overLap = nonzero(logical_and(dataMat[:,item].A&gt;0, \
+                                      dataMat[:,j].A&gt;0))[0]#[userindex]
+        print(overLap,userRating)
+        if len(overLap) == 0: similarity = 0
+        else: similarity = simMeas(dataMat[overLap,item], \
+                                   dataMat[overLap,j])
+        print(&#39;the %d and %d similarity is: %f&#39; % (item, j, similarity))
+        simTotal += similarity
+        ratSimTotal += similarity * userRating
+    if simTotal == 0: return 0
+    else: return ratSimTotal/simTotal
+    
+def svdEst(dataMat, user, simMeas, item):
+    n = shape(dataMat)[1]
+    simTotal = 0.0; ratSimTotal = 0.0
+    U,Sigma,VT = la.svd(dataMat)
+    Sig4 = mat(eye(4)*Sigma[:4]) #arrange Sig4 into a diagonal matrix
+    xformedItems = dataMat.T * U[:,:4] * Sig4.I  #create transformed items
+    for j in range(n):
+        userRating = dataMat[user,j]
+        if userRating == 0 or j==item: continue
+        similarity = simMeas(xformedItems[item,:].T,\
+                             xformedItems[j,:].T)
+        print(&#39;the %d and %d similarity is: %f&#39; % (item, j, similarity))
+        simTotal += similarity
+        ratSimTotal += similarity * userRating
+    if simTotal == 0: return 0
+    else: return ratSimTotal/simTotal
+
+def recommend(dataMat, user, N=3, simMeas=cosSim, estMethod=standEst):
+    unratedItems = nonzero(dataMat[user,:].A==0)[1]#find unrated items [itemindex]
+    if len(unratedItems) == 0: return &#39;you rated everything&#39;
+    itemScores = []#[(itemindex,score)]
+    for item in unratedItems:
+        estimatedScore = estMethod(dataMat, user, simMeas, item)
+        itemScores.append((item, estimatedScore))
+    return sorted(itemScores, key=lambda jj: jj[1], reverse=True)[:N]
+</code></pre>
+
+<h3><a class="anchor" name="image-compress"><span class="octicon octicon-link"></span></a>Image Compress</h3>
+
+<pre><code class="language-py">def imgCompress(dataMat,numSV=3):
+    U,Sigma,VT = la.svd(dataMat)
+    SigRecon = mat(zeros((numSV, numSV)))
+    for k in range(numSV):#construct diagonal matrix from vector
+        SigRecon[k,k] = Sigma[k]
+    
+    reconMat = U[:,:numSV]*SigRecon*VT[:numSV,:]
+</code></pre>
+</article><div class="markdown-body" id="discusspane">
+    <a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/1" class="btn">Discuss</a>
+    <a href="../blog.html?year=2019" class="btn">2019</a>
+    <a href="../blog.html?year=2018" class="btn">2018</a>
+    <a href="../blog.html?year=2017" class="btn">2017</a>
+    <a href="../blog.html?year=2016" class="btn">2016</a>
+    <a href="../blog.html?year=2015" class="btn">2015</a>
+    <div id="copyright">&copy;2015-2019 by DKZ</div>
+</div>
+</div>
+</div>
+</body>
+
+</html>

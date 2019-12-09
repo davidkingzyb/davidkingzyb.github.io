@@ -1,1 +1,1 @@
-{"blog": [{"title": " Pi Story", "key": "2019/9/10 by DKZ", "img": "", "index": 31, "info": "Pi \u7684\u6545\u4e8b"}]}
+{"blog": [{"title": " Pi Story", "info": "Pi \u7684\u6545\u4e8b", "index": 31, "img": "", "key": "2019/9/10 by DKZ"}, {"title": " Machine Learning in Action", "info": "Machine Learning in Action", "index": 32, "img": "", "key": "2019/5/15 by DKZ"}, {"title": " Unity SteamVR Plugin \u914d\u7f6e\u6559\u7a0b", "info": "\u4f7f\u7528SteamVR Unity Plugin\u5236\u4f5c\u7b80\u5355VR\u5c04\u51fb\u6e38\u620f", "index": 33, "img": "", "key": "2019/12/4 by DKZ"}]}
