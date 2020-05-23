@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DKZ's Blog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=0.8, minimum-scale=0.8, maximum-scale=0.8, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../res/md.css">
+    <link rel="stylesheet" type="text/css" href="../res/blogstyle.css">
+    <script type="text/javascript" src="../res/dkzlogo.js"></script>
+</head>
+
+<body>
+    <div id="footer">
+        <div id="footerPane">
+            <a href="../blogmd/1.html"><img id="cubehead" src="../res/img/cubehead.png"></a>
+            <div id="footerL">
+                <!-- <a class="btn" href="../home.html">Home</a> -->
+                <a class="btn" href="//davidkingzyb.tech">Home</a><a id="rssbtn" href="../rss.xml" class="btn">RSS</a>
+            </div>
+            <div id="footerR">
+                <a class="btn" href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/1" id="discussbtn">Discuss</a><a class="btn" href="../blog.html">Contents</a><a class="btn" href="#top">Top</a>
+            </div>
+        </div>
+    </div>
+    <div id="container">
+        <a href="#top">
+            <div id="headPane">
+                <div id="headmain">
+                    <canvas id="dkzlogo" width="340" height="250">
+                        <img src="../res/img/dkzlogo.png">
+                    </canvas>
+                </div>
+                <script type="text/javascript" src="../res/blogmd.js"></script>
+            </div>
+        </a>
+        <div id="bodyPane">
+<article class="markdown-body"><h1><a class="anchor" name="m5keyboard"><span class="octicon octicon-link"></span></a>M5Keyboard</h1>
+
+<p><strong>基于M5Stack Face的蓝牙键盘 HID脚本终端</strong></p>
+
+<p>2019-2020 by DKZ</p>
+
+<p><img src="blogImg/m5keyboard.JPG" alt=""></p>
+
+<p><a href="https://github.com/cheatplayer/m5keyboard">github</a></p>
+
+<h3><a class="anchor" name="menu"><span class="octicon octicon-link"></span></a>Menu</h3>
+
+<pre><code>+---------------------------------------------+
+|     +-----+    +-----+                      |
+|     |STA  |    |AP   |                      |
+|     +-----+    +-----+                      |
+|     |halt |    |stop |                      |
+|     +-----+    +-----+                      |
+|     |run  |    |loop |                      |
+|     +-----+    +-----+                      |
+|     |load |    |find |                      |
+|     +-----+    +-----+                      |
+|     |save |    |clear|                      |
+|     +-----+    +------+    +----+           |
+|     |BLE  |    |Client|    |menu|           |
+|     +-----+    +------+    +----+           |
++---------------------------------------------+
+| ▪ ▪  menu       info       result           |
++-+-+-----------------------------------------+
+  | |
+  | |  +------+   +------+   +------+
+  | |  | Btn  |   | Btn  |   | Btn  |
+  | |  |  A   |   |  B   |   |  C   |
+  | |  +------+   +------+   +------+
+  | |
+  | +---&gt;NETWORK
+  |      disconnect  RED
+  |      AP          BLE
+  |      STA start   YELLOW
+  |      STA connect GREEN
+  |
+  +-----&gt;BLUETOOTH
+         disconnect RED
+         connect    BLUE
+
+</code></pre>
+
+<h3><a class="anchor" name="keyboard"><span class="octicon octicon-link"></span></a>Keyboard</h3>
+
+<pre><code>       alt
+    +-------+
+    |sym    |
+    |       |
+    |Fn  key|
+    +-------+
+    
+   LCTRL LSHIFT LALT LCMD         RCTRL RSHIFT RALT RCMD
+    +-------------------------------------------------+
+    |#   |1   |2   |3   |(   |)   |_   |-   |+   |@   |
+    |~  q|^  w|&amp;  e|`  r|&lt;  t|&gt;  y|{  u|}  i|[  o|]  p|
+    +-------------------------------------------------+
+     F1   F2   F3   F4   F5   F6   F7   F8   F9
+    +-------------------------------------------------+
+    |*   |4   |5   |6   |/   |:   |;   |&#39;   |&quot;   |DEL |
+    ||  a|=  s|\  d|%  f|PS g|SL h|CL j|↑  k|INSl|  BS|
+    +-------------------------------------------------+
+           F10  F11  F12                     time
+    +---------------------------------------+----+----+
+    |    |7   |8   |9   |?   |!   |,   |.   |    |    |
+    |ALT |TABz|HOMx|ENDc|PU v|PD b|←  n|↓  m|→  $|  LF|
+    +----+--------------------------------------------+
+               ESC    clear mult key
+       +------+----+-------------------+----+------+
+       |      |    |                   |    |      |
+       |    aA|   0|       SPACE       | sym|    Fn|
+       +------+----+-------------------+----+------+
+</code></pre>
+
+<h3><a class="anchor" name="hid-script"><span class="octicon octicon-link"></span></a>HID Script</h3>
+
+<p>line split by <code>\r</code></p>
+
+<h4><a class="anchor" name="basic"><span class="octicon octicon-link"></span></a>basic</h4>
+
+<p><code>character</code></p>
+
+<h4><a class="anchor" name="mult-and-special-key"><span class="octicon octicon-link"></span></a>mult and special key</h4>
+
+<p><code>&gt;&gt;&gt; KEYCODE OPTIONAL_KEYCODE...</code></p>
+
+<p><code>::: KEYCODE</code></p>
+
+<p><strong>example</strong></p>
+
+<pre><code>&gt;&gt;&gt; CTRL SPACE
+&gt;&gt;&gt; SHIFT ALT f
+</code></pre>
+
+<pre><code>::: ESC
+</code></pre>
+
+<h4><a class="anchor" name="delay"><span class="octicon octicon-link"></span></a>delay</h4>
+
+<p><code>$$$ time</code></p>
+
+<p><strong>example</strong></p>
+
+<p><code>$$$ 1000</code></p>
+
+<h3><a class="anchor" name="refenerce"><span class="octicon octicon-link"></span></a>Refenerce</h3>
+
+<ul>
+<li>https://github.com/nkolban/esp32-snippets</li>
+<li>https://github.com/spacehuhn/wifi_ducky</li>
+<li>https://github.com/mhama/M5StackHIDCtrlAltDel</li>
+</ul>
+</article><div class="markdown-body" id="discusspane">
+    <a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/1" class="btn">Discuss</a>
+    <a href="../blog.html?year=2020" class="btn">2020</a>
+    <a href="../blog.html?year=2019" class="btn">2019</a>
+    <a href="../blog.html?year=2018" class="btn">2018</a>
+    <a href="../blog.html?year=2017" class="btn">2017</a>
+    <a href="../blog.html?year=2016" class="btn">2016</a>
+    <a href="../blog.html?year=2015" class="btn">2015</a>
+    <div id="copyright">&copy;2015-2020 by DKZ</div>
+</div>
+</div>
+</div>
+</body>
+
+</html>
