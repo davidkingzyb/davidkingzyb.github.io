@@ -16,7 +16,7 @@ function getBlogJson() {
         wtf.get('blog'+year+'.json', function(d) {
             blogobj['blog'+year] = d;
             var y = wtf.urlquery('year');
-            if (y == year||year==2020) {
+            if (y == year||year==2021) {
                 doYear(year);
             }
         })
@@ -27,6 +27,7 @@ function getBlogJson() {
     _getBlogJson(2018);
     _getBlogJson(2019);
     _getBlogJson(2020);
+    _getBlogJson(2021);
 }
 
 function doYear(year) {
@@ -66,6 +67,7 @@ function responseHandle(blogJson, isError, fromSearch) {
     innerbodyPane = innerbodyPane 
     + '<div class="markdown-body" id="discusspane">' 
     + '<a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/1" class="btn">Discuss</a>' 
+    + '<a href="javascript:doYear(2021)" class="btn">2021</a>' 
     + '<a href="javascript:doYear(2020)" class="btn">2020</a>' 
     + '<a href="javascript:doYear(2019)" class="btn">2019</a>' 
     + '<a href="javascript:doYear(2018)" class="btn">2018</a>' 
