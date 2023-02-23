@@ -79,7 +79,7 @@ RSStemplate="""<?xml version="1.0" encoding="UTF-8"?>
     <title>DKZ's Blog</title>
     <link>http://davidkingzyb.github.io/blog.html</link>
     <description>Tech Program Design 造物</description>
-    <copyright>(c)2015-2021 by DKZ</copyright>
+    <copyright>(c)2015-2023 by DKZ</copyright>
     <image>
         <url>http://davidkingzyb.github.io/res/img/cubehead.png</url>
         <title>DKZ</title>

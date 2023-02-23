@@ -4,7 +4,7 @@
     <title>DKZ's Blog</title>
     <link>http://davidkingzyb.github.io/blog.html</link>
     <description>Tech Program Design 造物</description>
-    <copyright>(c)2015-2021 by DKZ</copyright>
+    <copyright>(c)2015-2023 by DKZ</copyright>
     <image>
         <url>http://davidkingzyb.github.io/res/img/cubehead.png</url>
         <title>DKZ</title>
@@ -931,7 +931,8 @@ VRChat 是一个由**用户提供内容**的**多人在线** VR 游戏。
 
 
 link: http://davidkingzyb.github.io/blogmd/39.html</description></item><item><title> Wall Draw</title><link>http://davidkingzyb.github.io/blogmd/38.html</link><description>SVG Polargraph
-一个失败的项目，原因是精度不够，这三年玩了不少智能硬件嵌入式开发相关的玩具，有一点收获吧，一些C语言，C++计算机底层，硬件（esp32，arduino）和操作系统（FreertOS），通信协议（I2C，UAET）的经验，但这个兴趣可能会暂停一段时间。  
+
+一个失败的项目，原因是精度不够，这三年玩了不少智能硬件嵌入式开发相关的玩具，有一点收获吧，一些C语言，C++计算机底层，硬件（esp32，arduino）和操作系统（FreertOS），通信协议（I2C，UAET），3D打印（blender）的经验，但这个兴趣可能会暂停一段时间。  
 Experience is the name everyone gives to their mistakes.
 
 ## Hardware
@@ -952,7 +953,6 @@ Experience is the name everyone gives to their mistakes.
                                        │        │    ││    LCD              ││
                                        └────────┘    │┼─────────────────────┼│
                                           ▲brown     └──┼────────────────────┘ ┌──────┐
-                                          │▲red         │                      │      │
 ...
 
 
