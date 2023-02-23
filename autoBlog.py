@@ -136,7 +136,9 @@ createBlogJson(files,'blog2017',25,27)
 createBlogJson(files,'blog2018',28,30)
 createBlogJson(files,'blog2019',31,34)
 createBlogJson(files,'blog2020',35,36)
-createBlogJson(files,'blog2021',37,99)
+createBlogJson(files,'blog2021',37,37)
+createBlogJson(files,'blog2022',38,39)
+createBlogJson(files,'blog2023',40,99)
 
 createRSSfile('rss')
 
