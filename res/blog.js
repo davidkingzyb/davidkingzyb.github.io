@@ -78,7 +78,7 @@ function responseHandle(blogJson, isError, fromSearch) {
     + '<a href="javascript:doYear(2017)" class="btn">2017</a>' 
     + '<a href="javascript:doYear(2016)" class="btn">2016</a>' 
     + '<a href="javascript:doYear(2015)" class="btn">2015</a>' 
-    + '<div id="copyright">&copy;2015-2018 by DKZ</div></div>';
+    + '<div id="copyright">&copy;2015-2023 by DKZ</div></div>';
     document.getElementById('bodyPane').innerHTML = innerbodyPane;
 }
 
