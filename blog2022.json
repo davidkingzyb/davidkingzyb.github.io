@@ -1,1 +1,1 @@
-{"blog": [{"img": "./blogImg/38.jpg", "index": 38, "info": "SVG Polargraph", "title": " Wall Draw", "key": "2022/6/30 by DKZ"}, {"img": "", "index": 39, "info": "VRChat\u7814\u7a76", "title": " VRChat", "key": "2022/10/27 by DKZ"}]}
+{"blog": [{"index": 38, "title": " Wall Draw", "info": "SVG Polargraph", "key": "2022/6/30 by DKZ", "img": "./blogImg/38.jpg"}, {"index": 39, "title": " VRChat", "info": "VRChat\u7814\u7a76", "key": "2022/10/27 by DKZ", "img": ""}]}

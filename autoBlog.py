@@ -14,7 +14,7 @@ import misaka
 import re
 import urllib
 import blogconfig
-import cgi
+import html
 
 files=os.listdir('./blogmd');
 
@@ -79,7 +79,7 @@ RSStemplate="""<?xml version="1.0" encoding="UTF-8"?>
     <title>DKZ's Blog</title>
     <link>http://davidkingzyb.github.io/blog.html</link>
     <description>Tech Program Design 造物</description>
-    <copyright>(c)2015-2023 by DKZ</copyright>
+    <copyright>(c)2015-2024 by DKZ</copyright>
     <image>
         <url>http://davidkingzyb.github.io/res/img/cubehead.png</url>
         <title>DKZ</title>
@@ -90,8 +90,8 @@ RSStemplate="""<?xml version="1.0" encoding="UTF-8"?>
 def doRSS(o,lines):
     global RSStemplate
     ll=list(filter(lambda l:l[0:2]!='![',lines))
-    article=''.join(ll[8:30])+'...\n\n\nlink: http://davidkingzyb.github.io/blogmd/'+cgi.escape(str(o['index']))+'.html'
-    RSStemplate+='<item><title>'+cgi.escape(o['title'])+'</title><link>http://davidkingzyb.github.io/blogmd/'+cgi.escape(str(o['index']))+'.html</link><description>'+cgi.escape(o['info'])+'\n'+cgi.escape(article)+'</description></item>'
+    article=''.join(ll[8:30])+'...\n\n\nlink: http://davidkingzyb.github.io/blogmd/'+html.escape(str(o['index']))+'.html'
+    RSStemplate+='<item><title>'+html.escape(o['title'])+'</title><link>http://davidkingzyb.github.io/blogmd/'+html.escape(str(o['index']))+'.html</link><description>'+html.escape(o['info'])+'\n'+html.escape(article)+'</description></item>'
 
 def MDtoJson(file):
     print('md to json:'+file)
@@ -138,7 +138,8 @@ createBlogJson(files,'blog2019',31,34)
 createBlogJson(files,'blog2020',35,36)
 createBlogJson(files,'blog2021',37,37)
 createBlogJson(files,'blog2022',38,39)
-createBlogJson(files,'blog2023',40,99)
+createBlogJson(files,'blog2023',40,43)
+createBlogJson(files,'blog2024',44,99)
 
 createRSSfile('rss')
 
