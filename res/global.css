@@ -1,0 +1,108 @@
+@media (max-width: 400px) {
+	html {
+	  font-size: 18px;
+	}
+  }
+  
+  @media (min-width: 400) and (max-width: 600px) {
+	html {
+	  font-size: 24px;
+	}
+  }
+  
+  @media (min-width: 600px) and (max-width: 800px) {
+	html {
+	  font-size: 36px;
+	}
+  }
+  
+  @media (min-width: 800px) and (max-width: 1200px) {
+	html {
+	  font-size: 48px;
+	}
+}
+.m05r{
+	margin:0.5rem;
+}
+.ml05r{
+	margin-left: 0.5rem;
+}
+.mr05r{
+	margin-right: 0.5rem;
+}
+.mt05r{
+	margin-top: 0.5rem;
+}
+.mb05r{
+	margin-bottom: 0.5rem;
+}
+.m1r{
+	margin:1rem;
+}
+.ml1r{
+	margin-left: 1rem;
+}
+.mr1r{
+	margin-right: 1rem;
+}
+.mt1r{
+	margin-top: 1rem;
+}
+.mb1r{
+	margin-bottom: 1rem;
+}
+
+.m2r{
+	margin:2rem;
+}
+
+.w100{
+	width:100%;
+}
+
+.tacenter{
+	text-align: center;
+}
+
+.pointer{
+	cursor: pointer;
+}
+
+.fr{
+	float:right;
+}
+.fl{
+	float:left;
+}
+.c_red{
+	color:#DB5860;
+}
+.c_yellow{
+	color:#F2CF55;
+}
+.c_blue{
+	color:#6175F5;
+}
+.c_white{
+	color:white;
+}
+.c_black{
+	color:#333333;
+}
+.of{
+	overflow: auto;
+}
+
+.fs13r{
+	font-size: 1.3rem;
+}
+.Impact{
+	font-family: Impact;
+}
+
+.tac{
+	text-align: center;
+}
+.tar{
+	text-align: right;
+}

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Color Lesson</title>
+    <link rel="stylesheet" href="../res/init.css">
+    <link rel="stylesheet" href="../res/ui.css">
+    <link rel="stylesheet" href="../res/global.css">
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+    <style>
+        #file {
+            width: 200px;
+        }
+
+        .irocon {
+            position: fixed;
+            right: 0px;
+            top: 0px;
+            width: 250px;
+        }
+
+        .menucon {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+        }
+
+        .border_w {
+            border: 1px solid white;
+        }
+
+        #info {
+            height: 72px;
+        }
+
+        input[type="checkbox"] {
+            border: 1px #6175F5 solid;
+            border-radius: 0.2rem;
+            zoom: 300%;
+            margin: 0.1rem;
+            width: 0.5rem;
+            height: 0.5rem;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            color: white;
+        }
+
+        .dkz{
+            position: fixed;
+            bottom: 0px;
+            margin: 0.5rem;
+            font-size: 0.7rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="con">
+        <canvas id="canvas"></canvas>
+    </div>
+    <div class="menucon m1r">
+        <input type='file' id='file'>
+        <button id="load" class="pointer" onclick="load()">load️</button><br>
+        <details open="true">
+            <summary class="mt05r">Menu</summary>
+            <div class="menu_pane">
+                Size: <span id="size">512</span>
+                <button id="s128" onclick="setSize(128)">128</button>
+                <button id="s256" onclick="setSize(256)">256</button>
+                <button id="s512" onclick="setSize(512)">512</button>
+                <button id="s1024" onclick="setSize(1024)">1024</button>
+                <button id="s2048" onclick="setSize(2048)">2048</button>
+
+                <br>
+                Border: <input type="checkbox" id="border"><br>
+                Down Sampling: <input type="checkbox" id="sampling"><br>
+                Sampling Scale: <input type="number" id="sampling_scale" value="10"><br>
+                Sampling Offset: <input type="number" id="sampling_offset" value="1"><br>
+                <button id="sampling" class="mt05r" onclick="sampling()">sampling</button>
+                <button id="color_lesson" class="mt05r" onclick="doColorLesson()">color lesson</button>
+
+            </div>
+        </details>
+        <details open="true">
+            <summary class="mt05r">Texture</summary>
+            <div id="texture_pane">
+
+            </div>
+        </details>
+    </div>
+    <div class="m1r irocon">
+        <div>
+            <input id="hex" class="mt05r" type="text">
+            <canvas id="select_color" class="fr mt05r mb05r border_w" width="50" height="100"></canvas>
+        </div>
+        <div id="info" class="mb05r mt05r c_white">
+        </div>
+
+        <div class="Grid">
+            <details open="true">
+                <summary class="mt06r">HUE</summary>
+                <div class="ColorPicker" id="defaultPicker">
+                </div>
+            </details>
+            <details>
+                <summary class="mt05r">HSV</summary>
+                <div class="ColorPicker" id="boxPicker">
+                </div>
+                <br>
+                <div class="ColorPicker" id="sliderPicker">
+                </div>
+            </details>
+        </div>
+    </div>
+    <a class="dkz" href="https://davidkingzyb.tech">2024 by DKZ</a>
+    <script>
+        // iro
+        // HSV
+        var defaultPicker = new iro.ColorPicker("#defaultPicker", {
+            width: 250,
+            color: "rgb(255, 0, 0)",
+            borderWidth: 1,
+            borderColor: "#fff",
+        });
+        // Box 
+        var boxPicker = new iro.ColorPicker("#boxPicker", {
+            width: 250,
+            color: "rgb(255, 0, 0)",
+            borderWidth: 1,
+            borderColor: "#fff",
+            layout: [
+                {
+                    component: iro.ui.Box,
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: {
+                        id: 'hue-slider',
+                        sliderType: 'hue'
+                    }
+                }
+            ]
+        });
+        //HSV
+        var sliderPicker = new iro.ColorPicker("#sliderPicker", {
+            width: 250,
+            color: "rgb(255, 0, 0)",
+            borderWidth: 1,
+            borderColor: "#fff",
+            layout: [
+                // {
+                //   component: iro.ui.Slider,
+                //   options: {
+                //     sliderType: 'hue'
+                //   }
+                // },
+                {
+                    component: iro.ui.Slider,
+                    options: {
+                        sliderType: 'saturation'
+                    }
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: {
+                        sliderType: 'value'
+                    }
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: {
+                        sliderType: 'alpha'
+                    }
+                },
+            ]
+        });
+        var $info = document.getElementById('info')
+        var $hex = document.getElementById('hex')
+        $hex.onblur = function () {
+            var c = new iro.Color($hex.value)
+            onColorChange(c)
+        }
+        function onColorChange(color) {
+            //console.log(color)
+            defaultPicker.setColors([color.rgba])
+            boxPicker.setColors([color.rgba])
+            sliderPicker.setColors([color.rgba])
+            $info.innerHTML = `${color.rgbaString}<br>hsla(${color.hsla.h},${color.hsla.s},${color.hsla.l},${color.hsla.a})<br>hsva(${parseInt(color.hsva.h)},${parseInt(color.hsva.s)},${parseInt(color.hsva.v)},${color.hsva.a})`;
+            $hex.value = color.hexString;
+            $select_color = document.getElementById('select_color')
+            $select_color_ctx = $select_color.getContext('2d')
+            $select_color_ctx.fillRect(0, 0, 50, 100)
+            $select_color_ctx.fillStyle = color.hexString
+            $select_color_ctx.fillRect(0, 0, 50, 50)
+        }
+        boxPicker.on('color:change', onColorChange);
+        defaultPicker.on('color:change', onColorChange);
+        sliderPicker.on('color:change', onColorChange);
+    </script>
+    <script>
+        // canvas
+        var $canvas = document.getElementById('canvas')
+        var $ctx = $canvas.getContext('2d')
+        function load() {
+            var $file = document.getElementById('file')
+
+            var r = new FileReader()
+            r.onload = function (e) {
+                var img = new Image()
+                img.src = e.target.result
+                img.onload = drawImageActualSize
+
+            }
+            r.readAsDataURL($file.files[0])
+        }
+
+        $canvas.onmousedown = function (e) {
+            var data = $ctx.getImageData(e.offsetX, e.offsetY, 1, 1).data
+            var c = new iro.Color({ 'r': data[0], 'g': data[1], 'b': data[2], 'a': data[3] })
+            onColorChange(c)
+        }
+
+        function drawImageActualSize() {
+            $canvas.width = this.naturalWidth;
+            $canvas.height = this.naturalHeight;
+            $ctx.drawImage(this, 0, 0, this.width, this.height);
+            console.log(this.naturalHeight, this.naturalWidth, this.width, this.height)
+        }
+    </script>
+    <script>
+        // Texture
+        var size = 512;
+        var sampling_scale = parseInt($canvas.width / (size / 10))
+        var $sampling_scale = document.getElementById('sampling_scale')
+        var $sampling_offset = document.getElementById('sampling_offset')
+        function setSize(s) {
+            size = s;
+            $size = document.getElementById('size')
+            $size.innerHTML = size;
+            sampling_scale = parseInt($canvas.width / (size / 10))
+            $sampling_scale.value = sampling_scale
+        }
+
+        var $texture_pane = document.getElementById('texture_pane')
+        function sampling() {
+            var isBorder = document.getElementById('border').checked;
+            var isSampling = document.getElementById('sampling').checked;
+
+            console.log(size, isBorder, isSampling, $sampling_scale.value)
+            if (isSampling) {
+                const sourceImageData = $ctx.getImageData(0, 0, $canvas.width, $canvas.height);
+                const downsampledCanvas = downSampledWithGaussian(sourceImageData, parseInt($sampling_scale.value));
+                $texture_pane.appendChild(downsampledCanvas);
+                drawTexture(downsampledCanvas, isBorder, 10)
+            } else {
+                const getSampledCanvas = getSampled($canvas, parseInt($sampling_scale.value), parseInt($sampling_offset.value));
+                $texture_pane.appendChild(getSampledCanvas)
+                drawTexture(getSampledCanvas, isBorder, 10)
+            }
+
+
+        }
+        var $color_lesson_canvas;
+        function drawTexture(canvas, isBorder, box_size) {
+            $color_lesson_canvas=canvas
+            const $texture = document.createElement('canvas');
+            $texture.width = size;
+            $texture.height = size;
+            const octx = $texture.getContext('2d')
+            const ictx = canvas.getContext('2d')
+            var offset = Math.floor((size % box_size) / 2)
+            octx.fillStyle = '#ffffff';
+            octx.fillRect(0, 0, size, offset)
+            octx.fillRect(0, 0, offset, size)
+            for (let x = 0; x < canvas.width; x++) {
+                for (let y = 0; y < canvas.height; y++) {
+                    let data = ictx.getImageData(x + 1, y + 1, 1, 1).data
+                    var c = new iro.Color({ 'r': data[0], 'g': data[1], 'b': data[2], 'a': data[3] })
+                    octx.fillStyle = c.hexString;
+                    octx.fillRect(offset + x * box_size, offset + y * box_size, box_size, box_size);
+                    if (isBorder) {
+                        octx.fillStyle = '#ffffff';
+                        octx.fillRect(offset + box_size - 1 + x * box_size, offset + y * box_size, 1, box_size + 1)
+                        octx.fillRect(offset + x * box_size, offset + box_size - 1 + y * box_size, 1 + box_size, 1)
+                    }
+                }
+            }
+            $texture_pane.appendChild($texture);
+            $texture.onmousedown = function (e) {
+                var data = octx.getImageData(e.offsetX, e.offsetY, 1, 1).data
+                var c = new iro.Color({ 'r': data[0], 'g': data[1], 'b': data[2], 'a': data[3] })
+                ColorLesson(octx.getImageData(e.offsetX, e.offsetY, 3, 3).data)
+                onColorChange(c)
+            }
+        }
+
+        function doColorLesson() {
+            var data = $color_lesson_canvas.getContext('2d').getImageData(0, 0, $color_lesson_canvas.width, $color_lesson_canvas.height).data
+            ColorLesson(data)
+        }
+
+        function ColorLesson(colors) {
+            var result = '{"d":['
+            var color = []
+            for (let c of colors) {
+                if (color.length == 4) {
+                    let hsv = RGB2HSV(color[0], color[1], color[2])
+                    //hsv2xyz
+                    let x = Math.cos(hsv[0] * 2*Math.PI-Math.PI) * hsv[1] * 10
+                    let y = Math.sin(hsv[0] * 2*Math.PI-Math.PI) * hsv[1] * 10
+                    //console.log('rgb',color[0],color[1],color[2],'hsv',hsv[0],hsv[1],hsv[2],'xyz',x,y,hsv[2]*10)
+                    result += `[${x.toFixed(3)},${y.toFixed(3)},${(hsv[2] * 10).toFixed(3)}],`
+                    color = [c]
+                } else {
+                    color.push(c)
+                }
+            }
+            result = result.slice(0, -1) + ']}'
+            console.log('ColorLesson')
+            //console.log(result)
+            saveStringToFile('color_lesson.json',result)
+        }
+
+        function saveStringToFile(filename, content) {
+            var blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+            var url = URL.createObjectURL(blob);
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            link.click();
+        }
+
+        function getSampled(sourceCanvas, scaleFactor, offset) {
+            console.log('getSampled', scaleFactor, offset)
+            const sourceWidth = sourceCanvas.width;
+            const sourceHeight = sourceCanvas.height;
+
+            const targetWidth = Math.floor(sourceWidth / scaleFactor);
+            const targetHeight = Math.floor(sourceHeight / scaleFactor);
+
+            const targetCanvas = document.createElement('canvas');
+            targetCanvas.width = targetWidth;
+            targetCanvas.height = targetHeight;
+            const targetContext = targetCanvas.getContext('2d');
+            var target_data = targetContext.getImageData(0, 0, targetWidth, targetHeight)
+
+            const intermediateContext = sourceCanvas.getContext('2d')
+            for (let x = 0; x < targetWidth; x++) {
+                for (let y = 0; y < targetHeight; y++) {
+                    let data = intermediateContext.getImageData(offset + x * scaleFactor + 1, offset + y * scaleFactor + 1, 1, 1).data
+                    var c = new iro.Color({ 'r': data[0], 'g': data[1], 'b': data[2], 'a': data[3] })
+                    targetContext.fillStyle = c.hexString;
+                    targetContext.fillRect(x + 1, y + 1, 1, 1);
+                }
+            }
+            return targetCanvas
+        }
+
+        // 高斯卷积核图像下采样算法
+        function downSampledWithGaussian(sourceImageData, scaleFactor) {
+            const sourceWidth = sourceImageData.width;
+            const sourceHeight = sourceImageData.height;
+
+            const targetWidth = Math.floor(sourceWidth / scaleFactor);
+            const targetHeight = Math.floor(sourceHeight / scaleFactor);
+
+            const targetCanvas = document.createElement('canvas');
+            targetCanvas.width = targetWidth;
+            targetCanvas.height = targetHeight;
+            const targetContext = targetCanvas.getContext('2d');
+            var target_data = targetContext.getImageData(0, 0, targetWidth, targetHeight)
+
+            const intermediateCanvas = document.createElement('canvas');
+            intermediateCanvas.width = sourceWidth;
+            intermediateCanvas.height = sourceHeight;
+            const intermediateContext = intermediateCanvas.getContext('2d');
+            intermediateContext.putImageData(sourceImageData, 0, 0);
+            const intermediateImageData = intermediateContext.getImageData(0, 0, sourceWidth, sourceHeight);
+            const intermediateData = intermediateImageData.data;
+            // 高斯卷积核
+            const kernel = [
+                [1, 2, 1],
+                [2, 4, 2],
+                [1, 2, 1]
+            ];
+
+            for (let y = 0; y < targetHeight; y++) {
+                for (let x = 0; x < targetWidth; x++) {
+                    let red = 0;
+                    let green = 0;
+                    let blue = 0;
+                    let alpha = 0;
+
+                    for (let j = 0; j < 3; j++) {
+                        for (let i = 0; i < 3; i++) {
+                            const sourceX = x * scaleFactor + i - 1;
+                            const sourceY = y * scaleFactor + j - 1;
+
+                            const offset = (sourceY * sourceWidth + sourceX) * 4;
+                            const kernelValue = kernel[j][i];
+
+                            red += intermediateData[offset] * kernelValue;
+                            green += intermediateData[offset + 1] * kernelValue;
+                            blue += intermediateData[offset + 2] * kernelValue;
+                            alpha += intermediateData[offset + 3] * kernelValue;
+                        }
+                    }
+
+                    const targetOffset = (y * targetWidth + x) * 4;
+                    const kernelSum = 16; // 高斯卷积核的和
+
+                    target_data.data[targetOffset] = red / kernelSum;
+                    target_data.data[targetOffset + 1] = green / kernelSum;
+                    target_data.data[targetOffset + 2] = blue / kernelSum;
+                    target_data.data[targetOffset + 3] = alpha / kernelSum;
+                }
+            }
+            targetContext.putImageData(target_data, 0, 0)
+
+            return targetCanvas;
+        }
+
+        function RGB2HSV(r, g, b) {
+            r /= 255, g /= 255, b /= 255;
+
+            let max = Math.max(r, g, b), min = Math.min(r, g, b);
+            let h, s, v = max;
+
+            let d = max - min;
+            s = max == 0 ? 0 : d / max;
+
+            if (max == min) {
+                h = 0; // achromatic
+            } else {
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                }
+                h /= 6;
+            }
+
+            return [h, s, v];//0~1
+        }
+
+        function HSV2RGB(h, s, v) {
+            let r, g, b;
+
+            let i = Math.floor(h * 6);
+            let f = h * 6 - i;
+            let p = v * (1 - s);
+            let q = v * (1 - f * s);
+            let t = v * (1 - (1 - f) * s);
+
+            switch (i % 6) {
+                case 0: r = v, g = t, b = p; break;
+                case 1: r = q, g = v, b = p; break;
+                case 2: r = p, g = v, b = t; break;
+                case 3: r = p, g = q, b = v; break;
+                case 4: r = t, g = p, b = v; break;
+                case 5: r = v, g = p, b = q; break;
+            }
+
+            return [r, g, b];//0~1
+        }
+
+    </script>
+</body>
+
+</html>

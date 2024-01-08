@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DKZ's Blog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=0.8, minimum-scale=0.8, maximum-scale=0.8, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../res/md.css">
+    <link rel="stylesheet" type="text/css" href="../res/blogstyle.css">
+    <script type="text/javascript" src="../res/dkzlogo.js"></script>
+</head>
+
+<body>
+    <div id="footer">
+        <div id="footerPane">
+            <a href="../blogmd/1.html"><img id="cubehead" src="../res/img/cubehead.png"></a>
+            <div id="footerL">
+                <!-- <a class="btn" href="../home.html">Home</a> -->
+                <a class="btn" href="//davidkingzyb.tech">Home</a><a id="rssbtn" href="../rss.xml" class="btn">RSS</a>
+            </div>
+            <div id="footerR">
+                <a class="btn" href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/1" id="discussbtn">Discuss</a><a class="btn" href="../blog.html">Contents</a><a class="btn" href="#top">Top</a>
+            </div>
+        </div>
+    </div>
+    <div id="container">
+        <a href="#top">
+            <div id="headPane">
+                <div id="headmain">
+                    <canvas id="dkzlogo" width="340" height="250">
+                        <img src="../res/img/dkzlogo.png">
+                    </canvas>
+                </div>
+                <script type="text/javascript" src="../res/blogmd.js"></script>
+            </div>
+        </a>
+        <div id="bodyPane">
+<article class="markdown-body"><h1><a class="anchor" name="color-lesson"><span class="octicon octicon-link"></span></a>Color Lesson</h1>
+
+<p><strong>研究色彩在HSV空间中分布规律的可视化工具</strong></p>
+
+<p>2024/1/8 by DKZ</p>
+
+<p><img src="./blogImg/colorlesson_uglow.png" alt="color lesson"></p>
+
+<p>这是一个用于研究颜色在 HSV 空间分布的可视化工具，可以将一张图片每个像素的颜色提取出来映射在 HSV 色彩空间中。</p>
+
+<p><a href="https://davidkingzyb.github.io/template/ColorLesson.htm">点这里</a>可以尝试这个软件。里面内置了一些取色器，采样，色板等小功能可以用作板绘时的参考。</p>
+
+<p>用法是</p>
+
+<p>1.选择文件
+2.load图片，可点击图片吸色
+3.设置色板大小，边框，是否下采样（使用高斯卷积），缩放比，偏移等参数
+4.点击采样可查看采样后的图片和生成的色板
+5.点击 color lesson 可生成一个 json 文件，包含 HSV 空间位置信息</p>
+
+<p>接下来可以用这个脚本将 json 导入到 blender 中</p>
+
+<pre><code>import bpy
+import bmesh
+import json
+
+# 假设verts是一个包含点位置的列表
+verts =[[1, 0, 0], [0, 1, 0], [0, 0, 1], [0, 0, 0]]
+with open(&#39;C:/Users/DKZ/Desktop/color_lesson.json&#39;,&#39;r&#39;) as f:
+    j=json.load(f)
+    verts=j.get(&#39;d&#39;,[])
+    
+mesh = bpy.data.meshes.new(name=&quot;ColorLessonMesh&quot;)  # 创建一个新的mesh
+obj = bpy.data.objects.new(&quot;ColorLessonObj&quot;, mesh)  # 创建一个新的object
+
+scene = bpy.context.scene
+scene.collection.objects.link(obj)
+
+bm = bmesh.new()
+for v in verts:
+    bm.verts.new(v)  # 添加一个顶点
+
+#bm.faces.new(bm.verts)  # 通过所有顶点创建一个面
+
+bm.to_mesh(mesh)  # 将bmesh写入到mesh
+bm.free()  # 清理bmesh
+
+mat = bpy.data.materials[&quot;ColorLessonMaterial&quot;]
+if len(obj.data.materials):
+    obj.data.materials[0] = mat
+else:
+    obj.data.materials.append(mat)
+    
+node = bpy.data.node_groups[&quot;GNColorLesson&quot;]
+
+if obj.modifiers.get(&#39;GeometryNodes&#39;):
+    obj.modifiers[&#39;GeometryNodes&#39;].node_group = node
+else:
+    obj.modifiers.new(&#39;GeometryNodes&#39;, &#39;NODES&#39;)
+    obj.modifiers[&#39;GeometryNodes&#39;].node_group = node
+</code></pre>
+
+<p>HSVHSV
+使用这个几何节点，生成 HSV 空间的分布</p>
+
+<p><img src="./blogImg/gn_color_lesson.png" alt="gn"></p>
+
+<p>由于位置信息在 HSV 就代表了颜色信息，所以只要用 xyz 直角坐标转化为极坐标得到的值就是 HSV 表示的颜色</p>
+
+<p><img src="./blogImg/hsv_rgb.webp" alt="hsv"></p>
+
+<p>所以直接只用 shader 把颜色渲染出来就可以看到最终 HSV 圆柱体这张图片的色彩分布情况了</p>
+
+<p><img src="./blogImg/shader_color_lesson.png" alt="shader"></p>
+
+<p>最后效果如下  </p>
+
+<p><img src="./blogImg/color_lesson.gif" alt="gif"></p>
+
+<p>接下来会找一些艺术家的画研究一下他们所使用的颜色</p>
+</article><div class="markdown-body" id="discusspane">
+    <a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/1" class="btn">Discuss</a>
+    <a href="../blog.html?year=2024" class="btn">2024</a>
+    <a href="../blog.html?year=2023" class="btn">2023</a>
+    <a href="../blog.html?year=2022" class="btn">2022</a>
+    <a href="../blog.html?year=2021" class="btn">2021</a>
+    <a href="../blog.html?year=2020" class="btn">2020</a>
+    <a href="../blog.html?year=2019" class="btn">2019</a>
+    <a href="../blog.html?year=2018" class="btn">2018</a>
+    <a href="../blog.html?year=2017" class="btn">2017</a>
+    <a href="../blog.html?year=2016" class="btn">2016</a>
+    <a href="../blog.html?year=2015" class="btn">2015</a>
+    <div id="copyright">&copy;2015-2024 by DKZ</div>
+</div>
+</div>
+</div>
+</body>
+
+</html>

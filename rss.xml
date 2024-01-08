@@ -1043,6 +1043,9 @@ link: http://davidkingzyb.github.io/blogmd/42.html</description></item><item><ti
 
 
 link: http://davidkingzyb.github.io/blogmd/43.html</description></item><item><title> Blender Slot</title><link>http://davidkingzyb.github.io/blogmd/44.html</link><description>A blender addon for manage scripts and customize your own functions.
+
+
+
 写了一个可以录制操作的 blender 插件，可以方便的管理执行自定义的脚本。
 
 后面计划整理一些实用的脚本，建立一套个人的资产制作管线。
@@ -1052,4 +1055,30 @@ link: http://davidkingzyb.github.io/blogmd/43.html</description></item><item><ti
 ...
 
 
-link: http://davidkingzyb.github.io/blogmd/44.html</description></item></channel></rss>
+link: http://davidkingzyb.github.io/blogmd/44.html</description></item><item><title> Color Lesson</title><link>http://davidkingzyb.github.io/blogmd/45.html</link><description>研究色彩在HSV空间中分布规律的可视化工具
+
+[点这里](https://davidkingzyb.github.io/template/ColorLesson.htm)可以尝试这个软件。里面内置了一些取色器，采样，色板等小功能可以用作板绘时的参考。
+
+用法是
+
+1.选择文件
+2.load图片，可点击图片吸色
+3.设置色板大小，边框，是否下采样（使用高斯卷积），缩放比，偏移等参数
+4.点击采样可查看采样后的图片和生成的色板
+5.点击 color lesson 可生成一个 json 文件，包含 HSV 空间位置信息
+
+接下来可以用这个脚本将 json 导入到 blender 中
+
+```
+import bpy
+import bmesh
+import json
+
+# 假设verts是一个包含点位置的列表
+verts =[[1, 0, 0], [0, 1, 0], [0, 0, 1], [0, 0, 0]]
+with open(&#x27;C:/Users/DKZ/Desktop/color_lesson.json&#x27;,&#x27;r&#x27;) as f:
+    j=json.load(f)
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/45.html</description></item></channel></rss>
