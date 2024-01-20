@@ -55,6 +55,14 @@
             bottom: 0px;
             margin: 0.5rem;
             font-size: 0.7rem;
+            right:0px;
+        }
+        .help{
+            position: fixed;
+            bottom: 0;
+            margin: 0.5rem;
+            font-weight: bold;
+            font-family: 'Impact';
         }
     </style>
 </head>
@@ -70,25 +78,25 @@
         <details open="true">
             <summary class="mt05r">Menu</summary>
             <div class="menu_pane">
+                Palette: <input type="checkbox" id="palette"><br>
                 Size: <span id="size">512</span>
                 <button id="s128" onclick="setSize(128)">128</button>
                 <button id="s256" onclick="setSize(256)">256</button>
                 <button id="s512" onclick="setSize(512)">512</button>
                 <button id="s1024" onclick="setSize(1024)">1024</button>
                 <button id="s2048" onclick="setSize(2048)">2048</button>
-
                 <br>
-                Border: <input type="checkbox" id="border"><br>
-                Down Sampling: <input type="checkbox" id="sampling"><br>
                 Sampling Scale: <input type="number" id="sampling_scale" value="10"><br>
                 Sampling Offset: <input type="number" id="sampling_offset" value="1"><br>
+                Border: <input type="checkbox" id="border"><br>
+                Gaussian: <input type="checkbox" id="sampling"><br>
                 <button id="sampling" class="mt05r" onclick="sampling()">sampling</button>
                 <button id="color_lesson" class="mt05r" onclick="doColorLesson()">color lesson</button>
 
             </div>
         </details>
         <details open="true">
-            <summary class="mt05r">Texture</summary>
+            <summary class="mt05r" onclick="removeTexture()">Texture</summary>
             <div id="texture_pane">
 
             </div>
@@ -118,6 +126,7 @@
             </details>
         </div>
     </div>
+    <a href="https://davidkingzyb.github.io/blogmd/45.html" class="help">Color Lesson</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a class="dkz" href="https://davidkingzyb.tech">2024 by DKZ</a>
     <script>
         // iro
@@ -243,32 +252,44 @@
             size = s;
             $size = document.getElementById('size')
             $size.innerHTML = size;
-            sampling_scale = parseInt($canvas.width / (size / 10))
+            var isPalette = document.getElementById('palette').checked;
+            if (isPalette) {
+                sampling_scale = parseInt($canvas.width / (size / 10))
+            } else {
+                sampling_scale = parseInt($canvas.width / size)
+            }
             $sampling_scale.value = sampling_scale
         }
 
         var $texture_pane = document.getElementById('texture_pane')
+        function removeTexture(){
+            $texture_pane.innerHTML=""
+        }
         function sampling() {
             var isBorder = document.getElementById('border').checked;
             var isSampling = document.getElementById('sampling').checked;
 
             console.log(size, isBorder, isSampling, $sampling_scale.value)
+            var downSampledCanvas;
             if (isSampling) {
                 const sourceImageData = $ctx.getImageData(0, 0, $canvas.width, $canvas.height);
-                const downsampledCanvas = downSampledWithGaussian(sourceImageData, parseInt($sampling_scale.value));
-                $texture_pane.appendChild(downsampledCanvas);
-                drawTexture(downsampledCanvas, isBorder, 10)
+                downSampledCanvas = downSampledWithGaussian(sourceImageData, parseInt($sampling_scale.value));
             } else {
-                const getSampledCanvas = getSampled($canvas, parseInt($sampling_scale.value), parseInt($sampling_offset.value));
-                $texture_pane.appendChild(getSampledCanvas)
-                drawTexture(getSampledCanvas, isBorder, 10)
+                downSampledCanvas = getSampled($canvas, parseInt($sampling_scale.value), parseInt($sampling_offset.value));
+            }
+            $texture_pane.appendChild(downSampledCanvas);
+            var isPalette = document.getElementById('palette').checked;
+            if (isPalette) {
+                drawTexture(downSampledCanvas, isBorder, 10)
+            }else{
+                $color_lesson_canvas=downSampledCanvas;
             }
 
 
         }
         var $color_lesson_canvas;
         function drawTexture(canvas, isBorder, box_size) {
-            $color_lesson_canvas=canvas
+            $color_lesson_canvas = canvas
             const $texture = document.createElement('canvas');
             $texture.width = size;
             $texture.height = size;
@@ -302,7 +323,13 @@
 
         function doColorLesson() {
             var data = $color_lesson_canvas.getContext('2d').getImageData(0, 0, $color_lesson_canvas.width, $color_lesson_canvas.height).data
-            ColorLesson(data)
+            var result = ColorLesson(data)
+            saveStringToFile('color_lesson.json', result)
+            var $a = document.createElement('a');
+            $a.href = $color_lesson_canvas.toDataURL()
+            $a.download = 'color_lesson.png'
+            $a.click()
+
         }
 
         function ColorLesson(colors) {
@@ -312,8 +339,8 @@
                 if (color.length == 4) {
                     let hsv = RGB2HSV(color[0], color[1], color[2])
                     //hsv2xyz
-                    let x = Math.cos(hsv[0] * 2*Math.PI-Math.PI) * hsv[1] * 10
-                    let y = Math.sin(hsv[0] * 2*Math.PI-Math.PI) * hsv[1] * 10
+                    let x = Math.cos(hsv[0] * 2 * Math.PI - Math.PI) * hsv[1] * 10
+                    let y = Math.sin(hsv[0] * 2 * Math.PI - Math.PI) * hsv[1] * 10
                     //console.log('rgb',color[0],color[1],color[2],'hsv',hsv[0],hsv[1],hsv[2],'xyz',x,y,hsv[2]*10)
                     result += `[${x.toFixed(3)},${y.toFixed(3)},${(hsv[2] * 10).toFixed(3)}],`
                     color = [c]
@@ -322,9 +349,7 @@
                 }
             }
             result = result.slice(0, -1) + ']}'
-            console.log('ColorLesson')
-            //console.log(result)
-            saveStringToFile('color_lesson.json',result)
+            return result
         }
 
         function saveStringToFile(filename, content) {
