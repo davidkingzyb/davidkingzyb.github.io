@@ -41,7 +41,7 @@
 
 <p>2024/1/8 by DKZ</p>
 
-<p><img src="./blogImg/colorlesson_uglow.png" alt="color lesson"></p>
+<p><img src="./blogImg/colorlesson1.png" alt="color lesson"></p>
 
 <p>这是一个用于研究颜色在 HSV 空间分布的可视化工具，可以将一张图片每个像素的颜色提取出来映射在 HSV 色彩空间中。</p>
 
@@ -49,11 +49,11 @@
 
 <p>用法是</p>
 
-<p>1.选择文件
-2.load图片，可点击图片吸色
-3.设置色板大小，边框，是否下采样（使用高斯卷积），缩放比，偏移等参数
-4.点击采样可查看采样后的图片和生成的色板
-5.点击 color lesson 可生成一个 json 文件，包含 HSV 空间位置信息</p>
+<p>1.选择文件<br>
+2.load图片，可点击图片吸色<br>
+3.设置色板大小，边框，是否下采样（使用高斯卷积），缩放比，偏移等参数<br>
+4.点击采样可查看采样后的图片和生成的色板<br>
+5.点击 color lesson 可生成一个 json 文件，包含 HSV 空间位置信息  </p>
 
 <p>接下来可以用这个脚本将 json 导入到 blender 中</p>
 
@@ -97,16 +97,13 @@ else:
     obj.modifiers[&#39;GeometryNodes&#39;].node_group = node
 </code></pre>
 
-<p>HSVHSV
-使用这个几何节点，生成 HSV 空间的分布</p>
+<p>使用这个几何节点，生成 HSV 空间的分布</p>
 
 <p><img src="./blogImg/gn_color_lesson.png" alt="gn"></p>
 
-<p>由于位置信息在 HSV 就代表了颜色信息，所以只要用 xyz 直角坐标转化为极坐标得到的值就是 HSV 表示的颜色</p>
+<p>由于位置信息在 HSV 圆柱体中就代表了颜色信息，所以只要用 xyz 直角坐标转化为极坐标得到的值就是 HSV 表示的颜色</p>
 
-<p><img src="./blogImg/hsv_rgb.webp" alt="hsv"></p>
-
-<p>所以直接只用 shader 把颜色渲染出来就可以看到最终 HSV 圆柱体这张图片的色彩分布情况了</p>
+<p>所以直接只用 shader 把颜色渲染出来就可以看到最终这张图片的色彩分布情况了</p>
 
 <p><img src="./blogImg/shader_color_lesson.png" alt="shader"></p>
 
