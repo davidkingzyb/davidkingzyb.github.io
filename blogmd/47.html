@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DKZ's Blog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=0.8, minimum-scale=0.8, maximum-scale=0.8, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../res/md.css">
+    <link rel="stylesheet" type="text/css" href="../res/blogstyle.css">
+    <script type="text/javascript" src="../res/dkzlogo.js"></script>
+</head>
+
+<body>
+    <div id="footer">
+        <div id="footerPane">
+            <a href="../blogmd/1.html"><img id="cubehead" src="../res/img/cubehead.png"></a>
+            <div id="footerL">
+                <!-- <a class="btn" href="../home.html">Home</a> -->
+                <a class="btn" href="//davidkingzyb.tech">Home</a><a id="rssbtn" href="../rss.xml" class="btn">RSS</a>
+            </div>
+            <div id="footerR">
+                <a class="btn" href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/1" id="discussbtn">Discuss</a><a class="btn" href="../blog.html">Contents</a><a class="btn" href="#top">Top</a>
+            </div>
+        </div>
+    </div>
+    <div id="container">
+        <a href="#top">
+            <div id="headPane">
+                <div id="headmain">
+                    <canvas id="dkzlogo" width="340" height="250">
+                        <img src="../res/img/dkzlogo.png">
+                    </canvas>
+                </div>
+                <script type="text/javascript" src="../res/blogmd.js"></script>
+            </div>
+        </a>
+        <div id="bodyPane">
+<article class="markdown-body"><h1><a class="anchor" name="conway%26%2339%3Bs-law"><span class="octicon octicon-link"></span></a>Conway&#39;s Law</h1>
+
+<p><strong>Any organization that designs a system will produce a design whose structure is a copy of the organization&#39;s internal communication structure.</strong></p>
+
+<p>2024/3/5 by DKZ</p>
+
+<p>之前写过一篇关于 Maslow&#39;s hammer 和路径依赖相关的 <a href="./13.html">blog</a> ，讲的是工具是如何塑造人的。今天讲讲康威定律，是马斯洛锤子的反面，讲讲人和组织是如何塑造工具的。  </p>
+
+<p>过年我舅舅来我们家，把 blender 快捷键全部改成 maya 的，还吐槽我将键盘 ctrl 和 caplock 对换。我意识到人会被工具改变的问题已经很久了，但不可否认的是过往的路径还是在我身上起着作用，不光是在学校学 Java 时用的 Eclipse IDE，tab 跳出括号的功能，还是之后用 vim ，这些都变成肌肉记忆很难摆脱。虽然我能意识到，但自己也没有克服，半斤八两吧也就懒得说了。  </p>
+
+<p>我原以为我在大的方向上，诸如架构，范式上能够摆脱一些依赖，自认为做过一些项目，也学过很多语言。算是涉猎的有一定广度吧，但似乎也是生不由己，尤其是在一个组织里。在网易的时候我们组很多东西要交给一个中台的职能部门去做。他们每次都新起一个工程的做法让我这个后来要接手维护的人感到无语，估计每个接手的人都会感到困惑吧，我离开公司之后主管还不时问我这块的问题。但站在对方的角度似乎这是最合适的方式，建造一套模板每个需求都在这个模板上重新做而不是在上一个需求的基础上加。因为接需求的人是不同的，有时候没有办法获得上一个需求的上下文，或是要付出很大的沟通成本。甚至也没有什么必要，因为可能需求本身也是不同的，能够复用的东西远远小于一个标准模板提供的。于是康威定律不可避免的将这个东西塑造成了现在的样子。  </p>
+
+<p>最近做了一些工具，例如 <a href="https://github.com/davidkingzyb/BlenderSlot">BlenderSlot</a>和<a href="./45.html">ColorLesson</a> 还有一些程序化节点石头，树生成器以及一些 AI纹理生成的尝试。本来的打算是建立一套自己的工作流，目的是打通游戏制作中全流程的环节，尝试去掉沟通和审批的节点，然后有一些用 AI替代，在节省成本提高效率的同时，看看有没有办法摆脱康威定律的限制。完成这个构想需要时间，而且在做的同时我发现即便是没有外部沟通的个人工具流依然要受到康威定律的约束。这个约束可能来自社区，或者说是这个世界本身。  </p>
+
+<p>最近沉迷炼丹，然后自己做了一个 <a href="https://github.com/davidkingzyb/SimpleTaggerEditor">简单的编辑标签的工具</a>，接触了 <a href="https://www.gradio.app/">gradio</a> 这个用 python 构建 web 应用的 UI 框架。令我感到惊奇的是这套用来构建 GUI 程序的框架在代码层面居然是一个类似图形化编程的流式范式，每个组件都有一个 inputs 组件列表参数传入数据，然后一个 outputs 输出。只有在这些列表中的组件才会被依次触发和更新。我也接触过 ComfyUI 自己还搭建过 基于 krita AI 的工作流，但 Stable Diffusion WebUI 也是遵照一套相同的范式构建的我是真的没想到。可能是由于这个框架是面向使用 python 的AI领域从业者，设计成这个样子更符合神经网络的传播过程？真的有一种工具或是结构能完美的匹配世界的样子，解决问题么？ </p>
+
+<p>我有预感 AI 的发展会给工具带来巨大的变革，之前我的预测<a href="./42.html">命令行会复兴</a>成为 AI 时代交互的形式。但现在似乎没那么确定了，不光是因为 AI 在多模态能力上发展突飞猛进，而是我怀疑这个东西本身就存在一种结构，这种结构限制了与它的交互工具的形态。  </p>
+
+<p>人类会塑造工具，同时工具也塑造了人。AI呢？  </p>
+</article><div class="markdown-body" id="discusspane">
+    <a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/1" class="btn">Discuss</a>
+    <a href="../blog.html?year=2024" class="btn">2024</a>
+    <a href="../blog.html?year=2023" class="btn">2023</a>
+    <a href="../blog.html?year=2022" class="btn">2022</a>
+    <a href="../blog.html?year=2021" class="btn">2021</a>
+    <a href="../blog.html?year=2020" class="btn">2020</a>
+    <a href="../blog.html?year=2019" class="btn">2019</a>
+    <a href="../blog.html?year=2018" class="btn">2018</a>
+    <a href="../blog.html?year=2017" class="btn">2017</a>
+    <a href="../blog.html?year=2016" class="btn">2016</a>
+    <a href="../blog.html?year=2015" class="btn">2015</a>
+    <div id="copyright">&copy;2015-2024 by DKZ</div>
+</div>
+</div>
+</div>
+</body>
+
+</html>

@@ -1103,4 +1103,29 @@ link: http://davidkingzyb.github.io/blogmd/45.html</description></item><item><ti
 ...
 
 
-link: http://davidkingzyb.github.io/blogmd/46.html</description></item></channel></rss>
+link: http://davidkingzyb.github.io/blogmd/46.html</description></item><item><title> Conway&#x27;s Law </title><link>http://davidkingzyb.github.io/blogmd/47.html</link><description>Any organization that designs a system will produce a design whose structure is a copy of the organization&#x27;s internal communication structure.
+之前写过一篇关于 Maslow&#x27;s hammer 和路径依赖相关的 [blog](./13.html) ，讲的是工具是如何塑造人的。今天讲讲康威定律，是马斯洛锤子的反面，讲讲人和组织是如何塑造工具的。  
+
+过年我舅舅来我们家，把 blender 快捷键全部改成 maya 的，还吐槽我将键盘 ctrl 和 caplock 对换。我意识到人会被工具改变的问题已经很久了，但不可否认的是过往的路径还是在我身上起着作用，不光是在学校学 Java 时用的 Eclipse IDE，tab 跳出括号的功能，还是之后用 vim ，这些都变成肌肉记忆很难摆脱。虽然我能意识到，但自己也没有克服，半斤八两吧也就懒得说了。  
+
+我原以为我在大的方向上，诸如架构，范式上能够摆脱一些依赖，自认为做过一些项目，也学过很多语言。算是涉猎的有一定广度吧，但似乎也是生不由己，尤其是在一个组织里。在网易的时候我们组很多东西要交给一个中台的职能部门去做。他们每次都新起一个工程的做法让我这个后来要接手维护的人感到无语，估计每个接手的人都会感到困惑吧，我离开公司之后主管还不时问我这块的问题。但站在对方的角度似乎这是最合适的方式，建造一套模板每个需求都在这个模板上重新做而不是在上一个需求的基础上加。因为接需求的人是不同的，有时候没有办法获得上一个需求的上下文，或是要付出很大的沟通成本。甚至也没有什么必要，因为可能需求本身也是不同的，能够复用的东西远远小于一个标准模板提供的。于是康威定律不可避免的将这个东西塑造成了现在的样子。  
+
+最近做了一些工具，例如 [BlenderSlot](https://github.com/davidkingzyb/BlenderSlot)和[ColorLesson](./45.html) 还有一些程序化节点石头，树生成器以及一些 AI纹理生成的尝试。本来的打算是建立一套自己的工作流，目的是打通游戏制作中全流程的环节，尝试去掉沟通和审批的节点，然后有一些用 AI替代，在节省成本提高效率的同时，看看有没有办法摆脱康威定律的限制。完成这个构想需要时间，而且在做的同时我发现即便是没有外部沟通的个人工具流依然要受到康威定律的约束。这个约束可能来自社区，或者说是这个世界本身。  
+
+最近沉迷炼丹，然后自己做了一个 [简单的编辑标签的工具](https://github.com/davidkingzyb/SimpleTaggerEditor)，接触了 [gradio](https://www.gradio.app/) 这个用 python 构建 web 应用的 UI 框架。令我感到惊奇的是这套用来构建 GUI 程序的框架在代码层面居然是一个类似图形化编程的流式范式，每个组件都有一个 inputs 组件列表参数传入数据，然后一个 outputs 输出。只有在这些列表中的组件才会被依次触发和更新。我也接触过 ComfyUI 自己还搭建过 基于 krita AI 的工作流，但 Stable Diffusion WebUI 也是遵照一套相同的范式构建的我是真的没想到。可能是由于这个框架是面向使用 python 的AI领域从业者，设计成这个样子更符合神经网络的传播过程？真的有一种工具或是结构能完美的匹配世界的样子，解决问题么？ 
+
+我有预感 AI 的发展会给工具带来巨大的变革，之前我的预测[命令行会复兴](./42.html)成为 AI 时代交互的形式。但现在似乎没那么确定了，不光是因为 AI 在多模态能力上发展突飞猛进，而是我怀疑这个东西本身就存在一种结构，这种结构限制了与它的交互工具的形态。  
+
+人类会塑造工具，同时工具也塑造了人。AI呢？  
+
+
+
+
+
+
+
+
+...
+
+
+link: http://davidkingzyb.github.io/blogmd/47.html</description></item></channel></rss>
