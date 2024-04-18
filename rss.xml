@@ -1042,15 +1042,22 @@ link: http://davidkingzyb.github.io/blogmd/42.html</description></item><item><ti
 ...
 
 
-link: http://davidkingzyb.github.io/blogmd/43.html</description></item><item><title> Blender Slot</title><link>http://davidkingzyb.github.io/blogmd/44.html</link><description>A blender addon for manage scripts and customize your own functions.
+link: http://davidkingzyb.github.io/blogmd/43.html</description></item><item><title> Blender Slot</title><link>http://davidkingzyb.github.io/blogmd/44.html</link><description>A blender addon for record your operations, manage your customize scripts and generate script by AI with Ollama.
+1. name your script  
+2. press record button and do your operations   
+3. press stop button and edit scripts  
+4. press execute button  
+5. press add button can save script to BlenderSlot  
+
+## v1.1 Generate scripts use AI
 
 
+Install [Ollama](https://ollama.com/), and now we can use AI to generate script in BlenderSlot!
 
-写了一个可以录制操作的 blender 插件，可以方便的管理执行自定义的脚本。
+***
 
-后面计划整理一些实用的脚本，建立一套个人的资产制作管线。
+Find more scripts at [issues page](https://github.com/davidkingzyb/BlenderSlot/issues),Welcome to share your scripts.
 
-部分脚本可以在[issues page](https://github.com/davidkingzyb/BlenderSlot/issues)这里找到，欢迎贡献自己的脚本。
 
 ...
 
