@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SCAST</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typescript/5.0.4/typescript.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/csharp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+
+    <script src="https://unpkg.com/@alenaksu/json-viewer@2.0.0/dist/json-viewer.bundle.js"></script>
+ 
+</head>
+
+<body>
+    <div id="title" style="position: fixed;left:10px;bottom: 10px;">
+        <h1 style="display: inline;">SCAST pre-alpha </h1><span> by DKZ</span>
+    </div>
+    <input type='file' id='codefile' multiple/>
+    <button id="load" class="pointer" onclick="load()" title="play">▶️</button><br>
+    <div id="code"></div>
+    <details>
+        <summary>json
+            <input id="searchinput" type="text">
+            <button onclick="search()" title="search">🔍</button>
+        </summary>
+        <json-viewer id="json"></json-viewer>
+    </details>
+    <details>
+        <summary>mermaid 
+            <button onclick="genMermaid()" title="generate mermaid">🧜</button>
+            <button onclick="reMermaid()" title="refresh mermaid uml">🔄️</button>
+            <button onclick="saveMermaid()" title="save mermaid uml">💾</button>
+        </summary>
+        <textarea name="" id="textUML" style="width: 45%;height:300px;"></textarea>
+        <textarea name="" id="textFlow" style="width: 45%;height:300px;"></textarea>
+        <div id="mermaidPane">
+            <pre class="mermaid" id="mermaidUML"></pre>
+            <pre class="mermaid" id="mermaidFlow"></pre>
+        </div>
+    </details>
+
+    <script>
+        
+        var gAst={_class:null,_func:null,_file:null,_filetype:null,ast:{},access:{},member:{},mermaid:{UML:'',Flow:'',Access:''}};
+        // console.log(ts.SyntaxKind)
+        function parseAST(fileName,code,fileType) {
+            gAst._file=fileName
+            gAst._filetype=fileType
+            gAst.ast[gAst._file]={}
+            const sourceFile = ts.createSourceFile(
+                fileName,
+                code,
+                ts.ScriptTarget.ES2015,
+                /*setParentNodes */ true
+            );
+            console.log(sourceFile)
+            delint(sourceFile);
+        }
+
+        function delint(sourceFile) {
+            delintNode(sourceFile);
+
+            function delintNode(node) {
+                switch (node.kind) {
+                    case ts.SyntaxKind.ForStatement:
+                    case ts.SyntaxKind.ForInStatement:
+                    case ts.SyntaxKind.WhileStatement:
+                    case ts.SyntaxKind.DoStatement:
+                    case ts.SyntaxKind.IfStatement:
+                    case ts.SyntaxKind.BinaryExpression:
+                    case ts.SyntaxKind.NewExpression:
+                        if(node.expression&&node.expression.escapedText){
+                            if(gAst._func&&gAst._class){
+                                let { line, character } = sourceFile.getLineAndCharacterOfPosition(node.getStart())
+                                setGlobalAst(gAst._func,{line:line,ch:character,type:'new'},node.expression.escapedText)
+                            }
+                        }
+                        break;
+                    case ts.SyntaxKind.PropertyAccessExpression:
+                        if(node.name&&node.name.escapedText){
+                            if(gAst._func&&gAst._class&&gAst.ast[gAst._file][gAst._class]){
+                                let { line, character } = sourceFile.getLineAndCharacterOfPosition(node.getStart())
+                                setGlobalAst(gAst._func,{line:line,ch:character,type:'access'},node.name.escapedText)
+                            }
+                        }
+                        break;
+                    case ts.SyntaxKind.PropertyDeclaration:
+                        if(node.name&&node.name.escapedText){
+                            // report(node,`prop ${node.name.escapedText}`)
+                            if(!gAst._func&&gAst._class&&gAst._filetype!=='ts'){
+                                let { line, character } = sourceFile.getLineAndCharacterOfPosition(node.getStart())
+                                setGlobalAst(node.name.escapedText,{line:line,ch:character,type:'prop'})
+                            }
+                        }
+                        break;
+                    case ts.SyntaxKind.MethodDeclaration:
+                        if(node.name&&node.name.escapedText&&gAst._filetype!=='ts'){
+                            report(node,`method ${node.name.escapedText}`);
+                            gAst._func=node.name.escapedText;
+                            let { line, character } = sourceFile.getLineAndCharacterOfPosition(node.getStart())
+                            setGlobalAst(gAst._func,{line:line,ch:character,type:'method',access:{}})
+                        }
+                        break;
+                    case ts.SyntaxKind.FunctionDeclaration://js only and function fn(){} only
+                        if(node.name&&node.name.escapedText){
+                            report(node,`func ${node.name.escapedText}`);
+                            gAst._func=node.name.escapedText;
+                            let { line, character } = sourceFile.getLineAndCharacterOfPosition(node.getStart())
+                            if(!gAst.ast[gAst._file]['global_function']){
+                                gAst.ast[gAst._file]['global_function']={};
+                                gAst._class='global_function'
+                            }
+                            setGlobalAst(gAst._func,{line:line,ch:character,type:'func',access:{}})
+                        }
+                        break;
+                    case ts.SyntaxKind.CallExpression:
+                        if(node.expression&&node.expression.escapedText){
+                            // report(node,`call ${node.expression.flags} ${node.expression.escapedText}`)
+                            if(node.expression.escapedText!='foreach'&&node.expression.flags&&gAst._filetype!=='ts'){
+                                gAst._func=node.expression.escapedText;
+                                let { line, character } = sourceFile.getLineAndCharacterOfPosition(node.getStart())
+                                setGlobalAst(gAst._func,{line:line,ch:character,type:'func',access:{}})
+                            }
+                        }
+                        break;
+                    case ts.SyntaxKind.ClassDeclaration:
+                        report(node,`class ${node.name.escapedText}`)
+                        gAst._class=node.name.escapedText;
+                        gAst._func=null;
+                        gAst.ast[gAst._file][gAst._class]={};
+                        if(gAst._filetype==='ts'){
+                            getMembers(node)
+                        }
+                        break;
+                    default:
+                        // if(node.name&&node.name.escapedText){
+                        //     console.log(node.name.escapedText)
+                        // }
+                }
+
+                ts.forEachChild(node, delintNode);
+            }
+            function report(node, message) {
+                const { line, character } = sourceFile.getLineAndCharacterOfPosition(node.getStart());
+                console.log(`${sourceFile.fileName} (${line + 1},${character + 1}): ${message}`,node);
+            }
+
+            function setGlobalAst(fn,v,ac){
+                try{
+                    if(ac){
+                        // v.name=ac
+                        gAst.ast[gAst._file][gAst._class][fn].access[ac]=v;
+                        gAst.access[ac]=v
+                    }else{
+                        // v.name=fn;
+                        gAst.ast[gAst._file][gAst._class][fn]=v;
+                        gAst.member[fn]=v
+                    }
+                }catch(err){
+                    console.warn('setGlobalAst fail',err)
+                    console.log(gAst._file,gAst._class,fn,ac,v,gAst)
+                }
+            }
+
+            function getMembers(node){
+                console.log('getMembers',node)
+                for(let member of node.members){
+                    switch (member.kind) {
+                        case ts.SyntaxKind.PropertyDeclaration:
+                            if(member.name&&member.name.escapedText){
+                                report(member,`prop ${member.name.escapedText}`)
+                                let { line, character } = sourceFile.getLineAndCharacterOfPosition(member.getStart())
+                                setGlobalAst(member.name.escapedText,{line:line,ch:character,type:'prop'})
+                            }
+                            break;
+                        case ts.SyntaxKind.MethodDeclaration:
+                            if(member.name&&member.name.escapedText){
+                                report(member,`method ${member.name.escapedText}`);
+                                gAst._func=member.name.escapedText;
+                                let { line, character } = sourceFile.getLineAndCharacterOfPosition(member.getStart())
+                                setGlobalAst(gAst._func,{line:line,ch:character,type:'method',access:{}})
+                            }
+                            delintNode(member)
+                            break;
+                        case ts.SyntaxKind.Constructor:
+                            report(member,'constractor')
+                            gAst._func='constractor';
+                            let { line, character } = sourceFile.getLineAndCharacterOfPosition(member.getStart())
+                            setGlobalAst(gAst._func,{line:line,ch:character,type:'constructor',access:{}})
+                            delintNode(member)
+                            break;
+                    }    
+                }
+            }
+
+        }
+        
+    </script>
+    <script>
+        function load() {
+            var $file = document.getElementById('codefile')
+            var $code=document.getElementById('code')
+            var html="";
+            for(let i=0;i<$file.files.length;i++){
+                let r = new FileReader()
+                r.onload = function (e) {
+                    // console.log('onload',r._filename,e)
+                    let t=r._filename.split('.')
+                    parseAST(t[0],e.target.result,t[1])
+                    html+=`<details>
+                        <summary>${r._filename}</summary>
+                        <pre><code class="language-${t[1]}" id="${t[0]}">${e.target.result.replaceAll('<','&lt;').replaceAll('>',"&gt;")}</code></pre>
+                        </details>`
+                    $code.innerHTML=html;
+                    hljs.highlightAll();
+                    hljs.initLineNumbersOnLoad();
+                }
+                r.readAsText($file.files[i])
+                r._filename=$file.files[i].name
+            }
+
+            var $json=document.getElementById('json')
+            $json.data=gAst
+        }
+
+        var pre_search=null
+        var searchIterator=null
+        function search(){
+            var s=document.getElementById('searchinput').value
+            if(!pre_search||!searchIterator||s!=pre_search){
+                pre_search=s
+                searchIterator=document.getElementById('json').search(s)
+            }
+            console.log('search',pre_search)
+            searchIterator.next()
+        }
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.1.1/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: false });
+        gAst.mermaid.UML=`classDiagram\n`
+        gAst.mermaid.Flow=`flowchart\n`
+        function genMermaid(){
+            for(let f in gAst.ast){
+                let file=gAst.ast[f]
+                gAst.mermaid.Flow+=`${f}{${f}}\n`
+                for(let c in file){
+                    let cls=file[c];
+                    gAst.mermaid.UML+=`  class ${c}{\n`
+                    if(c!=f)gAst.mermaid.Flow+=`  ${f} --> ${c}[${c}]\n`
+                    for(let m in cls){
+                        let member=cls[m]
+                        if(member.type=='prop'){
+                            gAst.mermaid.UML+=`    ${m}\n`
+                        }else{
+                            gAst.mermaid.UML+=`    ${m}()\n`
+                            if(m!=c)gAst.mermaid.Flow+=`    ${c} --> ${m}(${m})\n`
+                        }
+                        // let access=member.access;
+                        // if(access){
+                        //     for(let ac in access){
+                        //         gAst.mermaid.Flow+=`      ${m}-->${ac}\n`
+                        //     }
+                        // }
+                    }
+                    gAst.mermaid.UML+='    }\n\n'
+                }
+            }
+            renderMermaid();
+        }
+        var $mermaidPane=document.getElementById('mermaidPane')
+        var $textUML=document.getElementById('textUML')
+        var $mermaidUML=document.getElementById('mermaidUML');
+        var $textFlow=document.getElementById('textFlow')
+        var $mermaidFlow=document.getElementById('mermaidFlow')
+
+        function reMermaid(){
+            gAst.mermaid.UML=$textUML.value
+            gAst.mermaid.Flow=$textFlow.value
+            renderMermaid()
+        }
+
+        function renderMermaid(){
+            $textUML.value=gAst.mermaid.UML;
+            $textFlow.value=gAst.mermaid.Flow;
+            $mermaidPane.innerHTML=`<pre class="mermaid" id="mermaidUML">${gAst.mermaid.UML}</pre><pre class="mermaid" id="mermaidFlow">${gAst.mermaid.Flow}</pre>`
+
+            mermaid.run({
+                querySelector: '.mermaid',
+            })
+            
+        }
+
+        function saveMermaid(){
+            _saveFile($textUML.value,gAst._file+'_UML.mmd')
+            _saveFile($textFlow.value,gAst._file+'_flow.mmd')
+            mermaid.render('mermaidUML',$textUML.value).then(function(svg){
+                _saveFile(svg.svg,gAst._file+'_UML.svg')
+            })
+            mermaid.render('mermaidFlow',$textFlow.value).then(function(svg){
+                _saveFile(svg.svg,gAst._file+'_flow.svg')
+            })
+        }
+
+        function _saveFile(content,fileName){
+           
+            var blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+            var url = URL.createObjectURL(blob);
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = fileName;
+            link.click();
+        }
+
+    </script>
+        
+
+</body>
+
+</html>
