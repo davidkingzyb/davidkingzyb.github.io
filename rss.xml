@@ -1188,6 +1188,7 @@ link: http://davidkingzyb.github.io/blogmd/48.html</description></item><item><ti
 
 
 link: http://davidkingzyb.github.io/blogmd/49.html</description></item><item><title> SCAST</title><link>http://davidkingzyb.github.io/blogmd/50.html</link><description>一个用于分析静态类型面向对象程序的工具，自动生成UML图，AST树等。
+最近看了一些游戏源码，遇到一些比较复杂的工程有一个需求是整理项目的结构，分析代码调用的逻辑，然后用图的方式呈现出来。之前尝试过用AI直接生成mermaid代码，有两个问题一个是准确率不太高，另一个是上下文有限很难把一个大项目直接全部塞进去，之前的需求是补一些文档也就要求不高。但要是真的想学习研究的时候节省时间，对准确的要求还是要高的，于是做了这样一个工具，原理是解析代码生成AST树然后做静态分析最后调用mermaid和D3生成图表。  
 
 目前是自己写了一个简单的语法分析器生成AST树，可以兼容csharp、typescript、javascript或是类c语言风格语法的程序。能够兼容这么多语言其实是放宽了很多限制，灵感来源是我发现typescript解析器居然可以直接解析csharp代码，我以前只知道typescript的解析器不是很严格可以跳过类型声明和某些关键字，因为目标语言是转换为javascript，用途也主要是前端项目，设计之初可能也为了拉拢一些js背景的程序员。我也知道typescript和csharp很像，因为它们同宗同源都是微软那帮人搞出来的，但typescript能解析csharp语法的代码还是震惊了我。仔细分析AST还是有很多解析不到位的情况，研究了一下源码与很多解析器不同的是typescript在很多情况下不是抛出unexpected token语法错误而是将这部分直接解析成了js语法树。  于是我尝试自己写了一个简单的语法解析器，也类似typescript解析器的策略以兼容更多语言，把能解析的部分做静态分析，然后基于静态分析的结果调用mermaid和D3生成UML图和AST树图。  
 
@@ -1199,7 +1200,7 @@ link: http://davidkingzyb.github.io/blogmd/49.html</description></item><item><ti
 
 已开源在[github](https://github.com/davidkingzyb/SCAST)
 
-&lt;iframe src=&quot;//player.bilibili.com/player.html?isOutside=true&amp;aid=113156818993718&amp;bvid=BV1octVeoEua&amp;cid=25906251770&amp;p=1&quot; scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;no&quot; framespacing=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;//player.bilibili.com/player.html?isOutside=true&amp;aid=113289426109956&amp;bvid=BV1QK2QYXEPW&amp;cid=26246841742&amp;p=1&quot; scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;no&quot; framespacing=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;
 
 
 
