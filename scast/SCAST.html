@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SCAST</title>
+
+    <script src="./lib/acorn.js" async></script>
+    <script src="./lib/filbert.js" async></script>
+    <script src="./lib/typescript.min.js" async></script>
+
+    <link rel="stylesheet" href="./scast.css">
+    <link rel="stylesheet" href="./lib/vs2015.min.css">
+    <script src="./lib/highlight.min.js" async></script>
+    <script src="./lib/highlightjs-line-numbers.min.js" async></script>
+
+    <script src="./lib/json-viewer.bundle.js" async></script>
+
+    <script src="./lib/d3.min.js" async></script>
+    <script src="./js/D3M.js" async></script>
+    <script src="./js/SCASTTS.js"></script>
+    <script src="./js/SCASTPY.js"></script>
+    <script src="./js/SCASTJS.js"></script>
+    <script src="./js/SCAST.js"></script>
+    
+    <script src="./js/common.js"></script>
+    <script src="./js/ai.js"></script>
+    <script src="./js/analysis.js"></script>
+</head>
+
+<body style="margin-bottom: 90px;">
+    <div id="title">
+        <span class="pointer jump">️🔱</span>
+        <h1 style="display: inline;" class="pointer"> SCAST </h1>
+        <span class="pointer jump"
+            onclick="scrollToView('mermaidUML',-window.innerHeight/2-20)">🧜‍♀️</span>
+        <span class="pointer jump"
+            onclick="scrollToView('mermaidFlow',-window.innerHeight/2-20)">🌊</span>
+        <span class="pointer jump"
+            onclick="scrollToView('FDP',-window.innerHeight/2-20)">❄️</span>
+        <span class="pointer jump"
+            onclick="scrollToView('D3Select',-window.innerHeight/2-20)">🌳</span>
+        <a href="https://davidkingzyb.github.io/blogmd/50.html"> by DKZ</a>
+    </div>
+    <details id="code_con" open>
+        <summary id="code_con_summary">codes <a onclick="fixedCon('code_con',2)" title="max height">↕️</a></summary>
+        <div id="code">
+            <textarea name="" id="codetext" placeholder="paste code here or select from file"></textarea>
+        </div>
+    </details>
+    <details id="mermaid_conf_con">
+        <summary>mermaid <a onclick="reMermaid()" title="refresh mermaid">🔄️</a></summary>
+        <div id="mermaid_conf_panel">
+            <textarea name="" id="textUML" placeholder="Mermaid classDiagram UML code"></textarea><br>
+            <textarea name="" id="textFlow" placeholder="Mermaid flowchart code"></textarea>
+            <div id="mermaidOption" class="opcls">
+            <input type="checkbox" id="mmdop_relation" class="mmdops" checked /><label for="mmdop_relation">UML
+                Relationship</label>
+            <input type="checkbox" id="mmdop_method" class="mmdops" checked /><label for="mmdop_method">OOP</label>
+            <input type="checkbox" id="mmdop_call" class="mmdops" checked /><label for="mmdop_call">Call Detail</label>
+            <input type="checkbox" id="mmdop_idone" class="mmdops" checked /><label for="mmdop_idone">One ID</label>
+            <input type="checkbox" id="mmdop_if" class="mmdops" /><label for="mmdop_if">If and Loop</label>
+            <input type="checkbox" id="mmdop_condition" class="mmdops" /><label for="mmdop_condition">Condition</label>
+            <input type="checkbox" id="mmdop_namespace" class="mmdops" /><label for="mmdop_namespace">use
+                Namespace</label>
+            </div>
+        </div>
+    </details>
+    <details id="d3_conf_con">
+        <summary>D3</summary>
+        <details>
+            <summary>SCAST</summary>
+            <div id="D3Option" class="opcls"></div>
+        </details>
+        <details>
+            <summary>ESTree</summary>
+            <div id="D3ESTree" class="opcls"></div>
+        </details>
+    </details>
+    <details id="outline_con">
+        <summary>outline</summary>
+        <div id="mmdfilter_con" class="opclsfilter"></div>
+    </details>
+    <div class="" id="load_con">
+        <label class="input-file-button" for="codefile" title="open files">📄</label>
+        <input type='file' id='codefile' multiple />
+        <button id="load" class="pointer" onclick="load()" title="generate AST">🔱</button>
+        <button onclick="genMermaid()" title="generate mermaid">🧜‍♀️</button>
+        <button onclick="genD3()" title="generate D3">🌳</button>
+        <button id="ai" class="pointer" onclick="aiAnalysis()" title="AI Analysis">🦙</button>
+    </div>
+    <details class="json_con">
+        <summary onclick="showJson()">json
+            <input id="searchinput" type="text">
+            <button onclick="search()" title="search">🔍</button>
+            <button onclick="storageAstJson()" title="save Ast json to storage">📥</button>
+            <button onclick="loadAstJson()" title="load Ast json from storage">📤</button>
+            <button onclick="saveScast()" title="save Ast json">💾</button>
+        </summary>
+        <json-viewer id="json"></json-viewer>
+    </details>
+    <details open>
+        <summary id="mermaidHead">mermaid UML & Flow
+            <button onclick="genMermaid()" title="generate mermaid">🧜‍♀️</button>
+            <button onclick="storageMermaid()" title="save mermaid to storage">📥</button>
+            <button onclick="loadMermaid()" title="load mermaid from storage">📤</button>
+            <button onclick="saveMermaid()" title="save mermaid">💾</button>
+            <button onclick="scaleMermaid()" title="scale mermaid">🔛</button>
+        </summary>
+        <div id="mermaidPane">
+            <pre class="mermaid" id="mermaidUML"></pre>
+            <pre class="mermaid" id="mermaidFlow"></pre>
+        </div>
+        <div id="FDP"></div>
+    </details>
+    <details open>
+        <summary>D3&nbsp;&nbsp;
+            <select id="D3Select">
+                <option value="IndentedTree">IndentedTree</option>
+                <!-- <option value="treeMap">TreeMap</option> -->
+                <option value="TidyTree">TidyTree</option>
+                <option value="ClusterTree">ClusterTree</option>
+                <option value="RadialTidyTree">RadialTidyTree</option>
+                <option value="RadialClusterTree">RadialClusterTree</option>
+                <option value="forceDirectedTree">ForceDirectedTree</option>
+                <option value="EdgeBundling">EdgeBundling</option>
+            </select>
+            <button onclick="genD3()" title="generate D3">🌳</button>
+            <button onclick="clearD3()" title="clear D3">🧹</button>
+            <button onclick="scaleD3()" title="scale D3">🔛</button>
+            <button onclick="fontSizeD3Minus(4)" title="scale font size">➖</button>
+            <button onclick="fontSizeD3Plus(4)" title="scale font size">➕</button>
+        </summary>
+        <div id="D3Diagram"></div>
+    </details>
+
+</body>
+<script>
+    initFile()
+    renderD3Option()
+</script>
+<script src="./lib/mermaid.min.js">
+</script>
+<script>
+mermaid.initialize({ startOnLoad: false,securityLevel: 'loose', });
+</script>
+
+</html>
