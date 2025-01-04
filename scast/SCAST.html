@@ -11,8 +11,8 @@
 
     <link rel="stylesheet" href="./scast.css">
     <link rel="stylesheet" href="./lib/vs2015.min.css">
-    <script src="./lib/highlight.min.js" async></script>
-    <script src="./lib/highlightjs-line-numbers.min.js" async></script>
+    <script src="./lib/highlight.min.js"></script>
+    <script src="./lib/highlightjs-line-numbers.min.js"></script>
 
     <script src="./lib/json-viewer.bundle.js" async></script>
 
@@ -21,11 +21,11 @@
     <script src="./js/SCASTTS.js"></script>
     <script src="./js/SCASTPY.js"></script>
     <script src="./js/SCASTJS.js"></script>
-    <script src="./lib/scast.min.js"></script>
+    <script src="./js/SCAST.js"></script>
     
     <script src="./js/common.js"></script>
-    <script src="./js/ai.js"></script>
     <script src="./js/analysis.js"></script>
+    <script src="./js/ai.js"></script>
 </head>
 
 <body style="margin-bottom: 90px;">
@@ -60,7 +60,7 @@
             <input type="checkbox" id="mmdop_call" class="mmdops" checked /><label for="mmdop_call">Call Detail</label>
             <input type="checkbox" id="mmdop_idone" class="mmdops" checked /><label for="mmdop_idone">One ID</label>
             <input type="checkbox" id="mmdop_if" class="mmdops" /><label for="mmdop_if">If and Loop</label>
-            <input type="checkbox" id="mmdop_condition" class="mmdops" /><label for="mmdop_condition">Condition</label>
+            <!-- <input type="checkbox" id="mmdop_condition" class="mmdops" /><label for="mmdop_condition">Condition</label> -->
             <input type="checkbox" id="mmdop_namespace" class="mmdops" /><label for="mmdop_namespace">use
                 Namespace</label>
             </div>
@@ -82,12 +82,12 @@
         <div id="mmdfilter_con" class="opclsfilter"></div>
     </details>
     <div class="" id="load_con">
-        <label class="input-file-button" for="codefile" title="open files">📄</label>
+        <label class="input-file-button" for="codefile" title="1. open files">📄</label>
         <input type='file' id='codefile' multiple />
-        <button id="load" class="pointer" onclick="load()" title="generate AST">🔱</button>
-        <button onclick="genMermaid()" title="generate mermaid">🧜‍♀️</button>
-        <button onclick="genD3()" title="generate D3">🌳</button>
-        <button id="ai" class="pointer" onclick="aiAnalysis()" title="AI Analysis">🦙</button>
+        <button id="load" class="pointer" onclick="load()" title="2. generate AST">🔱</button>
+        <button onclick="genMermaid()" title="3. generate mermaid 3.1 click twice for detail">🧜‍♀️</button>
+        <button onclick="genD3()" title="3.generate D3">🌳</button>
+        <button id="ai" class="pointer" style="display: none;" onclick="aiAnalysis()" title="3.AI Analysis">🦙</button>
     </div>
     <details class="json_con">
         <summary onclick="showJson()">json

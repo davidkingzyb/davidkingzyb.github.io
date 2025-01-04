@@ -1,4 +1,4 @@
-
+var gISAI=false
 var pre_search=null
 var searchIterator=null
 function search(){
@@ -26,7 +26,7 @@ function loadAstJson(aststr){
     for(let ast in gAst){
         let analysis=gAst[ast].analysis?`<details class="analysis_details"><summary class="analysis_summery">Analysis</summary><pre class="code_analysis">${gAst[ast].analysis}</pre></details>`:''
         html+=`<details id="detail_${ast.replace('.','_')}">
-                <summary onclick="scrollToView('detail_${ast.replace('.','_')}')">${ast}<a onclick="jumpOllama('${ast}')">🦙</a></summary>
+                <summary onclick="scrollToView('detail_${ast.replace('.','_')}')">${ast}<a onclick="jumpOllama('${ast}')">${gISAI==true?'🦙':''}</a></summary>
                 ${analysis}
                 <pre><code class="language-${gAst[ast].filetype}" id="${ast}">${gAst[ast].code.replaceAll('<','&lt;').replaceAll('>',"&gt;")}</code></pre>
                 </details>`
@@ -184,20 +184,30 @@ function onFlowClick(n,file){
         }
     }
 }
+var gIconmap={
+    "NewExpression":'🆕',
+    "CallExpression":'📞',
+    "FunctionDefine":'🟦',
+    "FunctionDeclaration":'🟦',
+    "InterfaceDefine":'🔌',
+    "MethodDefine":'Ⓜ️',
+    "ClassDefine":'🆑',
+}
 function renderMermaidFilter(){
     var html=''
     if(gMermaid){
         for(let k of Object.keys(gMermaid.FlowNode).sort()){
             let node=gMermaid.FlowNode[k]
             if(gIconmap[node.type]){
+                let nodev=node.value||node._value
                 if(gMermaid.FlowFilter[k]===undefined){
-                    if(gMermaid.FlowOne[node.value]){
+                    if(gMermaid.FlowOne[nodev]){
                         gMermaid.FlowFilter[k]=true
                     }else{
                         gMermaid.FlowFilter[k]=false
                     }
                 } 
-                html+=`<input onchange="onMermaidFilter(this.value)" value="${k}" type="checkbox" id="mmdft_${k}" class="mmdft" ${gMermaid.FlowFilter[k]?"checked":""}/><a class="pointer" onclick="onFlowClick('${k}','${node._file}')">${gIconmap[node.type]}</a><label onclick="onFlowClick('${k}','${node._file}')"> ${node.value} </label>`
+                html+=`<input onchange="onMermaidFilter(this.value)" value="${k}" type="checkbox" id="mmdft_${k}" class="mmdft" ${gMermaid.FlowFilter[k]?"checked":""}/><a class="pointer" onclick="onFlowClick('${k}','${node._file}')">${gIconmap[node.type]}</a><label onclick="onFlowClick('${k}','${node._file}')"> ${nodev} </label>`
             }
         }
     }

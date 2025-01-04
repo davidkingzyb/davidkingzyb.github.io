@@ -6,8 +6,6 @@ var SCASTJS=(function(){
         ranges:true,
         sourceType:'module',
     }
-    var EStree={}
-    var AST={}
     var Code='';
 
     var types={
@@ -80,24 +78,29 @@ var SCASTJS=(function(){
         "ExportSpecifier":false,
         "ExportAllDeclaration":false,
         "ExportDefaultDeclaration":false,
-        "PropertyDefinition":false,
+    }
+
+    var d3config={estreeops:types,fontsize:14}
+    function setD3Config(conf){
+        d3config=conf
+    }
+    function setCode(code){
+        Code = code;
     }
     
     function getAst(code){
-        Code = code;
-        EStree=acorn.parse(code, option)
-        // AST=pruneJsonTree(EStree)
-        console.log("SCASTJS ESTree",EStree)
+        var EStree=acorn.parse(code, option)
         return EStree
     }
     function traverseAst(node,callback){
         // console.log('traverseAst js', node);
-        callback&&callback(node)
+        var isreturn=callback(node)
+        if(isreturn===true)return
         Object.keys(node).forEach((key) => {
             const item = node[key]
-            if (Array.isArray(item)&&key!='children') {
+            if (Array.isArray(item)&&key!='children'&&key!='range') {
               item.forEach((sub) => {
-                sub.type && traverseAst(sub, callback)
+                sub!==null&&sub.type && traverseAst(sub, callback)
               })
             }
             item && item.type && traverseAst(item, callback)
@@ -138,7 +141,7 @@ var SCASTJS=(function(){
     }
 
     function getRangeCode(node){
-        if(node==null)return ''
+        if(node==null)return 'xx'
         var result=Code.slice(node.range[0],node.range[1])
         return result
     }
@@ -257,7 +260,7 @@ var SCASTJS=(function(){
     function analysisD3(node,file){
         node.name=getValue(node)
         node.poi=loc2poi(node.loc)
-        console.log('js analysisD3',node.type,node.name,node)
+        // console.log('js analysisD3',node.type,node.name,node
         switch(node.type){
             case "Program":
                 node.children=node.body
@@ -275,6 +278,7 @@ var SCASTJS=(function(){
                 break
             case "CallExpression":
                 node.children=node.arguments
+                if(node.callee.type=="FunctionExpression")node.children.push(node.callee)//for self execute function
                 break
             case "NewExpression":
                 node.children=node.arguments
@@ -402,12 +406,217 @@ var SCASTJS=(function(){
     }
 
     function analysisMermaid(node,file,r){
+        // console.log('analysisMermaid',node)
+        switch(node.type){
+            case "FunctionDeclaration":
+                traverseFunction(node,{},file)
+                return true
+            case "ClassDeclaration":
+                if(!r.showMethod)break//
+                traverseClass(node,file)
+                return true
+            case "VariableDeclaration":
+                traverseAst(node,(n)=>{
+                    if(n.type=="VariableDeclarator"){
+                        node._name=getValue(n.id)
+                    }
+                    if(n.type=="ObjectExpression"){
+                        traverseObject(n,node,file)
+                        return true
+                    }
+                    if(n.type=="FunctionExpression"){
+                        n.id={type:"Identifier",name:node._name,loc:{start:{},end:{}}}
+                        traverseFunction(n,{},file)
+                    }
+                })
+                return true
+        }
+        function traverseClass(node,file){
+            node._file=file
+            node._value=getValue(node.id)
+            node._flow_id=node._value
+            r.FlowNode[node._flow_id]=node;
+            r.FlowOne[node._flow_id]=node._value
+            r.Flow+=`    ${node._value}[${node._value}]\nclick ${node._value} "javascript:void(onFlowClick('${node._value}','${file}'))"\n`
+            r.FDPNode[node._flow_id]={id:node._value,w:node._value.length*gD3fontSize/1.6+gD3fontSize*2,text:`[${node._value}]`}
+            r.UMLClass[node._value]={}
+            r.UML+=`  class ${node._value}{\n`;
+            for(let member of node.body.body){
+                switch(member.type){
+                    case "MethodDefinition":
+                        member._value=getValue(member)
+                        member._flow_id=member._value
+                        let func=member.value
+                        let _name=getValue(member.key)=="constructor"?'#'+node._value:getValue(member.key)
+                        func.id={type:"Identifier",name:_name,loc:{start:{},end:{}}}
+                        traverseFunction(func,node,file,true)
+                        break;
+                    case "PropertyDefinition":
+                        traverseProperty(member,node,file,r)
+                        break
+                }
+            }
+            r.UML+='  }\n'
+            if(node.superClass){
+                var f=getValue(node.superClass)
+                    if(r.FDPNode[f]===undefined){
+                        r.FDPNode[f]={id:f,w:f.length*gD3fontSize/1.6+gD3fontSize*2,text:`[${f}]`}
+                    }    
+                    r.UML+=`  ${f} <|-- ${node._value}\n`
+                    r.FlowLink+=`${f} ==o ${node._value}\n` 
+                    r.FDPLinks.push({source:f,target:node._value,value:6,dist:200,dash:"2,2"})
+                    
+            }
+        }
 
-    }
+        function traverseProperty(member,cls,file,r){
+            member._value=getValue(member)
+            member._flow_id=member._value
+            member._flow_prop=`|${member._value.replaceAll('|','\|').replaceAll('[','').replaceAll(']','')}|`
+            // if(r.FlowFilter[member._flow_id]===false)return;
+            // r.FlowNode[member._flow_id]=member;
+            r.UML+=`    ${member._value}\n`
+            console.log('traverse property',n)
+            if(!r.showCall)return true
+            var n=member.value
+            if(n.type=="CallExpression"){
+                n._file=file
+                n._value=getValue(n)
+                n._flow_id=n._value+'_'+member._flow_id
+                n._flow_from=cls._flow_id
+                n._flow_prop=member._flow_prop
+                r.FlowNode[n._flow_id]=n
+                if(!r.FlowFilter[n._flow_id])return true
+                n._flow_str=`        ${n._flow_id}([${n._value}])\nclick ${n._flow_id} "javascript:void(onFlowClick('${n._flow_id}','${file}'))"\n`
+                r.FDPNode[n._flow_id]={id:n._flow_id,w:n._value.length*gD3fontSize/1.6+gD3fontSize*2,text:n._value+'()'}
+                r.Flow+=n._flow_str
+                return true
+            }else if(n.type=="NewExpression"){
+                n._file=file
+                n._value=getValue(n)
+                n._flow_id=n._value+'_'+member._flow_id
+                n._flow_from=cls._flow_id
+                n._flow_prop=member._flow_prop
+                r.FlowNode[n._flow_id]=n
+                if(!r.FlowFilter[n._flow_id])return true
+                r.UMLClass[cls._value][n._flow_id]=n;
+                n._flow_str=`        ${n._flow_id}[${n._value}]\nclick ${n._flow_id} "javascript:void(onFlowClick('${n._flow_id}','${file}'))"\n`
+                r.FDPNode[n._flow_id]={id:n._flow_id,w:n._value.length*gD3fontSize/1.6+gD3fontSize*2,text:`[${n._value}]`}
+                r.Flow+=n._flow_str
+                return true
+            }
+        }
 
-    var d3config={estreeops:types,fontsize:14}
-    function setD3Config(conf){
-        d3config=conf
+        function traverseObject(n,node,file){
+            for(let prop of n.properties){
+                if(!prop.value)continue
+                if(prop.value.type=="FunctionExpression"||prop.value.type=="ArrowFunctionExpression"){
+                    prop.value.id={type:"Identifier",name:getValue(prop.key),loc:{start:{},end:{}}}
+                    traverseFunction(prop.value,{},file)
+                }
+            }
+        }
+
+        function traverseFunction(member,cls,file,symbol){//member:function cls:parent function
+            // console.log('traverse function',member)
+            member._value=getValue(member.id)
+            var method=cls._flow_id?member._value+'_'+cls._flow_id:member._value
+            r.FlowOne[member._value]=method//todo 处理不同类同名方法
+            member._flow_id=method
+            member._flow_from=cls._flow_id
+            member._file=file
+            if(r.FlowFilter[member._flow_id]===false)return;
+            r.FlowNode[member._flow_id]=member;
+            r.FDPNode[member._flow_id]={id:member._flow_id,w:member._value.length*gD3fontSize/1.6+gD3fontSize*3,text:`${member._value}()`}
+            r.Flow+=`    ${member._flow_id}([${member._value}])\nclick ${member._flow_id} "javascript:void(onFlowClick('${member._flow_id}','${file}'))"\n`
+            if(cls._flow_id){
+                r.FlowLink+=`${cls._flow_id} --o ${member._flow_id}\n`
+                r.FDPLinks.push({source:cls._flow_id,target:member._flow_id,value:2})
+            }
+            if(r.showCall){
+                traverseAst(member.body,(n)=>{
+                    return doBlock(n,member,file,r)
+                })
+            } 
+            if(symbol)r.UML+=`    ${member._value}()\n`
+        }
+        function doBlock(n,node,file,r){
+            console.log('do block',n)
+            if(!n)return
+            if(n.type=="FunctionDeclaration"){
+                traverseFunction(n,node,file)
+                return true
+            }else if(n.type=="ForStatement"||n.type=="WhileStatement"||n.type=="DoWhileStatement"||n.type=="ForInStatement"||n.type=="ForOfStatement"){
+                n._file=file
+                n._value="for"
+                n._flow_id=n._value+n.start+'_'+node._flow_id
+                n._flow_from=node._flow_id
+                r.FlowNode[n._flow_id]=n
+                if(r.showIf){
+                    r.Flow+=`         ${n._flow_id}((${n._value}))\nclick ${n._flow_id} "javascript:void(onFlowClick('${n._flow_id}','${file}'))"\n`
+                    r.FDPNode[n._flow_id]={id:n._flow_id,w:0,text:'🔵'}
+                }  
+                if(n.test&&getRangeCode(n.test))n._flow_condition='|'+getRangeCode(n.test).replaceAll('|','｜').replace('{','⌈').replace('}','⌋').replaceAll('[','⌈').replaceAll(']','⌋')+'|'
+                if(n.right&&getRangeCode(n.right))n._flow_condition='|'+getRangeCode(n.right).replaceAll('|','｜').replace('{','⌈').replace('}','⌋').replaceAll('[','⌈').replaceAll(']','⌋')+'|'
+                if(r.showIf&&n.body){
+                    traverseAst(n.body,(nn)=>{
+                        return doBlock(nn,n,file,r)
+                    })
+                }
+                if(r.showIf)return true
+            }else if(n.type=="IfStatement"){
+                n._file=file
+                n._value="if"
+                n._flow_id=n._value+n.start+'_'+node._flow_id
+                n._flow_from=node._flow_id
+                r.FlowNode[n._flow_id]=n
+                if(r.showIf){
+                    r.Flow+=`        ${n._flow_id}{${n._value}}\nclick ${n._flow_id} "javascript:void(onFlowClick('${n._flow_id}','${file}'))"\n`
+                    r.FDPNode[n._flow_id]={id:n._flow_id,w:0,text:'🔷'}
+                }  
+                if(n.test&&getRangeCode(n.test))n._flow_condition='|'+getRangeCode(n.test).replaceAll('|','｜').replaceAll('[','⌈').replaceAll(']','⌋')+'|'
+                if(r.showIf&&n.consequent){
+                    traverseAst(n.consequent,(nn)=>{
+                        return doBlock(nn,n,file,r)
+                    })
+                }
+                if(r.showIf&&n.alternate){
+                    traverseAst(n.alternate,(nn)=>{
+                        doBlock(nn,node,file,r)
+                        if(n.alternate.type=="BlockStatement"){
+                            return false
+                        }
+                        return true
+                    })
+                }
+                if(r.showIf)return true
+                
+            }else if(n.type=="CallExpression"){
+                n._file=file
+                n._value=getValue(n)
+                n._flow_id=n._value+'_'+node._flow_id
+                n._flow_from=node._flow_id
+                r.FlowNode[n._flow_id]=n
+                if(!r.FlowFilter[n._flow_id])return true
+                n._flow_str=`        ${n._flow_id}([${n._value}])\nclick ${n._flow_id} "javascript:void(onFlowClick('${n._flow_id}','${file}'))"\n`
+                r.FDPNode[n._flow_id]={id:n._flow_id,w:n._value.length*gD3fontSize/1.6+gD3fontSize*2,text:n._value+'()'}
+                r.Flow+=n._flow_str
+                return true
+            }else if(n.type=="NewExpression"){
+                n._file=file
+                n._value=getValue(n)
+                n._flow_id=n._value+'_'+node._flow_id
+                n._flow_from=node._flow_id
+                r.FlowNode[n._flow_id]=n
+                if(!r.FlowFilter[n._flow_id])return true
+                n._flow_str=`        ${n._flow_id}[${n._value}]\nclick ${n._flow_id} "javascript:void(onFlowClick('${n._flow_id}','${file}'))"\n`
+                r.FDPNode[n._flow_id]={id:n._flow_id,w:n._value.length*gD3fontSize/1.6+gD3fontSize*2,text:n._value}
+                r.Flow+=n._flow_str
+                return true
+            }
+        }
+
+
     }
 
     return {
@@ -417,6 +626,8 @@ var SCASTJS=(function(){
         analysisD3:analysisD3,
         setD3Config:setD3Config,
         types:types,
+        loc2poi:loc2poi,
+        setCode:setCode
     }
 
 })()
