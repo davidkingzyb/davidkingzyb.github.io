@@ -19,9 +19,10 @@
     <script src="./lib/d3.min.js" async></script>
     <script src="./js/D3M.js" async></script>
     <script src="./js/SCASTTS.js"></script>
-    <script src="./js/SCASTPY.js"></script>
-    <script src="./js/SCASTJS.js"></script>
-    <script src="./js/SCAST.js"></script>
+    <script src="./js/ESTREEPY.js"></script>
+    <script src="./js/ESTREEJS.js"></script>
+    <script src="./lib/SCAST.min.js"></script>
+    <script src="./lib/SCASTPY.min.js"></script>
     
     <script src="./js/common.js"></script>
     <script src="./js/analysis.js"></script>
@@ -68,7 +69,7 @@
     </details>
     <details id="d3_conf_con">
         <summary>D3</summary>
-        <details>
+        <details style="margin-top: 50px;">
             <summary>SCAST</summary>
             <div id="D3Option" class="opcls"></div>
         </details>
@@ -138,6 +139,9 @@
 <script>
     initFile()
     renderD3Option()
+    if(gISAI){
+        document.getElementById('ai').style.display='inline'
+    }
 </script>
 <script src="./lib/mermaid.min.js">
 </script>
