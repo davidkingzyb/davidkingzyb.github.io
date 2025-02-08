@@ -1,3 +1,6 @@
+a{
+    text-decoration: none;
+}
 ::-webkit-scrollbar
 {
     width:5px;
@@ -37,7 +40,7 @@ body{
     margin-top:50px;
     padding:0 10px ;
     color:white;
-    z-index:90;
+    z-index:60;
 }
 
 #mermaid_conf_con summary{
@@ -131,6 +134,7 @@ summary{
     background-color: #333;
     color:#ccc;
     margin: 10px 0 0 10px;
+    font-size: large;
 }
 #outline_con{
     overflow-y: auto;
@@ -178,6 +182,11 @@ summary{
     right: 220px;
     background-color: rgba(0,0,0,1);
     padding: 10px;
+}
+
+#ai_models{
+    max-width: 180px;
+    margin-top: 10px;
 }
 details {
     margin: 10px;
@@ -283,4 +292,16 @@ json-viewer {
 }
 button{
     cursor: pointer;
+}
+.wtfmsg{
+	position: fixed;
+	bottom:70px;
+    left:10px;
+    height: 25px;
+	z-index: 9999;
+	text-align: center;
+	background-color: #ffb02e;
+    color:black;
+    padding:10px;
+    overflow: hidden;
 }
