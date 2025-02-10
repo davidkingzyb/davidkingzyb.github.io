@@ -1,14 +1,14 @@
 gOllamaHost="http://127.0.0.1:11434"
 gModel=""
+gNumCtx=16000
 
 async function aiAnalysis(){
     var j=getOutlineJson()
     for(let file in gAst){
         let p=getOutlinePrompt(j[file],gAst[file].code)
-        await outlineAgent(p,j[file])
-        // await codeAgent(gAst[file])
+        await outlineAgent(p,j[file],file)
     }
-    loadAstJson(JSON.stringify(gAst))
+    // loadAstJson(JSON.stringify(gAst))
 }
 
 function getOutlineJson(){
@@ -88,7 +88,7 @@ ${result}
 return prompt
 }
 
-function outlineAgent(prompt,json){
+function outlineAgent(prompt,json,file){
     var fmt={
         "type": "object",
         "properties": {
@@ -115,11 +115,11 @@ function outlineAgent(prompt,json){
         ],
         'format':fmt,
         'options':{
-            "num_ctx":32000
+            "num_ctx":gNumCtx
         }
     }
-    document.getElementById('ai').innerHTML='⌛'
-    document.getElementById('ai').disabled=true
+    document.getElementById('aibtn').innerHTML='⌛'
+    document.getElementById('aibtn').disabled=true
     return fetch(gOllamaHost+'/api/chat',{method:"POST",headers: {
         'Content-Type': 'application/json'
     },body: JSON.stringify(query)}).then(response=>{return response.json()}).then(resp=>{
@@ -129,15 +129,16 @@ function outlineAgent(prompt,json){
             gMermaid.FlowNode[fid]['_analysis']=result[fid]
         }
         renderMermaidFilter()
+        gAst[file].ai=result
         wtfmsg("analysis by ollama AI ok, hover on outline label or click icon show result.")
-        document.getElementById('ai').innerHTML='🦙'
-        document.getElementById('ai').disabled=false
+        document.getElementById('aibtn').innerHTML='🦙'
+        document.getElementById('aibtn').disabled=false
         return false
     }).catch(err=>{
         wtfmsg('analysis by ollama AI fail.')
         console.warn('analysis by ollama AI fail.')
-        document.getElementById('ai').innerHTML='🦙'
-        document.getElementById('ai').disabled=false
+        document.getElementById('aibtn').innerHTML='🦙'
+        document.getElementById('aibtn').disabled=false
         return false
     })
 }
@@ -153,7 +154,7 @@ function getModels(){
             result += `<option value="${model.name}">${model.name}</option>`
         }
         document.getElementById('ai_models').innerHTML = result
-        document.getElementById('ai').style.display='inline'
+        document.getElementById('aibtn').style.display='inline'
         gModel=models[0].name
         return false
     }).catch(err=>{
@@ -167,37 +168,9 @@ function onModelChange(){
     gModel=document.getElementById('ai_models').value
     console.log('model change',gModel)
 }
-
-function codeAgent(asttop){//abandon
-    if (location.href.indexOf('davidkingzyb.tech') < 0) return
-    var query={
-        'stream':false,
-        'messages':[
-            {
-                'role':'system',
-                'content':'_codeAnalysis',
-            },
-            {
-                'role':'system',
-                'content':asttop.code,
-                '_type':'ref'
-            }
-        ]
-    }
-    return fetch(gOllamaHost+'/pi_chat',{method:"POST",headers: {
-        'Content-Type': 'application/json'
-    },body: JSON.stringify(query)}).then(response=>{return response.json()}).then(resp=>{
-        console.log(resp)
-        if(resp.code){
-            console.log(resp.data.message.content,asttop)
-            asttop.analysis=resp.data.message.content
-            return true
-        }
-        return false
-    }).catch(err=>{
-        console.warn('code Agent fail')
-        return false
-    })
+function onNumCtxChange(){
+    gNumCtx=parseInt(document.getElementById('ai_numctx').value)
+    console.log('numctx change',gNumCtx)
 }
 
 function jumpOllama(asttop){
