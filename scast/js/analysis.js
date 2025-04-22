@@ -5,6 +5,24 @@ function load() {
     var $code=document.getElementById('code')
     var $codetext=document.getElementById('codetext')
     var html=''
+    for(let ast in gAst){
+        html+=`<details id="detail_${ast.replace('.','_')}">
+                <summary onclick="scrollToView('detail_${ast.replace('.','_')}')">${ast}<a onclick="jumpOllama('${ast}')">${location.href.indexOf('davidkingzyb.tech')>=0?'🦙':''}</a></summary>
+                <pre><code class="language-${gAst[ast].filetype}" id="${ast}">${gAst[ast].code.replaceAll('<','&lt;').replaceAll('>',"&gt;")}</code></pre>
+                </details>`
+        let t=ast.split('.')
+        let c=gAst[ast].code
+        if(t[1]=='py'){
+            gAst[ast]=ESTREEPY.getAst(c.replace(/\r\n/g,'\n'),t[0])
+        }else if(t[1]=='js'){
+            gAst[ast]=ESTREEJS.getAst(c.replace(/\r\n/g,'\n'),t[0])
+        }else{
+            gAst[ast]=SCAST.getAst(c.replace(/\r\n/g,'\n'),t[0])
+        }
+        gAst[ast]['code']=c.replace(/\r\n/g,'\n')
+        gAst[ast]['filetype']=t[1]
+        gAst[ast]['filename']=t[0]
+    }
     if($codetext&&$codetext.value){
         html=`<details id="detail_code">
             <summary>code</summary>
@@ -56,6 +74,7 @@ function genMermaid(){
         FlowLink:'',
         FlowNode:{},
         FlowOne:{},
+        FlowVarNew:{},
         FlowFilter:gMermaid&&gMermaid.FlowFilter||{},  
         UMLClass:{},
         showCondition:true,//document.getElementById('mmdop_condition').checked,
@@ -66,6 +85,7 @@ function genMermaid(){
         idone:document.getElementById('mmdop_idone').checked,
         showCall:document.getElementById('mmdop_call').checked,
         showNamespace:document.getElementById('mmdop_namespace').checked,
+        sameName:document.getElementById('mmdop_samename').checked,
         FDPNode:{},
         FDPLinks:[],
     }
@@ -116,11 +136,26 @@ function genMermaid(){
             if(r.FlowFilter[node._flow_id]===false)continue
             // 连接方法内部细节调用线 click twice
             if(node.type=='NewExpression'||node.type=='CallExpression'){
-                if(r.idone&&(r.FlowOne[node.value]||r.FlowOne[node._value])){
+                let flow_ones=r.FlowOne[node.value||node._value]
+                if(r.idone&&flow_ones){
                     r.Flow=r.Flow.replaceAll(node._flow_str,'')
                     delete r.FDPNode[node._flow_id]
-                    r.FlowLink+=`${node._flow_from} -..-> ${node._flow_prop||''} ${r.FlowOne[node.value||node._value]}\n`
-                    r.FDPLinks.push({source:node._flow_from,target:r.FlowOne[node.value||node._value],value:2,dash:"5,5",dist:100,strength:0.1})
+                    if(node.type=='CallExpression'&&r.sameName){//for same name function call
+                        if(!node._flow_callee)node._flow_callee=flow_ones[0]
+                        // console.log('samename',node._flow_callee,flow_ones) 
+                        for(let i=0;i<flow_ones.length;i++){
+                            let isvarnew=flow_ones[i].split('_').indexOf(r.FlowVarNew[node._flow_callee])>=0;
+                            let isfunc=node._flow_callee==flow_ones[i]
+                            let isstatic=!isfunc&&flow_ones[i].indexOf(node._flow_callee)>0;
+                            if(isvarnew||isfunc||isstatic){
+                                r.FlowLink+=`${node._flow_from} -..-> ${node._flow_prop||''} ${flow_ones[i]}\n`
+                                r.FDPLinks.push({source:node._flow_from,target:flow_ones[i],value:2,dash:"5,5",dist:100,strength:0.1})
+                            }
+                        }
+                    }else{
+                        r.FlowLink+=`${node._flow_from} -..-> ${node._flow_prop||''} ${flow_ones[0]}\n`
+                        r.FDPLinks.push({source:node._flow_from,target:flow_ones[0],value:2,dash:"5,5",dist:100,strength:0.1})
+                    }
                 }else{
                     r.FlowLink+=`${node._flow_from} -..-> ${node._flow_prop||''} ${node._flow_id}\n`
                     r.FDPLinks.push({source:node._flow_from,target:node._flow_id,value:2,dash:"5,5",dist:100,strength:0.1})

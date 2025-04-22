@@ -6,8 +6,8 @@
     <title>SCAST</title>
 
     <script src="./lib/acorn.js" async></script>
-    <script src="./lib/filbert.js" async></script>
-    <script src="./lib/typescript.min.js" async></script>
+    <!-- <script src="./lib/filbert.js" async></script> -->
+    <!-- <script src="./lib/typescript.min.js" async></script> -->
 
     <link rel="stylesheet" href="./scast.css">
     <link rel="stylesheet" href="./lib/vs2015.min.css">
@@ -19,11 +19,11 @@
     <script src="./lib/mermaid.min.js" async></script>
     <script src="./lib/d3.min.js" async></script>
     <script src="./js/D3M.js" async></script>
-    <script src="./js/SCASTTS.js"></script>
-    <script src="./js/ESTREEPY.js"></script>
+    <!-- <script src="./js/SCASTTS.js"></script> -->
+    <!-- <script src="./js/ESTREEPY.js"></script> -->
     <script src="./js/ESTREEJS.js"></script>
-    <script src="./js/SCAST.js"></script>
-    <script src="./js/SCASTPY.js"></script>
+    <script src="./lib/SCAST.min.js"></script>
+    <script src="./lib/SCASTPY.min.js"></script>
     
     <script src="./js/common.js"></script>
     <script src="./js/analysis.js"></script>
@@ -32,8 +32,7 @@
 
 <body style="margin-bottom: 90px;">
     <div id="title">
-        <span class="jump">️🔱</span>
-        <h1 style="display: inline;" class="pointer"><a href="https://github.com/davidkingzyb/SCAST" style="color:black;"> SCAST</a> </h1>
+        <h1 style="display: inline;" class="pointer"><a href="https://github.com/davidkingzyb/SCAST" style="color:black;">️🔱 SCAST</a> </h1>
         <span class="pointer jump"
             onclick="scrollToView('mermaidUML',-window.innerHeight/2-20)" title="scroll to UML">🧜‍♀️</span>
         <span class="pointer jump"
@@ -71,16 +70,7 @@
         <div id="mermaid_conf_panel">
             <textarea name="" id="textUML" placeholder="Mermaid classDiagram UML code"></textarea><br>
             <textarea name="" id="textFlow" placeholder="Mermaid flowchart code"></textarea>
-            <div id="mermaidOption" class="opcls">
-            <!-- <input type="checkbox" id="mmdop_relation" class="mmdops" checked /><label for="mmdop_relation">UML Relationship</label> -->
-            <input type="checkbox" id="mmdop_click" class="mmdops" checked /><label for="mmdop_click">Can Click</label>
-            <input type="checkbox" id="mmdop_method" class="mmdops" checked /><label for="mmdop_method">OOP</label>
-            <input type="checkbox" id="mmdop_call" class="mmdops" checked /><label for="mmdop_call">Call Detail</label>
-            <input type="checkbox" id="mmdop_idone" class="mmdops" checked /><label for="mmdop_idone">One ID</label>
-            <input type="checkbox" id="mmdop_if" class="mmdops" /><label for="mmdop_if">If and Loop</label>
-            <!-- <input type="checkbox" id="mmdop_condition" class="mmdops" /><label for="mmdop_condition">Condition</label> -->
-            <input type="checkbox" id="mmdop_namespace" class="mmdops" /><label for="mmdop_namespace">Namespace</label>
-            </div>
+            
         </div>
     </details>
     <details id="d3_conf_con">
@@ -93,6 +83,10 @@
                 <option value="8000">8k</option>
                 <option value="16000" selected>16k</option>
                 <option value="32000">32k</option>
+            </select>
+            <select name="" id="ai_language" onchange="onLanguageChange()">
+                <option value="zh">zh</option>
+                <option value="en">en</option>
             </select>
         </details>
         <details>
@@ -134,6 +128,17 @@
             <button onclick="saveMermaid()" title="save mermaid">💾</button>
             <button onclick="scaleMermaid()" title="scale mermaid">🔛</button>
         </summary>
+        <div id="mermaidOption" class="opcls">
+            <!-- <input type="checkbox" id="mmdop_relation" class="mmdops" checked /><label for="mmdop_relation">UML Relationship</label> -->
+            <input type="checkbox" id="mmdop_click" class="mmdops" checked /><label for="mmdop_click" title="Click mermaid diagram jump to defined.">Can Click</label>
+            <input type="checkbox" id="mmdop_method" class="mmdops" checked /><label for="mmdop_method" title="Use OOP paradigm analysis.">OOP</label>
+            <input type="checkbox" id="mmdop_call" class="mmdops" checked /><label for="mmdop_call" title="Show function call detail.">Call Detail</label>
+            <input type="checkbox" id="mmdop_idone" class="mmdops" checked /><label for="mmdop_idone" title="Function call and function define node use same node.">One ID</label>
+            <input type="checkbox" id="mmdop_samename" class="mmdops" checked /><label for="mmdop_samename" title="deal with same name function.">Same Name</label>
+            <input type="checkbox" id="mmdop_if" class="mmdops" /><label for="mmdop_if" title="Show if and loop in flow chart.">If and Loop</label>
+            <!-- <input type="checkbox" id="mmdop_condition" class="mmdops" /><label for="mmdop_condition">Condition</label> -->
+            <input type="checkbox" id="mmdop_namespace" class="mmdops" /><label for="mmdop_namespace" title="Layout by Namespace.">Namespace</label>
+        </div>
         <div id="mermaidPane">
             <!-- <pre class="mermaid" id="mermaidUML"></pre> -->
             <!-- <pre class="mermaid" id="mermaidFlow"></pre> -->
@@ -168,4 +173,4 @@
     initCodeScaler()
     getModels()
 </script>
-</html>>
+</html>
