@@ -48,6 +48,7 @@
 
         body {
             color: white;
+            overflow: hidden;
         }
 
         .dkz{
@@ -63,6 +64,9 @@
             margin: 0.5rem;
             font-weight: bold;
             font-family: 'Impact';
+        }
+        .con{
+            position: relative;
         }
     </style>
 </head>
@@ -90,8 +94,9 @@
                 Sampling Offset: <input type="number" id="sampling_offset" value="1"><br>
                 Border: <input type="checkbox" id="border"><br>
                 Gaussian: <input type="checkbox" id="sampling"><br>
-                <button id="sampling" class="mt05r" onclick="sampling()">sampling</button>
-                <button id="color_lesson" class="mt05r" onclick="doColorLesson()">color lesson</button>
+                <button id="sampling" class="mt05r" onclick="sampling()" title="sampling">🏳️‍🌈</button>
+                <button class="mt05r" onclick="main3d()" title="render HSV in webgl">🌈</button>
+                <button id="color_lesson" class="mt05r" onclick="doColorLesson()" title="save json for blender">💿</button>
 
             </div>
         </details>
@@ -100,6 +105,7 @@
             <div id="texture_pane">
 
             </div>
+            <canvas id="webgl3d" width="600px" height="500px" style="display:none;"></canvas>
         </details>
     </div>
     <div class="m1r irocon">
@@ -241,6 +247,47 @@
             $ctx.drawImage(this, 0, 0, this.width, this.height);
             console.log(this.naturalHeight, this.naturalWidth, this.width, this.height)
         }
+
+        var startx = 0;
+        var starty = 0;
+        var currentX = 0;
+        var currentY = 0;
+
+        var $con = document.querySelector('.con');
+        $con.addEventListener('mousedown', (e) => {
+            if (e.button === 1) { // 检查是否是鼠标中键
+                startx = e.clientX - currentX;
+                starty = e.clientY - currentY;
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            startx = 0;
+            starty = 0;
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (startx && starty) {
+                $con.style.left = e.clientX - startx + 'px';
+                $con.style.top = e.clientY - starty + 'px';
+
+                currentX = parseFloat($con.style.left);
+                currentY = parseFloat($con.style.top);
+            }
+        });
+        var scale = 1
+        $con.addEventListener('wheel', function (event) {
+            event.preventDefault();
+            if (event.deltaY < 0) {
+                scale += 0.1;
+            } else {
+                scale -= 0.1;
+                if (scale < 0.1) {
+                    scale = 0.1; // 防止缩放过小
+                }
+            }
+            $con.style.transform = `scale(${scale})`;
+        });
     </script>
     <script>
         // Texture
@@ -495,6 +542,377 @@
             return [r, g, b];//0~1
         }
 
+    </script>
+    <script>
+        //3d
+
+function WebglColorLesson() {
+    var data = $color_lesson_canvas.getContext('2d').getImageData(0, 0, $color_lesson_canvas.width, $color_lesson_canvas.height).data
+    var colors = []
+    var vertices = []
+    var color = []
+    for (let c of data) {
+        if (color.length == 4) {
+            let hsv = RGB2HSV(color[0], color[1], color[2])
+            //hsv2xyz
+            let x = Math.cos(hsv[0] * 2 * Math.PI - Math.PI) * hsv[1] * 10
+            let y = Math.sin(hsv[0] * 2 * Math.PI - Math.PI) * hsv[1] * 10
+            // console.log('rgb',color[0],color[1],color[2],'hsv',hsv[0],hsv[1],hsv[2],'xyz',x,y,hsv[2]*10)
+            colors = colors.concat([color[0], color[1], color[2]])
+            vertices = vertices.concat([x * 20, -hsv[2] * 200, y * 20])//缩放
+            color = [c]
+        } else {
+            color.push(c)
+        }
+    }
+    return [vertices, colors]
+}
+
+var Ctrl3d = function () {
+    this.f = 0.0;
+    this.x = 0;
+    this.y = -50;
+    this.z = -500;
+    this.rx = 222;
+    this.ry = 127;
+    this.rz = 0;
+    this.sx = 1;
+    this.sy = 1;
+    this.sz = 1;
+    this.fieldOfViewRadians = degToRad(60);
+}
+var ctrl3d = new Ctrl3d();
+
+var sv3dsource = `
+attribute vec4 a_position;
+attribute vec4 a_color;
+ 
+uniform mat4 u_matrix;
+ 
+varying vec4 v_color;
+ 
+void main() {
+  gl_Position = u_matrix * a_position;
+  gl_PointSize = 2.0;
+  v_color = a_color;
+}
+`
+var sf3dsource = `
+precision mediump float;
+varying vec4 v_color;
+ 
+void main() {
+   gl_FragColor = v_color;
+   //gl_FragColor=vec4(1.0,0,0,1);
+}
+`
+function main3d() {
+    var [vertices, colors] = WebglColorLesson()
+    var canvas = document.getElementById("webgl3d");
+    var gl = canvas.getContext("webgl");
+    canvas.style.display = 'block';
+
+    gl.enable(gl.CULL_FACE);
+    gl.enable(gl.DEPTH_TEST);
+
+    var sv3d = createShader(gl, sv3dsource, gl.VERTEX_SHADER);
+    var sf3d = createShader(gl, sf3dsource, gl.FRAGMENT_SHADER);
+
+    var program = createProgram(gl, sv3d, sf3d);
+    gl.useProgram(program);
+
+    var positionLocation = gl.getAttribLocation(program, "a_position");
+    var colorLocation = gl.getAttribLocation(program, "a_color");
+    var matrixLocation = gl.getUniformLocation(program, "u_matrix");
+
+    var buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+
+    gl.enableVertexAttribArray(positionLocation);
+    gl.vertexAttribPointer(positionLocation, 3, gl.FLOAT, false, 0, 0);
+    gl.bufferData(
+        gl.ARRAY_BUFFER,
+        new Float32Array(vertices),
+        gl.STATIC_DRAW);
+
+    var buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.enableVertexAttribArray(colorLocation);
+    // We'll supply RGB as bytes.
+    gl.vertexAttribPointer(colorLocation, 3, gl.UNSIGNED_BYTE, true, 0, 0);
+    gl.bufferData(
+        gl.ARRAY_BUFFER,
+        new Uint8Array(colors),
+        gl.STATIC_DRAW);
+
+    var translation = [-150, 0, -360];
+    var rotation = [degToRad(190), degToRad(40), degToRad(320)];
+    var scale = [1, 1, 1];
+    var fieldOfViewRadians = degToRad(90);
+
+    gl3d = gl;
+    matrixLocation3d = matrixLocation;
+    ctrl3d.fieldOfViewRadians = fieldOfViewRadians;
+
+    canvas.addEventListener("wheel", function (e) {
+        ctrl3d.ry -= e.deltaY / 10;
+        ctrl3d.rx -= e.deltaX / 100;
+        draw3dScene(vertices.length / 3);
+    })
+
+    draw3dScene(vertices.length / 3);
+
+}
+
+function draw3dScene(pointcount) {
+    resizeCanvasToDisplaySize(gl3d.canvas);
+
+    gl3d.viewport(0, 0, gl3d.canvas.width, gl3d.canvas.height);
+
+    gl3d.clear(gl3d.COLOR_BUFFER_BIT | gl3d.DEPTH_BUFFER_BIT);
+
+    var aspect = gl3d.canvas.clientWidth / gl3d.canvas.clientHeight;
+    // var projectionMatrix = makePerspective(ctrl3d.fieldOfViewRadians, aspect, 1, 2000);
+    var projectionMatrix = makeOrthographic(-gl3d.canvas.clientWidth/2,gl3d.canvas.clientWidth/2,-gl3d.canvas.clientHeight/2,gl3d.canvas.clientHeight/2,1,2000);
+    var translationMatrix =
+        matrix3dTranslation(ctrl3d.x, ctrl3d.y, ctrl3d.z);
+    var rotationXMatrix = matrix3dXRotation(degToRad(ctrl3d.rx));
+    var rotationYMatrix = matrix3dYRotation(degToRad(ctrl3d.ry));
+    var rotationZMatrix = matrix3dZRotation(degToRad(ctrl3d.rz));
+    var scaleMatrix = matrix3dScale(ctrl3d.sx, ctrl3d.sy, ctrl3d.sz);
+
+    var matrix = matrixMultiply4x4(scaleMatrix, rotationZMatrix);
+    matrix = matrixMultiply4x4(matrix, rotationYMatrix);
+    matrix = matrixMultiply4x4(matrix, rotationXMatrix);
+    matrix = matrixMultiply4x4(matrix, translationMatrix);
+    matrix = matrixMultiply4x4(matrix, projectionMatrix);
+    // console.log(matrix);
+
+    gl3d.uniformMatrix4fv(matrixLocation3d, false, matrix);
+
+    gl3d.drawArrays(gl3d.POINTS, 0, pointcount);
+}
+
+function createShader(gl, sourceCode, type) {
+    // Compiles either a shader of type gl.VERTEX_SHADER or gl.FRAGMENT_SHADER
+    var shader = gl.createShader(type);
+    gl.shaderSource(shader, sourceCode);
+    gl.compileShader(shader);
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        var info = gl.getShaderInfoLog(shader);
+        throw "Could not compile WebGL program. \n\n" + info;
+    }
+    return shader;
+}
+
+function createProgram(gl, vertexShader, fragmentShader) {
+    var program = gl.createProgram();
+    gl.attachShader(program, vertexShader);
+    gl.attachShader(program, fragmentShader);
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        throw ("program filed to link:" + gl.getProgramInfoLog(program));
+    }
+
+    return program;
+}
+
+//==================function================================
+function resizeCanvasToDisplaySize(canvas) {
+    multiplier = 1;
+    var width = canvas.clientWidth * multiplier | 0;
+    var height = canvas.clientHeight * multiplier | 0;
+    if (canvas.width !== width || canvas.height !== height) {
+        canvas.width = width;
+        canvas.height = height;
+        return true;
+    }
+    return false;
+}
+
+function matrixMultiply3x3(l, r) {
+    var m = [
+        0, 0, 0,
+        0, 0, 0,
+        0, 0, 0
+    ];
+    m[0] = l[0] * r[0] + l[1] * r[3] + l[2] * r[6];
+    m[1] = l[0] * r[1] + l[1] * r[4] + l[2] * r[7];
+    m[2] = l[0] * r[2] + l[1] * r[5] + l[2] * r[8];
+    m[3] = l[3] * r[0] + l[4] * r[3] + l[5] * r[6];
+    m[4] = l[3] * r[1] + l[4] * r[4] + l[5] * r[7];
+    m[5] = l[3] * r[2] + l[4] * r[5] + l[5] * r[8];
+    m[6] = l[6] * r[0] + l[7] * r[3] + l[8] * r[6];
+    m[7] = l[6] * r[1] + l[7] * r[4] + l[8] * r[7];
+    m[8] = l[6] * r[2] + l[7] * r[5] + l[8] * r[8];
+    return m;
+}
+
+function matrixMultiply4x4(l, r) {
+    var m = [
+        0, 0, 0, 0,
+        0, 0, 0, 0,
+        0, 0, 0, 0,
+        0, 0, 0, 0
+    ];
+    m[0] = l[0] * r[0] + l[1] * r[4] + l[2] * r[8] + l[3] * r[12];
+    m[1] = l[0] * r[1] + l[1] * r[5] + l[2] * r[9] + l[3] * r[13];
+    m[2] = l[0] * r[2] + l[1] * r[6] + l[2] * r[10] + l[3] * r[14];
+    m[3] = l[0] * r[3] + l[1] * r[7] + l[2] * r[11] + l[3] * r[15];
+    m[4] = l[4] * r[0] + l[5] * r[4] + l[6] * r[8] + l[7] * r[12];
+    m[5] = l[4] * r[1] + l[5] * r[5] + l[6] * r[9] + l[7] * r[13];
+    m[6] = l[4] * r[2] + l[5] * r[6] + l[6] * r[10] + l[7] * r[14];
+    m[7] = l[4] * r[3] + l[5] * r[7] + l[6] * r[11] + l[7] * r[15];
+    m[8] = l[8] * r[0] + l[9] * r[4] + l[10] * r[8] + l[11] * r[12];
+    m[9] = l[8] * r[1] + l[9] * r[5] + l[10] * r[9] + l[11] * r[13];
+    m[10] = l[8] * r[2] + l[9] * r[6] + l[10] * r[10] + l[11] * r[14];
+    m[11] = l[8] * r[3] + l[9] * r[7] + l[10] * r[11] + l[11] * r[15];
+    m[12] = l[12] * r[0] + l[13] * r[4] + l[14] * r[8] + l[15] * r[12];
+    m[13] = l[12] * r[1] + l[13] * r[5] + l[14] * r[9] + l[15] * r[13];
+    m[14] = l[12] * r[2] + l[13] * r[6] + l[14] * r[10] + l[15] * r[14];
+    m[15] = l[12] * r[3] + l[13] * r[7] + l[14] * r[11] + l[15] * r[15];
+    return m;
+}
+
+function createShader(gl, sourceCode, type) {
+    // Compiles either a shader of type gl.VERTEX_SHADER or gl.FRAGMENT_SHADER
+    var shader = gl.createShader(type);
+    gl.shaderSource(shader, sourceCode);
+    gl.compileShader(shader);
+
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        var info = gl.getShaderInfoLog(shader);
+        throw "Could not compile WebGL program. \n\n" + info;
+    }
+    return shader;
+}
+
+function createProgram(gl, vertexShader, fragmentShader) {
+    var program = gl.createProgram();
+
+    gl.attachShader(program, vertexShader);
+    gl.attachShader(program, fragmentShader);
+
+    gl.linkProgram(program);
+
+
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        throw ("program filed to link:" + gl.getProgramInfoLog(program));
+    }
+
+    return program;
+}
+
+function matrix2dTranslation(tx, ty) {
+    return [
+        1, 0, 0,
+        0, 1, 0,
+        tx, ty, 1
+    ];
+}
+
+function matrix2dRotation(angleInRadians) {
+    var c = Math.cos(angleInRadians);
+    var s = Math.sin(angleInRadians);
+    return [
+        c, -s, 0,
+        s, c, 0,
+        0, 0, 1
+    ];
+}
+
+function matrix2dScale(sx, sy) {
+    return [
+        sx, 0, 0,
+        0, sy, 0,
+        0, 0, 1
+    ];
+}
+
+function matrix3dTranslation(tx, ty, tz) {
+    return [
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        tx, ty, tz, 1
+    ];
+}
+
+function matrix3dXRotation(angleInRadians) {
+    var c = Math.cos(angleInRadians);
+    var s = Math.sin(angleInRadians);
+
+    return [
+        1, 0, 0, 0,
+        0, c, s, 0,
+        0, -s, c, 0,
+        0, 0, 0, 1
+    ];
+};
+
+function matrix3dYRotation(angleInRadians) {
+    var c = Math.cos(angleInRadians);
+    var s = Math.sin(angleInRadians);
+
+    return [
+        c, 0, -s, 0,
+        0, 1, 0, 0,
+        s, 0, c, 0,
+        0, 0, 0, 1
+    ];
+};
+
+function matrix3dZRotation(angleInRadians) {
+    var c = Math.cos(angleInRadians);
+    var s = Math.sin(angleInRadians);
+    return [
+        c, s, 0, 0, -s, c, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1,
+    ];
+}
+
+function matrix3dScale(sx, sy, sz) {
+    return [
+        sx, 0, 0, 0,
+        0, sy, 0, 0,
+        0, 0, sz, 0,
+        0, 0, 0, 1,
+    ];
+}
+
+function makePerspective(fieldOfViewInRadians, aspect, near, far) {
+    var f = Math.tan(Math.PI * 0.5 - 0.5 * fieldOfViewInRadians);
+    var rangeInv = 1.0 / (near - far);
+
+    return [
+        f / aspect, 0, 0, 0,
+        0, f, 0, 0,
+        0, 0, (near + far) * rangeInv, -1,
+        0, 0, near * far * rangeInv * 2, 0
+    ];
+};
+
+function makeOrthographic(left, right, bottom, top, near, far) {
+    return [
+        2 / (right - left), 0, 0, 0,
+        0, 2 / (top - bottom), 0, 0,
+        0, 0, 2 / (near - far), 0,
+
+        (left + right) / (left - right),
+        (bottom + top) / (bottom - top),
+        (near + far) / (near - far),
+        1,
+    ];
+}
+
+function radToDeg(r) {
+    return r * 180 / Math.PI;
+}
+
+function degToRad(d) {
+    return d * Math.PI / 180;
+}
     </script>
 </body>
 
