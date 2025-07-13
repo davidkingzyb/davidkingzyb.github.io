@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./lib/vs2015.min.css">
     <script src="./lib/highlight.min.js"></script>
     <script src="./lib/highlightjs-line-numbers.min.js"></script>
+    <script src="./lib/hlsl.min.js"></script>
 
     <script src="./lib/json-viewer.bundle.js" async></script>
 
@@ -77,14 +78,14 @@
         <summary>config</summary>
         <details style="margin-top: 50px;" open>
             <summary title="Ollama AI config" >AI</summary>
-            <select id="ai_models" onchange="onModelChange()"></select>
-            num ctx: <select id="ai_numctx" style="margin-top: 10px;" onchange="onNumCtxChange()">
+            <select id="ai_models" onchange="onModelChange()" title="model"></select>
+            <select id="ai_numctx" style="margin-top: 10px;" title="num ctx" onchange="onNumCtxChange()">
                 <option value="4000">4k</option>
                 <option value="8000">8k</option>
                 <option value="16000" selected>16k</option>
                 <option value="32000">32k</option>
             </select>
-            <select name="" id="ai_language" onchange="onLanguageChange()">
+            <select name="" id="ai_language" title="language" onchange="onLanguageChange()">
                 <option value="zh">zh</option>
                 <option value="en">en</option>
             </select>
@@ -113,7 +114,7 @@
     <details class="json_con">
         <summary onclick="showJson()">json
             <input id="searchinput" type="text">
-            <button onclick="search()" title="search">🔍</button>
+            <button onclick="search()" title="search json">🔍</button>
             <button onclick="storageAstJson()" title="save Ast json to storage">📥</button>
             <button onclick="loadAstJson()" title="load Ast json from storage">📤</button>
             <button onclick="saveScast()" title="save Ast json">💾</button>
@@ -123,8 +124,10 @@
     <details open>
         <summary id="mermaidHead">mermaid UML & Flow
             <button onclick="genMermaid()" title="generate mermaid">🧜‍♀️</button>
-            <button onclick="storageMermaid()" title="save mermaid to storage">📥</button>
-            <button onclick="loadMermaid()" title="load mermaid from storage">📤</button>
+            <!-- <button onclick="storageMermaid()" title="save mermaid to storage">📥</button> -->
+            <!-- <button onclick="loadMermaid()" title="load mermaid from storage">📤</button> -->
+            <input id="searchMermaid" type="text">
+            <button onclick="searchMermaid()" title="search mermaid">🔍</button>
             <button onclick="saveMermaid()" title="save mermaid">💾</button>
             <button onclick="scaleMermaid()" title="scale mermaid">🔛</button>
         </summary>
