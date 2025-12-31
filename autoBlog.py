@@ -79,7 +79,7 @@ gRSStemplate="""<?xml version="1.0" encoding="UTF-8"?>
     <title>DKZ's Blog</title>
     <link>http://davidkingzyb.github.io/blog.html</link>
     <description>Tech Program Design 造物</description>
-    <copyright>(c)2015-2024 by DKZ</copyright>
+    <copyright>(c)2015-2026 by DKZ</copyright>
     <image>
         <url>http://davidkingzyb.github.io/res/img/cubehead.png</url>
         <title>DKZ</title>
@@ -141,7 +141,8 @@ createBlogJson(files,'blog2020',35,36)
 createBlogJson(files,'blog2021',37,37)
 createBlogJson(files,'blog2022',38,39)
 createBlogJson(files,'blog2023',40,43)
-createBlogJson(files,'blog2024',44,99)
+createBlogJson(files,'blog2024',44,51)
+createBlogJson(files,'blog2025',52,99)
 
 createRSSfile('rss')
 
