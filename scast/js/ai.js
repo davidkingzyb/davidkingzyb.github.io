@@ -100,6 +100,7 @@ Here is user's code you need analyse:
 async function aiAnalysis(){
     var j=getOutlineJson()
     for(let file in gAst){
+        if(j[file]===undefined)continue;
         let p=getOutlinePrompt(j[file],gAst[file].code)
         await outlineAgent(p,j[file],file)
     }
@@ -113,8 +114,8 @@ function getOutlineJson(){
             let node=gMermaid.FlowNode[k]
             let nodev=node.value||node._value
             if(!result[node._file])result[node._file]={'cls':{},'func':{}}
-            if(node.type=="ClassDeclaration"||node.type=="ClassDefine"||node.type=="InterfaceDefine")result[node._file].cls[nodev]=node._flow_id||nodev;
-            if(node.type=="FunctionExpression"||node.type=="MethodDefine"||node.type=="FunctionDeclaration"||node.type=="FunctionDefine")result[node._file].func[nodev]=node._flow_id||nodev;
+            if(node.type=="ClassDeclaration"||node.type=="ClassDefine"||node.type=="InterfaceDefine"||node.type==="Class"||node.type==="Interface")result[node._file].cls[nodev]=node._flow_id||nodev;
+            if(node.type=="FunctionExpression"||node.type=="MethodDefine"||node.type=="FunctionDeclaration"||node.type=="FunctionDefine"||node.type==="Function"||node.type==="Method")result[node._file].func[nodev]=node._flow_id||nodev;
         }
         console.log('outline json',result)
     }
@@ -166,7 +167,8 @@ function outlineAgent(prompt,json,file){
         'format':fmt,
         'options':{
             "num_ctx":gNumCtx
-        }
+        },
+        "think":false
     }
     document.getElementById('aibtn').innerHTML='⌛'
     document.getElementById('aibtn').disabled=true

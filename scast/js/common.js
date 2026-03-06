@@ -76,9 +76,10 @@ function showJson(){
 function storageAstJson(){
     localStorage.setItem('SCAST_gAst',JSON.stringify(gAst))
 }
-function loadAstJson(aststr){
+async function loadAstJson(aststr){
     gAst=JSON.parse(aststr||localStorage.getItem('SCAST_gAst'))
     var $code=document.getElementById('code')
+    var $useTreeSitter=document.getElementById('useTreeSitter')
     var html=''
     var isautosave=false;
     for(let ast in gAst){
@@ -86,10 +87,14 @@ function loadAstJson(aststr){
                 <summary onclick="scrollToView('detail_${ast.replace('.','_')}')">${ast}<a onclick="jumpOllama('${ast}')">${location.href.indexOf('davidkingzyb.tech')>=0?'🦙':''}</a></summary>
                 <pre><code class="language-${gAst[ast].filetype}" id="${ast}">${gAst[ast].code.replaceAll('<','&lt;').replaceAll('>',"&gt;")}</code></pre>
                 </details>`
-        if(!gAst[ast].body){//for mcp
+        if(!gAst[ast].body&&!gAst[ast].children){//for mcp
             let t=ast.split('.')
             let c=gAst[ast].code
-            if(t[1]=='py'){
+            if($useTreeSitter.checked){
+                gAst[ast]=await TreeSitter.getAst(c.replace(/\r\n/g,'\n'),t[0],t.slice(-1)[0])
+                console.log('TreeSitter mcp',gAst)
+            }
+            else if(t[1]=='py'){
                 gAst[ast]=ESTREEPY.getAst(c.replace(/\r\n/g,'\n'),t[0])
             }else if(t[1]=='js'){
                 gAst[ast]=ESTREEJS.getAst(c.replace(/\r\n/g,'\n'),t[0])
@@ -257,7 +262,7 @@ function onFlowClick(n,file,time=5000){
     for(let $l of $line){
         if($l.getAttribute('data-line-number')==node.poi.line){
             $l.style.backgroundColor = "#ff702e";
-            $l.scrollIntoView()
+            $l.scrollIntoView({behavior:'smooth',block:'center',inline:'center'})
             document.getElementById('code_con').scrollBy(0,-100)
             setTimeout(()=>{
                 $l.style.backgroundColor = "#ffb02e";
@@ -277,6 +282,11 @@ var gIconmap={
     "FunctionExpression":'Ⓜ️',
     "ClassDefine":'🆑',
     "ClassDeclaration":'🆑',
+    "Class":'🆑',
+    "Method":'Ⓜ️',
+    "Function":'🟦',
+    "Call":'📞',
+    "New":'🆕',
 }
 function renderMermaidFilter(){
     var html=''
@@ -353,7 +363,16 @@ function renderD3Option(){
         html+=`<input type="checkbox" id="d3op_${op}" class="d3ops" ${SCAST.types[op]?"checked":''} /><label for="d3op_${op}">${op}</label> `
     }
     document.getElementById("D3Option").innerHTML=html
+
+    var html=`<input type="checkbox" id="d3tsop_all" class="d3ops" checked/><label for="d3tsop_all">all</label>`
+    for(let op in TreeSitter.types){
+        html+=`<input type="checkbox" id="d3tsop_${op}" class="d3ops" ${TreeSitter.types[op]?"checked":''} /><label for="d3tsop_${op}">${op}</label> `
+    }
+    document.getElementById("D3TreeSitter").innerHTML=html
+
 }
+
+
 function getSCASTD3Option(){
     var result=JSON.parse(JSON.stringify(SCAST.types))
     for(let op in result){
@@ -368,6 +387,14 @@ function getESTreeD3Option(){
         result[op]=document.getElementById('d3esop_'+op).checked
     }
     result['all']=document.getElementById('d3esop_all').checked
+    return result
+}
+function getTreeSitterD3Option(){
+    var result=JSON.parse(JSON.stringify(TreeSitter.types))
+    for(let op in result){
+        result[op]=document.getElementById('d3tsop_'+op).checked
+    }
+    result['all']=document.getElementById('d3tsop_all').checked
     return result
 }
 function scaleD3(){
@@ -393,6 +420,20 @@ function initCodeScaler(){
     var $codecon=document.getElementById('code_con')
     var $codepanel=document.getElementById('code_panel')
     var $codescroll=document.getElementById('code_scroll')
+
+    var $mover=document.getElementById('codemover');
+    var isCodeMove=false
+
+    $mover.addEventListener('mousedown',()=>{
+        isCodeMove=true
+        document.body.style.userSelect='none'
+    })
+    document.addEventListener('mouseup',()=>{
+        // console.log('up')
+        isCodeMove=false
+        document.body.style.userSelect=''
+    })
+
     $codecon.addEventListener('toggle',(e)=>{
         if($codecon.open){
             $codepanel.style.display = 'block';
@@ -419,6 +460,12 @@ function initCodeScaler(){
             $codescroll.style.width=(cx-15)+'px'
             $codescroll.style.height=(cy-15)+'px'
         }
+        if(isCodeMove){
+            var cx = e.clientX;
+            var cy = e.clientY;
+            $codepanel.style.left=(cx-15)+'px'
+            $codepanel.style.top=(cy-15)+'px'
+        }
     })
 
     $scaler.addEventListener('touchend',()=>{
@@ -437,7 +484,6 @@ function initCodeScaler(){
         }
         
     })
-    
 }
 
 function wtfmsg(m,time=3000){
