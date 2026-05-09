@@ -142,7 +142,8 @@ createBlogJson(files,'blog2021',37,37)
 createBlogJson(files,'blog2022',38,39)
 createBlogJson(files,'blog2023',40,43)
 createBlogJson(files,'blog2024',44,51)
-createBlogJson(files,'blog2025',52,99)
+createBlogJson(files,'blog2025',52,52)
+createBlogJson(files,'blog2026',53,99)
 
 createRSSfile('rss')
 

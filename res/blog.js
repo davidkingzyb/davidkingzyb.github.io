@@ -16,7 +16,7 @@ function getBlogJson() {
         wtf.get('blog'+year+'.json', function(d) {
             blogobj['blog'+year] = d;
             var y = wtf.urlquery('year');
-            if (y == year||year==2025) {
+            if (y == year||year==2026) {
                 doYear(year);
             }
         })
@@ -32,6 +32,7 @@ function getBlogJson() {
     _getBlogJson(2023);
     _getBlogJson(2024);
     _getBlogJson(2025);
+    _getBlogJson(2026);
 }
 
 function doYear(year) {
@@ -71,6 +72,7 @@ function responseHandle(blogJson, isError, fromSearch) {
     innerbodyPane = innerbodyPane 
     + '<div class="markdown-body" id="discusspane">' 
     + '<a href="https://github.com/davidkingzyb/davidkingzyb.github.io/issues/1" class="btn">Discuss</a>' 
+    + '<a href="javascript:doYear(2026)" class="btn">2026</a>' 
     + '<a href="javascript:doYear(2025)" class="btn">2025</a>' 
     + '<a href="javascript:doYear(2024)" class="btn">2024</a>' 
     + '<a href="javascript:doYear(2023)" class="btn">2023</a>' 
@@ -82,7 +84,7 @@ function responseHandle(blogJson, isError, fromSearch) {
     + '<a href="javascript:doYear(2017)" class="btn">2017</a>' 
     + '<a href="javascript:doYear(2016)" class="btn">2016</a>' 
     + '<a href="javascript:doYear(2015)" class="btn">2015</a>' 
-    + '<div id="copyright">&copy;2015-2025 by DKZ</div></div>';
+    + '<div id="copyright">&copy;2015-2026 by DKZ</div></div>';
     document.getElementById('bodyPane').innerHTML = innerbodyPane;
 }
 
