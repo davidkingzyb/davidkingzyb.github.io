@@ -55,6 +55,7 @@ input[type="text"]{
     width: 170px;
 }
 input[type="checkbox"] {
+    cursor: pointer;
     appearance: none;
     border: 1px solid black;
     background-color: white;
@@ -78,15 +79,15 @@ body{
     margin: 10px;
 }
 .json_con{
-    margin-top: 60px;
+    /* margin-top: 60px; */
 }
 #mermaid_conf_con{
     position: fixed;
     top:0;
-    left: 110px;
+    right: 420px;
     background-color: rgba(0,0,0,0.9);
     overflow-x: auto;
-    margin-top:50px;
+    margin:50px 0 0 0;
     padding:0 10px ;
     color:white;
     z-index:60;
@@ -96,7 +97,7 @@ body{
     padding: 10px;
     position: fixed;
     top:0;
-    left: 120px;
+    right:420px;
     background-color: rgba(0,0,0,1);
     width: 160px;
 }
@@ -139,7 +140,7 @@ summary{
 #code_con{
     position: fixed;                          
     top:0;
-    left: 0;
+    right:600px;
     background-color: rgba(0,0,0,0.9);
     overflow-x: auto;
     /* margin: 0; */
@@ -150,19 +151,19 @@ summary{
 #code_panel{
     position: fixed;                          
     top:50px;
-    left: 0;
+    right: 0px;
     max-height: 90%;
     max-width: 100vw;
     background-color: rgba(0,0,0,0.9);
     color:white;
     z-index:10;
     overflow: hidden;
-    width: 625px;
+    width: 720px;
     height: 430px;
 }
 #code_scroll{
     overflow: auto;
-    width: 625px;
+    width: 720px;
     height: 430px;
     /* padding: 10px; */
 }
@@ -170,7 +171,7 @@ summary{
     padding: 10px;
     position: fixed;
     top:0;
-    left: 0;
+    right:600px;
     background-color: rgba(0,0,0,1);
     width: 100px;
     line-height: 32px;
@@ -355,3 +356,110 @@ json-viewer {
 #searchMermaid{
     margin-left: 10px;
 }
+
+.find_highlight{
+    color:#ffb02e;
+}
+
+
+
+#repo_url{
+    margin-top: 10px;
+}
+#repo_btn{
+    display: none;
+}
+
+
+.tree-root,
+.tree-node > ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.tree-node > ul {
+  padding-left: 18px;
+}
+
+.tree-node {
+  white-space: nowrap;
+}
+
+.tree-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  /* border-radius: 4px; */
+  cursor: pointer;
+  user-select: none;
+}
+
+.tree-row:hover {
+  background: #ffb02e;
+}
+
+.tree-row input[type="checkbox"] {
+  cursor: pointer;
+  flex-shrink: 0;
+  appearance: none;
+  border: 1px solid black;
+  background-color: white;
+  width: 14px;
+  height: 14px;
+}
+
+.tree-row input[type="checkbox"]:checked{
+    /* appearance: none; */
+    background-color: #ffb02e;
+}
+
+.tree-arrow {
+  width: 14px;
+  flex-shrink: 0;
+  display: inline-block;
+  color: white;
+  font-size: 11px;
+  text-align: center;
+}
+
+.tree-arrow.collapsed::before {
+  content: "\25B6";
+}
+
+.tree-arrow.expanded::before {
+  content: "\25BC";
+}
+
+.tree-arrow.empty{
+    width: 0;
+}
+
+.tree-arrow.empty::before {
+  content: "\00A0";
+}
+
+.tree-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+}
+
+.tree-label.dir {
+  font-weight: 600;
+}
+
+.tree-loading {
+  padding: 4px 0 4px 24px;
+  color: #8b949e;
+  font-size: 12px;
+}
+
+.tree-error {
+  padding: 4px 0 4px 24px;
+  color: #ff702e;
+  font-size: 12px;
+}
+
