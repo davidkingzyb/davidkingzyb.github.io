@@ -1,6 +1,7 @@
 
-const LIBPATH='../lib/TreeSitter/'
+// const LIBPATH='../lib/TreeSitter/'
 //const LIBPATH='/sf/SCAST/lib/TreeSitter/'
+const LIBPATH='/scast/lib/TreeSitter/'
 globalThis.TreeSitter=(function(){
     var Code='';
     var types={
